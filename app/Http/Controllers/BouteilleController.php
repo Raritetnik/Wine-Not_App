@@ -48,8 +48,15 @@ class BouteilleController extends Controller
      */
     public function show($id)
     {
-        $bouteille = Vino_Bouteille::find($id);
-        return view('bouteille.show', ['bouteille' => $bouteille]);
+        $bouteilleDetail = Bouteille_Par_Cellier::select()
+        ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
+        ->where([
+        ['vino_bouteille_id', '=', $id]
+        ])
+        ->get();
+        // return $bouteilleDetail;
+        $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite']*$bouteilleDetail[0]['prix_saq'];
+        return view('bouteille.show', ['bouteille' => $bouteilleDetail[0]]);
     }
 
     /**
