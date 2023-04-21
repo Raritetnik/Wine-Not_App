@@ -3,7 +3,7 @@
     <div class="relative flex items-center justify-between h-16">
       <!-- Logo -->
       <div class="absolute inset-y-0 left-0 flex items-center lg:hidden">
-        <button id="mobile-menu-button" type="button" class="z-10 fixed top-3 right-3 inline-flex items-center justify-center p-2  rounded-md text-section_title hover:text-accent_wine hover:border-accent_wine border-3  focus:outline-none focus:border-accent_wine focus:text-accent_wine transition duration-150 ease-in-out">
+        <button id="mobile-menu-button" type="button" class="z-50 fixed top-3 right-3 inline-flex items-center justify-center p-2  rounded-md text-section_title hover:text-accent_wine hover:border-accent_wine border-3  focus:outline-none focus:border-accent_wine focus:text-accent_wine transition duration-150 ease-in-out">
           <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -65,7 +65,7 @@
   </div>
   <!-- Mobile Menu -->
   <!--  from-accent_wine to-main bg-gradient-to-t -->
-  <div id="mobile-menu" class="z-50 pt-10 transition duration-300 hidden lg:hidden from-accent_wine to-main bg-gradient-to-t absolute top-0 left-0 w-full">
+  <div id="mobile-menu" class="z-30 pt-10 transition duration-300 hidden lg:hidden from-accent_wine to-main bg-gradient-to-t absolute top-0 left-0 w-full">
     <div class="space-y-7 flex flex-col items-center justify-center pb-10">
       <a href="/" class="text-accent_wine uppercase tracking-wide pb-4"><img src="{{ asset('img/svg/logoWN.svg') }}" alt="logo-wineNot" class="mx-auto"></a>
       @guest
