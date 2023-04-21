@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Vino_Cellier;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,8 +51,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'firstName' => ['required', 'string', 'max:100'],
+            'lastName' => ['required', 'string', 'max:100'],
+            'courriel' => ['required', 'string', 'email', 'max:255', 'unique:utilisateurs'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +66,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        $user = User::create([
+            'prenom' => $data['firstName'],
+            'nom' => $data['lastName'],
+            'courriel' => $data['courriel'],
             'password' => Hash::make($data['password']),
+            'utilisateur_privilege_id' => 1,
         ]);
+
+        Vino_Cellier::create([
+            'nom' => 'MonCellier',
+            'quantite_max' => 100,
+            'utilisateurs_id' => $user['id'],
+            'image' => 'img/celliers/cellier_moderne_led.jpg'
+        ]);
+        return $user;
     }
 }

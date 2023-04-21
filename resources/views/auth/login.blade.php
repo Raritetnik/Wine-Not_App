@@ -1,72 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<div class="container mb-3 mx-auto">
+    <div class="min-h-[500px] container flex justify-center items-center ">
+        <div class="bg-white rounded-lg overflow-hidden max-w-[400px] w-full">
+        <div class="px-6 mb-5">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <h2 class="text-center text-accent_wine text-2xl mb-5">{{ __('Connexion') }}</h2>
+            <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class="mb-4">
+                <!-- <v-recherche /> -->
+                <input id="courriel" type="email" placeholder="{{ __('Courriel') }}" class="appearance-none placeholder-section_title border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine @error('courriel') border-red-500 @enderror" name="courriel" value="{{ old('courriel') }}" required autocomplete="courriel" autofocus>
+                @error('courriel')
+                <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                @enderror
             </div>
+            <div class="mb-4">
+
+                <input id="password" type="password" placeholder="{{ __('Mot de passe') }}" class="placeholder-section_title  appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine @error('password') border-red-500 @enderror" name="password" required autocomplete="current-password">
+                @error('password')
+                <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-4 flex justify-between items-center">
+                <div>
+                <input type="checkbox" class="form-checkbox h-4 w-4 text-section_title" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                <label class="ml-2 text-section_title text-sm hover:text-accent_wine" for="remember">
+                    {{ __('Se souvenir de moi') }}
+                </label>
+
+                </div>
+                @if (Route::has('password.request'))
+                <a class="ml-5 inline-block align-baseline text-sm text-accent_wine hover:text-section_title " href="{{ route('password.request') }}">
+                {{ __('Le mot de passe oublié?') }}
+                </a>
+                @endif
+            </div>
+            <div class="text-center">
+                <button type="submit" class="bg-accent_wine space-x-1 font-normal border text-main hover:border-accent_wine hover:bg-transparent hover:text-accent_wine py-2 px-5 uppercase rounded focus:outline-none">
+
+                {{ __('Connexion') }}
+                </button>
+            </div>
+            </form>
+        </div>
         </div>
     </div>
 </div>
