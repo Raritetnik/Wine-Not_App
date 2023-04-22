@@ -2,35 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /* Style the modal */
 .modal {
     z-index: 1;
   }
-
+  
   .modal-content {
     position: relative;
   }
-
-  /* ---------- Cellier creation nv cellier choix d'image ---------*/
-.cellier-img label {
-  display: inline-block;
-  position: relative;
-  margin-right: 10px;
-}
-.cellier-img input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-.cellier-img img {
-  border: 3px solid white;
-  width: 120px;
-  height: 100px;
-  border-radius: 10px;
-}
-.cellier-img input[type="radio"]:checked + img {
-  outline: 3px solid red;
-}
 
 .login {
   min-height: 100vh;
@@ -51,3 +32,4 @@
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
 }
+

@@ -37,18 +37,19 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('aut
  * Les liens de cellier
  */
 // Catalogue des celliers
-Route::get('/celliers', [CellierController::class, 'index'])->name('cellier.index')->middleware('auth');
-Route::get('/creer-cellier', [CellierController::class, 'create'])->name('cellier.creer')->middleware('auth');
-Route::post('/creer-cellier', [CellierController::class, 'store'])->name('cellier.enregistrer')->middleware('auth');
+Route::get('/celliers', [App\Http\Controllers\CellierController::class, 'index'])->name('celliers.index')->middleware('auth');
+Route::get('/creer-cellier', [App\Http\Controllers\CellierController::class, 'creer'])->name('celliers.creer')->middleware('auth');
+Route::post('/creer-cellier', [App\Http\Controllers\CellierController::class, 'insererCellier'])->name('celliers.insererCellier')->middleware('auth');
 
 // Intérieur du cellier
-Route::get('/celliers/{cellier}', [CellierController::class, 'show'])->name('cellier.afficher')->middleware('auth');
-Route::get('/celliers-modifier/{cellier}', [CellierController::class, 'edit'])->name('cellier.modifier')->middleware('auth');
-Route::put('/celliers-modifier/{cellier}', [CellierController::class, 'update'])->middleware('auth');
+Route::get('/celliers-modifier/{cellier}', [App\Http\Controllers\CellierController::class, 'modifier'])->name('celliers.modifier')->middleware('auth');
+Route::put('/celliers-modifier/{cellier}', [App\Http\Controllers\CellierController::class, 'enregistrerModification'])->middleware('auth');
+Route::get('/details-bouteille/{bouteille_par_cellier}', [App\Http\Controllers\CellierController::class, 'afficherFicheBouteille'])->name('celliers.detailBouteille')->middleware('auth');
 
 // Action avec les bouteilles dans le cellier
-Route::put('/celliers/{cellier}/{idbouteille}', [CellierController::class, 'modifierNbBouteille'])->middleware('auth');
-Route::put('/celliers/{cellier}', [CellierController::class, 'storeBouteille'])->middleware('auth');
+Route::get('/celliers/{cellier}', [App\Http\Controllers\CellierController::class, 'afficher'])->name('celliers.afficher')->middleware('auth');
+Route::put('/celliers/{cellier}', [App\Http\Controllers\CellierController::class, 'ajouterBouteille'])->middleware('auth');
+Route::put('/celliers/{cellier}/{idbouteille}', [App\Http\Controllers\CellierController::class, 'modifierNbBouteille'])->middleware('auth');
 
 /**
  * Les liens de Bouteilles

@@ -31,12 +31,12 @@
             </li>
             @else
             <li>
-              <a href="{{ route('cellier.index') }}" class="justify-center font-medium tracking-wide text-accent_wine transition-colors duration-200 hover:text-section_title" aria-label="celliers" title="celliers">
+              <a href="{{ route('celliers.index') }}" class="justify-center font-medium tracking-wide text-accent_wine transition-colors duration-200 hover:text-section_title" aria-label="celliers" title="celliers">
                 Mes Celliers
               </a>
             </li>
             <li>
-              <a href="{{route('cellier.creer')}}" class="justify-center font-medium tracking-wide text-accent_wine transition-colors duration-200 hover:text-section_title" aria-label="articles" title="articles">
+              <a href="{{route('celliers.creer')}}" class="justify-center font-medium tracking-wide text-accent_wine transition-colors duration-200 hover:text-section_title" aria-label="articles" title="articles">
                 Ajouter Cellier
               </a>
             </li>
@@ -78,10 +78,10 @@
 
       @else
       <!-- font-medium tracking-wide text-accent_wine -->
-      <a href="{{ route('cellier.index') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="celliers" title="celliers">
+      <a href="{{ route('celliers.index') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="celliers" title="celliers">
         Mes Celliers
       </a>
-      <a href="{{ route('home') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="articles" title="articles">
+      <a href="{{route('celliers.creer')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="articles" title="articles">
         Ajouter Cellier
       </a>
       <a href="{{ route('bouteilles') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="saq" title="saq">
