@@ -28,5 +28,6 @@
     },
     "dependencies": {
         "vue-router": "^2.7.0"
-    }
+    },
+    "homepage": "http://mykhaelf.sg-host.com/"
 }
