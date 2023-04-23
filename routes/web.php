@@ -30,10 +30,9 @@ Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('login', [LoginController::class, 'loginCustom'])->name('login.custom');
 
-// Page Accueil est le cellier de l'utilisateur actuellement
-// Si l'utilisateur n'est pas connecté, il sera redirigé vers login
-Route::get('/', [CellierController::class, 'index'])->middleware('auth');
-
+// Page Accueil
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [CellierController::class, 'index'])->middleware('auth');
 /**
  * Les liens de cellier
  */
