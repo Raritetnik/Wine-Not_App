@@ -2,7 +2,7 @@
 <footer class="bg-accent_wine px-4 flex flex-col-reverse md:justify-between md:flex-row pt-4 pb-2">
   <div class="flex flex-col items-center md:items-start md:justify-between">
     <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-      <img src="{{asset('img/svg/logoWN-white.svg')}}" alt="company-logo" width="130">
+      <img src="{{asset('img/svg/logoWn-white.svg')}}" alt="company-logo" width="130">
     </a>
 
     <div class="flex flex-col-reverse justify-between pt-7  lg:flex-row">

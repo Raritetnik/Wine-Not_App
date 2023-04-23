@@ -12,7 +12,7 @@
       <!-- Menu -->
       <div class="hidden sm:flex sm:items-center sm:justify-between w-full">
         <div id="logo" class="flex-shrink-0">
-          <a href="/" class="text-accent_wine uppercase tracking-wide font-bold"><img src="{{ asset('img/svg/logoWN.svg') }}" alt="logo-wineNot" class="mx-auto"></a>
+          <a href="/" class="text-accent_wine uppercase tracking-wide font-bold"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto"></a>
         </div>
         <div class="hidden sm:block sm:ml-6">
           <ul class="items-center justify-between space-x-6 hidden lg:flex ">
