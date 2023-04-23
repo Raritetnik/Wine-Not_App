@@ -32,7 +32,7 @@ Route::post('login', [LoginController::class, 'loginCustom'])->name('login.custo
 
 // Page Accueil
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
-
+Route::get('/home', [CellierController::class, 'index'])->middleware('auth');
 /**
  * Les liens de cellier
  */
