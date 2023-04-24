@@ -9,7 +9,7 @@
     </a>
   </header>
 
-  <div class="min-w-[500px]container flex justify-center items-center ">
+  <div class="min-h-[500px] container flex justify-center items-center ">
     <div class="bg-white rounded-lg overflow-hidden max-w-[400px] w-full">
 
       <div id="Header" class="flex flex-col items-center my-10">

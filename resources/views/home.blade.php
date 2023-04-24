@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-  <header class="mb-6">
+  <header class="mb-8">
     <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
       <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
     </a>
   </header>
-  <section class="mx-4 px-6 flex flex-col gap-6 mb-4">
+  <section class="mx-4 px-6 flex flex-col gap-6 mb-8">
     <div class="flex items-center justify-around relative">
       <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Choisissez votre vin à la SAQ!</h2>
       <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
@@ -35,8 +35,8 @@
       </div>
     </div>
   </section>
-  <footer class="flex flex-col items-center mb-2">
-    <a href="/register" class="text-white py-2 w-full rounded-md mb-2" style="background-color: #67375C">Commencer</a>
+  <footer class="flex flex-col items-center mb-8 mx-10">
+    <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Commencer</a>
     <small style="color: #909090">
       Avez-vous déjà un compte?
       <a href="/login" style="color: #67375C">Connecter</a>
