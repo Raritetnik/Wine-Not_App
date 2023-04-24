@@ -1,132 +1,46 @@
 @extends('layouts.app')
 @section('content')
-<div class="px-4 py-16 mx-auto flex justify-center sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-16 lg:px-8 lg:py-20">
-  <!-- Grille composante -->
-  
-  <div class="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-
-    <!-- carte -->
-    <div class="overflow-hidden shadow border-section_title duration-300 flex flex-col gap-3 items-center  bg-white rounded-lg max-h-55 p-4 w-full">
-      <a href="/" aria-label="Article"><img src="https://www.saq.com/media/catalog/product/1/5/15116225-1_1679602083.png?width=367&amp;height=550&amp;canvas=367,550&amp;quality=80&amp;fit=bounds" class="object-cover max-h-[350px] max-w-[315px] rounded" alt="vine-img" /></a>
-      <div class="text-center flex flex-col gap-2.5">
-        <span class="font-semibold text-section_title">Cellier</span>
-        <a href="/" aria-label="Article" class="inline-block text-article_title">
-          <p class="sm:text-2xl text-xl font-bold leading-6">André Rohrer Stein Riesling</p>
-        </a>
-        <!-- ici va la note avec qty -->
-
-      </div>
-      <!-- ici va le compteur -->
-      <div class="flex flex-col items-center py-3">
-        <div class="inline-flex items-center">
-          <button class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-            </svg>
-          </button>
-          <div class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none"> 2
-          </div>
-          <button class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
-        </div>
+<div class="">
+  <header class="mb-6">
+    <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
+      <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
+    </a>
+  </header>
+  <section class="mx-4 px-6 flex flex-col gap-6 mb-4">
+    <div class="flex items-center justify-around relative">
+      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Choisissez votre vin à la SAQ!</h2>
+      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
+        <img src="{{ asset('img/svg/full_bottle.svg') }}" alt="">
+        <div class="absolute bottom-0 text-4xl" style="color: #ABA08D; transform: translateY(80%)">&#8595;</div>
       </div>
     </div>
-    <!-- fin carte -->  
-    <!-- carte -->
-    <div class="overflow-hidden shadow border-section_title duration-300 flex flex-col gap-3 items-center  bg-white rounded-lg max-h-55 p-4 w-full">
-      <a href="/" aria-label="Article"><img src="https://www.saq.com/media/catalog/product/1/5/15116225-1_1679602083.png?width=367&amp;height=550&amp;canvas=367,550&amp;quality=80&amp;fit=bounds" class="object-cover max-h-[350px] max-w-[315px] rounded" alt="vine-img" /></a>
-      <div class="text-center flex flex-col gap-2.5">
-        <span class="font-semibold text-section_title">Cellier</span>
-        <a href="/" aria-label="Article" class="inline-block text-article_title">
-          <p class="sm:text-2xl text-xl font-bold leading-6">André Rohrer Stein Riesling</p>
-        </a>
-        <!-- ici va la note avec qty -->
-
-      </div>
-      <!-- ici va le compteur -->
-      <div class="flex flex-col items-center py-3">
-        <div class="inline-flex items-center">
-          <button class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-            </svg>
-          </button>
-          <div class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none"> 2
-          </div>
-          <button class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
-        </div>
+    <div class="flex items-center justify-around relative">
+      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Localisez la bouteille dans notre application</h2>
+      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
+        <img src="{{ asset('img/svg/form-icon.svg') }}" alt="">
+        <div class="absolute bottom-0 text-4xl" style="color: #ABA08D; transform: translateY(80%)">&#8595;</div>
       </div>
     </div>
-    <!-- fin carte -->  
-    <!-- carte -->
-    <div class="overflow-hidden shadow border-section_title duration-300 flex flex-col gap-3 items-center  bg-white rounded-lg max-h-55 p-4 w-full">
-      <a href="/" aria-label="Article"><img src="https://www.saq.com/media/catalog/product/1/5/15116225-1_1679602083.png?width=367&amp;height=550&amp;canvas=367,550&amp;quality=80&amp;fit=bounds" class="object-cover max-h-[350px] max-w-[315px] rounded" alt="vine-img" /></a>
-      <div class="text-center flex flex-col gap-2.5">
-        <span class="font-semibold text-section_title">Cellier</span>
-        <a href="/" aria-label="Article" class="inline-block text-article_title">
-          <p class="sm:text-2xl text-xl font-bold leading-6">André Rohrer Stein Riesling</p>
-        </a>
-        <!-- ici va la note avec qty -->
-
-      </div>
-      <!-- ici va le compteur -->
-      <div class="flex flex-col items-center py-3">
-        <div class="inline-flex items-center">
-          <button class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-            </svg>
-          </button>
-          <div class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none"> 2
-          </div>
-          <button class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
-        </div>
+    <div class="flex items-center justify-around relative">
+      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Attribuez-lui un cellier !</h2>
+      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
+        <img src="{{ asset('img/svg/barrols.svg') }}" alt="">
+        <div class="absolute bottom-0 text-4xl" style="color: #ABA08D; transform: translateY(80%)">&#8595;</div>
       </div>
     </div>
-    <!-- fin carte -->  
-    <!-- carte -->
-    <div class="overflow-hidden shadow border-section_title duration-300 flex flex-col gap-3 items-center  bg-white rounded-lg max-h-55 p-4 w-full">
-      <a href="/" aria-label="Article"><img src="https://www.saq.com/media/catalog/product/1/5/15116225-1_1679602083.png?width=367&amp;height=550&amp;canvas=367,550&amp;quality=80&amp;fit=bounds" class="object-cover max-h-[350px] max-w-[315px] rounded" alt="vine-img" /></a>
-      <div class="text-center flex flex-col gap-2.5">
-        <span class="font-semibold text-section_title">Cellier</span>
-        <a href="/" aria-label="Article" class="inline-block text-article_title">
-          <p class="sm:text-2xl text-xl font-bold leading-6">André Rohrer Stein Riesling</p>
-        </a>
-        <!-- ici va la note avec qty -->
-
-      </div>
-      <!-- ici va le compteur -->
-      <div class="flex flex-col items-center py-3">
-        <div class="inline-flex items-center">
-          <button class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-            </svg>
-          </button>
-          <div class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none"> 2
-          </div>
-          <button class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
-        </div>
+    <div class="flex items-center justify-around relative">
+      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Gérez votre cave à vin comme un pro !</h2>
+      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
+        <img src="{{ asset('img/svg/empty_bottle.svg') }}" alt="">
       </div>
     </div>
-    <!-- fin carte -->  
-
-    
-  </div>
+  </section>
+  <footer class="flex flex-col items-center mb-2">
+    <a href="/register" class="text-white py-2 px-28 rounded-md mb-2" style="background-color: #67375C">Commencer</a>
+    <small style="color: #909090">
+      Avez-vous déjà un compte?
+      <a href="/login" style="color: #67375C">Connecter</a>
+    </small>
+  </footer>
 </div>
 @endsection
