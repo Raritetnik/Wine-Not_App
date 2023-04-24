@@ -31,8 +31,8 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('login', [LoginController::class, 'loginCustom'])->name('login.custom');
 
 // Page Accueil
-Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('/home', [CellierController::class, 'index'])->middleware('auth');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+//Route::get('/home', [CellierController::class, 'index'])->middleware('auth');
 /**
  * Les liens de cellier
  */
