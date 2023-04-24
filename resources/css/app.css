@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+:root {
+  --color_text: #909090;
+  --color_wine: #67375C;
+  --color_champ: #ABA08D;
+}
 
 /* Style the modal */
 .modal {
