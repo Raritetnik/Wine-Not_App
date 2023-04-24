@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CellierController;
+use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\SAQController;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,3 +69,6 @@ Route::get('/DEsaq', [SAQController::class, 'uploadVins'])->name('bouteilles.dd'
  * Les routes de test
  */
 Route::get('/test', [HomeController::class, 'testPage'])->name('test');
+
+Route::get('webcam', [WebcamController::class, 'index']);
+Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
