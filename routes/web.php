@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CellierController;
+use App\Http\Controllers\ListeSouhaitsController;
 use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\SAQController;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +70,14 @@ Route::get('/DEsaq', [SAQController::class, 'uploadVins'])->name('bouteilles.dd'
  * Les routes de test
  */
 Route::get('/test', [HomeController::class, 'testPage'])->name('test');
+Route::get('/favoris', [ListeSouhaitsController::class, 'index'])->name('favoris');
 
 Route::get('webcam', [WebcamController::class, 'index']);
 Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
+
+/**
+ * Les routes avec les fonctionnalités d'API
+ */
+Route::get('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'verifierFavoris'])->name('verification.favoris');
+Route::post('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'modifierFavoris'])->name('modification.favoris');
+Route::get('/api.bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');

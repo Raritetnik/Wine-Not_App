@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vino_Bouteille;
 use App\Models\Bouteille_Par_Cellier;
+use App\Models\ListeSouhaits;
 use App\Models\Vino_Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,7 @@ class CellierController
       return redirect(route('login'));
     }
   }
-  // formulaire de création d'un cellier 
+  // formulaire de création d'un cellier
   public function creer()
   {
     return view('celliers.creer');
@@ -70,7 +71,7 @@ class CellierController
   {
     // chercher dans la classe Vino_Cellier la ligne correspondante au id ($cellier)
     // nommer les colonnes et donner des alias pour unicité
-    $celliers = Vino_Cellier::find($cellier); 
+    $celliers = Vino_Cellier::find($cellier);
     $bouteilles = Vino_Bouteille::select(
       'date_achat',
       'garde_jusqua',
@@ -92,7 +93,7 @@ class CellierController
       'pays',
       'format',
       'type',
-      'bouteille_par_celliers.id' 
+      'bouteille_par_celliers.id'
     )
       ->join('bouteille_par_celliers', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
       ->join('vino_celliers', 'vino_celliers.id', '=', 'bouteille_par_celliers.vino_cellier_id')
@@ -102,8 +103,11 @@ class CellierController
       ->where('vino_celliers.id', $cellier)
       ->get();
 
+      $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+
     return view('celliers.afficher', ['cellier' => $celliers,
-                                      'bouteilles' => $bouteilles]);
+                                      'bouteilles' => $bouteilles,
+                                      "listeSouhaits" => $listeSouhaits]);
   }
 
   // Afficher formulaire de modification des informations de la table vino_celliers
@@ -152,7 +156,7 @@ class CellierController
         'prix' => $request->prix,
         'quantite' => $request->quantite,
         'millesime' => $request->millesime,
-        'vino_cellier_id'=> $cellier->id, 
+        'vino_cellier_id'=> $cellier->id,
         'vino_bouteille_id'=> $request->vino_bouteille_id  // vient de vue.js
       ]);
       $bouteille->save();
