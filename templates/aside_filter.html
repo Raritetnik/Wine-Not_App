@@ -13,291 +13,275 @@
     https://codepen.io/magnificode/pen/bdWYwy-->
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-family: Roboto;
-  height: 100%;
-}
+        html,
+        body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: Roboto;
+        height: 100%;
+        }
 
-.hide {
-  display: none;
-  transform: translateY(-100%);
-  z-index: -1;
-  transition: transform 1000ms ease-in-out;
+        .cacher {
+        display: none;
+        transform: translateY(-100%);
+        z-index: -1;
+        transition: transform 1000ms ease-in-out;
 
-}
+        }
 
+        /* ne pas avoir de marges */
+        .conteneur-nav ul {
+        /*margin-top: 1.85rem;*/
+        /* margin-block-start: 0;*/
+        margin-right: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        padding: 0;
+        list-style: none;
+        }
+        .conteneur-nav li {
+        position: relative;
+        clear: both;
+        width: 100%;
+        padding: 0;
+        transition: background 400ms;
+        }
+        .conteneur-nav li a,
+        .conteneur-nav li .span {
+        display: flex;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        }
+        .conteneur-nav a,
+        .conteneur-nav .span {
+        align-items: center;
+        width: 100%;
+        color: black;
+        text-decoration: none;
+        transition: color 400ms;
+        }
+        .conteneur-nav a span {
+        position: relative;
+        display: block;
+        z-index: 0;
+        font-family: Roboto;
+        text-indent: -20em;
+        white-space: nowrap;
+        transition: text-indent 400ms ease-in-out;
+        }
 
-.head-nav li:hover:before {
-  background-color: brown;
-}
-.head-nav li:hover svg {
-  background: none;
-  fill: white;
-}
-.head-nav li:hover a {
-  color: black;
-}
+        @media screen and (max: 768px) {
+        .conteneur-nav ul {
+            margin-top: 0.23125rem;
+        }
 
-.head-nav ul {
-  /*margin-top: 1.85rem;*/
-  /* margin-block-start: 0;*/
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  padding: 0;
-  list-style: none;
-}
-.head-nav li {
-  position: relative;
-  clear: both;
-  width: 100%;
-  padding: 0;
-  transition: background 400ms;
-}
-.head-nav li a,
-.head-nav li .span {
-  display: flex;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-}
-.head-nav a,
-.head-nav .span {
-  align-items: center;
-  width: 100%;
-  color: black;
-  text-decoration: none;
-  transition: color 400ms;
-}
-.head-nav a span {
-  position: relative;
-  display: block;
-  z-index: 0;
-  font-family: Roboto;
-  text-indent: -20em;
-  white-space: nowrap;
-  transition: text-indent 400ms ease-in-out;
-}
+        }
+        /*----- Déclencheur pour ouvrir filtres ------- */
+        input[type="checkbox"].checkbox-filtre {
+            position: relative;
+            z-index: 999;
+            display: none;
+        }
+        .bouton-filtre {
+            position: absolute;
+            padding: 12px 30px;
+            border-radius: 30px;
+            background-color: white;
+            border: 3px solid black;
+            color: black;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .filtrer-cartes{
+            margin-left: 400px;
+            padding-top: 100px;
+        }
 
-@media screen and (max: 768px) {
-  .head-nav ul {
-    margin-top: 0.23125rem;
-  }
+        /* -------- Ouverture menu de filtre -------- */
+        /* ----- description initiale -------*/
+        .conteneur-filtre {
+        position: fixed;
+        top: 0;
+        left: -400px;
+        width: 400px;
+        height: 100%;
+        overflow: scroll;
+        z-index: 1;
+        background: white;
+        transition-duration: 200ms;
+        }
+        .conteneur-filtre.active {
+        transition-duration: 400ms;
+        left: 0px;
+        width: 436px;
+        height: 100%;
+        }
+        /* si on veut enlever le mouvement de l'image */
+        /*.conteneur-filtre:hover + .conteneur-de-toute-la-page {
+        transform: translateX(336px);
+        max-width: 100%;
+        opacity: 0.4;
+        }*/
 
-}
-/*----- Déclencheur pour ouvrir filtres ------- */
-input[type="checkbox"].checkbox-filtre {
-    position: relative;
-    z-index: 999;
-    display: none;
-}
-.bouton-filtre {
-    position: absolute;
-    padding: 12px 30px;
-    border-radius: 30px;
-    background-color: white;
-    border: 3px solid black;
-    color: black;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-.filtrer-cartes{
-    margin-left: 400px;
-    padding-top: 100px;
-}
+        @media screen and (max: 768px) {
+        .conteneur-filtre {
+            width: 70px;
+            padding: 0 0.925rem;
+        }
+        .conteneur-filtre .conteneur-nav {
+            padding-left: 7px;
+        }
+        .conteneur-filtre.active .conteneur-nav .span {
+            text-indent: 1em;
+        }
+        }
 
-/* -------- Ouverture menu de filtre -------- */
-/* ----- description initiale -------*/
-.main-head {
-  position: fixed;
-  top: 0;
-  left: -400px;
-  width: 400px;
-  height: 100%;
-  overflow: scroll;
-  z-index: 1;
-  background: white;
-  transition-duration: 200ms;
-}
-.main-head.active {
-  transition-duration: 400ms;
-  left: 0px;
-  width: 436px;
-  height: 100%;
-}
-/* si on veut enlever le mouvement de l'image */
-/*.main-head:hover + .wrap-all-the-things {
-  transform: translateX(336px);
-  max-width: 100%;
-  opacity: 0.4;
-}*/
-.main-head.active .head-nav li:nth-of-type(1) .span {
-  transition-delay: 100ms;
-}
-.main-head.active .head-nav li:nth-of-type(2) .span {
-  transition-delay: 200ms;
-}
-.main-head.active .head-nav li:nth-of-type(3) .span {
-  transition-delay: 300ms;
-}
-.main-head.active .head-nav li:nth-of-type(4) .span {
-  transition-delay: 400ms;
-}
-.main-head.active .head-nav .span {
-  text-indent: 0;
-}
-@media screen and (max: 768px) {
-  .main-head {
-    width: 70px;
-    padding: 0 0.925rem;
-  }
-  .main-head .head-nav {
-    padding-left: 7px;
-  }
-  .main-head.active .head-nav .span {
-    text-indent: 1em;
-  }
-}
-
-.wrap-all-the-things {
-  min-height: 100%;
-  height: 100%;
-  padding-left: 0;
-  margin-top: 0;
-  background-image: url(https://download.unsplash.com/photo-1428976365951-b70e0fa5c551);
-  background-size: cover;
-  background-position: center center;
-  transition: transform 400ms, opacity 400ms;
-}
-@media screen and (max: 480px) {
-  .wrap-all-the-things {
-    padding-left: 70px;
-  }
-}
+        .conteneur-de-toute-la-page {
+        min-height: 100%;
+        height: 100%;
+        padding-left: 0;
+        margin-top: 0;
+        background-image: url(https://download.unsplash.com/photo-1428976365951-b70e0fa5c551);
+        background-size: cover;
+        background-position: center center;
+        transition: transform 400ms, opacity 400ms;
+        }
+        @media screen and (max: 480px) {
+        .conteneur-de-toute-la-page {
+            padding-left: 70px;
+        }
+        }
 
 
-/* Source :
-Ahmad Nasr
-May 16, 2020
-https://codepen.io/ahmadnasr/pen/VwvEbzX
+        /* Source :
+        Ahmad Nasr
+        May 16, 2020
+        https://codepen.io/ahmadnasr/pen/VwvEbzX
 
-N.B. Code modifié
-*/
-.menu-lateral ul{
-    text-indent: 0;
-}
+        N.B. Code modifié
+        */
+        .menu-lateral ul{
+            text-indent: 0;
+        }
 
-.menu-lateral h3 {
-    font-weight: 800;
-    font-size: 1.7rem; /* 2.5rem; */
-    margin: 1rem 0 0.25rem 0;
-    color: black; /* #3b3b3b; */
-    letter-spacing: -0.02em;
-}
-.menu-lateral ul {
-    list-style: none;
-}
+        .menu-lateral h3 {
+            font-weight: 800;
+            font-size: 1.7rem; /* 2.5rem; */
+            margin: 1rem 0 0.25rem 0;
+            color: black; /* #3b3b3b; */
+            letter-spacing: -0.02em;
+        }
+        .menu-lateral ul {
+            list-style: none;
+        }
 
-@media (min-width: 36em) {
-    .menu-lateral ul{
-      width: 360px;
-    }
-}
-/* ---- Accordeon -----*/
+        @media (min-width: 36em) {
+            .menu-lateral ul{
+            width: 360px;
+            }
+        }
+        /* ---- Accordeon -----*/
 
-.invisible{
-    display: none;
-}
-.menu-lateral input {
-    -webkit-appearance: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 1px solid #d9d9d9;
-    border-radius: 1px;
-    vertical-align: sub;
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
-    /*left: 1rem;*/ /* text-indent de chaque ligne */
-    outline: none;
-}
-.menu-lateral input:checked {
-    background-color: darkblue;
-    border-color: darkblue;
-}
-.menu-lateral input:checked + label{
-    color: grey; /*#b3b3b3; */
-    font-weight: 600;
-    background-color: rgba(149, 157, 165, 0.1); /*#f7f7f7;*/
-}
+        .invisible{
+            display: none;
+        }
+        .menu-lateral input {
+            -webkit-appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 1px solid #d9d9d9;
+            border-radius: 1px;
+            vertical-align: sub;
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            left: 1rem; /* text-indent de chaque ligne */
+            outline: none;
+        }
+        .menu-lateral input:checked {
+            background-color: darkblue;
+            border-color: darkblue;
+        }
+        .menu-lateral input:checked + label{
+            color: grey; /*#b3b3b3; */
+            font-weight: 600;
+            background-color: rgba(149, 157, 165, 0.1); /*#f7f7f7;*/
+        }
 
-.menu-lateral input:checked:focus, input:checked:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
-    /*border-color: rgba(99, 99, 99, 0.2);*/
-}
+        .menu-lateral input:checked:focus, input:checked:hover {
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
+            /*border-color: rgba(99, 99, 99, 0.2);*/
+        }
 
-.menu-lateral input:after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4PSIwcHgiIHk9IjBweCI+PHRpdGxlPmljb25fYnlfUG9zaGx5YWtvdjEwPC90aXRsZT48ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz48ZyBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBmaWxsPSIjZmZmZmZmIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNi4wMDAwMDAsIDI2LjAwMDAwMCkiPjxwYXRoIGQ9Ik0xNy45OTk5ODc4LDMyLjQgTDEwLjk5OTk4NzgsMjUuNCBDMTAuMjI2Nzg5MSwyNC42MjY4MDE0IDguOTczMTg2NDQsMjQuNjI2ODAxNCA4LjE5OTk4Nzc5LDI1LjQgTDguMTk5OTg3NzksMjUuNCBDNy40MjY3ODkxNCwyNi4xNzMxOTg2IDcuNDI2Nzg5MTQsMjcuNDI2ODAxNCA4LjE5OTk4Nzc5LDI4LjIgTDE2LjU4NTc3NDIsMzYuNTg1Nzg2NCBDMTcuMzY2ODIyOCwzNy4zNjY4MzUgMTguNjMzMTUyOCwzNy4zNjY4MzUgMTkuNDE0MjAxNCwzNi41ODU3ODY0IEw0MC41OTk5ODc4LDE1LjQgQzQxLjM3MzE4NjQsMTQuNjI2ODAxNCA0MS4zNzMxODY0LDEzLjM3MzE5ODYgNDAuNTk5OTg3OCwxMi42IEw0MC41OTk5ODc4LDEyLjYgQzM5LjgyNjc4OTEsMTEuODI2ODAxNCAzOC41NzMxODY0LDExLjgyNjgwMTQgMzcuNzk5OTg3OCwxMi42IEwxNy45OTk5ODc4LDMyLjQgWiI+PC9wYXRoPjwvZz48L2c+PC9nPjwvc3ZnPg==");
-    background-size: 40px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.menu-lateral input:focus, input:hover {
-    box-shadow: 0 0 0 3px #ebebeb;
-    border-color: #8c8c8c;
-}
-.menu-lateral label {
-    padding: 0.75rem 1rem 0.75rem calc(1.2rem * 2.25);
-    display: inline-block;
-    font-size: 17px;
-    width: 300px;
-    user-select: none;
-    border-bottom: 2px solid #ededed;
-    cursor: pointer;
-}
-.menu-lateral div {
-    font-size: 17px;
-    color: black;
-    font-weight: 600;
-    /*display: block;*/
-    padding: 0.75rem 1rem 0.75rem 0;
-}
-.menu-lateral div>span{
-    display: inline;
-    vertical-align: middle; 
-}
-.menu-lateral label:hover {
-    border-bottom-color: #adadad;
-}
-.menu-deroulant {
-    background-color: white;
-    margin: 0 30px 30px 35px;
-    z-index: 10;
-}
-.label-categorie {
-    font-weight: bold;
-    margin-top: 10px;
-}
-.label-categorie h3 {
-    display: inline-flex;
-}
+        .menu-lateral input:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4PSIwcHgiIHk9IjBweCI+PHRpdGxlPmljb25fYnlfUG9zaGx5YWtvdjEwPC90aXRsZT48ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz48ZyBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBmaWxsPSIjZmZmZmZmIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNi4wMDAwMDAsIDI2LjAwMDAwMCkiPjxwYXRoIGQ9Ik0xNy45OTk5ODc4LDMyLjQgTDEwLjk5OTk4NzgsMjUuNCBDMTAuMjI2Nzg5MSwyNC42MjY4MDE0IDguOTczMTg2NDQsMjQuNjI2ODAxNCA4LjE5OTk4Nzc5LDI1LjQgTDguMTk5OTg3NzksMjUuNCBDNy40MjY3ODkxNCwyNi4xNzMxOTg2IDcuNDI2Nzg5MTQsMjcuNDI2ODAxNCA4LjE5OTk4Nzc5LDI4LjIgTDE2LjU4NTc3NDIsMzYuNTg1Nzg2NCBDMTcuMzY2ODIyOCwzNy4zNjY4MzUgMTguNjMzMTUyOCwzNy4zNjY4MzUgMTkuNDE0MjAxNCwzNi41ODU3ODY0IEw0MC41OTk5ODc4LDE1LjQgQzQxLjM3MzE4NjQsMTQuNjI2ODAxNCA0MS4zNzMxODY0LDEzLjM3MzE5ODYgNDAuNTk5OTg3OCwxMi42IEw0MC41OTk5ODc4LDEyLjYgQzM5LjgyNjc4OTEsMTEuODI2ODAxNCAzOC41NzMxODY0LDExLjgyNjgwMTQgMzcuNzk5OTg3OCwxMi42IEwxNy45OTk5ODc4LDMyLjQgWiI+PC9wYXRoPjwvZz48L2c+PC9nPjwvc3ZnPg==");
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .menu-lateral input:focus, input:hover {
+            box-shadow: 0 0 0 3px #ebebeb;
+            border-color: #8c8c8c;
+        }
+        .menu-lateral label {
+            padding: 0.75rem 1rem 0.75rem calc(1.2rem * 2.25);
+            display: inline-block;
+            font-size: 17px;
+            width: 300px;
+            user-select: none;
+            border-bottom: 2px solid #ededed;
+            cursor: pointer;
+        }
+        .menu-lateral div {
+            font-size: 17px;
+            color: black;
+            font-weight: 600;
+            /*display: block;*/
+            padding: 0.75rem 1rem 0.75rem 0;
+        }
+        .menu-lateral div>span{
+            display: inline;
+            vertical-align: middle; 
+        }
+        .menu-lateral label:hover {
+            border-bottom-color: #adadad;
+        }
+        .menu-deroulant {
+            background-color: white;
+            margin: 0 30px 30px 35px;
+            z-index: 10;
+        }
+        .label-categorie {
+            font-weight: bold;
+        }
+        .label-categorie h3 {
+            display: inline-flex;
+        }
+        .fermer {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        .material-symbols-outlined {
+            font-size : 3rem;
+        }
   
     </style>
 </head>
 <body>
 
-<aside class="main-head">
-      <nav class="head-nav menu-lateral">
-
+<aside class="conteneur-filtre">
+        <span class="material-symbols-outlined fermer">
+        close
+        </span>
+      <nav class="conteneur-nav menu-lateral">
         <ul class="liste-categorie accordeon">
             <div class="menu-deroulant">
                 <div class="label-categorie">
@@ -410,9 +394,9 @@ N.B. Code modifié
           </li>
         </ul>-->
       </nav>
-    </aside> <!-- //main-head -->
+    </aside> <!-- //conteneur-filtre -->
 <!-- Reste du doc pour visualiser -->
-    <div class="wrap-all-the-things">
+    <div class="conteneur-de-toute-la-page">
         <div class="filtrer-cartes">
             <label>
                 <div class="bouton-filtre">Filtre</div>
@@ -426,30 +410,38 @@ N.B. Code modifié
     let boutonFiltre = document.querySelector('.checkbox-filtre');
     let accordeon = document.querySelectorAll(".label-categorie")
 
+        // déclencher la transition pour visualiser les filtres
         boutonFiltre.addEventListener("click", (e) => {
-            let mainHead = document.querySelector(".main-head");
+            let conteneur = document.querySelector(".conteneur-filtre");
+            let fermer = document.querySelector(".fermer");
             if (boutonFiltre.checked) {
-                console.log(boutonFiltre);
-                mainHead.classList.add("active");
+                boutonFiltre.checked = false;
+                conteneur.classList.add("active");
+                // déclencher fermeture avec le X
+                fermer.addEventListener("click", ()=>{
+                    conteneur.classList.remove("active");
+                })
             } 
+            // déclencher fermeture en cliquant sur le background à l'extérieur des filtres
             else {
-                mainHead.classList.remove("active");
+                conteneur.classList.remove("active");
             }
         });
+        // déclencher l'ouverture et fermeture de chaque accordéon de filtres
         accordeon.forEach((unAccordeon)=>{
             console.log(unAccordeon)
             unAccordeon.addEventListener("click", (e)=>{
             let icone = unAccordeon.querySelector(".material-symbols-outlined")
             if(icone.innerText == "expand_more"){
                 icone.innerText = "expand_less";
-                unAccordeon.nextElementSibling.classList.add("hide");
+                unAccordeon.nextElementSibling.classList.add("cacher");
             }
             else {
                 icone.innerText = "expand_more";
-                unAccordeon.nextElementSibling.classList.remove("hide");
+                unAccordeon.nextElementSibling.classList.remove("cacher");
             }
 
-        })
+        });
     })
 </script>
 </html>
