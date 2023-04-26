@@ -16,13 +16,13 @@
       <div><span class="ml-2 py-8"></span>Modifier cellier</div>
     </a>
   </div>
-  <div>
+  <!--<div>-->
     <!-- Form d'ajout de bouteilles dans ce cellier-->
-    <form method="post" enctype="multipart/form-data">
-      <!--passer la méthode PUT et aussi le token expired réémission du token-->
+   <form method="post" enctype="multipart/form-data">
+     <!-- passer la méthode PUT et aussi le token expired réémission du token-->
       @csrf
       @method('PUT')
-      <div class="w-full">
+     <div class="w-full">
         <h2 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nom">
           Ajouter une bouteille
         </h2>

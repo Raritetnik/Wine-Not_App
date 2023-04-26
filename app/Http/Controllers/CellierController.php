@@ -160,6 +160,12 @@ class CellierController
     return redirect(route('celliers.afficher', $cellier->id));
   }
 
+
+
+
+
+
+  
   public function modifierNbBouteille(Request $request, $cellier_id, $bouteille_id)
   {
     // vérifier dans les modèles si on peut trouver un enregistrement correspondant
