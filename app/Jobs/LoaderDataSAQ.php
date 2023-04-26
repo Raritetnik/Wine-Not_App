@@ -37,7 +37,7 @@ class LoaderDataSAQ implements ShouldQueue
     {
         set_time_limit(0);
         $saq = new SAQ();
-        $pages = 40;
+        $pages = 85;
         for($i = 1; $i <= $pages; $i++) {
             $liste = $saq->getProduits(96, $i);
             foreach ($liste as $bouteille) {
