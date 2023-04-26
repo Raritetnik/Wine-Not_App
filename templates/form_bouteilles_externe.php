@@ -1,291 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+@extends('layouts.app')
+@section('content')
 
-    <div class="formbold-main-wrapper">
-  <!-- Author: FormBold Team -->
-  <!-- Learn More: https://formbold.com -->
-  <div class="formbold-form-wrapper">
-    <svg class="formbold-img" width="490" height="277" viewBox="0 0 490 277" fill="none" xmlns="http://www.w3.org/2000/svg">
-    
-    </svg>
-
-    <form action="https://formbold.com/s/FORM_ID" method="POST">
-      <div class="formbold-input-flex">
-        <div>
-          <label for="firstname" class="formbold-form-label"> First Name </label>
+<div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+<div class="container mx-auto">
+  <header class="mb-8">
+    <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
+      <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
+    </a>
+  </header>
+  <section class="mx-4 px-6 flex flex-col mb-4">
+    <div class="flex flex-col space-y-4 md:flex-row md:space-x-6 md:space-y-0">
+      <div class="formbold-main-wrapper">
+          <div class="formbold-form-wrapper">
+          <form action="{{route('bouteilles.insererBouteille')}}" method="post" enctype="multipart/form-data" class="w-full">
+               <!-- ajouter un token pour autoriser la route une seconde fois -->
+               @csrf
+      <div class="w-full md:w-1/2 mb-3">
+          <label for="nom" class="block text-gray-700 font-bold mb-2">Ajoutez une bouteille</label>
           <input
-            type="text"
-            name="firstname"
-            id="firstname"
-            placeholder="Your first name"
-            class="formbold-form-input"
+          type="nom"
+          name="nom"
+          id="nom"
+          placeholder="Nom de la bouteille"
+          class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none"
           />
-        </div>
-
-        <div>
-          <label for="lastname" class="formbold-form-label"> Last Name </label>
-          <input
-            type="text"
-            name="lastname"
-            id="lastname"
-            placeholder="Your last name"
-            class="formbold-form-input"
-          />
-        </div>
       </div>
-
-      <div class="formbold-input-flex">
-        <div>
-            <label for="email" class="formbold-form-label"> Email </label>
-            <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="example@email.com"
-            class="formbold-form-input"
-            />
-        </div>
-
-        <div>
-            <label class="formbold-form-label">Gender</label>
-
-            <select class="formbold-form-input" name="occupation" id="occupation">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="others">Others</option>
-            </select>
-        </div>
+      <div class="w-full md:w-1/2 mb-3">
+          <label for="quantite" class="block text-gray-700 font-bold mb-2">Quantité</label>
+          <input class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="quantité" id="quantité" placeholder="Quantité">
+          </input>
       </div>
-
-      <div class="formbold-mb-3 formbold-input-wrapp">
-        <label for="phone" class="formbold-form-label"> Phone </label>
-
-        <div>
-          <input
-            type="text"
-            name="areacode"
-            id="areacode"
-            placeholder="Area code"
-            class="formbold-form-input formbold-w-45"
-          />
-
-          <input
-            type="text"
-            name="phone"
-            id="phone"
-            placeholder="Phone number"
-            class="formbold-form-input"
-          />
-        </div>
-      </div>
-
-      <div class="formbold-mb-3">
-        <label for="age" class="formbold-form-label"> Applying for Position: </label>
+    </div>
+    <div class="mb-6">
+      <label for="date_achat" class="block text-gray-700 font-bold mb-2">Date d'achat</label>
+      <div class="flex flex-col md:flex-row md:space-x-4">
         <input
-          type="text"
-          name="age"
-          id="age"
-          class="formbold-form-input"
+          type="date_achat"
+          name="date_achat"
+          id="date_achat"
+          placeholder="Date d'achat"
+          class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-2/5 mb-3"
         />
       </div>
-
-      <div class="formbold-mb-3">
-        <label for="dob" class="formbold-form-label"> When can you start? </label>
-        <input type="date" name="dob" id="dob" class="formbold-form-input" />
-      </div>
-
-      <div class="formbold-mb-3">
-        <label for="address" class="formbold-form-label"> Address </label>
-
-        <input
-          type="text"
-          name="address"
-          id="address"
-          placeholder="Street address"
-          class="formbold-form-input formbold-mb-3"
+        <label for="phone" class="block text-gray-700 font-bold mb-2">Valide jusqu'à</label>
+        <div class="flex flex-col md:flex-row md:space-x-4">
+          <input
+          type="date"
+          name="date_achat"
+          id="date_achat"
+          placeholder="Valide jusqu'à"
+          class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-3/5"
         />
-        <input
-          type="text"
-          name="address2"
-          id="address2"
-          placeholder="Street address line 2"
-          class="formbold-form-input"
-        />
-      </div>
-
-      <div class="formbold-mb-3">
-        <label for="message" class="formbold-form-label">
-          Cover Letter
-        </label>
-        <textarea
-          rows="6"
-          name="message"
-          id="message"
-          class="formbold-form-input"
-        ></textarea>
-      </div>
-
-      <div class="formbold-form-file-flex">
-        <label for="upload" class="formbold-form-label">
-          Upload Resume
-        </label>
-        <input
-          type="file"
-          name="upload"
-          id="upload"
-          class="formbold-form-file"
-        />
-      </div>
-
-      <button class="formbold-btn">Apply Now</button>
-    </form>
+        </div>
+    </div>
+    <div class="w-full md:w-1/2 mb-3">
+      <label class="block text-gray-700 font-bold mb-2">Cellier</label>
+      <select class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="cellier" id="cellier">
+        <option value="male">cellier 1</option>
+        <option value="female">cellier 2</option>
+        <option value="others">cellier 3</option>
+      </select>
   </div>
+  </section>
+  <footer class="flex flex-col items-center mb-8 mx-10">
+    <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Commencer</a>
+    <small style="color: #909090">
+      Avez-vous déjà un compte?
+      <a href="/login" style="color: #67375C">Connecter</a>
+    </small>
+  </footer>
 </div>
-</body>
-</html>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Inter', sans-serif;
-  }
-  .formbold-mb-3 {
-    margin-bottom: 15px;
-  }
-
-  .formbold-main-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-  }
-
-  .formbold-form-wrapper {
-    margin: 0 auto;
-    max-width: 570px;
-    width: 100%;
-    background: white;
-    padding: 40px;
-  }
-
-  .formbold-img {
-    display: block;
-    margin: 0 auto 45px;
-  }
-
-  .formbold-input-wrapp > div {
-    display: flex;
-    gap: 20px;
-  }
-
-  .formbold-input-flex {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
-  }
-  .formbold-input-flex > div {
-    width: 50%;
-  }
-  .formbold-form-input {
-    width: 100%;
-    padding: 13px 22px;
-    border-radius: 5px;
-    border: 1px solid #dde3ec;
-    background: #ffffff;
-    font-weight: 500;
-    font-size: 16px;
-    color: #536387;
-    outline: none;
-    resize: none;
-  }
-  .formbold-form-input::placeholder,
-  select.formbold-form-input,
-  .formbold-form-input[type='date']::-webkit-datetime-edit-text,
-  .formbold-form-input[type='date']::-webkit-datetime-edit-month-field,
-  .formbold-form-input[type='date']::-webkit-datetime-edit-day-field,
-  .formbold-form-input[type='date']::-webkit-datetime-edit-year-field {
-    color: rgba(83, 99, 135, 0.5);
-  }
-
-  .formbold-form-input:focus {
-    border-color: #6a64f1;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-  }
-  .formbold-form-label {
-    color: #07074D;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .formbold-form-file-flex {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .formbold-form-file-flex .formbold-form-label {
-    margin-bottom: 0;
-  }
-  .formbold-form-file {
-    font-size: 14px;
-    line-height: 24px;
-    color: #536387;
-  }
-  .formbold-form-file::-webkit-file-upload-button {
-    display: none;
-  }
-  .formbold-form-file:before {
-    content: 'Upload file';
-    display: inline-block;
-    background: #EEEEEE;
-    border: 0.5px solid #FBFBFB;
-    box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
-    padding: 3px 12px;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-    color: #637381;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    margin-right: 10px;
-  }
-
-  .formbold-btn {
-    text-align: center;
-    width: 100%;
-    font-size: 16px;
-    border-radius: 5px;
-    padding: 14px 25px;
-    border: none;
-    font-weight: 500;
-    background-color: #6a64f1;
-    color: white;
-    cursor: pointer;
-    margin-top: 25px;
-  }
-  .formbold-btn:hover {
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  .formbold-w-45 {
-    width: 45%;
-  }
-</style>
-</html>
+</div>
+</div>
+@endsection

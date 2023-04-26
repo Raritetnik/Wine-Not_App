@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bouteille_Par_Cellier;
 use App\Models\Vino_Bouteille;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BouteilleController extends Controller
 {
@@ -26,9 +27,23 @@ class BouteilleController extends Controller
      */
     public function create()
     {
-        //
+        return view('bouteilles.creer');
     }
-
+    public function insererBouteille(Request $request)
+    {
+      // ** doit ajouter Auth qui vient du login
+      $request['utilisateurs_id'] = Auth::id();
+      $bouteille = Vino_Bouteille::create([
+        'nom' => $request->nom,
+            'date_achat' => $request->date_achat,
+            'garde_jusqua'=> $request->date_achat,
+            'quantite AS quantiteBouteille'=> $request->quantité,
+            'image' => $request->image,
+            'utilisateurs_id' => $request->utilisateurs_id,
+      ]);
+      $bouteille->save();
+      return redirect(route('celliers.index'));
+    }
     /**
      * Store a newly created resource in storage.
      *
