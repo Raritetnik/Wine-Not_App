@@ -18,7 +18,7 @@
     <div>
       <div class="card flex" v-if="selectedVine" style="max-width: 300px;">
         <header class="card-header" style="max-width: 300px;">
-          <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none" height="150px">
+          <img :src="this.choixBouteille.image" :alt="this.choixBouteille.nom" class="max-w-none" height="150px">
         </header>
         <div class="card-body">
           <h2>{{ this.choixBouteille.nom }}</h2>
@@ -74,7 +74,7 @@ export default {
     }
   },
   async beforeMount () {
-    axios.get('/bouteilles')
+    axios.get('/api.bouteilles')
       .then(response => {
           this.vineList = response.data
       })
