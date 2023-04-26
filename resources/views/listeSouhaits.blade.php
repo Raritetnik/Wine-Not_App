@@ -1,8 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<ul>
+<section class="container px-6">
     @foreach ($bouteilles as $bouteille)
-    <li><img src="{{ $bouteille->image }}" class="image-carte-cellier object-cover max-h-[350px] rounded" alt="vine-img" /></li>
+    <!-- carte -->
+    <div class="mb-2">
+        <v-bouteille :bouteille="{{ $bouteille }}"/>
+    </div>
     @endforeach
-</ul>
+</section>
 @endsection

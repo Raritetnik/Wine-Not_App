@@ -7,6 +7,7 @@
 
 <script>
 export default {
+    name: 'ListeSouhaits',
     props: ['bouteille', 'liste'],
     data () {
         return {
@@ -32,7 +33,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>
