@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Models\User;
+use App\Models\Bouteille_Par_Cellier;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,4 +20,19 @@ class Vino_Cellier extends Model
         'image',
         'utilisateurs_id',
     ];
+
+    // etablir les relations entre les tables dans la base de donnees
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function bottles()
+    {
+        return $this->hasMany(Bouteille_Par_Cellier::class);
+    }
+
 }
+
+
