@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+
+
+<div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
 <div class="container mx-auto">
   <header class="mb-8">
     <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
@@ -20,7 +22,7 @@
           type="nom"
           name="nom"
           id="nom"
-          placeholder="nom de la bouteille"
+          placeholder="Nom de la bouteille"
           class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none"
           />
       </div>
