@@ -7,33 +7,45 @@
     </a>
   </header>
   <section class="mx-4 px-6 flex flex-col gap-6 mb-8">
-    <div class="flex items-center justify-around relative">
-      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Choisissez votre vin à la SAQ!</h2>
-      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
-        <img src="{{ asset('img/svg/full_bottle.svg') }}" alt="">
-        <div class="absolute bottom-0 text-4xl" style="color: #ABA08D; transform: translateY(80%)">&#8595;</div>
+    <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+      <div class="w-full md:w-1/2">
+          <label for="email" class="block text-gray-700 font-bold mb-2">AJOUTER UNE BOUTEILLE</label>
+          <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="example@email.com"
+          class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none"
+          />
+      </div>
+      <div class="w-full md:w-1/2">
+          <label class="block text-gray-700 font-bold mb-2">Gender</label>
+          <select class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="occupation" id="occupation">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+          </select>
       </div>
     </div>
-    <div class="flex items-center justify-around relative">
-      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Localisez la bouteille dans notre application</h2>
-      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
-        <img src="{{ asset('img/svg/form-icon.svg') }}" alt="">
-        <div class="absolute bottom-0 text-4xl" style="color: #ABA08D; transform: translateY(80%)">&#8595;</div>
-      </div>
-    </div>
-    <div class="flex items-center justify-around relative">
-      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Attribuez-lui un cellier !</h2>
-      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
-        <img src="{{ asset('img/svg/barrols.svg') }}" alt="">
-        <div class="absolute bottom-0 text-4xl" style="color: #ABA08D; transform: translateY(80%)">&#8595;</div>
-      </div>
-    </div>
-    <div class="flex items-center justify-around relative">
-      <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Gérez votre cave à vin comme un pro !</h2>
-      <div class="acc_icon p-5 border rounded-lg flex justify-center" style="width: 100px; height: 100px; border-color: #ABA08D">
-        <img src="{{ asset('img/svg/empty_bottle.svg') }}" alt="">
-      </div>
-    </div>
+  
+    <div class="mb-6">
+      <label for="phone" class="block text-gray-700 font-bold mb-2">Phone</label>
+      <div class="flex flex-col md:flex-row md:space-x-4">
+        <input
+          type="text"
+          name="areacode"
+          id="areacode"
+          placeholder="Area code"
+          class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-2/5"
+        />
+        <input
+          type="text"
+          name="phone"
+          id="phone"
+          placeholder="Numero de téléphone"
+          class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-3/5"
+        />
+          
   </section>
   <footer class="flex flex-col items-center mb-8 mx-10">
     <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Commencer</a>
