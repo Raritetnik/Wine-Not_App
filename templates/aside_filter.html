@@ -84,7 +84,6 @@
             display: none;
         }
         .bouton-filtre {
-            position: absolute;
             padding: 12px 30px;
             border-radius: 30px;
             background-color: white;
@@ -94,7 +93,9 @@
             font-weight: bold;
         }
         .filtrer-cartes{
-            margin-left: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: max-content;
             padding-top: 100px;
         }
 
@@ -142,7 +143,7 @@
         height: 100%;
         padding-left: 0;
         margin-top: 0;
-        background-image: url(https://download.unsplash.com/photo-1428976365951-b70e0fa5c551);
+        background-image: url('http://127.0.0.1:5500/wine-not/public/img/celliers/cellier_moderne_noir.webp');
         background-size: cover;
         background-position: center center;
         transition: transform 400ms, opacity 400ms;
@@ -166,9 +167,9 @@
         }
 
         .menu-lateral h3 {
-            font-weight: 800;
+            font-weight: 1000;
             font-size: 1.7rem; /* 2.5rem; */
-            margin: 1rem 0 0.25rem 0;
+            margin: 0rem 0 0.25rem 0;
             color: black; /* #3b3b3b; */
             letter-spacing: -0.02em;
         }
@@ -231,7 +232,7 @@
             border-color: #8c8c8c;
         }
         .menu-lateral label {
-            padding: 0.75rem 1rem 0.75rem calc(1.2rem * 2.25);
+            padding: 1.5rem 1rem 1.5rem calc(1.2rem * 2.25);
             display: inline-block;
             font-size: 17px;
             width: 300px;
@@ -240,11 +241,7 @@
             cursor: pointer;
         }
         .menu-lateral div {
-            font-size: 17px;
-            color: black;
-            font-weight: 600;
-            /*display: block;*/
-            padding: 0.75rem 1rem 0.75rem 0;
+            padding: 0rem 1rem 0rem 0;
         }
         .menu-lateral div>span{
             display: inline;
@@ -265,14 +262,36 @@
             display: inline-flex;
         }
         .fermer {
-            position: absolute;
+            position: sticky;
             right: 20px;
-            top: 20px;
+            top: 15px;
+            left: 380px;
+            z-index: 999;
         }
-        .material-symbols-outlined {
+        .material-symbols-outlined:where(.fermer) {
             font-size : 3rem;
         }
-  
+        .material-symbols-outlined:where(:not(.fermer)) {
+            font-size : 3rem;
+        }
+        /* Hide the scrollbar in webkit-based and Firefox browsers */
+        ::-webkit-scrollbar {
+        display: none;
+        }
+
+        /* Hide the scrollbar in Firefox */
+        html .conteneur-filtre{
+        scrollbar-width: none;
+        }
+        ul.liste-categorie{
+            margin-block-start: 0;
+        }
+        .label-categorie {
+            padding-top: 30px;
+        }
+        .label-categorie {
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -368,31 +387,6 @@
             </div>
         </ul>
 
-
-
-        <!--<ul class="menu">
-          <li>
-            <span>About</span></a>
-          </li>
-          <li>
-            <a href="#">
-              <svg class="video-player">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-player"></use>
-              </svg><span>Work</span></a>
-          </li>
-          <li>
-            <a href="#">
-              <svg class="speech-bubble">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#speech-bubble"></use>
-              </svg><span>Blog</span></a>
-          </li>
-          <li>
-            <a href="#">
-              <svg class="paper-airplane">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#paper-airplane"></use>
-              </svg><span>Contact</span></a>
-          </li>
-        </ul>-->
       </nav>
     </aside> <!-- //conteneur-filtre -->
 <!-- Reste du doc pour visualiser -->
@@ -415,11 +409,11 @@
             let conteneur = document.querySelector(".conteneur-filtre");
             let fermer = document.querySelector(".fermer");
             if (boutonFiltre.checked) {
-                boutonFiltre.checked = false;
                 conteneur.classList.add("active");
                 // déclencher fermeture avec le X
                 fermer.addEventListener("click", ()=>{
                     conteneur.classList.remove("active");
+                    boutonFiltre.checked = false;
                 })
             } 
             // déclencher fermeture en cliquant sur le background à l'extérieur des filtres
