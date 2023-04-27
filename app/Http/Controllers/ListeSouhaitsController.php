@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bouteille_Par_Cellier;
 use App\Models\ListeSouhaits;
+use App\Models\Pays;
 use App\Models\Vino_Bouteille;
+use App\Models\Vino_Format;
+use App\Models\Vino_Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,9 +24,18 @@ class ListeSouhaitsController extends Controller
         $listeBouteilles = [];
         foreach ($liste as $elem) {
             $bouteille = Vino_Bouteille::find($elem->vino_bouteilles_id);
+            if($elem !== "") {
+                $bouteille['pays'] = Pays::find($bouteille->pays_id);
+                $bouteille['format'] = Vino_Format::find($bouteille->vino_format_id);
+                $bouteille['type'] = Vino_Type::find($bouteille->vino_type_id);
+
+                $bouteille['quantite'] = Bouteille_Par_Cellier::where('vino_bouteille_id', $bouteille->id)->first()['quantite'] | 0;
+            }
             array_push($listeBouteilles, $bouteille);
         }
-        return view('listeSouhaits', ['bouteilles' => $listeBouteilles]);
+
+        $liste = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+        return view('listeSouhaits', ['bouteilles' => $listeBouteilles, 'liste' => $liste]);
     }
 
     /**
