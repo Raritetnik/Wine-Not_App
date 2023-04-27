@@ -31,7 +31,7 @@
         }
 
         /* ne pas avoir de marges */
-        .conteneur-nav ul {
+        .conteneur-nav .menu-deroulant {
         /*margin-top: 1.85rem;*/
         /* margin-block-start: 0;*/
         margin-right: 0;
@@ -70,9 +70,12 @@
         white-space: nowrap;
         transition: text-indent 400ms ease-in-out;
         }
+        .liste-choix li{
+            list-style-type: none;
+        }
 
         @media screen and (max: 768px) {
-        .conteneur-nav ul {
+        .conteneur-nav .menu-deroulant {
             margin-top: 0.23125rem;
         }
 
@@ -162,8 +165,8 @@
 
         N.B. Code modifié
         */
-        .menu-lateral ul{
-            text-indent: 0;
+        .menu-lateral {
+            padding: 40px;
         }
 
         .menu-lateral h3 {
@@ -173,12 +176,12 @@
             color: black; /* #3b3b3b; */
             letter-spacing: -0.02em;
         }
-        .menu-lateral ul {
+        .menu-lateral .menu-deroulant {
             list-style: none;
         }
 
         @media (min-width: 36em) {
-            .menu-lateral ul{
+            .menu-lateral .menu-deroulant{
             width: 360px;
             }
         }
@@ -283,8 +286,9 @@
         html .conteneur-filtre{
         scrollbar-width: none;
         }
-        ul.liste-categorie{
+        ul.liste-choix{
             margin-block-start: 0;
+            padding-inline-start: 0;
         }
         .label-categorie {
             padding-top: 30px;
@@ -301,13 +305,13 @@
         close
         </span>
       <nav class="conteneur-nav menu-lateral">
-        <ul class="liste-categorie accordeon">
+        <div class="liste-categorie accordeon">
             <div class="menu-deroulant">
                 <div class="label-categorie">
                     <h3>Pays</h3>
                     <span class="material-symbols-outlined">expand_more</span>
                 </div>
-                <div class="liste-choix">
+                <ul class="liste-choix">
                     <li>
                         <input type="checkbox" id="Espagne" name="Espagne">
                         <label for="Espagne">Espagne</label>
@@ -320,7 +324,7 @@
                         <input type="checkbox" id="États-Unis" name="États-Unis">
                         <label for="États-Unis">États-Unis</label>
                     </li>
-                </div>
+                </ul>
                 
                     
                     
@@ -329,7 +333,7 @@
                         <h3>Type</h3>
                         <span class="material-symbols-outlined">expand_more</span>
                     </div>
-                    <div class="liste-choix">
+                    <ul class="liste-choix">
                         <li>
                             <input type="checkbox" id="rouge" name="rouge">
                             <label for="rouge">Vin rouge</label>
@@ -342,14 +346,14 @@
                             <input type="checkbox" id="blanc" name="blanc">
                             <label for="blanc">Vin blanc</label>
                         </li>
-                    </div>
+                    </ul>
                    
                      <!--Prix-->
                      <div class="label-categorie">
                         <h3>Prix</h3>
                         <span class="material-symbols-outlined">expand_more</span>
                     </div>
-                    <div class="liste-choix">
+                    <ul class="liste-choix">
                         <li>
                             <input type="checkbox" id="vingt" name="vingt">
                             <label for="vingt">20$ et moins</label>
@@ -382,7 +386,7 @@
                             <input type="checkbox" id="blanc" name="blanc">
                             <label for="blanc">1000$ et plus</label>
                         </li>
-                    </div>
+                    </ul>
                     
             </div>
         </ul>
