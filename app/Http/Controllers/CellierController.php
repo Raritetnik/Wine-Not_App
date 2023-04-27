@@ -234,5 +234,16 @@ class CellierController
     return view('celliers.detailBouteille', ['bouteille' => $bouteilleDetail[0]]);
   }
 
+  public function supprimerBouteille($cellier_id, $bouteille_id)
+  {
+      // Récupérer l'objet Bouteille_Par_Cellier correspondant à l'id de la bouteille passée en paramètre
+      $bouteille_par_cellier = Bouteille_Par_Cellier::findOrFail($bouteille_id);
+  
+      // Supprimer l'objet de la base de données
+      $bouteille_par_cellier->delete();
+  
+      // Rediriger vers la page d'affichage du cellier
+      return redirect(route('celliers.afficher', $cellier_id));
+  }
 }
 
