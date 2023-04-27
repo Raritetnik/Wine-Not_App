@@ -31,6 +31,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('login', [LoginController::class, 'loginCustom'])->name('login.custom');
+Route::get('/compte', [HomeController::class, 'afficherCompte'])->name('compte');
 
 // Page Accueil
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -81,5 +82,6 @@ Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture'
  * Les routes avec les fonctionnalités d'API
  */
 Route::get('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'verifierFavoris'])->name('verification.favoris');
+Route::get('//api.delete-bouteille/{id}', [BouteilleController::class, 'supprimerBouteille'])->name('supprimer.bouteille');
 Route::post('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'modifierFavoris'])->name('modification.favoris');
 Route::get('/api.bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');

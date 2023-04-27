@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<section class="container px-6">
+<section class="px-6">
     @foreach ($bouteilles as $bouteille)
     <!-- carte -->
     <div class="mb-2">
-        <v-bouteille :bouteille="{{ $bouteille }}"/>
+        <v-bouteille :bouteille="{{ $bouteille }}" :liste="{{ $liste }}"/>
     </div>
     @endforeach
 </section>

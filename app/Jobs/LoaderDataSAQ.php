@@ -37,7 +37,7 @@ class LoaderDataSAQ implements ShouldQueue
     {
         set_time_limit(0);
         $saq = new SAQ();
-        $pages = 85;
+        $pages = 100;
         for($i = 1; $i <= $pages; $i++) {
             $liste = $saq->getProduits(96, $i);
             foreach ($liste as $bouteille) {
@@ -49,7 +49,7 @@ class LoaderDataSAQ implements ShouldQueue
 
                 $inputVine = new Vino_Bouteille();
                 $inputVine->nom = strval($bouteille->nom);
-                $inputVine->image = strval($bouteille->img);
+                $inputVine->image = "";
                 $inputVine->code_saq = $bouteille->desc->code_SAQ;
                 $inputVine->description = "Inconnue";
                 $inputVine->prix_saq = doubleval(str_replace(',', '.', substr($bouteille->prix, 0, -1)));

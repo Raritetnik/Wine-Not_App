@@ -6,6 +6,9 @@ use App\Models\Vino_Bouteille;
 use App\Models\Bouteille_Par_Cellier;
 use App\Models\ListeSouhaits;
 use App\Models\Vino_Cellier;
+use App\Models\Vino_Type;
+use App\Models\Pays;
+use App\Models\Vino_Format;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,11 +70,66 @@ class CellierController
   }
   // afficher un cellier et les bouteilles de ce cellier
   // passer en param de fonction afficher $cellier = celliers.id
-  public function afficher($cellier)
+  public function afficher($idCellier)
   {
+    $cellier = Vino_Cellier::find($idCellier);
+    $liste = Bouteille_Par_Cellier::where('vino_cellier_id', $idCellier)->get();
+    $listeBouteilles = [];
+      foreach ($liste as $elem) {
+          $bouteille = Vino_Bouteille::find($elem->vino_bouteille_id);
+          if($elem !== "") {
+              $bouteille['pays'] = Pays::find($bouteille->pays_id);
+              $bouteille['format'] = Vino_Format::find($bouteille->vino_format_id);
+              $bouteille['type'] = Vino_Type::find($bouteille->vino_type_id);
+
+              $bouteille['quantite'] = Bouteille_Par_Cellier::where('vino_bouteille_id', $bouteille->id)->first()['quantite'] | 0;
+          }
+          array_push($listeBouteilles, $bouteille);
+      }
+    $bouteilles = Vino_Bouteille::select(
+      'date_achat',
+      'garde_jusqua',
+      'prix AS prixPaye',
+      'quantite AS quantiteBouteille',
+      'vino_cellier_id',
+      'vino_bouteilles.id AS vino_bouteille_id',
+      'millesime',
+      'vino_bouteilles.nom AS nomSAQ',
+      'vino_bouteilles.image AS imageSAQ',
+      'code_saq',
+      'vino_bouteilles.description AS descriptionSAQ',
+      'prix_saq',
+      'url_saq',
+      'url_img',
+      'vino_format_id',
+      'vino_type_id',
+      'pays_id',
+      'pays',
+      'format',
+      'type',
+      'bouteille_par_celliers.id'
+    )
+      ->join('bouteille_par_celliers', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
+      ->join('vino_celliers', 'vino_celliers.id', '=', 'bouteille_par_celliers.vino_cellier_id')
+      ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
+      ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
+      ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
+      ->where('vino_celliers.id', $idCellier)
+      ->get();
+
+      $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+      $type=Vino_Type::all();
+      $pays=Pays::all();
+
+      return view('celliers.afficher', ['cellier' => $cellier,
+                                        'bouteilles' => $listeBouteilles,
+                                        'bouteillesJulie' => $bouteilles,
+                                        'liste' => $listeSouhaits,
+                                        'type' => $type,
+                                        'pays' => $pays] );
     // chercher dans la classe Vino_Cellier la ligne correspondante au id ($cellier)
     // nommer les colonnes et donner des alias pour unicité
-    $celliers = Vino_Cellier::find($cellier);
+    /*$celliers = Vino_Cellier::find($cellier);
     $bouteilles = Vino_Bouteille::select(
       'date_achat',
       'garde_jusqua',
@@ -104,10 +162,14 @@ class CellierController
       ->get();
 
       $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+      $type=Vino_Type::all();
+      $pays=Pays::all();
 
     return view('celliers.afficher', ['cellier' => $celliers,
                                       'bouteilles' => $bouteilles,
-                                      "listeSouhaits" => $listeSouhaits]);
+                                      "listeSouhaits" => $listeSouhaits,
+                                      'type' => $type,
+                                      'pays' => $pays]);*/
   }
 
   // Afficher formulaire de modification des informations de la table vino_celliers
@@ -169,7 +231,7 @@ class CellierController
 
 
 
-  
+
   public function modifierNbBouteille(Request $request, $cellier_id, $bouteille_id)
   {
     // vérifier dans les modèles si on peut trouver un enregistrement correspondant
@@ -228,5 +290,16 @@ class CellierController
     return view('celliers.detailBouteille', ['bouteille' => $bouteilleDetail[0]]);
   }
 
+  public function supprimerBouteille($cellier_id, $bouteille_id)
+  {
+      // Récupérer l'objet Bouteille_Par_Cellier correspondant à l'id de la bouteille passée en paramètre
+      $bouteille_par_cellier = Bouteille_Par_Cellier::findOrFail($bouteille_id);
+  
+      // Supprimer l'objet de la base de données
+      $bouteille_par_cellier->delete();
+  
+      // Rediriger vers la page d'affichage du cellier
+      return redirect(route('celliers.afficher', $cellier_id));
+  }
 }
 

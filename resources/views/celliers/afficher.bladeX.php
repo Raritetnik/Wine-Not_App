@@ -10,6 +10,10 @@
                 <input type="checkbox" name="filtre" class="checkbox-filtre">
             </label>
         </div>
+
+
+
+
 <div class="container mx-auto py-8 px-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <!-- Redirection vers modifier les infos du cellier -->
   <div class="pb-6 text-center w-full">
@@ -59,16 +63,37 @@
         </div>
     </form>
   </div>
-  <section class="px-6 flex flex-col items-center">
-    @foreach ($bouteilles as $bouteille)
-    <!-- carte -->
-    <div class="mb-2">
-        <v-bouteille :bouteille="{{ $bouteille }}" :liste="{{ $liste }}"/>
+  <section class="flex flex-wrap">
+    <!-- Containeur principal -->
+    <!-- <div class="flex justify-center px-4 py-16 max-w-screen-lg mx-auto md:px-24 lg:px-8 lg:py-20"> -->
+    <div class="px-4 py-16 mx-auto flex justify-center sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-16 lg:px-8 lg:py-20">
+      <!-- Grille composante -->
+      <div class="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        @foreach ($bouteilles as $bouteille)
+        <!-- carte -->
+        <div class="overflow-hidden  duration-300 flex flex-col gap-3 items-center max-w-[315px] bg-white rounded-lg max-h-55 p-4">
+          <a href="{{route('celliers.detailBouteille', $bouteille->id)}}" aria-label="Article">
+            <img src="{{ $bouteille->imageSAQ }}" class="image-carte-cellier object-cover max-h-[350px] rounded" alt="vine-img" />
+          </a>
+          <div>
+            <v-souhaits :liste={{ $listeSouhaits }} :bouteille="{{ $bouteille->vino_bouteille_id }}" />
+          </div>
+          <div class="text-center flex flex-col gap-2.5">
+            <span class="font-semibold text-section_title">Cellier</span>
+            <a href="{{route('celliers.detailBouteille', $bouteille->id)}}" aria-label="Article" class="inline-block text-article_title">
+              <p class="sm:text-2xl text-xl font-bold leading-6">{{ $bouteille->nomSAQ }}</p>
+            </a>
+          </div>
+          <!-- ici va le compteur -->
+          <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" />
+        </div>
+        <!-- fin carte -->
+        @endforeach
+      </div>
     </div>
-    @endforeach
-</section>
+  </section>
 </div>
-<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}" :bouteilles="{{$bouteillesJulie}}"/>
+<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}"/>
 </div>
 
 @endsection
