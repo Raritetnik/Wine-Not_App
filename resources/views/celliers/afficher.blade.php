@@ -84,7 +84,7 @@
             <a href="{{route('celliers.detailBouteille', $bouteille->id)}}" aria-label="Article" class="inline-block text-article_title">
               <p class="sm:text-2xl text-xl font-bold leading-6">{{ $bouteille->nomSAQ }}</p>
             </a>
-          </div>-->
+          </div>
           <!-- ici va le compteur -->
           <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" />
         </div>
