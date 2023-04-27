@@ -6,6 +6,8 @@ use App\Models\Vino_Bouteille;
 use App\Models\Bouteille_Par_Cellier;
 use App\Models\ListeSouhaits;
 use App\Models\Vino_Cellier;
+use App\Models\Vino_Type;
+use App\Models\Pays;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -104,10 +106,14 @@ class CellierController
       ->get();
 
       $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+      $type=Vino_Type::all();
+      $pays=Pays::all();
 
     return view('celliers.afficher', ['cellier' => $celliers,
                                       'bouteilles' => $bouteilles,
-                                      "listeSouhaits" => $listeSouhaits]);
+                                      "listeSouhaits" => $listeSouhaits,
+                                      'type' => $type,
+                                      'pays' => $pays]);
   }
 
   // Afficher formulaire de modification des informations de la table vino_celliers
