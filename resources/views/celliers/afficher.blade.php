@@ -96,7 +96,7 @@
 
   </section>
 </div>
-<v-filtre/>
+<v-filtre :type="{{$type}}" :pays="{{$pays}}" :bouteille="{{$bouteille}}" :cellier="{{$cellier}}"/>
 </div>
 
 @endsection
