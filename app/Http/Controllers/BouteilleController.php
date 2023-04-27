@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bouteille_Par_Cellier;
+use App\Models\Pays;
 use App\Models\Vino_Bouteille;
+use App\Models\Vino_Cellier;
+use App\Models\Vino_Format;
+use App\Models\Vino_Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,25 +29,53 @@ class BouteilleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajouterBouteille()
     {
-        return view('bouteilles.creer');
+        $celliers = auth()->user()->celliers;
+        $pays = Pays::all();
+        $types = Vino_Type::all();
+        $formats = Vino_Format::all();
+        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
+
     }
+
+
     public function insererBouteille(Request $request)
     {
-      // ** doit ajouter Auth qui vient du login
-      $request['utilisateurs_id'] = Auth::id();
-      $bouteille = Vino_Bouteille::create([
-        'nom' => $request->nom,
-            'date_achat' => $request->date_achat,
-            'garde_jusqua'=> $request->date_achat,
-            'quantite AS quantiteBouteille'=> $request->quantité,
-            'image' => $request->image,
-            'utilisateurs_id' => $request->utilisateurs_id,
-      ]);
-      $bouteille->save();
-      return redirect(route('celliers.index'));
-    }
+       
+        $request->validate([
+            'nom' => 'required|min:5|max:100',
+            'date_achat' => 'required|date',
+            'quantite' => 'required|integer|min:1',
+            'image' => 'image|mimes:jpeg,png|max:2048'
+        ]);
+        $path = $request->file('image')->store('uploads', 'public');
+        
+         $nBouteille = new Vino_Bouteille();
+         $nBouteille->nom = $request->nom;
+         $nBouteille->image = $path;
+         $nBouteille->vino_format_id = $request->vino_format_id;
+         $nBouteille->vino_type_id = $request->vino_type_id;
+         $nBouteille->pays_id = $request->pays_id;
+         $nBouteille->save();
+
+     
+         $bouteilleParCellier = new Bouteille_Par_Cellier();
+         $bouteilleParCellier->quantite = $request->quantite;
+         $bouteilleParCellier->date_achat = $request->date_achat;
+         $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
+         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
+         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
+         $bouteilleParCellier->save();
+         
+        
+         return redirect(route('celliers.index'));
+       }
+
+ 
+
+
+
     /**
      * Store a newly created resource in storage.
      *
