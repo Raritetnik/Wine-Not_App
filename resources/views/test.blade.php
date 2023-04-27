@@ -31,13 +31,13 @@
               <label for="quantite" class="block text-gray-700 font-bold mb-2">Date d'ajout</label>
               <input type="date" class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="date_achat" id="date_achat">  
                   <span class="text-m font-medium text-section_title leading-snug">
-                    {{$bouteille ?? ''->date_achat ?? ''}}
+                    {{$bouteille ?? '' ?? ''->date_achat ?? ''}}
                   </span>
               </input>
           </div>
         </div>
         <div class="mb-2">
-          <h5 class="sm:text-2xl text-article_title text-xl font-bold leading-6 mb-4">{{$bouteille ?? '' -> nom}}</h5>
+          {{-- <h5 class="sm:text-2xl text-article_title text-xl font-bold leading-6 mb-4">{{$bouteille ?? '' -> nom}}</h5> --}}
           <label for="date_achat" class="block text-gray-700 font-bold mb-2">Date d'achat</label>
           <div class="flex flex-col md:flex-row md:space-x-4">
             <input
@@ -68,18 +68,6 @@
           </select>
       </div>
       </section>
-      <footer class="flex flex-col items-center mb-8 mx-10">
-        <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Ajouter</a>
-        <small style="color: #909090">
-          <a href="/login" style="color: #67375C">Previous</a>
-        </small>
-      </footer>
-      </div>
-      </div>
-    </main>
-    </div>
-      @endsection
-
   <footer class="flex flex-col items-center mb-8 mx-10">
     <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Ajouter</a>
     <small style="color: #909090">
