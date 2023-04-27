@@ -73,7 +73,7 @@ class CellierController
   public function afficher($idCellier)
   {
     $cellier = Vino_Cellier::find($idCellier);
-    $liste = Bouteille_Par_Cellier::where('vino_cellier_id', $idCellier)->get();
+    /*$liste = Bouteille_Par_Cellier::where('vino_cellier_id', $idCellier)->get();
     $listeBouteilles = [];
       foreach ($liste as $elem) {
           $bouteille = Vino_Bouteille::find($elem->vino_bouteille_id);
@@ -82,10 +82,10 @@ class CellierController
               $bouteille['format'] = Vino_Format::find($bouteille->vino_format_id);
               $bouteille['type'] = Vino_Type::find($bouteille->vino_type_id);
 
-              $bouteille['quantite'] = Bouteille_Par_Cellier::where('vino_bouteille_id', $bouteille->id)->first()['quantite'] | 0;
+              $bouteille['quantite'] = Bouteille_Par_Cellier::where('vino_bouteille_id', $bouteille->id)->where('vino_cellier_id')->first()['quantite'];
           }
           array_push($listeBouteilles, $bouteille);
-      }
+      }*/
     $bouteilles = Vino_Bouteille::select(
       'date_achat',
       'garde_jusqua',
@@ -122,8 +122,8 @@ class CellierController
       $pays=Pays::all();
 
       return view('celliers.afficher', ['cellier' => $cellier,
-                                        'bouteilles' => $listeBouteilles,
-                                        'bouteillesJulie' => $bouteilles,
+                                        'bouteilles' => $bouteilles,
+                                        //'bouteillesJulie' => $bouteilles,
                                         'liste' => $listeSouhaits,
                                         'type' => $type,
                                         'pays' => $pays] );
@@ -229,9 +229,6 @@ class CellierController
 
 
 
-
-
-
   public function modifierNbBouteille(Request $request, $cellier_id, $bouteille_id)
   {
     // vérifier dans les modèles si on peut trouver un enregistrement correspondant
@@ -294,10 +291,10 @@ class CellierController
   {
       // Récupérer l'objet Bouteille_Par_Cellier correspondant à l'id de la bouteille passée en paramètre
       $bouteille_par_cellier = Bouteille_Par_Cellier::findOrFail($bouteille_id);
-  
+
       // Supprimer l'objet de la base de données
       $bouteille_par_cellier->delete();
-  
+
       // Rediriger vers la page d'affichage du cellier
       return redirect(route('celliers.afficher', $cellier_id));
   }
