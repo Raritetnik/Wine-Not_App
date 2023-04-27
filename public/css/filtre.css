@@ -128,13 +128,6 @@ opacity: 0.4;
 }
 
 .conteneur-de-toute-la-page {
-min-height: 100%;
-height: 100%;
-padding-left: 0;
-margin-top: 0;
-background-image: url('http://127.0.0.1:5500/wine-not/public/img/celliers/cellier_moderne_noir.webp');
-background-size: cover;
-background-position: center center;
 transition: transform 400ms, opacity 400ms;
 }
 @media screen and (max: 480px) {
@@ -152,7 +145,7 @@ https://codepen.io/ahmadnasr/pen/VwvEbzX
 N.B. Code modifié
 */
 .menu-lateral {
-    padding: 40px;
+    padding: 0 40px 40px 40px;
 }
 
 .menu-lateral h3 {
@@ -223,7 +216,7 @@ N.B. Code modifié
     padding: 1.5rem 1rem 1.5rem calc(1.2rem * 2.25);
     display: inline-block;
     font-size: 17px;
-    width: 300px;
+    width: 100%;
     user-select: none;
     border-bottom: 2px solid #ededed;
     cursor: pointer;

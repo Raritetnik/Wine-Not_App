@@ -88,14 +88,5 @@
             </div>
         </nav>
     </aside> <!-- //conteneur-filtre -->
-<!-- Reste du doc pour visualiser -->
-    <div class="conteneur-de-toute-la-page">
-        <!-- Bouton pour filtrer carte -->
-        <div class="filtrer-cartes">
-            <label>
-                <div class="bouton-filtre">Filtre</div>
-                <input type="checkbox" name="filtre" class="checkbox-filtre">
-            </label>  
-        </div>
-    </div>
+
 </template>

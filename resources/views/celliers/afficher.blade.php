@@ -1,6 +1,19 @@
 @extends('layouts.app')
 @section('content')
 
+<!-- Reste du doc pour visualiser -->
+<div class="conteneur-de-toute-la-page">
+        <!-- Bouton pour filtrer carte -->
+        <div class="filtrer-cartes">
+            <label>
+                <div class="bouton-filtre">Filtre</div>
+                <input type="checkbox" name="filtre" class="checkbox-filtre">
+            </label>  
+        </div>
+
+
+
+
 <div class="container mx-auto py-8 px-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <!-- Redirection vers modifier les infos du cellier -->
   <div class="pb-6 text-center w-full">
@@ -82,6 +95,8 @@
     </div>
 
   </section>
+</div>
+<v-filtre/>
 </div>
 
 @endsection
