@@ -77,7 +77,7 @@
 
 <script>
     export default {
-        props: ["type", "pays", "bouteille", "cellier"]
+        props: ["type", "pays", "cellier"]
     };
 </script>
 
