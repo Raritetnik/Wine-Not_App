@@ -1,16 +1,16 @@
 <template>
-    <article class="carte flex gap-1 border px-4 py-2 rounded-md justify-between max-w-[500px]">
+    <article class="carte flex gap-1 border px-4 py-2 rounded-md justify-between w-[400px] sm:w-[500px]">
         <header class="flex items-start relative">
             <img :src="require('/img/svg/close.svg')" width="20" @click="supprimer()" class="absolute" alt="close">
             <img class="object-cover min-w-[100px] min-h-[150px]" :src="this.bouteille.image" :alt="this.bouteille.nom">
         </header>
         <div class="desc flex flex-col justify-between">
             <header>
-                <h1>{{ this.bouteille.nom }}</h1>
-                <h3>{{ this.bouteille.pays.pays }} | {{ this.bouteille.format.format }}</h3>
+                <h1 class="font-bold" style="color: var(--color_champ)">{{ this.bouteille.nom }}</h1>
+                <h3 style="color: var(--color_text)">{{ this.bouteille.pays.pays }} | {{ this.bouteille.format.format }}</h3>
             </header>
             <footer class="flex">
-                <Compteur :nbbouteille="bouteille.quantite" :id="bouteille.vino_bouteille_id" />
+                <Compteur :nbbouteille="bouteille.quantite" :id="this.bouteille.id" />
             </footer>
         </div>
         <footer class="flex flex-col justify-between">
@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss" scoped>
     .desc {
-
+        width: 30ch;
     }
     .carte {
         background-color: #DCDCDC;
