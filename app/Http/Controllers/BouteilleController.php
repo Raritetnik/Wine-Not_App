@@ -32,9 +32,9 @@ class BouteilleController extends Controller
     public function ajouterBouteille()
     {
         $celliers = auth()->user()->celliers;
-        $pays = Pays::all();
+        $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
-        $formats = Vino_Format::all();
+        $formats = Vino_Format::all()->sortBy('format');
         return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
 
     }
@@ -47,13 +47,16 @@ class BouteilleController extends Controller
             'nom' => 'required|min:5|max:100',
             'date_achat' => 'required|date',
             'quantite' => 'required|integer|min:1',
-            'image' => 'image|mimes:jpeg,png|max:2048'
+            'prix_saq' => 'required|numeric|min:0',
+            'image' => 'image|mimes:jpeg,png|max:2048',
+            'vino_cellier_id' => 'required|integer|min:1'
         ]);
         $path = $request->file('image')->store('uploads', 'public');
         
          $nBouteille = new Vino_Bouteille();
-         $nBouteille->nom = $request->nom;
          $nBouteille->image = $path;
+         $nBouteille->nom = $request->nom;
+         $nBouteille->prix_saq = $request->prix_saq;
          $nBouteille->vino_format_id = $request->vino_format_id;
          $nBouteille->vino_type_id = $request->vino_type_id;
          $nBouteille->pays_id = $request->pays_id;
@@ -65,6 +68,7 @@ class BouteilleController extends Controller
          $bouteilleParCellier->date_achat = $request->date_achat;
          $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
          $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
+         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
          $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
          $bouteilleParCellier->save();
          

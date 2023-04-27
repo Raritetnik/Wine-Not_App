@@ -1,94 +1,109 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="containe flex justify-center">
-  <!-- <header class="mb-8">
+<div class="flex justify-center mb-7 mt-5">
+  <section class="px-6 flex flex-col w-full lg:w-2/5">
+    <header class="mb-8 md:hidden">
       <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
         <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
       </a>
-    </header> -->
-  <section class="px-6 flex flex-col mb-4">
+    </header>
 
-    <form  method="post" enctype="multipart/form-data" class="w-full">
+
+    <form method="post" enctype="multipart/form-data" class="w-full">
       <!-- ajouter un token pour autoriser la route une seconde fois -->
       @csrf
-      <div class="w-full mb-3">
-        <label for="nom" class="block text-gray-700 font-bold mb-2">Ajoutez une bouteille</label>
-        <input type="nom" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500" />
+
+      <div class="w-full mb-5">
+        <label for="nom" class="block text-section_title font-bold mb-2">Ajoutez une bouteille</label>
+        <input type="nom" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
       </div>
-      <div class="w-full mb-3">
-        <label for="img" class="block text-gray-700 font-bold mb-2">Ajouter une image</label>
-        <div class="relative">
-          <input id="img" type="file" class="opacity-0 absolute z-50 w-full py-2 px-3 border border-gray-400 rounded-lg cursor-pointer" name="image">
-          <div class="w-full py-2 px-3 border border-gray-300 rounded-md focus-within:border-accent_wine focus-within:ring-1 focus-within:ring-accent_wine focus-within:outline-none sm:text-md cursor-pointer">
-            <span class="text-section_title">Choisir un fichier</span>
+
+      <div class="w-full mb-5">
+        <label for="img" class="block text-section_title font-bold mb-2">Ajouter une image</label>
+        <div class="block relative w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+          <input id="img" type="file" class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer" name="image">
+          <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
+            <span class="block text-section_title" id="file-name">Choisir une image</span><img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
           </div>
         </div>
       </div>
 
-      <div class="w-full mb-3">
-        <label for="quantite" class="block text-gray-700 font-bold mb-2">Quantité</label>
-        <input class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="quantite" id="quantite" min="1" placeholder="Quantité">
-        </input>
-      </div>
-      <div class="mb-3 flex md:flex-wrap gap-3">
-        <!-- <div class="mb-6 flex flex-col gap-3"> -->
-        <div class="w-full">
-          <label for="date_achat" class="block text-gray-700 font-bold mb-2">Date d'achat</label>
+      <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
+        <div class="w-full mb-3">
+          <label for="date_achat" class="block text-section_title font-bold mb-2">Date d'achat</label>
           <div class="flex flex-col md:flex-row md:space-x-4">
-            <input type="date" name="date_achat" id="date_achat" placeholder="Date d'achat" class="block  py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none md:mb-0" />
+            <input type="date" name="date_achat" id="date_achat" placeholder="Date d'achat" class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none" />
           </div>
         </div>
-        <!-- <div class="mb-6 flex flex-col gap-3"> -->
-        <div class="w-full">
-          <label for="date_exp" class="block text-gray-700 font-bold mb-2">Valide jusqu'à</label>
+        <div class="w-full mb-3">
+          <label for="date_exp" class="block text-section_title font-bold mb-2">Valide jusqu'à</label>
           <div class="flex flex-col md:flex-row md:space-x-4">
-            <input type="date" name="garde_jusqua" id="date_exp" placeholder="Valide jusqu'à" class="block py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none md:mb-0" />
+            <input type="date" name="garde_jusqua" id="date_exp" placeholder="Valide jusqu'à" class="block w-full py-3 px-3 rounded-md border border-gray-300 placeholder-section_title focus:border-secondary focus:outline-none" />
           </div>
         </div>
       </div>
-
-      <div class="mb-3">
-
-        <label for="cellier" class="block text-gray-700 font-bold mb-2">Celliers</label>
-        <select name="vino_cellier_id" id="cellier" class="block py-2 px-3 rounded-md border border-gray-300 focus:border-accent_wine focus:outline-none">
-          <option value="Selectionner Cellier"></option>
-          @foreach($celliers as $cellier)
-          <option value="{{$cellier->id}}">{{ $cellier->nom }}</option>
-          @endforeach
-        </select>
+      <div class="mb-2 flex justify-between gap-3">
+        <div class="w-1/2 mb-3">
+          <label for="quantite" class="block text-section_title font-bold mb-2">Quantité</label>
+          <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="quantite" id="quantite" min="1" placeholder="Quantité">
+          </input>
+        </div>
+        <div class="w-1/2 mb-3">
+          <label for="prix" class="block text-section_title font-bold mb-2">$ Prix</label>
+          <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille">
+          </input>
+        </div>
       </div>
-      <div class="mb-3">
+      <div class="mb-2 flex justify-between gap-3">
+        <div class="w-1/2 mb-3">
 
-        <label for="pays" class="block text-gray-700 font-bold mb-2">Pays Producteur</label>
-        <select name="pays_id" id="pays" class="block py-2 px-3 rounded-md border border-gray-300 focus:border-accent_wine focus:outline-none">
-          <option value="Selectionner Pays"></option>
-          @foreach($pays as $place)
-          <option value="{{$place->id}}">{{ $place->pays }}</option>
-          @endforeach
-        </select>
-      </div>
-      <div class="mb-3">
+          <label for="cellier" class="block text-section_title font-bold mb-2">Celliers</label>
+          <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+            <option value="Selectionner Cellier"></option>
+            @foreach($celliers as $cellier)
+            <option value="{{$cellier->id}}">{{ $cellier->nom }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="w-1/2 mb-3">
 
-        <label for="type" class="block text-gray-700 font-bold mb-2">Quel type de Vin</label>
-        <select name="vino_type_id" id="type" class="block py-2 px-3 rounded-md border border-gray-300 focus:border-accent_wine focus:outline-none">
-          <option value="Selectionner type"></option>
-          @foreach($types as $type)
-          <option value="{{$type->id}}">{{ $type->type }}</option>
-          @endforeach
-        </select>
+          <label for="pays" class="block text-section_title font-bold mb-2">Pays Producteur</label>
+          <select name="pays_id" id="pays" class="w-full block py-3 px-3 rounded-md border bg-transparent bg-gray-50 border-gray-300 focus:border-secondary focus:outline-none">
+            <option value="Selectionner Pays"></option>
+            @foreach($pays as $place)
+            <option value="{{$place->id}}">{{ $place->pays }}</option>
+            @endforeach
+          </select>
+        </div>
       </div>
-      <div class="mb-3">
+      <div class="flex justify-between gap-3">
+        <div class="w-1/2 mb-3">
 
-        <label for="format" class="block text-gray-700 font-bold mb-2">Celliers</label>
-        <select name="vino_format_id" id="format" class="block py-2 px-3 rounded-md border border-gray-300 focus:border-accent_wine focus:outline-none">
-          <option value="Selectionner Cellier"></option>
-          @foreach($formats as $format)
-          <option value="{{$format->id}}">{{ $format->format }}</option>
-          @endforeach
-        </select>
+          <label for="type" class="block text-section_title font-bold mb-2">Type de Vin</label>
+          <select name="vino_type_id" id="type" class="w-full block py-3 px-3 rounded-md bg-transparent bg-gray-50 border border-gray-300 focus:border-secondary focus:outline-none">
+            <option value="Selectionner type"></option>
+            @foreach($types as $type)
+            <option value="{{$type->id}}">{{ $type->type }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="w-1/2  mb-3">
+
+          <label for="format" class="block text-section_title font-bold mb-2">Volume</label>
+          <select name="vino_format_id" id="format" class="w-full block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+            <option value="Selectionner le format"></option>
+            @foreach($formats as $format)
+            <option value="{{$format->id}}">{{ $format->format }}</option>
+            @endforeach
+          </select>
+        </div>
       </div>
-      <button type="submit" class="sm:w-full mt-3 px-7 py-3 rounded-lg bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition duration-300 ease-in-out">Ajouter la bouteille</button>
+      <div class="mt-7 flex gap-3">
+        <button type="submit" class="w-1/3 px-7 py-2.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
+        <a href="{{ url()->previous() }}" class="px-7 py-2.5 flex items-center rounded-md text-secondary font-medium border-secondary border hover:bg-secondary hover:text-main">Retourner</a>
+      </div>
+
 
     </form>
   </section>
