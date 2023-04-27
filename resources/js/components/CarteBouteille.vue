@@ -47,6 +47,11 @@ export default {
         },
         // Supprimer l'element de la liste DOM
         supprimer () {
+            axios.post('/api.delete-bouteille/'+this.bouteille, {
+                BouteilleID: this.bouteille
+            }) .then(response => {
+                console.log('Modification est enrégistrée');
+            });
             this.$el.parentElement.removeChild(this.$el)
         }
     },

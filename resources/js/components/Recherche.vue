@@ -68,9 +68,6 @@ export default {
       this.choixBouteille = vine;
       this.selectedVine = true;
       this.closestVineList = [];
-    },
-    onSubmit () {
-
     }
   },
   async beforeMount () {
