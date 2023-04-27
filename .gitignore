@@ -3,6 +3,8 @@
 /public/css/app.css
 /public/js/app.js
 /public/storage
+/resources/views/test.blade.php
+/Controllers/HomeController.php
 /storage/*.key
 /vendor
 .env
