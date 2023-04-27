@@ -122,8 +122,8 @@ class CellierController
       $pays=Pays::all();
 
       return view('celliers.afficher', ['cellier' => $cellier,
-                                        'bouteilles' => $listeBouteilles,
-                                        'bouteillesJulie' => $bouteilles,
+                                        /*'bouteilles' => $listeBouteilles,*/
+                                        'bouteilles' => $bouteilles,
                                         'liste' => $listeSouhaits,
                                         'type' => $type,
                                         'pays' => $pays] );

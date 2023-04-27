@@ -59,16 +59,16 @@
         </div>
     </form>
   </div>
-  <section class="px-6 flex flex-col items-center">
+  <!--<section class="px-6 flex flex-col items-center">
     @foreach ($bouteilles as $bouteille)
-    <!-- carte -->
+     carte 
     <div class="mb-2">
         <v-bouteille :bouteille="{{ $bouteille }}" :liste="{{ $liste }}"/>
     </div>
     @endforeach
-</section>
+</section>-->
 </div>
-<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}" :bouteilles="{{$bouteillesJulie}}"/>
+<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}" :bouteilles="{{$bouteilles}}"/>
 </div>
 
 @endsection

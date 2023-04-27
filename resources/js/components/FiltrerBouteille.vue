@@ -1,4 +1,5 @@
 <template>
+<div>
     <aside class="conteneur-filtre">
         <span class="material-symbols-outlined fermer">
         close
@@ -71,13 +72,20 @@
             </div>
         </nav>
     </aside> <!-- //conteneur-filtre -->
+    <section class="px-6 flex flex-col items-center">
+        <!-- carte -->
+        <div class="mb-2" v-for="bouteille in bouteilles" :key="bouteille.id">
+            <v-bouteille :bouteille="bouteille" :liste="liste"/>
+        </div>
+    </section>
+</div>
 
 </template>
 
 
 <script>
     export default {
-        props: ["type", "pays", "cellier"]
+        props: ["type", "pays", "cellier", "bouteilles"]
     };
 </script>
 
