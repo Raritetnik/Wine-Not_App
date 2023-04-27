@@ -68,7 +68,7 @@
     @endforeach
 </section>
 </div>
-<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}"/>
+<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}" :bouteilles="{{$bouteillesJulie}}"/>
 </div>
 
 @endsection

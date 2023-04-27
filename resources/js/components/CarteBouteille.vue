@@ -2,7 +2,7 @@
     <article class="carte flex gap-1 border px-4 py-2 rounded-md justify-between w-[400px] sm:w-[500px]">
         <header class="flex items-start relative">
             <img :src="require('/img/svg/close.svg')" width="20" @click="supprimer()" class="absolute" alt="close">
-            <img class="object-cover min-w-[100px] min-h-[150px]" :src="this.bouteille.image" :alt="this.bouteille.nom">
+            <img class="object-cover min-w-[100px] min-h-[150px]" :src="this.bouteille.url_img" :alt="this.bouteille.nom">
         </header>
         <div class="desc flex flex-col justify-between">
             <header>
@@ -47,6 +47,11 @@ export default {
         },
         // Supprimer l'element de la liste DOM
         supprimer () {
+            axios.post('/api.delete-bouteille/'+this.bouteille, {
+                BouteilleID: this.bouteille
+            }) .then(response => {
+                console.log('Modification est enrégistrée');
+            });
             this.$el.parentElement.removeChild(this.$el)
         }
     },
