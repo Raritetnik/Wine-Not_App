@@ -26,7 +26,21 @@ mobileMenuLinks.forEach(function (link) {
   });
 });
 
-// Set mobile menu width to full screen width
-// mobileMenu.style.height = "100vh";
+
+// afficher le nom d'une image choisi
+document.getElementById('img').addEventListener('change', function() {
+  var file_name = this.value.split('\\').pop();
+  document.getElementById('file-name').textContent = file_name;
+});
+
+
+function toggleModal(modalID){
+  document.getElementById(modalID).classList.toggle("hidden");
+  document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+  document.getElementById(modalID).classList.toggle("flex");
+  document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+}
+
+
 })
 
