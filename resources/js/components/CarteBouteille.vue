@@ -47,17 +47,19 @@ export default {
             console.log(this.bouteille.quantite);
         },
 
-        // Supprimer l'element de la liste DOM
+       
         supprimer () {
             axios.post('/api.delete-bouteille/'+this.bouteille, {
-                BouteilleID: this.bouteille
+                BouteilleID: this.bouteille,
+                CellierID: this.bouteille.vino_cellier_id,
+                UtilisateurID: this.$store.state.utilisateur.id
             }) .then(response => {
                 console.log('Modification est enrégistrée');
             });
-            this.$el.parentElement.removeChild(this.$el)
-        }
-    },
-
+             // Supprimer l'element de la liste DOM
+            this.$el.parentElement.removeChild(this.$el);
+    }
+},
     computed: {},
 };
 </script>
