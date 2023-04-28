@@ -14,7 +14,7 @@
               </div>
               <ul class="liste-choix">
                 <li v-for="aType in type">
-                  <input type="checkbox" :id="aType.type.replace(/[\s\u0300-\u036f]/g, '')" :name="aType.type.replace(/[\s\u0300-\u036f]/g, '')" :value="aType.type" v-model="selectionner" @change="filterBouteilles">
+                  <input type="checkbox" :id="aType.type.replace(/[\s\u0300-\u036f]/g, '')" :name="aType.type.replace(/[\s\u0300-\u036f]/g, '')" :value="aType.type" v-model="selectionnerType" @change="filterBouteilles">
                   <label :for="aType.type.replace(/[\s\u0300-\u036f]/g, '')">{{ aType.type }}</label>
                 </li>
               </ul>
@@ -25,7 +25,7 @@
               </div>
               <ul class="liste-choix">
                 <li v-for="aPays in pays">
-                  <input type="checkbox" :id="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :name="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :value="aPays.pays" v-model="selectionner" @change="filterBouteilles">
+                  <input type="checkbox" :id="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :name="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :value="aPays.pays" v-model="selectionnerPays" @change="filterBouteilles">
                   <label :for="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')">{{ aPays.pays }}</label>
                 </li>
               </ul>
@@ -51,7 +51,8 @@ export default {
         types: [],
         pays: [],
       },
-      selectionner: [],
+      selectionnerType: [],
+      selectionnerPays: [],
       bouteillesFiltrees: []
     };
   },
@@ -62,27 +63,58 @@ export default {
     let correspondanceType;
     let correspondancePays;
 
-      // Vérifier si tous les filtres sont désélectionnés
-    if (this.selectionner.length === 0) {
+    // Vérifier si tous les filtres sont désélectionnés
+    if (this.selectionnerType.length === 0 && this.selectionnerPays.length === 0) {
         // Si tous les filtres sont désélectionnés, afficher toutes les bouteilles
         this.bouteillesFiltrees = this.bouteilles;
         return;
     }
-    
-    // Boucler sur toutes les bouteilles
-    for (let i = 0; i < this.bouteilles.length; i++) {
-        let bouteille = this.bouteilles[i];
+    else if(this.selectionnerType.length > 0 && this.selectionnerPays.length > 0) {
+        // Boucler sur toutes les bouteilles
+        for (let i = 0; i < this.bouteilles.length; i++) {
+            let bouteille = this.bouteilles[i];
 
-        // Vérifier si la bouteille correspond aux types et pays sélectionnés
-        correspondanceType = this.selectionner.includes(bouteille.type);
-        correspondancePays = this.selectionner.includes(bouteille.pays);
-        console.log(correspondanceType)
+            // Vérifier si la bouteille correspond aux types et pays sélectionnés
+            correspondanceType = this.selectionnerType.includes(bouteille.type);
+            correspondancePays = this.selectionnerPays.includes(bouteille.pays);
+            console.log(correspondanceType)
 
-        // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
-        if (correspondanceType || correspondancePays) {
-        bouteillesFiltrees.push(bouteille);
+            // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
+            if (correspondanceType && correspondancePays) {
+                bouteillesFiltrees.push(bouteille);
+            }
         }
     }
+    else if (this.selectionnerType.length > 0 && this.selectionnerPays.length ===0){
+            // Boucler sur toutes les bouteilles
+            for (let i = 0; i < this.bouteilles.length; i++) {
+            let bouteille = this.bouteilles[i];
+
+            // Vérifier si la bouteille correspond aux types et pays sélectionnés
+            correspondanceType = this.selectionnerType.includes(bouteille.type);
+
+            // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
+            if (correspondanceType) {
+                bouteillesFiltrees.push(bouteille);
+            }
+        }
+    }
+    else if (this.selectionnerType.length === 0 && this.selectionnerPays.length >0){
+            // Boucler sur toutes les bouteilles
+            for (let i = 0; i < this.bouteilles.length; i++) {
+            let bouteille = this.bouteilles[i];
+
+            // Vérifier si la bouteille correspond aux types et pays sélectionnés
+            correspondancePays = this.selectionnerPays.includes(bouteille.pays);
+
+            // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
+            if (correspondancePays) {
+                bouteillesFiltrees.push(bouteille);
+            }
+        }
+    }
+    
+
     // ajouter condition que s'il n'y a aucun filtre sélectionner d'afficher toutes les bouteilles
 
 
