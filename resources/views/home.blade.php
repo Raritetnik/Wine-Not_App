@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container pb-16 ">
   <header class="mb-8">
     <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
       <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
@@ -36,7 +36,7 @@
     </div>
   </section>
   <footer class="flex flex-col items-center mb-8 mx-10">
-    <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Commencer</a>
+    <a href="/register" class="text-white py-2 w-full md:max-w-[300px] rounded-md mb-2 flex justify-center" style="background-color: #67375C">Commencer</a>
     <small style="color: #909090">
       Avez-vous déjà un compte?
       <a href="/login" style="color: #67375C">Connecter</a>

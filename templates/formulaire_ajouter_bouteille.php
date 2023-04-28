@@ -1,6 +1,3 @@
-@extends('layouts.app')
-@section('content')
-
 <div class="flex justify-center mb-7 mt-5">
   <section class="px-6 flex flex-col w-full lg:w-2/5">
     <header class="mb-8 md:hidden">
@@ -113,7 +110,3 @@
   </section>
   @include('bouteille.recherche_saq')
 </div>
-
-
-
-@endsection
