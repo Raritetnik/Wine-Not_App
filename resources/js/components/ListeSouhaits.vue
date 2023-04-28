@@ -26,6 +26,7 @@ export default {
     },
     beforeMount() {
         let rep = this.liste.find( a => {
+            console.log(a.vino_bouteilles_id === this.bouteille);
             return a.vino_bouteilles_id === this.bouteille
         });
         this.estFavoris = rep != null;
@@ -33,3 +34,5 @@ export default {
 
 }
 </script>
+
+ALTER TABLE `vino_bouteilles` ADD `utilisateur_id` INT(11) NOT NULL AFTER `updated_at`;

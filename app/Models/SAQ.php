@@ -20,7 +20,9 @@ class SAQ extends Model
 	private $stmt;
 
     /**
-	 * getProduits
+	 * Télécharge la page de SAQ et decode le contenu
+	 * pour extraire la liste des bouteilles
+	 *
 	 * @param int $nombre
 	 * @param int $debut
 	 */
@@ -78,6 +80,7 @@ class SAQ extends Model
 
 		return $listeBouteilles;
 	}
+
 
     private function nettoyerEspace($chaine)
 	{

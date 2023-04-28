@@ -18,18 +18,9 @@ class LoaderDataSAQ implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
-     * Execute the job.
+     * Enrégistrement des bouteilles SAQ dans la base de données
      *
      * @return void
      */
@@ -41,7 +32,8 @@ class LoaderDataSAQ implements ShouldQueue
         for($i = 1; $i <= $pages; $i++) {
             $liste = $saq->getProduits(96, $i);
             foreach ($liste as $bouteille) {
-                // Vérification de l'existance de la bouteille dans la base de
+                // Vérification de l'existance de la bouteille dans la base de données
+                // pour éviter des doublures
                 $checkList = Vino_Bouteille::where('code_saq', $bouteille->desc->code_SAQ)->get();
                 if(count($checkList) > 0) {
                     continue;
