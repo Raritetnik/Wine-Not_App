@@ -11,6 +11,7 @@ class Vino_Bouteille extends Model
 
     protected $table = 'vino_bouteilles';
     protected $fillable = [
+        'nom',
         'image',
         'code_saq',
         'description',

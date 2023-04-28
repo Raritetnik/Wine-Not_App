@@ -24,6 +24,7 @@ module.exports = {
                     80: "rgba(83, 42, 74, 0.8)",
                     50: "rgba(83, 42, 74, 0.5)",
                 },
+                accent_wine_light: "#7D4570",
                 section_title: "#909090",
                 article_title: "#242424",
                 box_color: "#F5F5F5",
