@@ -18,7 +18,7 @@
     </h3>
   </div>
   <div class="pb-6 text-center w-full">
-    <a href="{{route('celliers.modifier', $cellier->id)}}" class="inline-flex items-center justify-center space-x-2 py-3 px-4 bg-accent_wine hover:accent_wine-80 text-main font-bold ml-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+    <a href="{{route('celliers.modifier', $cellier->id)}}" class="inline-flex items-center justify-center space-x-2 bg-accent_wine hover:accent_wine-80 text-main font-bold ml-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -59,16 +59,16 @@
         </div>
     </form>
   </div>
-  <!--<section class="px-6 flex flex-col items-center">
+  <section class="px-6 flex flex-col items-center">
     @foreach ($bouteilles as $bouteille)
-     carte 
+    <!-- carte -->
     <div class="mb-2">
         <v-bouteille :bouteille="{{ $bouteille }}" :liste="{{ $liste }}"/>
     </div>
     @endforeach
-</section>-->
+</section>
 </div>
-<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}" :bouteilles="{{$bouteilles}}"/>
+<v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}"/>
 </div>
 
 @endsection
