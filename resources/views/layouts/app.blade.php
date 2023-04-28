@@ -2,23 +2,23 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/filtreVanille.js') }}" defer></script>
 
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     <!-- Symbols -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,10 +34,16 @@
 <body>
   <div id="app">
     @include('layouts.nav')
-    <main class="py-4">
+    <main class="py-4 relative">
       @yield('content')
+      <!-- bouton d'ajout de bouteille -->
+      <div class="absolute right-5 bottom-5">
+        <a href="{{ route('bouteille.create') }}">
+          <div class=" shadow-md text-center rounded-lg  cursor-pointer py-3 px-3 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-5xl"><img src="{{asset('img/svg/plus.svg')}}" alt="add-button"></div>
+        </a>
+      </div>
     </main>
-  </div>
+</div>
   @include('layouts.footer')
 </body>
 

@@ -39,8 +39,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function userHasCity(){
+    public function userHasCity()
+    {
         // ordre est important autre model, clé primaire de la table jointe, clé étrangère
         return $this->hasOne('App\Models\City', 'id', 'city_id');
+    }
+
+    public function celliers()
+    {
+        return $this->hasMany(Vino_Cellier::class, 'utilisateurs_id');
     }
 }

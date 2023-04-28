@@ -59,8 +59,10 @@ Route::put('/celliers/{cellier}/{idbouteille}', [App\Http\Controllers\CellierCon
  */
 Route::get('/bouteille/{idBouteille}', [BouteilleController::class, 'show'])->name('bouteille.show')->middleware('auth');
 Route::get('/bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');
-Route::get('/creer-bouteille', [App\Http\Controllers\BouteilleController::class, 'creer'])->name('bouteilles.creer')->middleware('auth');
-Route::post('/creer-bouteille', [App\Http\Controllers\BouteilleController::class, 'insererBouteille'])->name('bouteilles.insererBouteille')->middleware('auth');
+// Route::get('/creer-bouteille', [App\Http\Controllers\BouteilleController::class, 'creer'])->name('bouteilles.creer')->middleware('auth');
+Route::get('/ajouter-bouteille', [BouteilleController::class, 'ajouterBouteille'])->name('bouteille.create')->middleware('auth');
+Route::post('/ajouter-bouteille', [BouteilleController::class, 'insererBouteille'])->name('bouteille.inserer')->middleware('auth');
+Route::put('/recherche-bouteille', [BouteilleController::class, 'rechercheBouteille'])->name('bouteille.saq')->middleware('auth');
 /**
  * Les liens de Script Loader SAQ
  */

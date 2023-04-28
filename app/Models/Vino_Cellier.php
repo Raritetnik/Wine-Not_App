@@ -24,7 +24,7 @@ class Vino_Cellier extends Model
     // etablir les relations entre les tables dans la base de donnees
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'utilisateurs_id');
     }
 
 
