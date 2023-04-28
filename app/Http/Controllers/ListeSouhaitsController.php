@@ -50,10 +50,17 @@ class ListeSouhaitsController extends Controller
             ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
             ->where('utilisateurs_id', Auth::user()->id)
             ->get();
-
         $liste = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
-        //return $liste;
-        return view('listeSouhaits', ['bouteilles' => $bouteilles, 'liste' => $liste]);
+        // Filtrage des bouteilles, seules en favoris
+        $listeBouteilles = [];
+        foreach ($bouteilles as $btl) {
+            foreach ($liste as $favBtl) {
+                if($favBtl->vino_bouteilles_id === $btl->vino_bouteille_id) {
+                    array_push($listeBouteilles, $btl);
+                }
+            }
+        }
+        return view('listeSouhaits', ['bouteilles' => $listeBouteilles, 'liste' => $liste]);
     }
 
     /**
