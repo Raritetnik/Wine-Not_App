@@ -58,73 +58,55 @@ export default {
   },
   methods: {
     filterBouteilles() {
-    // Créer un tableau vide pour stocker les bouteilles filtrées
-    let bouteillesFiltrees = [];
-    let correspondanceType;
-    let correspondancePays;
+        // Créer un tableau vide pour stocker les bouteilles filtrées
+        let bouteillesFiltrees = [];
+        let correspondanceType;
+        let correspondancePays;
 
-    // Vérifier si tous les filtres sont désélectionnés
-    if (this.selectionnerType.length === 0 && this.selectionnerPays.length === 0) {
-        // Si tous les filtres sont désélectionnés, afficher toutes les bouteilles
-        this.bouteillesFiltrees = this.bouteilles;
-        return;
-    }
-    else if(this.selectionnerType.length > 0 && this.selectionnerPays.length > 0) {
-        // Boucler sur toutes les bouteilles
-        for (let i = 0; i < this.bouteilles.length; i++) {
-            let bouteille = this.bouteilles[i];
-
-            // Vérifier si la bouteille correspond aux types et pays sélectionnés
-            correspondanceType = this.selectionnerType.includes(bouteille.type);
-            correspondancePays = this.selectionnerPays.includes(bouteille.pays);
-            console.log(correspondanceType)
-
-            // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
-            if (correspondanceType && correspondancePays) {
-                bouteillesFiltrees.push(bouteille);
-            }
+        // Vérifier si tous les filtres sont désélectionnés
+        if (this.selectionnerType.length === 0 && this.selectionnerPays.length === 0) {
+            // Si tous les filtres sont désélectionnés, afficher toutes les bouteilles
+            this.bouteillesFiltrees = this.bouteilles;
+            return;
         }
-    }
-    else if (this.selectionnerType.length > 0 && this.selectionnerPays.length ===0){
+        else {        
             // Boucler sur toutes les bouteilles
             for (let i = 0; i < this.bouteilles.length; i++) {
-            let bouteille = this.bouteilles[i];
+                let bouteille = this.bouteilles[i];
+            
+                if(this.selectionnerType.length > 0 && this.selectionnerPays.length > 0) {
+                    // Vérifier si la bouteille correspond aux types et pays sélectionnés
+                    correspondanceType = this.selectionnerType.includes(bouteille.type);
+                    correspondancePays = this.selectionnerPays.includes(bouteille.pays);
 
-            // Vérifier si la bouteille correspond aux types et pays sélectionnés
-            correspondanceType = this.selectionnerType.includes(bouteille.type);
+                    // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
+                    if (correspondanceType && correspondancePays) {
+                        bouteillesFiltrees.push(bouteille);
+                    }
+                }
+                else if (this.selectionnerType.length > 0 && this.selectionnerPays.length ===0){
+                    // Vérifier si la bouteille correspond aux types sélectionnés
+                    correspondanceType = this.selectionnerType.includes(bouteille.type);
 
-            // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
-            if (correspondanceType) {
-                bouteillesFiltrees.push(bouteille);
+                    // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
+                    if (correspondanceType) {
+                        bouteillesFiltrees.push(bouteille);
+                    }
+                }
+                else if (this.selectionnerType.length === 0 && this.selectionnerPays.length >0){
+                    // Vérifier si la bouteille correspond aux pays sélectionnés
+                    correspondancePays = this.selectionnerPays.includes(bouteille.pays);
+
+                    // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
+                    if (correspondancePays) {
+                        bouteillesFiltrees.push(bouteille);
+                    }
+                }
             }
         }
-    }
-    else if (this.selectionnerType.length === 0 && this.selectionnerPays.length >0){
-            // Boucler sur toutes les bouteilles
-            for (let i = 0; i < this.bouteilles.length; i++) {
-            let bouteille = this.bouteilles[i];
-
-            // Vérifier si la bouteille correspond aux types et pays sélectionnés
-            correspondancePays = this.selectionnerPays.includes(bouteille.pays);
-
-            // Ajouter la bouteille au tableau filtré si elle correspond aux types et pays sélectionnés
-            if (correspondancePays) {
-                bouteillesFiltrees.push(bouteille);
-            }
-        }
-    }
-    
-
-    // ajouter condition que s'il n'y a aucun filtre sélectionner d'afficher toutes les bouteilles
-
-
-    // Stocker les bouteilles filtrées dans le data
-
-    this.bouteillesFiltrees = bouteillesFiltrees;
-    
-    
+        // Stocker les bouteilles filtrées dans le data
+        this.bouteillesFiltrees = bouteillesFiltrees;
     },
-
   },
   created() {
     this.bouteillesFiltrees = this.bouteilles;
