@@ -189,42 +189,45 @@ class CellierController
     return redirect(route('celliers.index'))->withSuccess('Information mise à jour.');
   }
 
+
+  //*** Ce formulaire d'ajout de bouteille de la saq est dans le BouteilleController ***//
+
   // Formulaire d'ajout de bouteilles au cellier
-  public function ajouterBouteille(Request $request, Vino_Cellier $cellier)
-  {
+  // public function ajouterBouteille(Request $request, Vino_Cellier $cellier)
+  // {
     // valider si bouteille pas présente dans cellier
     // si pas présente l'ajouter
     // retourne un tableau contenant un objet
-    $bouteilleValidation = Bouteille_Par_Cellier::select()
-    ->where('vino_bouteille_id', '=', $request -> vino_bouteille_id)
-    ->where('vino_cellier_id', '=', $cellier->id)
-    ->get();
+    // $bouteilleValidation = Bouteille_Par_Cellier::select()
+    // ->where('vino_bouteille_id', '=', $request -> vino_bouteille_id)
+    // ->where('vino_cellier_id', '=', $cellier->id)
+    // ->get();
 
     // si bouteille présente modifier la quantité au cellier
     // $bouteille_par_cellier est l'objet du tableau $bouteilleValidation
     // additionner le nombre de bouteilles existantes avec le nombre souhaité
-    if(count($bouteilleValidation) !==0){
-      $bouteille_par_cellier = $bouteilleValidation[0];
-      $totalBouteille = ($bouteille_par_cellier -> quantite + $request->quantite);
-      Bouteille_Par_Cellier::find($bouteille_par_cellier->id)
-      ->update(['quantite'=>$totalBouteille]);
-    }
+    // if(count($bouteilleValidation) !==0){
+    //   $bouteille_par_cellier = $bouteilleValidation[0];
+    //   $totalBouteille = ($bouteille_par_cellier -> quantite + $request->quantite);
+    //   Bouteille_Par_Cellier::find($bouteille_par_cellier->id)
+    //   ->update(['quantite'=>$totalBouteille]);
+    // }
 
     // Sinon si la bouteille n'est pas présente dans le cellier, l'ajouter
-    else{
-      $bouteille = Bouteille_Par_Cellier::create([
-        'date_achat' => $request->date_achat,
-        'garde_jusqua' => $request->garde_jusqua,
-        'prix' => $request->prix,
-        'quantite' => $request->quantite,
-        'millesime' => $request->millesime,
-        'vino_cellier_id'=> $cellier->id,
-        'vino_bouteille_id'=> $request->vino_bouteille_id  // vient de vue.js
-      ]);
-      $bouteille->save();
-    }
-    return redirect(route('celliers.afficher', $cellier->id));
-  }
+  //   else{
+  //     $bouteille = Bouteille_Par_Cellier::create([
+  //       'date_achat' => $request->date_achat,
+  //       'garde_jusqua' => $request->garde_jusqua,
+  //       'prix' => $request->prix,
+  //       'quantite' => $request->quantite,
+  //       'millesime' => $request->millesime,
+  //       'vino_cellier_id'=> $cellier->id,
+  //       'vino_bouteille_id'=> $request->vino_bouteille_id  // vient de vue.js
+  //     ]);
+  //     $bouteille->save();
+  //   }
+  //   return redirect(route('celliers.afficher', $cellier->id));
+  // }
 
 
 
