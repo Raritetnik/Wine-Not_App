@@ -60,17 +60,21 @@
 
           <label for="cellier" class="block text-section_title font-bold mb-2">Celliers</label>
           <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-            <option value="Selectionner Cellier"></option>
-            @foreach($celliers as $cellier)
-            <option value="{{$cellier->id}}">{{ $cellier->nom }}</option>
+            @foreach($celliers as $index => $cellier)
+            @if($index === 0) <!-- verifier si index 0, 1er element du array -->
+            <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option> 
+            @else
+            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+            @endif
             @endforeach
           </select>
+
         </div>
         <div class="w-1/2 mb-3">
 
           <label for="pays" class="block text-section_title font-bold mb-2">Pays Producteur</label>
-          <select name="pays_id" id="pays" class="w-full block py-3 px-3 rounded-md border bg-transparent bg-gray-50 border-gray-300 focus:border-secondary focus:outline-none">
-            <option value="Selectionner Pays"></option>
+          <select name="pays_id" id="pays" class="w-full text-section_title block py-3 px-3 rounded-md border bg-transparent bg-gray-50 border-gray-300 focus:border-secondary focus:outline-none">
+            <option class="text-section_title" value="">Sélectionner Pays</option>
             @foreach($pays as $place)
             <option value="{{$place->id}}">{{ $place->pays }}</option>
             @endforeach
@@ -81,8 +85,8 @@
         <div class="w-1/2 mb-3">
 
           <label for="type" class="block text-section_title font-bold mb-2">Type de Vin</label>
-          <select name="vino_type_id" id="type" class="w-full block py-3 px-3 rounded-md bg-transparent bg-gray-50 border border-gray-300 focus:border-secondary focus:outline-none">
-            <option value="Selectionner type"></option>
+          <select name="vino_type_id" id="type" class="w-full text-section_title block py-3 px-3 rounded-md bg-transparent bg-gray-50 border border-gray-300 focus:border-secondary focus:outline-none">
+            <option class="text-section_title" value="">Sélectionner type</option>
             @foreach($types as $type)
             <option value="{{$type->id}}">{{ $type->type }}</option>
             @endforeach
@@ -91,8 +95,8 @@
         <div class="w-1/2  mb-3">
 
           <label for="format" class="block text-section_title font-bold mb-2">Volume</label>
-          <select name="vino_format_id" id="format" class="w-full block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-            <option value="Selectionner le format"></option>
+          <select name="vino_format_id" id="format" class="w-full text-section_title block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+            <option class="text-section_title" value="">Sélectionner Pays</option>
             @foreach($formats as $format)
             <option value="{{$format->id}}">{{ $format->format }}</option>
             @endforeach
@@ -107,6 +111,7 @@
 
     </form>
   </section>
+  @include('bouteille.recherche_saq')
 </div>
 
 

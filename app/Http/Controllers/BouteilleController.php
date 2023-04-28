@@ -21,7 +21,7 @@ class BouteilleController extends Controller
     public function index()
     {
 
-        //return view('bouteille.index')->with('bouteilles', json_decode($liste, true));
+        // return view('bouteille.index')->with('bouteilles', json_decode($liste, true));
     }
 
     /**
@@ -36,13 +36,12 @@ class BouteilleController extends Controller
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
         return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
-
     }
 
 
     public function insererBouteille(Request $request)
     {
-       
+
         $request->validate([
             'nom' => 'required|min:5|max:100',
             'date_achat' => 'required|date',
@@ -52,34 +51,60 @@ class BouteilleController extends Controller
             'vino_cellier_id' => 'required|integer|min:1'
         ]);
         $path = $request->file('image')->store('uploads', 'public');
-        
-         $nBouteille = new Vino_Bouteille();
-         $nBouteille->image = $path;
-         $nBouteille->nom = $request->nom;
-         $nBouteille->prix_saq = $request->prix_saq;
-         $nBouteille->vino_format_id = $request->vino_format_id;
-         $nBouteille->vino_type_id = $request->vino_type_id;
-         $nBouteille->pays_id = $request->pays_id;
-         $nBouteille->save();
 
-     
-         $bouteilleParCellier = new Bouteille_Par_Cellier();
-         $bouteilleParCellier->quantite = $request->quantite;
-         $bouteilleParCellier->date_achat = $request->date_achat;
-         $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
-         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
-         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
-         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
-         $bouteilleParCellier->save();
-         
-        
-         return redirect(route('celliers.index'));
-       }
-
- 
+        $nBouteille = new Vino_Bouteille();
+        $nBouteille->image = $path;
+        $nBouteille->nom = $request->nom;
+        $nBouteille->prix_saq = $request->prix_saq;
+        $nBouteille->vino_format_id = $request->vino_format_id;
+        $nBouteille->vino_type_id = $request->vino_type_id;
+        $nBouteille->pays_id = $request->pays_id;
+        $nBouteille->save();
 
 
+        $bouteilleParCellier = new Bouteille_Par_Cellier();
+        $bouteilleParCellier->quantite = $request->quantite;
+        $bouteilleParCellier->date_achat = $request->date_achat;
+        $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
+        $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
+        $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
+        $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
+        $bouteilleParCellier->save();
 
+        return redirect(route('celliers.afficher', $request->vino_cellier_id ));
+    }
+
+
+    public function rechercheBouteille(Request $request)
+    {
+        $celliers = auth()->user()->celliers;
+
+        $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())
+            ->where('vino_bouteille_id', $request->vino_bouteille_id)
+            ->first();
+
+        if ($bouteilleValidation) {
+            $totalBouteille = $bouteilleValidation->quantite + $request->quantite;
+            $bouteilleValidation->update(['quantite' => $totalBouteille]);
+        } else {
+            $bouteille = Bouteille_Par_Cellier::create([
+                'date_achat' => $request->date_achat,
+                'garde_jusqua' => $request->garde_jusqua,
+                'prix' => $request->prix,
+                'quantite' => $request->quantite,
+                'millesime' => $request->millesime,
+                'vino_cellier_id' => $request->vino_cellier_id,
+                'vino_bouteille_id' => $request->vino_bouteille_id // vient de vue.js
+            ]);
+            $bouteille->save();
+        }
+
+        return redirect(route('celliers.afficher', $request->vino_cellier_id ));
+    }
+
+
+
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -100,13 +125,13 @@ class BouteilleController extends Controller
     public function show($id)
     {
         $bouteilleDetail = Bouteille_Par_Cellier::select()
-        ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
-        ->where([
-        ['vino_bouteille_id', '=', $id]
-        ])
-        ->get();
+            ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
+            ->where([
+                ['vino_bouteille_id', '=', $id]
+            ])
+            ->get();
         // return $bouteilleDetail;
-        $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite']*$bouteilleDetail[0]['prix_saq'];
+        $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite'] * $bouteilleDetail[0]['prix_saq'];
         return view('bouteille.show', ['bouteille' => $bouteilleDetail[0]]);
     }
 
@@ -150,6 +175,6 @@ class BouteilleController extends Controller
     public function listeBouteilles()
     {
         $liste = Vino_Bouteille::all();
-        echo(json_encode($liste));
+        echo (json_encode($liste));
     }
 }

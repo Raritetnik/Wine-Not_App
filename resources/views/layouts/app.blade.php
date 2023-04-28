@@ -39,7 +39,7 @@
       <!-- bouton d'ajout de bouteille -->
       <div class="absolute right-5 bottom-5">
         <a href="{{ route('bouteille.create') }}">
-          <div class=" shadow-md text-center rounded-2xl  cursor-pointer py-3 px-6 bg-accent_wine mr-3 hover:bg-accent_wine-80 text-main text-5xl">&#x2b;</div>
+          <div class=" shadow-md text-center rounded-lg  cursor-pointer py-3 px-3 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-5xl"><img src="{{asset('img/svg/plus.svg')}}" alt="add-button"></div>
         </a>
       </div>
     </main>
