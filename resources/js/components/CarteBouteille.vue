@@ -6,7 +6,8 @@
         </header>
         <div class="desc flex flex-col justify-between">
             <header>
-                <h1 class="font-bold" style="color: var(--color_champ)">{{ this.bouteille.nomSAQ }}</h1>
+                <!-- <h1 class="font-bold" style="color: var(--color_champ)">{{ this.bouteille.nomSAQ }}</h1> -->
+                <h1>MEU CU</h1>
                 <h3 style="color: var(--color_text)">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
             </header>
             <footer class="flex">
@@ -47,23 +48,22 @@ export default {
             console.log(this.bouteille.quantite);
         },
 
-        supprimer () {
-        axios.post('/api/supprimer-bouteille-utilisateur/' + this.utilisateur + '/' + this.cellier + '/' + this.bouteille, {
-            UtilisateurID: this.utilisateur,
-            CellierID: this.cellier,
-            BouteilleID: this.bouteille
-        })
-            .then(response => {
-                console.log('La modification est enregistrée');
-            })
-            .catch(error => {
-                console.log('Une erreur est survenue : ' + error);
-            });
-        this.$el.parentElement.removeChild(this.$el);
-    }
-},
+           // Supprimer l'element de la liste DOM
+           supprimer () {
+            console.log("TESTE")
+            console.log(this.bouteille)
+            // axios.post('/api.delete-bouteille/'+this.bouteille, {
+            //     BouteilleID: this.bouteille
+            // }) .then(response => {
+            //     console.log('Modification est enrégistrée');
+            // });
+            // this.$el.parentElement.removeChild(this.$el)
+        }
+    },
+
     computed: {},
 };
+
 </script>
 
 <style lang="scss" scoped>
