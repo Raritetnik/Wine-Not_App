@@ -47,17 +47,19 @@ export default {
             console.log(this.bouteille.quantite);
         },
 
-       
         supprimer () {
-            axios.post('/api.delete-bouteille/'+this.bouteille, {
-                BouteilleID: this.bouteille,
-                CellierID: this.bouteille.vino_cellier_id,
-                UtilisateurID: this.$store.state.utilisateur.id
-            }) .then(response => {
-                console.log('Modification est enrégistrée');
+        axios.post('/api/supprimer-bouteille-utilisateur/' + this.utilisateur + '/' + this.cellier + '/' + this.bouteille, {
+            UtilisateurID: this.utilisateur,
+            CellierID: this.cellier,
+            BouteilleID: this.bouteille
+        })
+            .then(response => {
+                console.log('La modification est enregistrée');
+            })
+            .catch(error => {
+                console.log('Une erreur est survenue : ' + error);
             });
-             // Supprimer l'element de la liste DOM
-            this.$el.parentElement.removeChild(this.$el);
+        this.$el.parentElement.removeChild(this.$el);
     }
 },
     computed: {},
