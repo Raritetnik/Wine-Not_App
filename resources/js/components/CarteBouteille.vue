@@ -46,6 +46,7 @@ export default {
             console.log(this.bouteille.id);
             console.log(this.bouteille.quantite);
         },
+
         // Supprimer l'element de la liste DOM
         supprimer () {
             axios.post('/api.delete-bouteille/'+this.bouteille, {
