@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
 
     /**
-     * Show the application dashboard.
+     * Affichage de la page d'instruction
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -23,6 +23,9 @@ class HomeController extends Controller
       return view('test');
     }
 
+    /**
+     * Affichage de la page de compte -> modification
+     */
     public function afficherCompte() {
       return view('compte', ['utilisateur' => Auth::user()]);
     }
