@@ -47,16 +47,24 @@ export default {
             console.log(this.bouteille.quantite);
         },
 
-           // Supprimer l'element de la liste DOM
+   
            supprimer () {
             console.log("TESTE")
             console.log(this.bouteille)
-            axios.post('/api.delete-bouteille/'+this.bouteille.id, {
-                BouteilleID: this.bouteille
-            }) .then(response => {
-                console.log('Modification est enrégistrée');
+            // Appel à l'API pour supprimer la bouteille de la base de données
+            axios.post('/api/delete-bouteille/' + this.bouteille, {
+                bouteille_id: this.bouteille
+            }).then(response => {
+                console.log('La suppression est enregistrée dans la base de données');
             });
-            this.$el.parentElement.removeChild(this.$el)
+            
+            // Suppression de la bouteille du DOM
+            this.$el.parentElement.removeChild(this.$el);
+
+            // Suppression de la bouteille du cellier de l'utilisateur dans la base de données
+            axios.delete('/api/supprimer-bouteille-utilisateur/' + this.utilisateur_id + '/' + this.cellier_id + '/' + this.bouteille).then(response => {
+                console.log('La bouteille a été supprimée du cellier de lutilisateur');
+            });
         }
     },
 
