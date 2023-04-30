@@ -50,7 +50,6 @@ export default {
    
            supprimer () {
             console.log("TESTE")
-            console.log(this.bouteille)
             // Appel à l'API pour supprimer la bouteille de la base de données
             axios.post('/api/delete-bouteille/' + this.bouteille, {
                 bouteille_id: this.bouteille
