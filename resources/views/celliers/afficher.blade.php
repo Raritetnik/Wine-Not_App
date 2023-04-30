@@ -6,7 +6,7 @@
         <!-- Bouton pour filtrer carte -->
         <div class="filtrer-cartes">
             <label>
-                <div class="bouton-filtre">Filtre</div>
+                <div class="bouton-filtre">Filtrer</div>
                 <input type="checkbox" name="filtre" class="checkbox-filtre">
             </label>
         </div>
