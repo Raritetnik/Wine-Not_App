@@ -6,8 +6,7 @@
         </header>
         <div class="desc flex flex-col justify-between">
             <header>
-                <!-- <h1 class="font-bold" style="color: var(--color_champ)">{{ this.bouteille.nomSAQ }}</h1> -->
-                <h1>MEU CU</h1>
+                <h1 class="font-bold" style="color: var(--color_champ)">{{ this.bouteille.nomSAQ }}</h1>
                 <h3 style="color: var(--color_text)">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
             </header>
             <footer class="flex">
@@ -52,12 +51,12 @@ export default {
            supprimer () {
             console.log("TESTE")
             console.log(this.bouteille)
-            // axios.post('/api.delete-bouteille/'+this.bouteille, {
-            //     BouteilleID: this.bouteille
-            // }) .then(response => {
-            //     console.log('Modification est enrégistrée');
-            // });
-            // this.$el.parentElement.removeChild(this.$el)
+            axios.post('/api.delete-bouteille/'+this.bouteille.id, {
+                BouteilleID: this.bouteille
+            }) .then(response => {
+                console.log('Modification est enrégistrée');
+            });
+            this.$el.parentElement.removeChild(this.$el)
         }
     },
 
