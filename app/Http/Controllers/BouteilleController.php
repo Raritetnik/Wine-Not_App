@@ -157,8 +157,20 @@ class BouteilleController extends Controller
     {
         //
     }
-
     
+    public function modifierBouteille(Bouteille_Par_Cellier $idBouteille)
+    {
+        //return $idBouteille;
+
+        $bouteilleModifie = Bouteille_Par_Cellier::select()
+        ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
+        ->where('vino_bouteilles.id', $idBouteille)
+        ->where('utilisateur_id', auth()->user()->id)
+        ->get();
+
+        return $bouteilleModifie;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

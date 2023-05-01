@@ -48,6 +48,7 @@ export default {
             console.log(this.bouteille.quantite);
         },
 
+<<<<<<< HEAD
         // Supprimer l'element de la liste DOM
         supprimer () {
             axios.delete('/api.delete-bouteille', { params: {
@@ -65,6 +66,7 @@ export default {
 
     computed: {},
 };
+
 </script>
 
 <style lang="scss" scoped>
