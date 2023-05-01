@@ -177,4 +177,11 @@ class BouteilleController extends Controller
         $liste = Vino_Bouteille::all();
         echo (json_encode($liste));
     }
+
+    /**
+     * Supprimer la bouteille du cellier
+     */
+    public function supprimerBouteille(Request $request) {
+        Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
+    }
 }

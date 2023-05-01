@@ -27,6 +27,6 @@ class HomeController extends Controller
      * Affichage de la page de compte -> modification
      */
     public function afficherCompte() {
-      return view('compte', ['utilisateur' => Auth::user()]);
+      return view('compte', ["utilisateur" =>Auth::user()]);
     }
 }
