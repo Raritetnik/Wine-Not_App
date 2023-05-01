@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bouteille_Par_Cellier;
+use App\Models\User;
 use App\Models\Vino_Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,20 @@ class HomeController extends Controller
       return view('compte', ["utilisateur" =>Auth::user(), 'userInfo' => $informations]);
     }
 
-    public function updateCompte() {
+    public function updateCompte(Request $request) {
+
+      echo($request);
+      // Validation des champs email et password
+      if(isset($request->courriel)) {
+        $this->validate($request, [
+          'courriel' => 'required|email',
+          'password' => 'required',
+        ]);
+      }
+
+      // Récupération de l'utilisateur par l'adresse email
+      $user = User::find(Auth::user()->id);
+
 
     }
 }
