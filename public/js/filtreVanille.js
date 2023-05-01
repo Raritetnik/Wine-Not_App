@@ -6,7 +6,7 @@ window.addEventListener("load", ()=>{
     let accordeon = document.querySelectorAll(".label-categorie")
     // initialiser pour que puisse se déclencer au premier clic
     inputFiltre.checked = false;
-    
+    console.log(inputFiltre)
         // déclencher la transition pour visualiser les filtres
         boutonFiltre.addEventListener("click", (e) => {
             let conteneur = document.querySelector(".conteneur-filtre");
