@@ -10,7 +10,7 @@
       </a>
     </header>
 
-
+    <form method="post" enctype="multipart/form-data">
     <form method="post" action="{{ route('bouteille.update', ['bouteille' => $bouteille->id]) }}" enctype="multipart/form-data" class="w-full">
       <!-- ajouter un token pour autoriser la route une seconde fois -->
       @csrf
