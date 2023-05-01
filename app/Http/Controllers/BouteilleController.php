@@ -157,8 +157,13 @@ class BouteilleController extends Controller
     {
         //
     }
-
     
+    public function modifierBouteille(Bouteille_Par_Cellier $idBouteille)
+    {
+        //return $idBouteille;
+
+    }
+   
     /**
      * Remove the specified resource from storage.
      *
@@ -185,4 +190,4 @@ class BouteilleController extends Controller
     public function supprimerBouteille(Request $request) {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
     }
-}
+

@@ -1,93 +1,48 @@
 @extends('layouts.app')
+
 @section('content')
 
-<main class="py-4">
-<div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-  <div class="container mx-auto">
-    <header class="mb-8">
+<div class="flex justify-center mb-7 mt-5">
+  <section class="px-6 flex flex-col w-full lg:w-2/5">
+    <header class="mb-8 md:hidden">
       <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
         <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
       </a>
     </header>
-    
-    @extends('layouts.app')
-    @section('content')
-    
-    <main class="py-4">
-    <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <div class="container mx-auto">
-        <header class="mb-8">
-          <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
-            <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
-          </a>
-        </header>
-        <section class="mx-4 px-6 flex flex-col mb-4">
-          <div class="flex flex-col space-y-4 md:flex-row md:space-x-6 md:space-y-0">
-            
-          <div class="w-full md:w-1/2 mb-3">
-            <div class="flex items-center justify-between mb-3">
-             
-          </div>
-              <label for="quantite" class="block text-gray-700 font-bold mb-2">Date d'ajout</label>
-              <input type="date" class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="date_achat" id="date_achat">  
-                  <span class="text-m font-medium text-section_title leading-snug">
-                    {{$bouteille ?? ''->date_achat ?? ''}}
-                  </span>
-              </input>
-          </div>
-        </div>
-        <div class="mb-2">
-          <h5 class="sm:text-2xl text-article_title text-xl font-bold leading-6 mb-4">{{$bouteille ?? '' -> nom}}</h5>
-          <label for="date_achat" class="block text-gray-700 font-bold mb-2">Date d'achat</label>
-          <div class="flex flex-col md:flex-row md:space-x-4">
-            <input
-              type="date_achat"
-              name="date_achat"
-              id="date_achat"
-              placeholder="Date d'achat"
-              class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-2/5 mb-3"
-            />
-          </div>
-            <label for="garde_jusqua" class="block text-gray-700 font-bold mb-2">Gardez jusqu'à</label>
-            <div class="flex flex-col md:flex-row md:space-x-4">
-              <input
-              type="date"
-              name="garde_jusqua"
-              id="garde_jusqua"
-              placeholder="Gardez jusqu'à"
-              class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-3/5"
-            />
-            </div>
-        </div>
-        <div class="w-full md:w-1/2 mb-3">
-          <label class="block text-gray-700 font-bold mb-2">Cellier</label>
-          <select class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="cellier" id="cellier">
-            <option value="celliers.id.nom">cellier 1</option>
-            <option value="">cellier 2</option>
-            <option value="">cellier 3</option>
-          </select>
-      </div>
-      </section>
-      <footer class="flex flex-col items-center mb-8 mx-10">
-        <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Ajouter</a>
-        <small style="color: #909090">
-          <a href="/login" style="color: #67375C">Previous</a>
-        </small>
-      </footer>
-      </div>
-      </div>
-    </main>
-    </div>
-      @endsection
 
-  <footer class="flex flex-col items-center mb-8 mx-10">
-    <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Ajouter</a>
-    <small style="color: #909090">
-      <a href="/login" style="color: #67375C">Previous</a>
-    </small>
-  </footer>
-  </div>
-  </div>
-</main>
-</div>
-  @endsection
+
+    <form method="post" action="{{ route('bouteille.update', ['bouteille' => $bouteille->id]) }}" enctype="multipart/form-data" class="w-full">
+      <!-- ajouter un token pour autoriser la route une seconde fois -->
+      @csrf
+      @method('PUT')
+
+      <div class="w-full mb-5">
+        <label for="nom" class="block text-section_title font-bold mb-2">Nom de la bouteille</label>
+        <input type="text" name="nom" id="nom" value="{{ $bouteille->nom }}" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
+      </div>
+
+      <div class="w-full mb-5">
+        <label for="img" class="block text-section_title font-bold mb-2">Image</label>
+        <div class="block relative w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+          <input id="img" type="file" class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer" name="image">
+          <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
+            <span class="block text-section_title" id="file-name">Choisir une image</span><img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
+        <div class="w-full mb-3">
+          <label for="date_achat" class="block text-section_title font-bold mb-2">Date d'achat</label>
+          <div class="flex flex-col md:flex-row md:space-x-4">
+            <input type="date" name="date_achat" id="date_achat" value="{{ $bouteille->date_achat }}" placeholder="Date d'achat" class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none" />
+          </div>
+        </div>
+        <div class="w-full mb-3">
+          <label for="date_exp" class="block text-section_title font-bold mb-2">Valide jusqu'à</label>
+          <div class="flex flex-col md:flex-row md:space-x-4">
+            <input type="date" name="garde_jusqua" id="date_exp" value="{{ $bouteille->garde_jusqua }}" placeholder="Valide jusqu'à" class="block w-full py-3 px-3 rounded-md border border-gray-300 placeholder-section_title focus:border-secondary focus:outline-none" />
+          </div>
+        </div>
+      </div>
+      <div class="mb
