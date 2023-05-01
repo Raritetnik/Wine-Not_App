@@ -1,7 +1,7 @@
 <template>
-  <button @click="changerFavoris()">
-    <img v-if="this.estFavoris" :src="require('/img/svg/like.svg')" alt="favoris" width="20">
-    <img v-if="!this.estFavoris" :src="require('/img/svg/unlike.svg')" alt="favoris" width="20">
+  <button @click="changerFavoris()" class="flex justify-end">
+    <img v-if="this.estFavoris" :src="require('/img/svg/like.svg')" alt="favoris" width="30">
+    <img v-if="!this.estFavoris" :src="require('/img/svg/unlike.svg')" alt="favoris" width="30">
   </button>
 </template>
 
