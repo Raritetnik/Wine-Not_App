@@ -162,15 +162,8 @@ class BouteilleController extends Controller
     {
         //return $idBouteille;
 
-        $bouteilleModifie = Bouteille_Par_Cellier::select()
-        ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
-        ->where('vino_bouteilles.id', $idBouteille)
-        ->where('utilisateur_id', auth()->user()->id)
-        ->get();
-
-        return $bouteilleModifie;
     }
-
+   
     /**
      * Remove the specified resource from storage.
      *
@@ -191,4 +184,10 @@ class BouteilleController extends Controller
         echo (json_encode($liste));
     }
 
-}
+    /**
+     * Supprimer la bouteille du cellier
+     */
+    public function supprimerBouteille(Request $request) {
+        Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
+    }
+
