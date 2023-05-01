@@ -5,7 +5,7 @@
             <img class="object-cover min-w-[100px] min-h-[150px]" :src="this.bouteille.imageSAQ" :alt="this.bouteille.nomSAQ">
         </header>
         <div class="desc flex flex-col justify-between">
-            <header>
+            <header class="hover-carte" @click="redirection(bouteille.id)">
                 <h1 class="font-bold" style="color: var(--color_champ)">{{ this.bouteille.nomSAQ }}</h1>
                 <h3 style="color: var(--color_text)">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
             </header>
@@ -56,7 +56,11 @@ export default {
                 console.log('Modification est enrégistrée');
             });
             this.$el.parentElement.removeChild(this.$el)
-        }
+        },
+        redirection(bouteille) {
+            // rediriger en passant le id de la bouteille qui vient du @click sur la carte
+            location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;
+        },
     },
 
     computed: {},

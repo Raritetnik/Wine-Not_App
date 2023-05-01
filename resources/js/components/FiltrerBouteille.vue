@@ -68,7 +68,7 @@
       </aside> <!-- //conteneur-filtre -->
       <section class="px-6 flex flex-col items-center">
         <!-- carte -->
-        <div class="mb-2 hover-carte" v-for="bouteille in bouteillesFiltrees" :key="bouteille.id" @click="redirection(bouteille.id)">
+        <div class="mb-2" v-for="bouteille in bouteillesFiltrees" :key="bouteille.id">
           <v-bouteille :bouteille="bouteille" :liste="liste"/>
         </div>
       </section>
@@ -90,10 +90,6 @@ export default {
     };
   },
   methods: {
-    redirection(bouteille) {
-      // rediriger en passant le id de la bouteille qui vient du @click sur la carte
-      location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;
-    },
     filterBouteilles() {
         // Créer un tableau vide pour stocker les bouteilles filtrées
         let bouteillesFiltrees = [];
