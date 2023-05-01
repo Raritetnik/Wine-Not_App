@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     redirection(bouteille) {
-      console.log(window.location.pathname);
+      // rediriger en passant le id de la bouteille qui vient du @click sur la carte
       location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;
     },
     filterBouteilles() {
