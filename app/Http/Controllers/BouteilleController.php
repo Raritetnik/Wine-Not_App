@@ -191,21 +191,4 @@ class BouteilleController extends Controller
         echo (json_encode($liste));
     }
 
-    // public function supprimer($cellier_id, $vino_bouteille_id){
-    //     $utilisateur_id = auth()->user()->id;
-    //     // 
-    //     // Vérifier que la bouteille appartient bien au cellier de l'utilisateur connecté
-    //     $bouteille_id = Bouteille_Par_Cellier::where('id', $vino_bouteille_id)
-    //         ->where('vino_cellier_id', $cellier_id)
-    //         ->whereHas('cellier', function($query) use ($utilisateur_id) {
-    //             $query->where('utilisateurs_id', $utilisateur_id);
-    //         })
-    //         ->firstOrFail();
-        
-    //     // Supprimer la bouteille de la base de données
-    //     $bouteille_id->delete();
-        
-    //     // Supprimer l'élément de la liste DOM
-    //     $this->emitUp('supprimerBouteille', $bouteille_id);
-    // }
 }
