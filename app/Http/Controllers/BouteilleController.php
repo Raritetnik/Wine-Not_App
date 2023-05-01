@@ -158,6 +158,48 @@ class BouteilleController extends Controller
         //
     }
 
+    public function modifierBouteille(Bouteille_Par_Cellier $vino_bouteille_id)
+    {
+       
+        return view('bouteille.modifier', ['bouteille' => $bouteille]);
+        
+        
+        // // Vérifier que la bouteille appartient bien à l'utilisateur connecté
+        // $utilisateur_id = auth()->user()->id;
+        // $cellier_id = $bouteille->vino_cellier_id;
+        // if (!$bouteille->cellier->estProprietaire($utilisateur_id)) {
+        //     abort(403, 'Unauthorized action.');
+        }
+        
+        // // Valider les données du formulaire
+        // $request->validate([
+        //     'nom' => 'required|min:5|max:100',
+        //     'date_achat' => 'required|date',
+        //     'quantite' => 'required|integer|min:1',
+        //     'prix' => 'required|numeric|min:0',
+        //     'millesime' => 'nullable|integer|min:1900|max:' . date('Y'),
+        //     'garde_jusqua' => 'nullable|date',
+        // ]);
+    
+        // // Mettre à jour la bouteille et la sauvegarder
+        // $bouteille->vino_bouteille->update([
+        //     'nom' => $request->nom,
+        //     'prix_saq' => $request->prix,
+        //     'vino_format_id' => $request->vino_format_id,
+        //     'vino_type_id' => $request->vino_type_id,
+        //     'pays_id' => $request->pays_id,
+        // ]);
+        // $bouteille->update([
+        //     'date_achat' => $request->date_achat,
+        //     'quantite' => $request->quantite,
+        //     'prix' => $request->prix * $request->quantite,
+        //     'millesime' => $request->millesime,
+        //     'garde_jusqua' => $request->garde_jusqua,
+        // ]);
+    
+        // // Rediriger vers la page du cellier contenant la bouteille modifiée
+        // return redirect(route('celliers.afficher', $cellier_id));
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -178,21 +220,21 @@ class BouteilleController extends Controller
         echo (json_encode($liste));
     }
 
-    // public function supprimer($cellier_id, $vino_bouteille_id){
-    //     $utilisateur_id = auth()->user()->id;
-    //     // 
-    //     // Vérifier que la bouteille appartient bien au cellier de l'utilisateur connecté
-    //     $bouteille_id = Bouteille_Par_Cellier::where('id', $vino_bouteille_id)
-    //         ->where('vino_cellier_id', $cellier_id)
-    //         ->whereHas('cellier', function($query) use ($utilisateur_id) {
-    //             $query->where('utilisateurs_id', $utilisateur_id);
-    //         })
-    //         ->firstOrFail();
+    public function supprimer($cellier_id, $vino_bouteille_id){
+        $utilisateur_id = auth()->user()->id;
+        // 
+        // Vérifier que la bouteille appartient bien au cellier de l'utilisateur connecté
+        $bouteille_id = Bouteille_Par_Cellier::where('id', $vino_bouteille_id)
+            ->where('vino_cellier_id', $cellier_id)
+            ->whereHas('cellier', function($query) use ($utilisateur_id) {
+                $query->where('utilisateurs_id', $utilisateur_id);
+            })
+            ->firstOrFail();
         
-    //     // Supprimer la bouteille de la base de données
-    //     $bouteille_id->delete();
+        // Supprimer la bouteille de la base de données
+        $bouteille_id->delete();
         
-    //     // Supprimer l'élément de la liste DOM
-    //     $this->emitUp('supprimerBouteille', $bouteille_id);
-    // }
+        // Supprimer l'élément de la liste DOM
+        $this->emitUp('supprimerBouteille', $bouteille_id);
+    }
 }
