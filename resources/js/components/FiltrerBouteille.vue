@@ -29,6 +29,38 @@
                   <label :for="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')">{{ aPays.pays }}</label>
                 </li>
               </ul>
+
+               <!-- Prix -->
+               <div class="label-categorie">
+                <h3>Prix</h3>
+                <span class="material-symbols-outlined">expand_more</span>
+              </div>
+              <ul class="liste-choix">
+                <li>
+                  <input type="checkbox" :id="vingt" :name="vingt" :value="0-20" v-model="selectionnerPrix" @change="filterBouteilles">
+                  <label :for="vingt">0-20$</label>
+                </li>
+                <li>
+                  <input type="checkbox" :id="trente" :name="trente" :value="20-30" v-model="selectionnerPrix" @change="filterBouteilles">
+                  <label :for="trente">20-30$</label>
+                </li>
+                <li>
+                  <input type="checkbox" :id="quarante" :name="quarante" :value="30-40" v-model="selectionnerPrix" @change="filterBouteilles">
+                  <label :for="quarante">30-40$</label>
+                </li>
+                <li>
+                  <input type="checkbox" :id="cinquante" :name="cinquante" :value="40-50" v-model="selectionnerPrix" @change="filterBouteilles">
+                  <label :for="cinquante">40-50$</label>
+                </li>
+                <li>
+                  <input type="checkbox" :id="cent" :name="cent" :value="50-100" v-model="selectionnerPrix" @change="filterBouteilles">
+                  <label :for="cent">50-100$</label>
+                </li>
+                <li>
+                  <input type="checkbox" :id="plus" :name="plus" :value="100" v-model="selectionnerPrix" @change="filterBouteilles">
+                  <label :for="plus">100$ et plus</label>
+                </li>
+              </ul>
         
             </div>
           </div>
@@ -36,7 +68,7 @@
       </aside> <!-- //conteneur-filtre -->
       <section class="px-6 flex flex-col items-center">
         <!-- carte -->
-        <div class="mb-2" v-for="bouteille in bouteillesFiltrees" :key="bouteille.id">
+        <div class="mb-2" v-for="bouteille in bouteillesFiltrees" :key="bouteille.id" @click="redirection(bouteille.id)">
           <v-bouteille :bouteille="bouteille" :liste="liste"/>
         </div>
       </section>
@@ -53,10 +85,15 @@ export default {
       },
       selectionnerType: [],
       selectionnerPays: [],
+      selectionnerPrix: [],
       bouteillesFiltrees: []
     };
   },
   methods: {
+    redirection (bouteille) {
+      console.log(window.location.pathname)
+      location.href = window.location.pathname +'/details-bouteille/'+ bouteille
+    },
     filterBouteilles() {
         // Créer un tableau vide pour stocker les bouteilles filtrées
         let bouteillesFiltrees = [];
