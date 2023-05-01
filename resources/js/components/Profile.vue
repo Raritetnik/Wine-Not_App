@@ -4,8 +4,8 @@
         <blockquote class="mb-5 p-2 mt-2 border-accent_wine border rounded relative">
             <img @click="modification()" class="absolute top-2 right-2" :src="require('/img/svg/modify.svg')" alt="favoris" width="20">
             <div v-if="!this.afficherForm">
-                <h3>Nom: {{ this.user.nom }}</h3>
                 <h3>Prenom: {{ this.user.prenom }}</h3>
+                <h3>Nom: {{ this.user.nom }}</h3>
                 <h3>Courriel: {{ this.user.courriel }}</h3>
             </div>
             <div v-if="this.afficherForm">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </blockquote>
-        <div class="mb-4">
+        <div class="mb-2">
             <label for="oldPassword" style="color: var(--color_text)">Mot de passe</label>
             <input id="oldPassword" type="password" placeholder="Saisir l'ancien mot de passe" class="appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine " name="oldPassword" autocomplete="new-password"
             v-model="oldPass"
@@ -32,9 +32,9 @@
         </div>
         <div v-if="oldPass !== ''" class="mb-2">
             <label for="password" style="color: var(--color_text)">Nouveau mot de passe</label>
-            <input id="password" type="text" placeholder="Nouveau mot de passe" class="appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine " name="password" autocomplete="new-password" required>
+            <input id="password" type="password" placeholder="Nouveau mot de passe" class="appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine " name="password" autocomplete="new-password" required>
         </div>
-        <div v-if="oldPass !== ''" class="mb-5">
+        <div v-if="oldPass !== ''" class="">
             <input id="password-confirm" type="password" placeholder="Confirmer votre mot de passe" class="appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine" name="password_confirmation" autocomplete="new-password" required>
         </div>
     </div>

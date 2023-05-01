@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Vino_Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -52,13 +53,25 @@ class HomeController extends Controller
       if(isset($request->courriel)) {
         $this->validate($request, [
           'courriel' => 'required|email',
-          'password' => 'required',
+          'nom,' => 'required|string|max:100',
+          'prenom' => 'required|string|max:100',
         ]);
       }
-
+      if($request->oldPassword !== '') {
+        $this->validate($request, [
+          'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+      }
       // Récupération de l'utilisateur par l'adresse email
       $user = User::find(Auth::user()->id);
 
+      if($user && Hash::check($request->oldPassword, $user->password)) {
+        $user['password'] = Hash::make($request->password);
+        $user->save();
+        return redirect('/compte')->withSuccess('La modification du mot de passe a été effectuée avec succès !');
+      } else {
+        return redirect()->back()->withErrors(['oldPassword' => "Le mot de passe actuel de l'utilisateur est incorrect."]);
+      }
 
     }
 }

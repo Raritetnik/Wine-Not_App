@@ -22,10 +22,19 @@
       <div class=" mb-5">
         <form method="POST" action="{{ route('compte.update') }}">
           @csrf
+          @if (session()->has('success'))
+          <div class="bg-green-300 border-green-600 rounded mt-4 mx-6 p-4" style="color: var(--color_text)">
+            {{ session()->get('success') }}
+          </div>
+          @endif
           <div>
             <v-profile :user="{{ $utilisateur }}"/>
+
           </div>
-          <footer class="flex flex-col items-center mb-10">
+          @error('oldPassword')
+            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+          @enderror
+          <footer class="flex flex-col items-center mb-10 mt-5">
             <button type="submit" class="text-white py-2 mt-4 w-full rounded-md mb-2" style="background-color: #67375C">Modifier</button>
           </footer>
         </form>

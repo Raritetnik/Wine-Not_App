@@ -40,11 +40,6 @@
                 Ajouter Cellier
               </a>
             </li>
-            <!--<li>
-              <a href="{{ route('bouteilles') }}" class="justify-center font-medium tracking-wide text-accent_wine transition-colors duration-200 hover:text-section_title" aria-label="saq" title="saq">
-                Ajouter Bouteille
-              </a>
-            </li>-->
             <li>
               <a href="{{ route('logout') }}" class="justify-center font-medium tracking-wide text-accent_wine transition-colors duration-200 hover:text-gray-500" aria-label="Sign out" title="deconnecter" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Déconnexion
@@ -52,9 +47,9 @@
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
             </li>
             <li>
-              <a href="#" class="inline-flex gap-2 items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-secondary transition duration-200 rounded  hover:text-accent_wine" aria-label="Compte" title="Compte">
+              <a href="/compte" class="inline-flex gap-2 items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-secondary transition duration-200 rounded  hover:text-accent_wine" aria-label="Compte" title="Compte">
                 <img class="max-w-[30px]" src="{{ asset('img/svg/user-gold.svg') }}" alt="user-profile">
-                {{ Auth::user()->nom }} <!--  Affichage du nom Utilisateur. À modifier   -->
+                {{ Auth::user()->prenom }}{{ Auth::user()->nom }}
               </a>
             </li>
             @endguest
@@ -91,8 +86,8 @@
         Déconnexion
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
       </a>
-      <a href="#" class="pt-2 flex flex-col items-center justify-center text-xl rounded h-12 px-6 font-regular tracking-wide text-secondary transition duration-200 hover:text-main" aria-label="Compte" title="Compte"><img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
-        {{ Auth::user()->nom }}
+      <a href="/compte" class="pt-2 flex flex-col items-center justify-center text-xl rounded h-12 px-6 font-regular tracking-wide text-secondary transition duration-200 hover:text-main" aria-label="Compte" title="Compte"><img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
+        {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
       </a>
 
       @endguest
