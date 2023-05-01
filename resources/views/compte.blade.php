@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="min-h-[500px] container flex justify-center items-center ">
+  <div class="min-h-[500px] flex justify-center items-center w-full">
     <div class="bg-white rounded-lg overflow-hidden max-w-[400px] w-full">
       <header class="flex flex-col justify-center logo w-[400px]">
         <h1 class="font-bold text-2xl pb-6" style="color: var(--color_champ)">Mon Profile</h1>
@@ -10,13 +9,13 @@
         <blockquote class="flex p-4 justify-around bg-gray-200">
           <div class="flex flex-col items-center" style="color: var(--color_champ)">
             <h3>Quantités Total</h3>
-            <p class="flex items-center" style="height: 30px;">50
+            <p class="flex items-center" style="height: 30px;">{{ $userInfo['quantiteBouteilles'] }}
               <img class="ps-2" src="{{ asset('/img/svg/empty_bottle.svg') }}" style="height: 30px;" alt="">
             </p>
           </div>
           <div class="flex flex-col items-center" style="color: var(--color_champ)">
             <h3>Valeur Total</h3>
-            <p class="flex items-center" style="height: 30px;">$CAD 157</p>
+            <p class="flex items-center" style="height: 30px;">$CAD {{ $userInfo['prixBouteilles'] }}</p>
           </div>
         </blockquote>
       </header>
@@ -25,7 +24,7 @@
         <v-profile :user="{{ $utilisateur }}"/>
       </blockquote>
       <div class=" mb-5">
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('compte.update') }}">
           @csrf
           <div class="mb-4">
             <label for="old-password" style="color: var(--color_text)">Mot de passe précedant</label>
@@ -51,5 +50,4 @@
       </div>
     </div>
   </div>
-</div>
 @endsection

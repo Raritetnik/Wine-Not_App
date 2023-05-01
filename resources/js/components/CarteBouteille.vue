@@ -2,7 +2,7 @@
     <article class="carte flex gap-1 border px-4 py-3 rounded-md justify-between w-[400px] sm:w-[500px]">
         <header class="flex items-start relative">
             <img :src="require('/img/svg/close.svg')" width="20" @click="supprimer()" class="absolute" alt="close">
-            <img class="object-cover min-w-[100px] min-h-[150px]" :src="this.bouteille.imageSAQ" :alt="this.bouteille.nomSAQ">
+            <img class="object-cover min-w-[100px] min-h-[150px]" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
         </header>
         <div class="desc flex flex-col justify-between">
             <header>
