@@ -48,30 +48,35 @@ class HomeController extends Controller
 
     public function updateCompte(Request $request) {
 
-      echo($request);
+      // Récupération de l'utilisateur par l'id
+      $user = User::find(Auth::user()->id);
       // Validation des champs email et password
-      if(isset($request->courriel)) {
+      if($request->has('courriel')) {
         $this->validate($request, [
           'courriel' => 'required|email',
-          'nom,' => 'required|string|max:100',
+          'nom' => 'required|string|max:100',
           'prenom' => 'required|string|max:100',
         ]);
+        $user->prenom = $request->prenom;
+        $user->nom = $request->nom;
+        $user->courriel = $request->courriel;
+        $user->save();
       }
+
       if($request->oldPassword !== '') {
         $this->validate($request, [
           'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-      }
-      // Récupération de l'utilisateur par l'adresse email
-      $user = User::find(Auth::user()->id);
 
-      if($user && Hash::check($request->oldPassword, $user->password)) {
-        $user['password'] = Hash::make($request->password);
-        $user->save();
-        return redirect('/compte')->withSuccess('La modification du mot de passe a été effectuée avec succès !');
-      } else {
-        return redirect()->back()->withErrors(['oldPassword' => "Le mot de passe actuel de l'utilisateur est incorrect."]);
-      }
 
+        if(Hash::check($request->oldPassword, $user->password)) {
+          $user['password'] = Hash::make($request->password);
+          $user->save();
+          return redirect('/compte')->withSuccess('Les modifications a été effectuée avec succès !');
+        } else {
+          return redirect()->back()->withErrors(['oldPassword' => "Le mot de passe actuel de l'utilisateur est incorrect."]);
+        }
+      }
+      return redirect('/compte');
     }
 }
