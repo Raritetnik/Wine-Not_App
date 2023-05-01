@@ -158,16 +158,31 @@ class BouteilleController extends Controller
         //
     }
 
-    public function modifierBouteille(Bouteille_Par_Cellier $vino_bouteille_id)
+<<<<<<< HEAD
+
+
+public function modifierBouteille(Bouteille_Par_Cellier $idBouteille)
     {
-        
+        //return $idBouteille;
+
+        $bouteilleModifie = Bouteille_Par_Cellier::select()
+        ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
+        ->where('vino_bouteilles.id', $idBouteille)
+        ->where('utilisateur_id', auth()->user()->id)
+        ->get();
+
+        return $bouteilleModifie;
+
+
+
         // Vérifier que la bouteille appartient bien à l'utilisateur connecté
-        $utilisateur_id = auth()->user()->id;
-        $cellier_id = $bouteille->vino_cellier_id;
-        $bouteille = $vino_bouteille_id;
-        if (!$bouteille->cellier->estProprietaire($utilisateur_id)) {
-            abort(403, 'Unauthorized action.');
-        }
+        // $utilisateur_id = auth()->user()->id;
+        // $cellier_id = $bouteille->vino_cellier_id;
+        // $bouteille = $vino_bouteille_id;
+        // if (!$bouteille->cellier->estProprietaire($utilisateur_id)) {
+        //     abort(403, 'Unauthorized action.');
+        // }
+>>>>>>> master
         
         // // Valider les données du formulaire
         // $request->validate([
