@@ -10,9 +10,9 @@
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/filtreVanille.js') }}" defer></script>
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ asset('js/filtreVanille.js') }}" defer></script>
 
 
   <!-- Fonts -->
@@ -20,15 +20,15 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
-    <!-- Symbols -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Symbols -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/cellier.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/filtre.css') }}" rel="stylesheet">
+  <!-- Styles -->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/cellier.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/filtre.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -37,14 +37,17 @@
     <main class="py-4 relative">
       @yield('content')
       <!-- bouton d'ajout de bouteille -->
+      @if(request()->route()->getName() != 'bouteille.create')
       <div class="absolute right-5 bottom-5">
         <a href="{{ route('bouteille.create') }}">
           <div class=" shadow-md text-center rounded-lg  cursor-pointer py-3 px-3 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-5xl"><img src="{{asset('img/svg/plus.svg')}}" alt="add-button"></div>
         </a>
       </div>
+      @endif
     </main>
-</div>
+  </div>
   @include('layouts.footer')
 </body>
-
 </html>
+
+

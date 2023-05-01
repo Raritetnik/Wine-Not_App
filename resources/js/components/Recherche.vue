@@ -1,27 +1,27 @@
 <template>
-  <div class="flex flex-col me-4">
+  <div class="flex flex-col md:pe-6">
     <div class="grid">
       <div class="flex flex-col relative mb-4">
-        <input type="text" class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded shadow-md border border-accent_wine focus:shadow-outline focus:outline-none" placeholder="Recherche" @keyup="showSearchOptions($event.target.value);"
-        :value="this.textInput">
+        <div class="flex justify-between items-center rounded shadow-sm border-2 border-secondary ">
+        <input type="text" class="w-full font-medium tracking-wide px-6  h-12 text-accent_wine transition duration-200  focus:outline-none" placeholder="Recherche" @keyup="showSearchOptions($event.target.value);"
+        :value="this.textInput"><img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
+      </div>
         <input name="vino_bouteille_id" type="hidden" :value="this.choixBouteille.id">
         <input name="vino_bouteille_prix" type="hidden" :value="this.choixBouteille.prix">
         <!--<button type="submit" @submit.prevent="onSubmit()" class="bg-accent_wine hover:accent_wine-80 text-main font-bold ml-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Recherche</button>
         Code de la barre de recherche ICI -->
       </div>
-      <ul class="relative">
-        <li v-for="vine in this.closestVineList" :key="vine.id" @click="takeBouteille(vine)"
-        class="block border p-2"
-        >{{ vine.nom }}</li>
-      </ul>
+      <!-- le composant Vue ResultatsRecherche va ici -->
+      <ResultatsRecherche :closest-vine-list="closestVineList" @take-bouteille="takeBouteille"></ResultatsRecherche>
+       
     </div>
     <div>
-      <div class="card flex" v-if="selectedVine" style="max-width: 300px;">
-        <header class="card-header" style="max-width: 300px;">
-          <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none" height="150px">
+      <div class="flex gap-3 bg-gray-100 rounded-md  max-w-[320px] sm:w-[500px] p-2 border-2 border-secondary" v-if="selectedVine">
+        <header>
+          <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none h-[150px]">
         </header>
-        <div class="card-body">
-          <h2>{{ this.choixBouteille.nom }}</h2>
+        <div>
+          <h2 class="font-bold text-md text-section_title">{{ this.choixBouteille.nom }}</h2>
         </div>
       </div>
     </div>
@@ -30,7 +30,12 @@
 </template>
 
 <script>
+import ResultatsRecherche from './ResultatsRecherche.vue';
+
 export default {
+  components: {
+    ResultatsRecherche
+  },
   data() {
     return {
       isMenuOpen: false,
