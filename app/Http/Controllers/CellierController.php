@@ -248,7 +248,7 @@ class CellierController
 
   // Param $id = bouteille_par_cellier
   // Afficher fiche détail de bouteille
-  public function afficherFicheBouteille(Bouteille_Par_Cellier $bouteille_par_cellier)
+  public function afficherFicheBouteille(Vino_Cellier $vino_cellier, Bouteille_Par_Cellier $bouteille_par_cellier)
   {
     // joindre les tables pour avoir info sur la bouteille
     // $bouteille_par_cellier->id est la clé primaire
