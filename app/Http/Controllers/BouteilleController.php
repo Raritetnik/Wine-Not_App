@@ -196,3 +196,4 @@ class BouteilleController extends Controller
     }
 }
 
+}
