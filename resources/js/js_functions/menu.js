@@ -34,13 +34,26 @@ document.getElementById('img').addEventListener('change', function() {
 });
 
 
-function toggleModal(modalID){
-  document.getElementById(modalID).classList.toggle("hidden");
-  document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-  document.getElementById(modalID).classList.toggle("flex");
-  document.getElementById(modalID + "-backdrop").classList.toggle("flex");
-}
+// control affichage de formulaires bouteille  
+const formSAQ = document.querySelector('#form-saq');
+const formPersonal = document.querySelector('#form-personal');
+const btnForm = document.querySelector('#btn-form');
+const plus = document.querySelector('#plus');
+const formP = document.querySelector('#form-p-p');
+const formPsaq = document.querySelector('#form-p-saq');
+
+btnForm.addEventListener('click', () => {
+  plus.classList.toggle('rotate-45');
+  formP.classList.toggle('hidden');
+  formPsaq.classList.toggle('hidden');
+  formSAQ.classList.toggle('hidden');
+  formPersonal.classList.toggle('hidden');
+  formPersonal.classList.toggle('flex');
+});
+  
+});
 
 
-})
+
+
 

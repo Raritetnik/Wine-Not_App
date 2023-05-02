@@ -162,15 +162,8 @@ class BouteilleController extends Controller
     {
         //return $idBouteille;
 
-        $bouteilleModifie = Bouteille_Par_Cellier::select()
-        ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
-        ->where('vino_bouteilles.id', $idBouteille)
-        ->where('utilisateur_id', auth()->user()->id)
-        ->get();
-
-        return $bouteilleModifie;
     }
-
+   
     /**
      * Remove the specified resource from storage.
      *
@@ -188,6 +181,10 @@ class BouteilleController extends Controller
     public function listeBouteilles()
     {
         $liste = Vino_Bouteille::all();
+        foreach ($liste as $vino) {
+            $vino['format'] = Vino_Format::find($vino->vino_format_id)['format'];
+            $vino['type'] = Vino_Type::find($vino->vino_type_id)['type'];
+        }
         echo (json_encode($liste));
     }
 
