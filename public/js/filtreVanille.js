@@ -1,24 +1,30 @@
 // Déclencheur pour ouverture de la composante filtre (bouton click + accordéon)
 
 window.addEventListener("load", ()=>{
-    let boutonFiltre = document.querySelector('.checkbox-filtre');
+    let boutonFiltre = document.querySelector('.bouton-filtre');
+    let inputFiltre = document.querySelector('.checkbox-filtre');
     let accordeon = document.querySelectorAll(".label-categorie")
-    
+    // initialiser pour que puisse se déclencer au premier clic
+    inputFiltre.checked = false;
+    console.log(inputFiltre)
         // déclencher la transition pour visualiser les filtres
         boutonFiltre.addEventListener("click", (e) => {
             let conteneur = document.querySelector(".conteneur-filtre");
             let fermer = document.querySelector(".fermer");
-            if (boutonFiltre.checked) {
+
+            // afficher les filtres
+            if (!inputFiltre.checked) {
                 conteneur.classList.add("active");
                 // déclencher fermeture avec le X
                 fermer.addEventListener("click", ()=>{
                     conteneur.classList.remove("active");
-                    boutonFiltre.checked = false;
+                    inputFiltre.checked=false;
                 })
             } 
             // déclencher fermeture en cliquant sur le background à l'extérieur des filtres
             else {
                 conteneur.classList.remove("active");
+                inputFiltre.checked=true;
             }
         });
         // déclencher l'ouverture et fermeture de chaque accordéon de filtres

@@ -288,3 +288,7 @@ ul.liste-choix{
 .label-categorie {
     margin-top: 30px;
 }
+
+.hover-carte {
+    cursor: pointer;
+}

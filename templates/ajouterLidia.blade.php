@@ -9,18 +9,15 @@
         <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
       </a>
     </header>
-    <section class="mx-4 px-6 flex flex-col mb-4">
+    <section class="mx-4 px-6 flex flex-col mb-2">
+      <h5 class="sm:text-2xl text-article_title text-xl font-bold leading-6 mb-4">{{$bouteille -> nom}}</h5>
       <div class="flex flex-col space-y-4 md:flex-row md:space-x-6 md:space-y-0">
-        
-    {{-- <div class="bg-gray-50 md:rounded-l-lg md:rounded-tr-none flex-shrink-0 md:w-1/2">
-            <img src="{{$bouteille -> image}}" class="object-cover mx-auto h-1/2 md:h-full mt-2 p-3" alt="bouteil de vin">
-        </div> --}}
+        <div class="">
+          <label for="recherche" class="text-m font-medium text-section_title leading-snug">Recherche</label>
       <div class="w-full md:w-1/2 mb-3">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-m font-medium text-section_title leading-snug">Cellier:</span>
-          <span class="text-m font-medium text-section_title leading-snug">Date d'ajout: {{$bouteille->date_achat ?? ''}}</span>
+          <input type="text" placeholder="Recherche" class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded shadow-md border border-accent_wine focus:shadow-outline focus:outline-none">
       </div>
-          <label for="quantite" class="block text-gray-700 font-bold mb-2">Cellier:</label>
+          <label for="quantite" class="block text-gray-700 font-bold mb-2">Quantité</label>
           <input class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="quantité" id="quantité" placeholder="Quantité">
           </input>
       </div>
@@ -29,34 +26,28 @@
       <label for="date_achat" class="block text-gray-700 font-bold mb-2">Date d'achat</label>
       <div class="flex flex-col md:flex-row md:space-x-4">
         <input
-          type="date_achat"
+          type="date"
           name="date_achat"
           id="date_achat"
           placeholder="Date d'achat"
           class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-2/5 mb-3"
         />
       </div>
-        <label for="garde_jusqua" class="block text-gray-700 font-bold mb-2">Gardez jusqu'à</label>
+      <label class="block text-gray-700 font-bold mb-2">Date d'ajout</label>
+      <div class="w-full md:w-1/2 mb-3">
         <div class="flex flex-col md:flex-row md:space-x-4">
-          <input
-          type="date"
-          name="garde_jusqua"
-          id="garde_jusqua"
-          placeholder="Gardez jusqu'à"
-          class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-3/5"
-        />
-        </div>
-    </div>
-    <div class="w-full md:w-1/2 mb-3">
-      <label class="block text-gray-700 font-bold mb-2">Cellier</label>
-      <select class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none" name="cellier" id="cellier">
-        <option value="celliers.id.nom">cellier 1</option>
-        <option value="">cellier 2</option>
-        <option value="">cellier 3</option>
-      </select>
+          <span class="text-m font-medium text-section_title leading-snug">Date d'ajout: {{$bouteille->date_achat ?? ''}}</span>
+        <input
+        type="date"
+        name="gardez_jusqua"
+        id="gardez_jusqua"
+        class="block w-full py-2 px-3 rounded-md border border-gray-300 focus:border-purple-500 focus:outline-none mb-2 md:mb-0 md:w-2/5 mb-3"
+      />
+  </div>
   </div>
   </section>
   <footer class="flex flex-col items-center mb-8 mx-10">
+    <button name="ajouterBouteilleCellier">Ajouter la bouteille (champs tous obligatoires)</button>
     <a href="/register" class="text-white py-2 w-full rounded-md mb-2 flex justify-center" style="background-color: #67375C">Ajouter</a>
     <small style="color: #909090">
       <a href="/login" style="color: #67375C">Previous</a>
@@ -66,4 +57,4 @@
   </div>
 </main>
 </div>
-  @endsection
+@endsection
