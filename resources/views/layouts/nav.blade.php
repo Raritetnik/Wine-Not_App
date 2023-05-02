@@ -5,7 +5,7 @@
       <div>
         <img src="{{ asset('img/svg/logoWn.svg') }}" alt="">
       </div>
-      <div class="">
+      <div class=" me-14">
         <a href="/favoris"><img src="{{ asset('img/svg/like.svg') }}" alt="fav_icon"></a>
       </div>
       <div class="absolute inset-y-0 left-0 flex items-center lg:hidden">
