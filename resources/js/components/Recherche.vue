@@ -16,7 +16,7 @@
        
     </div>
     <div>
-      <div class="flex gap-3 bg-gray-100 rounded-md  max-w-[320px] sm:w-[500px] p-2 border-2 border-secondary" v-if="selectedVine">
+      <div v-if="selectedVine" class="flex gap-3 bg-gray-100 rounded-md  max-w-[320px] sm:w-[500px] p-2 border-2 border-secondary">
         <header>
           <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none h-[150px]">
         </header>
