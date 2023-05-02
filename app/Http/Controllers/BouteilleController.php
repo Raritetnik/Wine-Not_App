@@ -184,6 +184,10 @@ class BouteilleController extends Controller
     public function listeBouteilles()
     {
         $liste = Vino_Bouteille::all();
+        foreach ($liste as $vino) {
+            $vino['format'] = Vino_Format::find($vino->vino_format_id)['format'];
+            $vino['type'] = Vino_Type::find($vino->vino_type_id)['type'];
+        }
         echo (json_encode($liste));
     }
 
@@ -193,6 +197,4 @@ class BouteilleController extends Controller
     public function supprimerBouteille(Request $request) {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
     }
-}
-
 }

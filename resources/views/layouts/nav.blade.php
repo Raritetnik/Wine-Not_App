@@ -47,7 +47,7 @@
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
             </li>
             <li>
-              <a href="#" class="inline-flex gap-2 items-center justify-center w-full h-12 pe-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded  hover:text-gray-500" aria-label="Compte" title="Compte">
+              <a href="/compte" class="inline-flex gap-2 items-center justify-center w-full h-12 pe-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded  hover:text-gray-500" aria-label="Compte" title="Compte">
                 <!-- <img class="max-w-[30px]" src="{{ asset('img/svg/user-gold.svg') }}" alt="user-profile"> -->
                 Mon Compte<!--  Affichage du nom Utilisateur. À modifier   -->
               </a>
@@ -79,14 +79,11 @@
       <a href="{{route('celliers.creer')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="articles" title="articles">
         Ajouter Cellier
       </a>
-      <a href="{{ route('bouteilles') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="saq" title="saq">
-        Ajouter Bouteille
-      </a>
       <a href="{{ route('logout') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="Sign out" title="deconnecter" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         Déconnexion
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
       </a>
-      <a href="#" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="Compte" title="Compte"><!--<img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
+      <a href="/compte" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="Compte" title="Compte"><!--<img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
         {{ Auth::user()->nom }} -->Mon Compte
       </a>
 
