@@ -193,5 +193,6 @@ class BouteilleController extends Controller
     public function supprimerBouteille(Request $request) {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
     }
+}
 
 }
