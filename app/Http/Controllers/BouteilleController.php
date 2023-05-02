@@ -195,5 +195,3 @@ class BouteilleController extends Controller
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
     }
 }
-
-}
