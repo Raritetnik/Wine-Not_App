@@ -2,6 +2,12 @@
   <div class="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <!-- Logo -->
+      <div>
+        <img src="{{ asset('img/svg/logoWn.svg') }}" alt="">
+      </div>
+      <div class="">
+        <a href="/favoris"><img src="{{ asset('img/svg/like.svg') }}" alt="fav_icon"></a>
+      </div>
       <div class="absolute inset-y-0 left-0 flex items-center lg:hidden">
         <button id="mobile-menu-button" type="button" class="z-50 fixed top-3 right-3 inline-flex items-center justify-center p-2  rounded-md text-section_title hover:text-accent_wine hover:border-accent_wine border-3  focus:outline-none focus:border-accent_wine focus:text-accent_wine transition duration-150 ease-in-out">
           <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
