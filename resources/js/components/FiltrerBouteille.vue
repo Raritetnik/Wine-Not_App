@@ -9,7 +9,7 @@
             <div class="menu-deroulant">
               <!--Type-->
               <div class="label-categorie">
-                <h3>Type</h3>
+                <h3>Type de vin</h3>
                 <span class="material-symbols-outlined">expand_more</span>
               </div>
               <ul class="liste-choix">
@@ -20,7 +20,7 @@
               </ul>
               <!-- Prix -->
               <div class="label-categorie">
-                <h3>Prix de la SAQ</h3>
+                <h3>Prix de la bouteille</h3>
                 <span class="material-symbols-outlined">expand_more</span>
               </div>
               <ul class="liste-choix">
@@ -52,7 +52,7 @@
 
               <!-- Pays -->
               <div class="label-categorie">
-                <h3>Pays</h3>
+                <h3>Pays d'origine</h3>
                 <span class="material-symbols-outlined">expand_more</span>
               </div>
               <ul class="liste-choix">
