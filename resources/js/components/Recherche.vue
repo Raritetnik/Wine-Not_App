@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md:pe-6">
+  <div class="flex flex-col lg:pe-6">
     <div class="grid">
       <div class="flex flex-col relative mb-4">
         <div class="flex justify-between items-center rounded shadow-sm border-2 border-secondary ">
@@ -48,6 +48,7 @@ export default {
   },
   methods: {
     showSearchOptions (text) {
+      this.selectedVine = false;
       this.textInput = text;
       // Code pour filtrer la recherche
       this.closestVineList = [];

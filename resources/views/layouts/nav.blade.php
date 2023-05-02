@@ -52,9 +52,9 @@
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
             </li>
             <li>
-              <a href="#" class="inline-flex gap-2 items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-secondary transition duration-200 rounded  hover:text-accent_wine" aria-label="Compte" title="Compte">
-                <img class="max-w-[30px]" src="{{ asset('img/svg/user-gold.svg') }}" alt="user-profile">
-                {{ Auth::user()->nom }} <!--  Affichage du nom Utilisateur. À modifier   -->
+              <a href="#" class="inline-flex gap-2 items-center justify-center w-full h-12 pe-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded  hover:text-gray-500" aria-label="Compte" title="Compte">
+                <!-- <img class="max-w-[30px]" src="{{ asset('img/svg/user-gold.svg') }}" alt="user-profile"> -->
+                Mon Compte<!--  Affichage du nom Utilisateur. À modifier   -->
               </a>
             </li>
             @endguest
@@ -91,8 +91,8 @@
         Déconnexion
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
       </a>
-      <a href="#" class="pt-2 flex flex-col items-center justify-center text-xl rounded h-12 px-6 font-regular tracking-wide text-secondary transition duration-200 hover:text-main" aria-label="Compte" title="Compte"><img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
-        {{ Auth::user()->nom }}
+      <a href="#" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="Compte" title="Compte"><!--<img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
+        {{ Auth::user()->nom }} -->Mon Compte
       </a>
 
       @endguest
