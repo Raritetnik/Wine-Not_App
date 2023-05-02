@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class="mt-7 flex">
-        <button type="submit" class="w-1/3 px-7 py-2.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
+        <button type="submit" class="w-1/2 px-7 py-2.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
       </div>
         
 

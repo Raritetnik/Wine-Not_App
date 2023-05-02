@@ -59,6 +59,7 @@ class BouteilleController extends Controller
         $nBouteille->vino_format_id = $request->vino_format_id;
         $nBouteille->vino_type_id = $request->vino_type_id;
         $nBouteille->pays_id = $request->pays_id;
+        $nBouteille->utilisateur_id = Auth::id();
         $nBouteille->save();
 
 
@@ -69,6 +70,7 @@ class BouteilleController extends Controller
         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
+        $bouteilleParCellier->utilisateurs_id = $nBouteille->utilisateur_id;
         $bouteilleParCellier->save();
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id ));
@@ -94,7 +96,8 @@ class BouteilleController extends Controller
                 'quantite' => $request->quantite,
                 'millesime' => $request->millesime,
                 'vino_cellier_id' => $request->vino_cellier_id,
-                'vino_bouteille_id' => $request->vino_bouteille_id // vient de vue.js
+                'vino_bouteille_id' => $request->vino_bouteille_id, // vient de vue.js
+                'utilisateurs_id' => Auth::id()
             ]);
             $bouteille->save();
         }
@@ -191,3 +194,4 @@ class BouteilleController extends Controller
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
     }
 
+}
