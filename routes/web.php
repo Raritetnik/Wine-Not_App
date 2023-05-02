@@ -32,6 +32,7 @@ Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('login', [LoginController::class, 'loginCustom'])->name('login.custom');
 Route::get('/compte', [HomeController::class, 'afficherCompte'])->name('compte')->middleware('auth');
+Route::post('/compte', [HomeController::class, 'updateCompte'])->name('compte.update')->middleware('auth');
 
 // Page Accueil
 Route::get('/', [HomeController::class, 'index'])->name('home');
