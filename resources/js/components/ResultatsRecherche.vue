@@ -6,7 +6,7 @@
         <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px]" :src="vine.url_img" :alt="vine.nom">
       </header>
       <section class="flex flex-col gap-2 w-full">
-      <h1 class="font-bold" style="color: var(--color_champ)">{{ vine.nom }}</h1>
+      <h1 class="font-bold text-accent_wine">{{ vine.nom }}</h1>
         <div class="flex items-center justify-between">
           <div class="flex flex-col justify-between">
             <h3 style="color: var(--color_text)">{{ vine.type }} | {{ vine.format }}</h3>

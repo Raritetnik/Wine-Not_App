@@ -23,7 +23,7 @@
           <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none h-[150px]">
         </header>
         <div>
-          <h2 class="font-bold text-md text-secondary">{{ this.choixBouteille.nom }}</h2>
+          <h2 class="font-bold text-md text-accent_wine">{{ this.choixBouteille.nom }}</h2>
           <h3 style="color: var(--color_text)">{{ this.choixBouteille.type }} | {{ this.choixBouteille.format }} | {{ this.choixBouteille.pays }} </h3>
           <h2 class="font-bold text-md text-section_title">${{ this.choixBouteille.prix_saq }} CAD</h2>
           <input name="prix_saq" type="hidden" :value="this.choixBouteille.prix_saq">

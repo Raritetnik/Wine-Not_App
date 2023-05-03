@@ -6,7 +6,7 @@
         </header>
         <div class="desc flex flex-col justify-between">
             <header class="hover-carte" @click="redirection(bouteille.id)">
-                <h1 class="font-extrabold text-xl" style="color: var(--color_champ)">{{ this.bouteille.nomSAQ }}</h1>
+                <h1 class="font-extrabold text-xl text-accent_wine">{{ this.bouteille.nomSAQ }}</h1>
                 <h3 class="font-medium text-section_title text-lg">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
