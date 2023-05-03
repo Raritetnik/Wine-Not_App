@@ -24,8 +24,9 @@ window.Vue = require("vue").default;
 Vue.component("v-recherche", require("./components/Recherche.vue").default);
 Vue.component("v-compteur", require("./components/Compteur.vue").default);
 Vue.component("v-souhaits", require("./components/ListeSouhaits.vue").default);
-Vue.component("v-bouteille", require("./components/CarteBouteille.vue").default);
 Vue.component("v-filtre", require("./components/FiltrerBouteille.vue").default);
+Vue.component("v-bouteille", require("./components/CarteBouteille.vue").default);
+Vue.component("v-cellier", require("./components/CarteCellier.vue").default);
 Vue.component("v-profile", require("./components/Profile.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -4,19 +4,14 @@
   <div class="pb-6 text-center w-full">
     <h2 class="mb-2 text-3xl font-bold leading-none sm:text-4xl">Mes Celliers</h2>
   </div>
-  <div class="py-16 grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8">
+  <div class="py-16 grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8 justify-center">
     @foreach($celliers as $cellier)
-    <div onclick="location.href=`{{route('celliers.afficher', ['cellier' => $cellier->id])}}`">
-      <img class="object-cover w-full h-56 mb-6 rounded shadow-lg md:h-64 xl:h-80" src="{{$cellier->image}}" alt="{{$cellier->nom}}" />
-        <h3 class="mb-2 text-3xl font-bold leading-none sm:text-2xl">
-          {{$cellier->nom}}
-        </h3>
-        <p class="text-gray-700">
-        {{$cellier->description ?? ''}}
-        </p>
-    </div>
+      <!-- Carte de cellier -->
+      <a href="{{ route('celliers.afficher', ['cellier' => $cellier->id]) }}" class="m-0 p-0 flex justify-center">
+        <v-cellier :cellier="{{ $cellier }}" />
+      </a>
     @endforeach
-  </div>
+  </article>
   <div class="mb-6 text-center">
     <a
       href="{{route('celliers.creer')}}"
