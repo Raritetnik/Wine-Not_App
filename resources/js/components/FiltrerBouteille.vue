@@ -106,7 +106,6 @@ export default {
         let correspondanceType = false;
         let correspondancePays = false;
         let correspondancePrix = false;
-
         if (this.selectionnerType.length > 0) {
             // Vérifier si la bouteille correspond aux types sélectionnés
             correspondanceType = this.selectionnerType.includes(bouteille.type);
@@ -114,7 +113,6 @@ export default {
             // Si aucun type n'est sélectionné, toutes les bouteilles correspondent
             correspondanceType = true;
         }
-
         if (this.selectionnerPays.length > 0) {
             // Vérifier si la bouteille correspond aux pays sélectionnés
             correspondancePays = this.selectionnerPays.includes(bouteille.pays);
@@ -127,11 +125,10 @@ export default {
           this.selectionnerPrix.forEach((unPrix)=>{
             if(parseFloat(bouteille.prix_saq)>= unPrix[0] && parseFloat(bouteille.prix_saq)<= unPrix[1]){
               correspondancePrix = true;
-              console.log(bouteille.prix_saq)
             }
           })
         } else {
-          correspondancePays = true;
+          correspondancePrix = true;
         }
         // Ajouter la bouteille au tableau filtré si elle correspond aux critères sélectionnés
         return correspondanceType && correspondancePays && correspondancePrix;

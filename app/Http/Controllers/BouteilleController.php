@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bouteille_Par_Cellier;
 use App\Models\Pays;
+use App\Models\SAQ;
 use App\Models\Vino_Bouteille;
 use App\Models\Vino_Cellier;
 use App\Models\Vino_Format;
@@ -62,10 +63,11 @@ class BouteilleController extends Controller
         $nBouteille->utilisateur_id = Auth::id();
         $nBouteille->save();
 
+        $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
 
         $bouteilleParCellier = new Bouteille_Par_Cellier();
         $bouteilleParCellier->quantite = $request->quantite;
-        $bouteilleParCellier->date_achat = $request->date_achat;
+        $bouteilleParCellier->date_achat = $dateAchat;
         $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
@@ -73,7 +75,7 @@ class BouteilleController extends Controller
         $bouteilleParCellier->utilisateurs_id = $nBouteille->utilisateur_id;
         $bouteilleParCellier->save();
 
-        return redirect(route('celliers.afficher', $request->vino_cellier_id ));
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
 
@@ -89,25 +91,29 @@ class BouteilleController extends Controller
             $totalBouteille = $bouteilleValidation->quantite + $request->quantite;
             $bouteilleValidation->update(['quantite' => $totalBouteille]);
         } else {
+            $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+
             $bouteille = Bouteille_Par_Cellier::create([
-                'date_achat' => $request->date_achat,
+                'date_achat' => $dateAchat,
                 'garde_jusqua' => $request->garde_jusqua,
                 'prix' => $request->prix,
                 'quantite' => $request->quantite,
                 'millesime' => $request->millesime,
                 'vino_cellier_id' => $request->vino_cellier_id,
                 'vino_bouteille_id' => $request->vino_bouteille_id, // vient de vue.js
-                'utilisateurs_id' => Auth::id()
             ]);
             $bouteille->save();
         }
 
-        return redirect(route('celliers.afficher', $request->vino_cellier_id ));
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
 
 
-   
+
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -160,13 +166,13 @@ class BouteilleController extends Controller
     {
         //
     }
-    
+
     public function modifierBouteille(Bouteille_Par_Cellier $idBouteille)
     {
         //return $idBouteille;
 
     }
-   
+
     /**
      * Remove the specified resource from storage.
      *
@@ -187,6 +193,7 @@ class BouteilleController extends Controller
         foreach ($liste as $vino) {
             $vino['format'] = Vino_Format::find($vino->vino_format_id)['format'];
             $vino['type'] = Vino_Type::find($vino->vino_type_id)['type'];
+            $vino['pays'] = Pays::find($vino->pays_id)['pays'];
         }
         echo (json_encode($liste));
     }
@@ -194,7 +201,8 @@ class BouteilleController extends Controller
     /**
      * Supprimer la bouteille du cellier
      */
-    public function supprimerBouteille(Request $request) {
+    public function supprimerBouteille(Request $request)
+    {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
     }
 }

@@ -1,5 +1,4 @@
 <section id="form-personal" class="hidden self-center px-6 flex-col w-full lg:w-2/5">
-   
 
 
     <form method="post" enctype="multipart/form-data" class="w-full pt-3">
@@ -57,7 +56,7 @@
           <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
             @foreach($celliers as $index => $cellier)
             @if($index === 0) <!-- verifier si index 0, 1er element du array -->
-            <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option> 
+            <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option>
             @else
             <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
             @endif
@@ -101,7 +100,7 @@
       <div class="mt-7 flex">
         <button type="submit" class="w-1/2 px-7 py-2.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
       </div>
-        
+
 
 
     </form>
