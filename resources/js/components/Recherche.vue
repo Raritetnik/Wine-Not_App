@@ -24,10 +24,11 @@
         </header>
         <div>
           <h2 class="font-bold text-md text-section_title">{{ this.choixBouteille.nom }}</h2>
+          {{ this.choixBouteille.prix_saq }}
+          <input type="hidden" :value="this.choixBouteille.prix_saq" name="prix_saq">
         </div>
       </div>
     </div>
-
   </div>
 </template>
 

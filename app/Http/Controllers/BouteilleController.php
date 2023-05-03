@@ -44,6 +44,7 @@ class BouteilleController extends Controller
     public function insererBouteille(Request $request)
     {
 
+
         $request->validate([
             'nom' => 'required|min:5|max:100',
             'date_achat' => 'required|date',
@@ -79,6 +80,7 @@ class BouteilleController extends Controller
 
     public function rechercheBouteille(Request $request)
     {
+        //return $request;
         $celliers = auth()->user()->celliers;
 
         $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())
@@ -92,7 +94,7 @@ class BouteilleController extends Controller
             $bouteille = Bouteille_Par_Cellier::create([
                 'date_achat' => $request->date_achat,
                 'garde_jusqua' => $request->garde_jusqua,
-                'prix' => $request->prix,
+                'prix' => $request->prix_saq,
                 'quantite' => $request->quantite,
                 'millesime' => $request->millesime,
                 'vino_cellier_id' => $request->vino_cellier_id,
