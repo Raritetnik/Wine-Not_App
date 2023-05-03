@@ -9,16 +9,16 @@
      Recherche SAQ
    </h2>
  </div>
-   <section class="flex flex-wrap pb-6">
-  
+   <section class="flex flex-col lg:flex-row pb-6 justify-center">
+
      <div class="w-full sm:w-[500px] mb-3">
-       <v-recherche />
+       <v-recherche :bouteilles="{{ $bouteilles }}"/>
      </div>
      <div class="w-full sm:w-[500px] flex flex-col">
        <h5 class="text-secondary font-semibold text-md mb-5 bg-gray-100 rounded-md px-3 py-3">Remplisser le formulaire afin d'ajouter le vin à votre colection </h5>
        <div class="mb-2 flex justify-between gap-3">
 
-         <div class="w-full mb-3">
+         <div class="w-1/2 mb-3">
 
            <label for="cellier" class="block text-section_title font-bold mb-2">Celliers</label>
            <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
@@ -31,6 +31,11 @@
              @endforeach
            </select>
          </div>
+         <div class="w-1/2 mb-3">
+          <label for="prix" class="block text-section_title font-bold mb-2">$ Prix</label>
+          <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille">
+          </input>
+        </div>
        </div>
        <div class="mb-2 flex justify-between gap-3">
          <div class="w-1/2 mb-3">
