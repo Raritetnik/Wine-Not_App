@@ -1,21 +1,24 @@
-<nav id="main-nav" class="lg:bg-gray-50 lg:shadow-sm md:bg-transparent md:shadow-none py-1">
-    <div class="relative">
-        <!-- Burger Menu -->
-        <div class="absolute inset-y-0 left-0 flex items-center lg:hidden z-20">
-            <button id="mobile-menu-button" type="button" class="z-50 fixed top-3 right-3 inline-flex items-center justify-center p-2  rounded-md text-section_title hover:text-accent_wine hover:border-accent_wine border-3  focus:outline-none focus:border-accent_wine focus:text-accent_wine transition duration-150 ease-in-out">
-                <svg class="h-10 w-10" stroke="currentColor" fill="none" viewBox="0 0 30 30">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
+<nav id="main-nav" class="lg:bg-gray-50 lg:shadow-sm md:bg-transparent md:shadow-none py-1 relative">
+    <!-- Logo -->
+    <div class="absolute z-20 left-5">
+        <a href="/"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
+    </div>
 
-        <div class="absolute right-24 top-6 z-20 lg:hidden">
-            <a href="/favoris"><img src="{{ asset('img/svg/like.svg') }}" alt="fav_icon" width="25px"></a>
-        </div>
+    <div class="relative flex h-[70px] items-center justify-end lg:hidden">
+        <div class="flex justify-between items-center absolute z-20 right-5 gap-8">
+            <!-- Favoris Menu -->
+            <div class="">
+                <a href="/favoris"><img src="{{ asset('img/svg/like.svg') }}" alt="fav_icon" width="30px"></a>
+            </div>
 
-        <!-- Burger Menu -->
-        <div class="absolute left-3 top-0 z-20">
-            <a href="/"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
+            <!-- Burger Menu -->
+            <div class="flex items-center">
+                <button id="mobile-menu-button" type="button" class="rounded-md text-section_title hover:text-accent_wine hover:border-accent_wine border-3  focus:outline-none focus:border-accent_wine focus:text-accent_wine transition duration-150 ease-in-out">
+                    <svg class="h-10 w-10" stroke="currentColor" fill="none" viewBox="0 0 25 25">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 
