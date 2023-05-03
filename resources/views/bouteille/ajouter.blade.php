@@ -19,7 +19,7 @@
 
   <div class="self-center">
     <!-- formulaire SAQ -->
-    @include('bouteille.recherche_saq')
+    @include('bouteille.recherche_saq', ['bouteilles' => $bouteilles])
   </div>
 </div>
 @endsection

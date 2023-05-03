@@ -33,18 +33,18 @@
 </head>
 
 <body>
+  <!-- bouton d'ajout de bouteille -->
+  @if(request()->route()->getName() != 'bouteille.create')
+  <div class="absolute right-5 bottom-5 z-50">
+    <a href="{{ route('bouteille.create') }}">
+      <div class=" shadow-md text-center rounded-lg  cursor-pointer py-3 px-3 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-5xl"><img src="{{asset('img/svg/plus.svg')}}" alt="add-button"></div>
+    </a>
+  </div>
+  @endif
   <div id="app">
     @include('layouts.nav')
     <main class="py-4 relative">
       @yield('content')
-      <!-- bouton d'ajout de bouteille -->
-      @if(request()->route()->getName() != 'bouteille.create')
-      <div class="absolute right-5 bottom-5">
-        <a href="{{ route('bouteille.create') }}">
-          <div class=" shadow-md text-center rounded-lg  cursor-pointer py-3 px-3 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-5xl"><img src="{{asset('img/svg/plus.svg')}}" alt="add-button"></div>
-        </a>
-      </div>
-      @endif
     </main>
   </div>
   @include('layouts.footer')

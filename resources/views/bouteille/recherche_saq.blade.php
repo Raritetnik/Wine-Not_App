@@ -10,9 +10,9 @@
    </h2>
  </div>
    <section class="flex flex-wrap pb-6">
-  
+
      <div class="w-full sm:w-[500px] mb-3">
-       <v-recherche />
+       <v-recherche :bouteilles="{{ $bouteilles }}"/>
      </div>
      <div class="w-full sm:w-[500px] flex flex-col">
        <h5 class="text-secondary font-semibold text-md mb-5 bg-gray-100 rounded-md px-3 py-3">Remplisser le formulaire afin d'ajouter le vin à votre colection </h5>

@@ -3,8 +3,10 @@
     <div class="grid">
       <div class="flex flex-col relative mb-4">
         <div class="flex justify-between items-center rounded shadow-sm border-2 border-secondary ">
-        <input type="text" class="w-full font-medium tracking-wide px-6  h-12 text-accent_wine transition duration-200  focus:outline-none" placeholder="Recherche" @keyup="showSearchOptions($event.target.value);"
-        :value="this.textInput"><img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
+        <input type="text" class="w-full font-medium tracking-wide px-6  h-12 text-accent_wine transition duration-200  focus:outline-none" :placeholder="!this.loaded ? 'Chargement en cours...' : 'Recherche'" @keyup="showSearchOptions($event.target.value);"
+        :value="this.textInput">
+
+        <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
       </div>
         <input name="vino_bouteille_id" type="hidden" :value="this.choixBouteille.id">
         <input name="vino_bouteille_prix" type="hidden" :value="this.choixBouteille.prix">
@@ -13,7 +15,7 @@
       </div>
       <!-- le composant Vue ResultatsRecherche va ici -->
       <ResultatsRecherche :closest-vine-list="closestVineList" @take-bouteille="takeBouteille"></ResultatsRecherche>
-       
+
     </div>
     <div>
       <div v-if="selectedVine" class="flex gap-3 bg-gray-100 rounded-md  max-w-[320px] sm:w-[500px] p-2 border-2 border-secondary">
@@ -30,9 +32,11 @@
 </template>
 
 <script>
+import axios from 'axios';
 import ResultatsRecherche from './ResultatsRecherche.vue';
 
 export default {
+  props: ['bouteilles'],
   components: {
     ResultatsRecherche
   },
@@ -40,6 +44,7 @@ export default {
     return {
       isMenuOpen: false,
       textInput: '',
+      loaded: false,
       vineList: [],
       closestVineList: [],
       choixBouteille: {},
@@ -47,6 +52,12 @@ export default {
     };
   },
   methods: {
+    /**
+     * Recherche de bouteilles de vin par: Nom, Type, Pays, Format
+     * Retourne seulement les 4 premiers résultats
+     * @param {string} text - Texte saisie par l'utilisateur
+     * @return {array} closestVineList - La liste des bouteilles compatibles
+     */
     showSearchOptions (text) {
       this.selectedVine = false;
       this.textInput = text;
@@ -55,20 +66,63 @@ export default {
       if(text !== "") {
         // Only START WITH NAME ELEMENTS --- FIRST
         this.vineList.forEach( (vine) => {
+
+          // Recherche par le nom
           if(String(vine.nom.toLowerCase()).startsWith(text.toLowerCase())) {
             this.closestVineList.push(vine)
           }
+
+          // Recherche par le type
+          if(String(vine.type.toLowerCase()).startsWith(text.toLowerCase())) {
+            this.closestVineList.push(vine)
+          }
+
+          // Recherche par le pays
+          if(String(vine.pays.toLowerCase()).startsWith(text.toLowerCase())) {
+            this.closestVineList.push(vine)
+          }
+
+          // Recherche par le format
+          if(String(vine.format.toLowerCase()).startsWith(text.toLowerCase())) {
+            this.closestVineList.push(vine)
+          }
         })
+
         // Only CONTAINS && NOT START WITH --- AFTER
         this.vineList.forEach( (vine) => {
+
+          // Recherche par le nom
           if(!String(vine.nom.toLowerCase()).startsWith(text.toLowerCase())
           && String(vine.nom.toLowerCase()).includes(text.toLowerCase())) {
+            this.closestVineList.push(vine);
+          }
+
+          // Recherche par le type
+          if(!String(vine.type.toLowerCase()).startsWith(text.toLowerCase())
+          && String(vine.type.toLowerCase()).includes(text.toLowerCase())) {
+            this.closestVineList.push(vine);
+          }
+
+          // Recherche par le pays
+          if(!String(vine.pays.toLowerCase()).startsWith(text.toLowerCase())
+          && String(vine.pays.toLowerCase()).includes(text.toLowerCase())) {
+            this.closestVineList.push(vine);
+          }
+
+          // Recherche par le format
+          if(!String(vine.format.toLowerCase()).startsWith(text.toLowerCase())
+          && String(vine.format.toLowerCase()).includes(text.toLowerCase())) {
             this.closestVineList.push(vine);
           }
         })
         this.closestVineList = this.closestVineList.slice(0, 4);
       }
     },
+
+    /**
+     * Enregistrmenet de selection de la bouteille par l'utilisateur
+     * @param {*} vine
+     */
     takeBouteille (vine) {
       this.textInput = vine.nom
       this.choixBouteille = vine;
@@ -76,11 +130,13 @@ export default {
       this.closestVineList = [];
     }
   },
+  /**
+   * Méthode API:
+   * Téléchargement des toutes les bouteilles dans la base de données
+   */
   async beforeMount () {
-    axios.get('/api.bouteilles')
-      .then(response => {
-          this.vineList = response.data
-      })
+      this.vineList = this.bouteilles;
+      this.loaded = true;
   }
 };
 </script>
