@@ -5,13 +5,17 @@
       <header>
         <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px]" :src="vine.url_img" :alt="vine.nom">
       </header>
-      <div class="desc flex flex-col justify-between">
-        <header>
-          <h1 class="font-bold" style="color: var(--color_champ)">{{ vine.nom }}</h1>
-          <h3 style="color: var(--color_text)">{{ vine.type }} | {{ vine.format }}</h3>
-          <h3 style="color: var(--color_text)">{{ vine.pays }}</h3>
-        </header>
-      </div>
+      <section class="flex flex-col gap-2 w-full">
+      <h1 class="font-bold" style="color: var(--color_champ)">{{ vine.nom }}</h1>
+        <div class="flex items-center justify-between">
+          <div class="flex flex-col justify-between">
+            <h3 style="color: var(--color_text)">{{ vine.type }} | {{ vine.format }}</h3>
+            <h3 style="color: var(--color_text)">{{ vine.pays }}</h3>
+            <h3 style="color: var(--color_text)">$CAD {{ vine.prix_saq }}</h3>
+          </div>
+          <img class="pe-6 hover:opacity-75" :src="require('/img/svg/select.svg')" alt="select">
+        </div>
+      </section>
     </article>
   </div>
 </ul>

@@ -3,7 +3,7 @@
     <div class="inline-flex items-center">
       <button
         @click="decrementerCompteur"
-        class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
+        class="bg-main rounded-l border text-gray-600 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@
       <div
         v-if="!editerManuellement"
         @click="editerManuellement = true"
-        class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none"
+        class="bg-gray-50   text-gray-600 hover:bg-gray-50 inline-flex items-center px-4 py-1 select-none"
       >
         {{ compteur }}
       </div>
@@ -30,11 +30,11 @@
         v-model="compteur"
         @keyup="editer($event.target.value)"
         @blur="editerManuellement = false"
-        class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none"
+        class="bg-gray-200 text-gray-600 hover:bg-gray-50 inline-flex items-center px-4 py-1 select-none focus:select-none"
       />
       <button
         @click="incrementerCompteur"
-        class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
+        class="bg-main rounded-r border text-gray-600 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
