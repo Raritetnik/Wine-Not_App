@@ -11,7 +11,7 @@ use App\Models\Pays;
 use App\Models\Vino_Format;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Controler
@@ -32,16 +32,24 @@ class CellierController
   // **Ajouter Auth
   public function index()
   {
+
+
+
     // Si une session existe, octroyer le numéro d'id de la session à l'utilisateur
     // Rechercher tous les celliers oû l'utilisateurs_id correspond à la session en cours
     // Afficher les celliers
     // Sinon afficher login
     if(Auth::id()){
       $utilisateur_id = Auth::id();
-      $cellier = Vino_Cellier::select()
+      $celliers = Vino_Cellier::select()
       ->where('vino_celliers.utilisateurs_id', $utilisateur_id)
       ->get();
-      return view('celliers.index', ['celliers' => $cellier]);
+      foreach ($celliers as $cellier) {
+        $cellier->quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id',$cellier->id)->get()
+          ->count();
+      }
+
+      return view('celliers.index', ['celliers' => $celliers]);
     }
     else {
       return redirect(route('login'));

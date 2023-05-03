@@ -18,5 +18,6 @@ class Bouteille_Par_Cellier extends Model
         'vino_cellier_id',
         'vino_bouteille_id',
         'millesime',
+        'utilisateurs_id'
     ];
 }
