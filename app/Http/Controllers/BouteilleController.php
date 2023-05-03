@@ -32,11 +32,13 @@ class BouteilleController extends Controller
      */
     public function ajouterBouteille()
     {
+        $bouteilles = $this->listeBouteilles();
+
         $celliers = auth()->user()->celliers;
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
+        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles]);
     }
 
 
@@ -103,16 +105,10 @@ class BouteilleController extends Controller
                 ]);
                 $bouteille->save();
             }
-    
+
             return redirect(route('celliers.afficher', $request->vino_cellier_id ));
         }
-            
 
-
-
-
-
-   
     /**
      * Store a newly created resource in storage.
      *
@@ -165,13 +161,13 @@ class BouteilleController extends Controller
     {
         //
     }
-    
+
     public function modifierBouteille(Bouteille_Par_Cellier $idBouteille)
     {
         //return $idBouteille;
 
     }
-   
+
     /**
      * Remove the specified resource from storage.
      *
@@ -188,14 +184,16 @@ class BouteilleController extends Controller
      */
     public function listeBouteilles()
     {
-        $liste = Vino_Bouteille::all();
-        foreach ($liste as $vino) {
-            $vino['format'] = Vino_Format::find($vino->vino_format_id)['format'];
-            $vino['type'] = Vino_Type::find($vino->vino_type_id)['type'];
-            $vino['pays'] = Pays::find($vino->pays_id)['pays'];
-            
-        }
-        echo (json_encode($liste));
+        return Vino_Bouteille::query()
+        ->join('vino_formats', 'vino_bouteilles.vino_format_id', '=', 'vino_formats.id')
+        ->join('vino_types', 'vino_bouteilles.vino_type_id', '=', 'vino_types.id')
+        ->join('pays', 'vino_bouteilles.pays_id', '=', 'pays.id')
+        ->get([
+            'vino_bouteilles.*',
+            'vino_formats.format as format',
+            'vino_types.type as type',
+            'pays.pays as pays'
+        ]);
     }
 
     /**
