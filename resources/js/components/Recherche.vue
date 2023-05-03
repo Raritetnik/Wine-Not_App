@@ -9,7 +9,7 @@
         <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
       </div>
         <input name="vino_bouteille_id" type="hidden" :value="this.choixBouteille.id">
-        <input name="vino_bouteille_prix" type="hidden" :value="this.choixBouteille.prix">
+       
         <!--<button type="submit" @submit.prevent="onSubmit()" class="bg-accent_wine hover:accent_wine-80 text-main font-bold ml-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Recherche</button>
         Code de la barre de recherche ICI -->
       </div>
@@ -23,11 +23,13 @@
           <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none h-[150px]">
         </header>
         <div>
-          <h2 class="font-bold text-md text-section_title">{{ this.choixBouteille.nom }}</h2>
+          <h2 class="font-bold text-md text-accent_wine">{{ this.choixBouteille.nom }}</h2>
           <h3 style="color: var(--color_text)">{{ this.choixBouteille.type }} | {{ this.choixBouteille.format }} | {{ this.choixBouteille.pays }} </h3>
-          
+          <h2 class="font-bold text-md text-section_title">${{ this.choixBouteille.prix_saq }} CAD</h2>
+          <input name="prix_saq" type="hidden" :value="this.choixBouteille.prix_saq">
         </div>
       </div>
+      
     </div>
 
   </div>

@@ -32,11 +32,13 @@ class BouteilleController extends Controller
      */
     public function ajouterBouteille()
     {
+        $bouteilles = $this->listeBouteilles();
+
         $celliers = auth()->user()->celliers;
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
+        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles]);
     }
 
 
@@ -72,47 +74,50 @@ class BouteilleController extends Controller
         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
+        $bouteilleParCellier->utilisateurs_id = $nBouteille->utilisateur_id;
         $bouteilleParCellier->save();
 
-        return redirect(route('celliers.afficher', $request->vino_cellier_id ));
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
 
     public function rechercheBouteille(Request $request)
+    
     {
+       
         $celliers = auth()->user()->celliers;
 
         $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())
             ->where('vino_bouteille_id', $request->vino_bouteille_id)
             ->first();
 
-            if ($bouteilleValidation) {
-                $totalBouteille = $bouteilleValidation->quantite + $request->quantite;
-                $bouteilleValidation->update(['quantite' => $totalBouteille]);
-            } else {
-                $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+        if ($bouteilleValidation) {
+            $totalBouteille = $bouteilleValidation->quantite + $request->quantite;
+            $bouteilleValidation->update(['quantite' => $totalBouteille]);
+        } else {
+            $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
 
-                $bouteille = Bouteille_Par_Cellier::create([
-                    'date_achat' => $dateAchat,
-                    'garde_jusqua' => $request->garde_jusqua,
-                    'prix' => $request->prix,
-                    'quantite' => $request->quantite,
-                    'millesime' => $request->millesime,
-                    'vino_cellier_id' => $request->vino_cellier_id,
-                    'vino_bouteille_id' => $request->vino_bouteille_id, // vient de vue.js
-                ]);
-                $bouteille->save();
-            }
-    
-            return redirect(route('celliers.afficher', $request->vino_cellier_id ));
+            $bouteille = Bouteille_Par_Cellier::create([
+                'date_achat' => $dateAchat,
+                'garde_jusqua' => $request->garde_jusqua,
+                'prix' => $request->prix_saq * $request->quantite,
+                'quantite' => $request->quantite,
+                'millesime' => $request->millesime,
+                'vino_cellier_id' => $request->vino_cellier_id,
+                'vino_bouteille_id' => $request->vino_bouteille_id, // vient de vue.js
+            ]);
+            $bouteille->save();
         }
-            
+
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));
+    }
 
 
 
 
 
-   
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -165,7 +170,7 @@ class BouteilleController extends Controller
     {
         //
     }
-    
+
     public function modifierBouteille(Bouteille_Par_Cellier $idBouteille)
     {
         return $idBouteille;
@@ -178,8 +183,6 @@ class BouteilleController extends Controller
         return $bouteilleModifie;
     }
 
-
-   
     /**
      * Remove the specified resource from storage.
      *
@@ -196,20 +199,23 @@ class BouteilleController extends Controller
      */
     public function listeBouteilles()
     {
-        $liste = Vino_Bouteille::all();
-        foreach ($liste as $vino) {
-            $vino['format'] = Vino_Format::find($vino->vino_format_id)['format'];
-            $vino['type'] = Vino_Type::find($vino->vino_type_id)['type'];
-            $vino['pays'] = Pays::find($vino->pays_id)['pays'];
-            
-        }
-        echo (json_encode($liste));
+        return Vino_Bouteille::query()
+        ->join('vino_formats', 'vino_bouteilles.vino_format_id', '=', 'vino_formats.id')
+        ->join('vino_types', 'vino_bouteilles.vino_type_id', '=', 'vino_types.id')
+        ->join('pays', 'vino_bouteilles.pays_id', '=', 'pays.id')
+        ->get([
+            'vino_bouteilles.*',
+            'vino_formats.format as format',
+            'vino_types.type as type',
+            'pays.pays as pays'
+        ]);
     }
 
     /**
      * Supprimer la bouteille du cellier
      */
-    public function supprimerBouteille(Request $request) {
+    public function supprimerBouteille(Request $request)
+    {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
     }
 }

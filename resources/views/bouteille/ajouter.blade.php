@@ -5,7 +5,7 @@
   <div class="self-end gap-3 flex justify-end items-center">
     <p id="form-p-p" class="text-accent_wine font-bold text-right sm:text-lg text-sm">Ajouter une bouteille non listée à la SAQ?</p>
     <p id="form-p-saq" class="hidden text-accent_wine font-bold sm:text-lg text-sm">Ajouter une bouteille de la SAQ?</p>
-    <button id="btn-form" class="transition-all duration-300 ease-in-out items-center shadow-md flex justify-center sm:rounded-md rounded-md cursor-pointer sm:w-10  sm:h-10 w-8 h-8  min-w-[34px] py-1 px-1 bg-accent_wine_light  hover:bg-accent_wine text-main text-5xl"><img id="plus" src="{{asset('img/svg/plus.svg')}}" alt="add-button"></button>
+    <a id="btn-form" class="transition-all duration-300 ease-in-out items-center flex justify-center cursor-pointer sm:w-10  sm:h-10 w-8 h-8  min-w-[34px] hover:opacity-80 text-main text-5xl"><img id="plus" src="{{asset('img/svg/plus-form.svg')}}" alt="add-button"></a>
   </div>
 </div>
 <div class="flex flex-col justify-center mb-7 mt-2 w-full">

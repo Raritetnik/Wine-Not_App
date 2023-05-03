@@ -5,7 +5,7 @@
       <!-- ajouter un token pour autoriser la route une seconde fois -->
       @csrf
 
-      <h2 class="text-section_title text-xl font-extrabold pb-6">
+      <h2 class="text-accent_wine text-xl font-extrabold pb-6">
       Bouteille personnelle
       </h2>
       <div class="w-full mb-5">
@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="mt-7 flex">
-        <button type="submit" class="w-1/3 px-7 py-2.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
+        <button type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
       </div>
 
 
