@@ -178,17 +178,10 @@ class BouteilleController extends Controller
     }
 
     /**
-     * API de VUE: retourne la liste des bouteilles
+     * Téléchargement des données de bouteilles dans la BD
      */
     public function listeBouteilles()
     {
-        /*$liste = Vino_Bouteille::all();
-        foreach ($liste as $vino) {
-            $vino['format'] = Vino_Format::find($vino->vino_format_id)['format'];
-            $vino['type'] = Vino_Type::find($vino->vino_type_id)['type'];
-            $vino['pays'] = Pays::find($vino->pays_id)['pays'];
-        }
-        //echo (json_encode($liste));*/
         return Vino_Bouteille::query()
         ->join('vino_formats', 'vino_bouteilles.vino_format_id', '=', 'vino_formats.id')
         ->join('vino_types', 'vino_bouteilles.vino_type_id', '=', 'vino_types.id')
@@ -199,12 +192,6 @@ class BouteilleController extends Controller
             'vino_types.type as type',
             'pays.pays as pays'
         ]);
-    }
-
-    public function recherche(Request $request) {
-        $liste = Vino_Bouteille::where('nom', 'LIKE', $request->texteRecherche.'%')->limit(4)->get();
-
-        echo(json_encode($liste));
     }
 
     /**

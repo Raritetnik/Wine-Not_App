@@ -89,5 +89,3 @@ Route::get('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'verifierF
 Route::delete('/api.delete-bouteille', [BouteilleController::class, 'supprimerBouteille'])->name('supprimer.bouteille');
 Route::post('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'modifierFavoris'])->name('modification.favoris');
 Route::get('/api.bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');
-Route::get('/api.recherche.bouteille', [BouteilleController::class, 'recherche'])->name('bouteilles.recherche');
-Route::post('/api.recherche.bouteille', [BouteilleController::class, 'recherche'])->name('bouteilles.recherche');
