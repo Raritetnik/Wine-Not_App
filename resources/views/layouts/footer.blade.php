@@ -1,5 +1,5 @@
 
-<footer class="bg-accent_wine px-4">
+<footer class="bg-accent_wine px-4 relative">
   <div class="flex justify-around py-10">
     <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
       <img src="{{asset('img/svg/logoWN-white.svg')}}" alt="company-logo" width="130">

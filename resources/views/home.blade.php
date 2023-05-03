@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container pb-16 ">
-  <header class="mb-8">
-    <a href="/" class="text-accent_wine uppercase tracking-wide font-bold">
-      <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
-    </a>
-  </header>
+<div class="">
   <section class="mx-4 px-6 flex flex-col gap-6 mb-8">
     <div class="flex items-center justify-around relative">
       <h2 class="font-black text-gray-600 text-xl" style="max-width: 15ch">Choisissez votre vin à la SAQ!</h2>

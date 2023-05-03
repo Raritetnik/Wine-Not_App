@@ -9,7 +9,7 @@
      Recherche SAQ
    </h2>
  </div>
-   <section class="flex flex-wrap pb-6">
+   <section class="flex flex-col lg:flex-row pb-6 justify-center">
 
      <div class="w-full sm:w-[500px] mb-3">
        <v-recherche :bouteilles="{{ $bouteilles }}"/>
