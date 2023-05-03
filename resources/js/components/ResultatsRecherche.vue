@@ -10,7 +10,6 @@
           <h1 class="font-bold" style="color: var(--color_champ)">{{ vine.nom }}</h1>
           <h3 style="color: var(--color_text)">{{ vine.type }} | {{ vine.format }}</h3>
           <h3 style="color: var(--color_text)">{{ vine.pays }}</h3>
-          <h3 style="color: var(--color_text)">{{ vine }}</h3>
         </header>
       </div>
     </article>
