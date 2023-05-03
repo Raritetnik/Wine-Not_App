@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col lg:pe-6">
+  <div class="flex flex-col">
     <div class="grid">
       <div class="flex flex-col relative mb-4">
         <div class="flex justify-between items-center rounded shadow-sm border-2 border-secondary ">
-        <input type="text" class="w-full font-medium tracking-wide px-6  h-12 text-accent_wine transition duration-200  focus:outline-none" :placeholder="!this.loaded ? 'Chargement en cours...' : 'Recherche'" @keyup="showSearchOptions($event.target.value);"
+        <input type="text" class="placeholder-section_title w-full font-medium tracking-wide px-6  h-11 text-accent_wine transition duration-200  focus:outline-none" :placeholder="!this.loaded ? 'Chargement en cours...' : 'Recherche'" @keyup="showSearchOptions($event.target.value);"
         :value="this.textInput">
 
         <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">

@@ -9,13 +9,14 @@
      Recherche SAQ
    </h2>
  </div>
-   <section class="flex flex-col lg:flex-row pb-6 justify-center">
+   <section class="flex flex-col sm:w-[550px] pb-6 justify-center">
 
-     <div class="w-full sm:w-[500px] mb-3">
+     <div class="w-full mb-3">
        <v-recherche :bouteilles="{{ $bouteilles }}"/>
      </div>
-     <div class="w-full sm:w-[500px] flex flex-col">
-       <h5 class="text-secondary font-semibold text-md mb-5 bg-gray-100 rounded-md px-3 py-3">Remplisser le formulaire afin d'ajouter le vin à votre colection </h5>
+     <div class="w-full flex flex-col">
+     <!-- Remplisser le formulaire afin d'ajouter le vin à votre colection -->
+       <h5 class="text-secondary font-semibold text-md mb-5 tracking-wider  bg-gray-100 rounded-md px-3 py-3">Ajouter le vin selectioné à votre colection </h5>
        <div class="mb-2 flex justify-between gap-3">
 
          <div class="w-full mb-3">

@@ -74,7 +74,6 @@ class BouteilleController extends Controller
         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
-        $bouteilleParCellier->utilisateurs_id = $nBouteille->utilisateur_id;
         $bouteilleParCellier->save();
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
