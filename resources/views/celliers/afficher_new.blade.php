@@ -37,9 +37,9 @@
   <div class="conteneur-de-toute-la-page">
     <!-- Rest of the content -->
   </div>
-
+{{-- test --}}
   <div class="container mx-auto py-8 px-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <!-- Rest of the content -->
-  </div>
+</div>
 @endsection
 
