@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
 <div class="flex justify-center mb-7 mt-5">
@@ -9,40 +8,32 @@
         <img src="{{ asset('img/svg/logoWn.svg') }}" alt="logo-wineNot" class="mx-auto" width="120">
       </a>
     </header>
-
-
-    <form method="post" action="{{ route('bouteille.update', ['bouteille' => $bouteille->id]) }}" enctype="multipart/form-data" class="w-full">
-      <!-- ajouter un token pour autoriser la route une seconde fois -->
-      @csrf
-      @method('PUT')
-
-      <div class="w-full mb-5">
-        <label for="nom" class="block text-section_title font-bold mb-2">Nom de la bouteille</label>
-        <input type="text" name="nom" id="nom" value="{{ $bouteille->nom }}" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
+  <div class="bg-gray-100">
+    <div class="container flex items-center justify-between py-2 px-4 mx-auto">
+      <div class="flex items-center">
+        <label for="nom_cellier" class="text-section_title font-bold mr-2"> Nom du Cellier: </label>
+        <span class="text-lg font-bold leading-none sm:text-2xl"> Vaudreuil </span>
+      </div>
+      <div class="flex items-center">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.7349 3.53024H6.72527C4.72124 3.53024 3.71922 3.53024 2.95378 3.92025C2.28048 4.26331 1.73307 4.81072 1.39001 5.48402C1 6.24946 1 7.25148 1 9.25551V19.2747C1 21.2788 1 22.2808 1.39001 23.0462C1.73307 23.7195 2.28048 24.2669 2.95378 24.61C3.71922 25 4.72124 25 6.72527 25H16.7445C18.7485 25 19.7505 25 20.516 24.61C21.1893 24.2669 21.7367 23.7195 22.0798 23.0462C22.4698 22.2808 22.4698 21.2788 22.4698 19.2747V14.2651M8.15656 17.8434H10.1539C10.7374 17.8434 11.0291 17.8434 11.3037 17.7775C11.5471 17.7191 11.7798 17.6227 11.9932 17.4919C12.2339 17.3444 12.4402 17.1381 12.8528 16.7255L24.2589 5.31939C25.247 4.33127 25.247 2.72921 24.2589 1.74109C23.2708 0.752971 21.6687 0.75297 20.6806 1.74109L9.27449 13.1472C8.8619 13.5598 8.65561 13.7661 8.50809 14.0068C8.37729 14.2202 8.28091 14.4529 8.22247 14.6963C8.15656 14.9709 8.15656 15.2626 8.15656 15.8461V17.8434Z" stroke="#ABA08D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
       </div>
 
-      <div class="w-full mb-5">
-        <label for="img" class="block text-section_title font-bold mb-2">Image</label>
-        <div class="block relative w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-          <input id="img" type="file" class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer" name="image">
-          <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
-            <span class="block text-section_title" id="file-name">Choisir une image</span><img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
-          </div>
-        </div>
+      <div class="flex items-center">
+        <label class="cursor-pointer mr-2">
+          <div class="bouton-filtre"> Filtrer </div>
+          <input type="checkbox" name="filtre" class="checkbox-filtre">
+        </label>
       </div>
+    </div>
+  </div>
 
-      <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
-        <div class="w-full mb-3">
-          <label for="date_achat" class="block text-section_title font-bold mb-2">Date d'achat</label>
-          <div class="flex flex-col md:flex-row md:space-x-4">
-            <input type="date" name="date_achat" id="date_achat" value="{{ $bouteille->date_achat }}" placeholder="Date d'achat" class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none" />
-          </div>
-        </div>
-        <div class="w-full mb-3">
-          <label for="date_exp" class="block text-section_title font-bold mb-2">Valide jusqu'à</label>
-          <div class="flex flex-col md:flex-row md:space-x-4">
-            <input type="date" name="garde_jusqua" id="date_exp" value="{{ $bouteille->garde_jusqua }}" placeholder="Valide jusqu'à" class="block w-full py-3 px-3 rounded-md border border-gray-300 placeholder-section_title focus:border-secondary focus:outline-none" />
-          </div>
-        </div>
-      </div>
-      <div class="mb
+  <div class="conteneur-de-toute-la-page">
+    <!-- Rest of the content -->
+  </div>
+
+  <div class="container mx-auto py-8 px-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <!-- Rest of the content -->
+  </div>
+@endsection

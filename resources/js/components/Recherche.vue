@@ -18,17 +18,18 @@
 
     </div>
     <div>
-      <div v-if="selectedVine" class="flex gap-3 bg-gray-100 rounded-md  max-w-[320px] sm:w-[500px] p-2 border-2 border-secondary">
+      <div v-if="selectedVine" class="flex gap-3 bg-gray-100 rounded-md w-full p-2 border-2 border-secondary">
         <header>
           <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none h-[150px]">
         </header>
         <div>
           <h2 class="font-bold text-md text-section_title">{{ this.choixBouteille.nom }}</h2>
-          {{ this.choixBouteille.prix_saq }}
-          <input type="hidden" :value="this.choixBouteille.prix_saq" name="prix_saq">
+          <h3 style="color: var(--color_text)">{{ this.choixBouteille.type }} | {{ this.choixBouteille.format }} | {{ this.choixBouteille.pays }} </h3>
+          
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
