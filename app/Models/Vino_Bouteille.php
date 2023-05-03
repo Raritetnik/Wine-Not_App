@@ -20,6 +20,7 @@ class Vino_Bouteille extends Model
         'url_img',
         'vino_format_id',
         'vino_type_id',
-        'pays_id'
+        'pays_id',
+        'utilisateur_id'
     ];
 }
