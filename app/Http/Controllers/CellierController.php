@@ -140,7 +140,12 @@ class CellierController extends Controller
   // Afficher formulaire de modification des informations de la table vino_celliers
   public function modifier(Vino_Cellier $cellier)
   {
-    return view('celliers.modifier', ['cellier' => $cellier]);
+    // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
+    if($cellier->utilisateurs_id != Auth::user()->id) {
+      return redirect(route('celliers.index'));
+    } else {
+      return view('celliers.modifier', ['cellier' => $cellier]);
+    }
   }
   // Enregistrer dans la bd les modifications de la table vino_celliers
   public function enregistrerModification(Request $request, Vino_Cellier $cellier)
@@ -172,6 +177,10 @@ class CellierController extends Controller
   // Afficher fiche détail de bouteille
   public function afficherFicheBouteille(Vino_Cellier $vino_cellier, Bouteille_Par_Cellier $bouteille_par_cellier)
   {
+    // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
+    if($vino_cellier->utilisateurs_id != Auth::user()->id) {
+      return redirect(route('celliers.index'));
+    }
     // joindre les tables pour avoir info sur la bouteille
     // $bouteille_par_cellier->id est la clé primaire
     $bouteilleDetail = Bouteille_Par_Cellier::select(
