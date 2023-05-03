@@ -11,7 +11,7 @@
           <div class="flex flex-col justify-between">
             <h3 style="color: var(--color_text)">{{ vine.type }} | {{ vine.format }}</h3>
             <h3 style="color: var(--color_text)">{{ vine.pays }}</h3>
-            <h3 style="color: var(--color_text)">$CAD {{ vine.prix_saq }}</h3>
+            <h3 style="color: var(--color_text)">${{ vine.prix_saq }} CAD</h3>
           </div>
           <img class="pe-6 hover:opacity-75" :src="require('/img/svg/select.svg')" alt="select">
         </div>

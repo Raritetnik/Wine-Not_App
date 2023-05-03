@@ -25,7 +25,7 @@
         <div>
           <h2 class="font-bold text-md text-secondary">{{ this.choixBouteille.nom }}</h2>
           <h3 style="color: var(--color_text)">{{ this.choixBouteille.type }} | {{ this.choixBouteille.format }} | {{ this.choixBouteille.pays }} </h3>
-          <h2 class="font-bold text-md text-section_title">$CAD {{ this.choixBouteille.prix_saq }}</h2>
+          <h2 class="font-bold text-md text-section_title">${{ this.choixBouteille.prix_saq }} CAD</h2>
           <input name="prix_saq" type="hidden" :value="this.choixBouteille.prix_saq">
         </div>
       </div>
