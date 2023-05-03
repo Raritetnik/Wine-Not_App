@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Storage;
 
 class WebcamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Affichage de la page avec la camera
      * @return \Illuminate\Http\Response

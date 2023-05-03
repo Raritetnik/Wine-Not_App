@@ -25,8 +25,13 @@ use Illuminate\Support\Facades\DB;
  *
  */
 
-class CellierController
+class CellierController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
 
   // Affichage du ou des celliers appartenant à l'utilisateur qui est inscrit
   // **Ajouter Auth
@@ -212,5 +217,13 @@ class CellierController
       // Rediriger vers la page d'affichage du cellier
       return redirect(route('celliers.afficher', $cellier_id));
   }
+
+  /**
+     * Supprimer la bouteille du cellier
+     */
+    public function supprimerCellier(Request $request)
+    {
+      Bouteille_Par_Cellier::where('vino_cellier_id', $request->CellierID)->delete();
+    }
 }
 
