@@ -40,7 +40,7 @@ class HomeController extends Controller
         // Ajustement des prix de chaque bouteille
         $listeBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->get();
         foreach ($listeBouteilles as $bouteille) {
-          $informations['prixBouteilles'] += $bouteille->prix;
+          $informations['prixBouteilles'] += $bouteille->prix | 0;
         }
       }
       return view('compte', ["utilisateur" =>Auth::user(), 'userInfo' => $informations]);
