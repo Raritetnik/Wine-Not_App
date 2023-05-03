@@ -5,7 +5,7 @@
    @csrf
    @method('PUT')
    <div class="pb-3">
-   <h2 class="text-section_title text-xl font-extrabold">
+   <h2 class="text-accent_wine text-xl font-extrabold">
      Recherche SAQ
    </h2>
  </div>
@@ -59,8 +59,8 @@
            </div>
          </div>
        </div>
-       <div class="mt-7 flex">
-         <button type="submit" class="w-1/2 px-7 py-2.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
+       <div class="mt-5 flex">
+         <button type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
        </div>
      </div>
 
