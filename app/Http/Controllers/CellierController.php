@@ -86,6 +86,12 @@ class CellierController extends Controller
   public function afficher($idCellier)
   {
     $cellier = Vino_Cellier::find($idCellier);
+
+    // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
+    if($cellier->utilisateurs_id != Auth::user()->id) {
+      return redirect(route('celliers.index'));
+    }
+
     $bouteilles = Vino_Bouteille::select(
       'date_achat',
       'garde_jusqua',
@@ -117,10 +123,10 @@ class CellierController extends Controller
       ->where('vino_celliers.id', $idCellier)
       ->get();
 
+
       $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
       $type=Vino_Type::all();
       $pays=Pays::all();
-
       return view('celliers.afficher', ['cellier' => $cellier,
                                         'bouteilles' => $bouteilles,
                                         //'bouteillesJulie' => $bouteilles,
