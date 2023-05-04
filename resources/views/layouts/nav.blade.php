@@ -10,7 +10,7 @@
             @else
               <!-- Favoris Menu -->
               <div class="">
-                <a href="/favoris"><img src="{{ asset('img/svg/like.svg') }}" alt="fav_icon" width="30px"></a>
+                <a href="/favoris"><img src="{{ asset('img/svg/favoris.svg') }}" alt="fav_icon" width="25px"></a>
               </div>
             @endguest
 

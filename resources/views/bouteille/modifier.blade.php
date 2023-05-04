@@ -95,7 +95,7 @@
                 $ Prix
               </label>
               <input 
-                value="{{$bouteille->prix}}"
+                value="{{$bouteille->prix_saq}}"
                 class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none"
                 name="prix_saq" 
                 id="prix" 
@@ -113,13 +113,9 @@
                 name="vino_cellier_id" 
                 id="cellier" 
                 class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-                {{-- @foreach($celliers as $index => $cellier)
-                @if($index === 0) <!-- verifier si index 0, 1er element du array -->
-                <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option>
-                @else
+                @foreach($celliers as $index => $cellier)
                 <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-                @endif
-                @endforeach --}}
+                @endforeach
               </select>
             </div>
             <div class="w-1/2 mb-3">
@@ -133,9 +129,9 @@
                   <option class="text-section_title" value="">
                     Sélectionner Pays
                   </option>
-                {{-- @foreach($pays as $place)
+                @foreach($pays as $place)
                 <option value="{{$place->id}}">{{ $place->pays }}</option>
-                @endforeach --}}
+                @endforeach
               </select>
             </div>
           </div>
@@ -148,10 +144,10 @@
                 name="vino_type_id" 
                 id="type" 
                 class="w-full text-section_title block py-3 px-3 rounded-md bg-transparent bg-gray-50 border border-gray-300 focus:border-secondary focus:outline-none">
-                {{-- <option class="text-section_title" value="">Sélectionner type</option>
+                <option class="text-section_title" value="">Sélectionner type</option>
                 @foreach($types as $type)
                 <option value="{{$type->id}}">{{ $type->type }}</option>
-                @endforeach --}}
+                @endforeach
               </select>
             </div>
             <div class="w-1/2  mb-3">
@@ -162,18 +158,18 @@
                 name="vino_format_id" 
                 id="format" 
                 class="w-full text-section_title block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-                {{-- <option class="text-section_title" value="">Sélectionner Pays</option>
+                <option class="text-section_title" value="">Sélectionner Pays</option>
                 @foreach($formats as $format)
                 <option value="{{$format->id}}">{{ $format->format }}</option>
-                @endforeach --}}
+                @endforeach
               </select>
             </div>
           </div>
           <div class="mt-7 flex">
-            <button type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out">Ajouter</button>
+            <input type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out" value="Modifier">
           </div>
           <small >
-            <a href="/login" style="color: #67375C">Previous</a>
+            {{-- <a href="/login" style="color: #67375C">Previous</a> --}}
           </small>
     
         </form>

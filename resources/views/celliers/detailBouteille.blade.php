@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="px-4 py-7 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+<div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <!-- Fiche Detaile Bouteille -->
 
     <div class="max-w-screen-lg flex justify-between items-center gap-3 px-3 mx-auto">
@@ -81,8 +81,14 @@
                     </div>
                 </div>
                 <div class="flex flex-row items-center self-center pt-5 pb-4 ps-5 gap-10 mt-auto">
-                    <a href="#" class="transition-opacity  duration-300 hover:opacity-75"><img src="{{asset('img/svg/edit.svg')}}" alt="delete"></a>
-                    <a href="#" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/trash.svg')}}" alt="delete"></a>
+                    <!--<a href="#" class="transition-opacity  duration-300 hover:opacity-75"><img src="{{asset('img/svg/edit.svg')}}" alt="edit"></a>-->
+                    <form action="{{ route('supprimer.bouteille') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="BouteilleID" value="{{ $bouteille->id }}">
+                        <input type="hidden" name="redirect" value="true">
+                        <button type="submit" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/trash.svg')}}" alt="delete"></button>
+                    </form>
                 </div>
 
 

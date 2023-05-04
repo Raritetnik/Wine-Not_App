@@ -1,7 +1,7 @@
 <template>
-    <article class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between w-[400px] sm:w-[500px]">
+    <article class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
         <header class="flex items-start relative">
-            <img :src="require('/img/svg/close.svg')" width="20" @click="supprimer()" class="absolute" alt="close">
+            <img :src="require('/img/svg/close.svg')" width="25" @click="supprimer()" class="relative" alt="close">
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
         </header>
         <div class="desc flex flex-col justify-between">
@@ -16,14 +16,14 @@
         </div>
         <footer>
             <div class="flex justify-end items-start gap-2">
-                <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
+                <!--<img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">-->
                 <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
             </div>
             <div class="flex justify-between items-end">
-                <p @click="changeBottle()" class="ml-auto mt-16">
+                <!--<p @click="changeBottle()" class="ml-auto mt-16">
                     <img v-if="!this.estVide" :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
                     <img v-if="this.estVide" :src="require('/img/svg/empty_bottle.svg')" style="height: 50px;" height="30" alt="">
-                </p>
+                </p>-->
             </div>
         </footer>
     </article>

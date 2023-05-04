@@ -10,13 +10,13 @@
         <input type="checkbox" name="filtre" class="checkbox-filtre">
     </label>
 </div>-->
-<div class="container mx-auto py-8 px-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+<div class="container mx-auto pb-8 pt-2 px-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <div>
       <div class="bg-gray-100 mx-auto flex gap-1 border px-4 py-3 rounded-md justify-between w-[400px] sm:w-[500px]">
         <!-- Nom du cellier -->
         <div class="flex">
-          <div class="text-section_title sm:text-xl font-bold mr-3"> Cellier: </div>
-          <span class="text-lg font-bold leading-none sm:text-xl md:container md:mx-auto"> {{$cellier->nom}} </span>
+          <div class="text-section_title text-lg font-bold mr-3"> Cellier: </div>
+          <span class="text-md font-bold sm:text-xl md:container md:mx-auto"> {{$cellier->nom}} </span>
           <span class="mr-12"></span>
         </div>
         <div class="container flex ml-auto">
@@ -91,7 +91,7 @@
   </div> -->
   <!--<section class="px-6 flex flex-col items-center">
     @foreach ($bouteilles as $bouteille)
-     carte 
+     carte
     <div class="mb-2">
         <v-bouteille :bouteille="{{ $bouteille }}" :liste="{{ $liste }}"/>
     </div>
