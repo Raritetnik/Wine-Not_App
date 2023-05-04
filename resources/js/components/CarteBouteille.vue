@@ -3,7 +3,7 @@
         <header class="flex items-start relative">
             <button data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                 <!--<button id="open_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img :src="require('/img/svg/trash.svg')" alt="delete"></button>-->
-                <img id="open_popup-modal" :src="require('/img/svg/close.svg')" width="25" class="relative" alt="close">
+                <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close">
             </button>
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
         </header>
