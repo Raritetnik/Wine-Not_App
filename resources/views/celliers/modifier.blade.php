@@ -33,7 +33,7 @@
         </label>
         <textarea class="w-full h-full items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine focus:shadow-outline" id="description" name="description" type="text" placeholder="Ajouter un descriptif pour ce cellier">{{$cellier->description}}</textarea>
       </div>
-      <div class="cellier-img">
+      <!--<div class="cellier-img">
         <label>
           <input type="radio" name="image" value="img/celliers/cellierCaveVinMontWashington.webp">
           <img src="{{url('img/celliers/cellierCaveVinMontWashington.webp')}}">
@@ -94,7 +94,7 @@
           <input type="radio" name="image" value="img/celliers/cellier_bois_chateau.jpeg">
           <img src="{{url('img/celliers/cellier_bois_chateau.jpeg')}}">
         </label>
-      </div>
+      </div>-->
       <div class="mb-4 py-4 text-center">
         <input value = "Modifier" class="bg-accent_wine hover:accent_wine-80 text-main font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline" type="submit" placeholder="Créer le cellier">
         </input>

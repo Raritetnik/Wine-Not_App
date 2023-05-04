@@ -14,12 +14,17 @@
                 <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" />
             </footer>
         </div>
-        <footer class="flex flex-col justify-between items-end">
-            <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
-            <p @click="changeBottle()">
-                <img v-if="!this.estVide" :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
-                <img v-if="this.estVide" :src="require('/img/svg/empty_bottle.svg')" style="height: 50px;" height="30" alt="">
-            </p>
+        <footer>
+            <div class="flex justify-end items-start gap-2">
+                <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.id)" class="hover:cursor-pointer" alt="modify">
+                <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
+            </div>
+            <div class="flex justify-between items-end">
+                <p @click="changeBottle()" class="ml-auto mt-16">
+                    <img v-if="!this.estVide" :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
+                    <img v-if="this.estVide" :src="require('/img/svg/empty_bottle.svg')" style="height: 50px;" height="30" alt="">
+                </p>
+            </div>
         </footer>
     </article>
 </template>
@@ -60,6 +65,10 @@ export default {
         redirection(bouteille) {
             // rediriger en passant le id de la bouteille qui vient du @click sur la carte
             location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;
+        },
+        modifier(bouteille) {
+            // rediriger vers le form de modification en passant le id de la bouteille au moment du @click sur l'icone modifier
+            location.href = `${window.location.pathname}/modifier-bouteille/${idbouteille}`;
         },
     },
 
