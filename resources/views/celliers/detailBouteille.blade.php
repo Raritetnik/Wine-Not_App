@@ -10,10 +10,10 @@
     </div>
     <div class="max-w-screen-lg mx-auto rounded-lg overflow-hidden mt-6 mb-7 px-3">
 
-        <div class="rounded-lg flex flex-col md:flex-row mb-2">
+        <div class="rounded-lg flex flex-col md:flex-row items-center mb-2">
 
             <div class="md:rounded-l-lg md:rounded-tr-none flex-shrink-0 md:w-1/2">
-                <img src="{{ explode("?",$bouteille->url_img)[0] }}" class="object-cover mx-auto h-1/2 md:h-full mt-2 p-3" alt="bouteil de vin">
+                <img src="{{ explode("?",$bouteille->url_img)[0] }}" class="object-cover mx-auto max-h-[500px] h-full mt-2 p-3" alt="bouteil de vin">
             </div>
 
             <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
