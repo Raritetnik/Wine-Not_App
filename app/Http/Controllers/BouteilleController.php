@@ -51,7 +51,7 @@ class BouteilleController extends Controller
     public function insererBouteille(Request $request)
     {
         $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
-  
+
         $request->validate([
             'nom' => 'required|min:5|max:100',
             'qty' => 'required|integer|min:1',
@@ -59,7 +59,7 @@ class BouteilleController extends Controller
             'image' => 'image|mimes:jpeg,png|max:2048',
             'vino_cellier_id' => 'required|integer|min:1'
         ]);
-       
+
         $path = $request->file('image')->store('uploads', 'public');
 
         $nBouteille = new Vino_Bouteille();
@@ -82,30 +82,30 @@ class BouteilleController extends Controller
         $bouteilleParCellier->save();
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
-    
+
     }
-        
-      
 
-       
 
-       
 
-        
-        
-         
 
-    
-    
+
+
+
+
+
+
+
+
+
 
     public function rechercheBouteille(Request $request)
 
     {
-       
+
         $request->validate([
-           
+
             'quantite' => 'required|integer|min:1',
-            
+
         ]);
 
         $celliers = auth()->user()->celliers;
@@ -270,8 +270,7 @@ class BouteilleController extends Controller
                                             'celliers' => $celliers]);
     }
     
-    public function enregistrerModifierBouteille(Request $request, Vino_Bouteille $idBouteille){
-        return $request;
+    public function enregistrerModifierBouteille(Vino_Bouteille $idBouteille){
         $bouteilleModifie = Bouteille_Par_Cellier::select()
         ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
         ->where('vino_bouteilles.id', $idBouteille)
@@ -287,5 +286,8 @@ class BouteilleController extends Controller
     public function supprimerBouteille(Request $request)
     {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
+        if($request->redirect) {
+            return redirect('/celliers');
+        }
     }
 }
