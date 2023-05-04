@@ -176,3 +176,7 @@ select.formbold-form-input,
 
   margin-bottom: 0.5rem;
 }
+
+.border-error {
+  border: #67375C 2px solid;
+}

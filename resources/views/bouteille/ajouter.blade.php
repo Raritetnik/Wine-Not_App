@@ -8,6 +8,17 @@
     <a id="btn-form" class="transition-all duration-300 ease-in-out items-center flex justify-center cursor-pointer   min-w-[34px] hover:opacity-80 text-main text-5xl"><img id="plus" src="{{asset('img/svg/plus-form.svg')}}" alt="add-button"></a>
   </div>
 </div>
+@if ($errors->any())
+    <div class="bg-gray-100 border border-accent_wine text-accent_wine px-4 py-3 rounded mt-5 max-w-[550px] mx-auto" role="alert">
+        <ul class="list-disc list-inside">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+
+    </div>
+@endif
+
 <div class="flex flex-col justify-center mb-7 mt-4 w-full">
   <!-- formulaire personnel -->
   @include('bouteille.bouteille_ext')

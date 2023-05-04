@@ -12,6 +12,8 @@ use App\Models\Vino_Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class BouteilleController extends Controller
 {
     /**
@@ -44,15 +46,16 @@ class BouteilleController extends Controller
 
     public function insererBouteille(Request $request)
     {
-
+        $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+  
         $request->validate([
             'nom' => 'required|min:5|max:100',
-            'date_achat' => 'required|date',
-            'quantite' => 'required|integer|min:1',
-            'prix_saq' => 'required|numeric|min:0',
+            'qty' => 'required|integer|min:1',
+            'prix_saq' => 'min:0',
             'image' => 'image|mimes:jpeg,png|max:2048',
             'vino_cellier_id' => 'required|integer|min:1'
         ]);
+       
         $path = $request->file('image')->store('uploads', 'public');
 
         $nBouteille = new Vino_Bouteille();
@@ -65,10 +68,8 @@ class BouteilleController extends Controller
         $nBouteille->utilisateur_id = Auth::id();
         $nBouteille->save();
 
-        $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
-
         $bouteilleParCellier = new Bouteille_Par_Cellier();
-        $bouteilleParCellier->quantite = $request->quantite;
+        $bouteilleParCellier->quantite = $request->qty;
         $bouteilleParCellier->date_achat = $dateAchat;
         $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
@@ -77,13 +78,32 @@ class BouteilleController extends Controller
         $bouteilleParCellier->save();
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
+    
     }
+        
+      
 
+       
+
+       
+
+        
+        
+         
+
+    
+    
 
     public function rechercheBouteille(Request $request)
     
     {
        
+        $request->validate([
+           
+            'quantite' => 'required|integer|min:1',
+            
+        ]);
+
         $celliers = auth()->user()->celliers;
 
         $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())

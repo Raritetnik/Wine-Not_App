@@ -1,7 +1,7 @@
 <nav id="main-nav" class="lg:bg-gray-50 lg:shadow-sm md:bg-transparent md:shadow-none py-1 relative">
     <!-- Logo -->
     <div class="absolute z-20 left-5">
-        <a href="/"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
+        <a href="{{ route('home') }}"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
     </div>
 
     <div class="relative flex h-[70px] items-center justify-end lg:hidden">

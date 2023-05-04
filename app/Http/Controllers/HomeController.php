@@ -19,12 +19,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('auth.login');
     }
 
     public function testPage()
     {
       return view('test');
+    }
+
+    public function home(){
+      return view('home');
     }
 
     /**

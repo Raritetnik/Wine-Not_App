@@ -5,18 +5,18 @@
    @csrf
    @method('PUT')
    <div class="pb-3">
-   <h2 class="text-accent_wine text-xl font-extrabold">
-     Recherche SAQ
-   </h2>
- </div>
+     <h2 class="text-accent_wine text-xl font-extrabold">
+       Recherche SAQ
+     </h2>
+   </div>
    <section class="flex flex-col sm:w-[550px] pb-6 justify-center">
 
      <div class="w-full mb-3">
-       <v-recherche :bouteilles="{{ $bouteilles }}"/>
+       <v-recherche :bouteilles="{{ $bouteilles }}" />
      </div>
      <div class="w-full flex flex-col">
-     <!-- Remplisser le formulaire afin d'ajouter le vin à votre colection -->
-       <h5 class="text-secondary font-semibold text-md mb-5 tracking-wider  bg-gray-100 rounded-md px-3 py-3">Ajouter le vin selectioné à votre colection </h5>
+       <!-- Remplisser le formulaire afin d'ajouter le vin à votre colection -->
+       <h5 class="text-secondary font-semibold text-md mb-5 tracking-wider">Ajouter le vin sélectionné à votre collection</h5>
        <div class="mb-2 flex justify-between gap-3">
 
          <div class="w-full mb-3">
@@ -32,13 +32,14 @@
              @endforeach
            </select>
          </div>
-    
+
        </div>
        <div class="mb-2 flex justify-between gap-3">
          <div class="w-1/2 mb-3">
-           <label for="quantite" class="block text-section_title font-bold mb-2">Quantité</label>
-           <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="quantite" id="quantite" min="1" placeholder="Quantité de bouteilles">
+           <label for="quantite" class="block text-section_title font-bold mb-2">Quantité<b class="text-accent_wine"> *</b></label>
+           <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('quantite') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité de bouteilles" value="{{ old('quantite') }}" required>
            </input>
+
          </div>
          <div class="w-1/2 mb-3">
            <label for="millesime" class="block text-section_title font-bold mb-2">Millésime</label>
