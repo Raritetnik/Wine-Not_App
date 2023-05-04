@@ -28,9 +28,6 @@ btnMobileMenu.addEventListener('click', () =>{
 })
 
 
-
-  
-
 // Close mobile menu when link is clicked
 const mobileMenuLinks = document.querySelectorAll("#mobile-menu a");
 
@@ -38,7 +35,10 @@ mobileMenuLinks.forEach(function (link) {
   link.addEventListener("click", function () {
     mobileMenu.classList.add("hidden");
   });
+
 });
+  
+
 
 
 // afficher le nom d'une image choisi
