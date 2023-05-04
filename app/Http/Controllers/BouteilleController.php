@@ -278,10 +278,10 @@ class BouteilleController extends Controller
             'quantite_max' => $request->quantite_max,
             'description' => $request->description,
             'image' => $request->image,
-            'utilisateur_id' => $user_id,
+            //'utilisateur_id' => $user_id,
           ]);
-          // rediriger vers la route précédente
-          return redirect(url()->previous())->withSuccess('Information mise à jour.');
+        // rediriger vers la page précédente avec un message de succès
+        return back()->withSuccess('Information mise à jour.');
     }
 
     /**
