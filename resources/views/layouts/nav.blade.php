@@ -6,10 +6,13 @@
 
     <div class="relative flex h-[70px] items-center justify-end lg:hidden">
         <div class="flex justify-between items-center absolute z-20 right-5 gap-8">
-            <!-- Favoris Menu -->
-            <div class="">
+            @guest
+            @else
+              <!-- Favoris Menu -->
+              <div class="">
                 <a href="/favoris"><img src="{{ asset('img/svg/like.svg') }}" alt="fav_icon" width="30px"></a>
-            </div>
+              </div>
+            @endguest
 
             <!-- Burger Menu -->
             <div class="flex items-center">
