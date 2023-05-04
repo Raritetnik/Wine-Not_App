@@ -20,7 +20,7 @@
       Ajouter un cellier
     </a>
   </div>
-  <div class="p-4 bg-white rounded shadow-md lg:max-w-xl">
+  <!--<div class="p-4 bg-white rounded shadow-md lg:max-w-xl">
       <div class="flex items-center mb-5 md:mb-6 group">
         <quote class="font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl">
           <span class="inline-block mb-2">"Je boirai du lait<br class="hidden md:block" />
@@ -28,7 +28,7 @@
           <div class="h-1 ml-auto duration-300 origin-left transform bg-deep-purple-accent-400 scale-x-30 group-hover:scale-x-100"></div>
         </quote>
       </div>
-    </div>
+    </div>-->
 </div>
 
 
