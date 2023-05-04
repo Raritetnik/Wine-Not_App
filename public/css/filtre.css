@@ -1,77 +1,92 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 html,
 body {
-margin: 0;
-padding: 0;
-overflow-x: hidden;
-font-family: Roboto;
-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Roboto;
+    height: 100%;
 }
 
 .cacher {
-display: none;
-transform: translateY(-100%);
-z-index: -1;
-transition: transform 1000ms ease-in-out;
+    display: none;
+    transform: translateY(-100%);
+    z-index: -1;
+    transition: transform 1000ms ease-in-out;
 
 }
 
 /* ne pas avoir de marges */
 .conteneur-nav .menu-deroulant {
-/*margin-top: 1.85rem;*/
-/* margin-block-start: 0;*/
-margin-right: 0;
-margin-bottom: 0;
-margin-left: 0;
-padding: 0;
-list-style: none;
+    /*margin-top: 1.85rem;*/
+    /* margin-block-start: 0;*/
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: 0;
+    list-style: none;
 }
+
 .conteneur-nav li {
-position: relative;
-clear: both;
-width: 100%;
-padding: 0;
-transition: background 400ms;
+    position: relative;
+    clear: both;
+    width: 100%;
+    padding: 0;
+    transition: background 400ms;
 }
+
 .conteneur-nav li a,
 .conteneur-nav li .span {
-display: flex;
-padding-top: 2vh;
-padding-bottom: 2vh;
+    display: flex;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
+
 .conteneur-nav a,
 .conteneur-nav .span {
-align-items: center;
-width: 100%;
-color: black;
-text-decoration: none;
-transition: color 400ms;
+    align-items: center;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    transition: color 400ms;
 }
+
 .conteneur-nav a span {
-position: relative;
-display: block;
-z-index: 0;
-font-family: Roboto;
-text-indent: -20em;
-white-space: nowrap;
-transition: text-indent 400ms ease-in-out;
+    position: relative;
+    display: block;
+    z-index: 0;
+    font-family: Roboto;
+    text-indent: -20em;
+    white-space: nowrap;
+    transition: text-indent 400ms ease-in-out;
 }
-.liste-choix li{
+
+.liste-choix li {
     list-style-type: none;
 }
 
 @media screen and (max: 768px) {
-.conteneur-nav .menu-deroulant {
-    margin-top: 0.23125rem;
-}
+    .conteneur-nav .menu-deroulant {
+        margin-top: 0.23125rem;
+    }
 
 }
+
 /*----- Déclencheur pour ouvrir filtres ------- */
 input[type="checkbox"].checkbox-filtre {
     position: relative;
     z-index: 999;
     display: none;
 }
+
+.conteneur-filtre input[type="checkbox"]:checked {
+    accent-color: #67375C;
+}
+
+/*
+remplacé par l'icône de Lidia
+
 .bouton-filtre {
     padding: 0 1.5rem;
     border-radius: 0.25rem;
@@ -95,9 +110,12 @@ input[type="checkbox"].checkbox-filtre {
     border: 1px solid rgb(103 55 92);
     color: white;
 }
-.filtrer-cartes{
+*/
+.filtrer-cartes {
+    /* 
+    enlever temporairement pour remplacé par Lidia
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;*/
     max-width: max-content;
     padding-top: 0;
 }
@@ -105,22 +123,24 @@ input[type="checkbox"].checkbox-filtre {
 /* -------- Ouverture menu de filtre -------- */
 /* ----- description initiale -------*/
 .conteneur-filtre {
-position: fixed;
-top: 0;
-left: -400px;
-width: 400px;
-height: 100%;
-overflow: scroll;
-z-index: 1;
-background: white;
-transition-duration: 200ms;
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    overflow: scroll;
+    z-index: 9999;
+    background: white;
+    transition-duration: 200ms;
 }
+
 .conteneur-filtre.active {
-transition-duration: 400ms;
-left: 0px;
-width: 436px;
-height: 100%;
+    transition-duration: 400ms;
+    left: 0px;
+    width: 436px;
+    height: 100%;
 }
+
 /* si on veut enlever le mouvement de l'image */
 /*.conteneur-filtre:hover + .conteneur-de-toute-la-page {
 transform: translateX(336px);
@@ -129,25 +149,28 @@ opacity: 0.4;
 }*/
 
 @media screen and (max: 768px) {
-.conteneur-filtre {
-    width: 70px;
-    padding: 0 0.925rem;
-}
-.conteneur-filtre .conteneur-nav {
-    padding-left: 7px;
-}
-.conteneur-filtre.active .conteneur-nav .span {
-    text-indent: 1em;
-}
+    .conteneur-filtre {
+        width: 70px;
+        padding: 0 0.925rem;
+    }
+
+    .conteneur-filtre .conteneur-nav {
+        padding-left: 7px;
+    }
+
+    .conteneur-filtre.active .conteneur-nav .span {
+        text-indent: 1em;
+    }
 }
 
 .conteneur-de-toute-la-page {
-transition: transform 400ms, opacity 400ms;
+    transition: transform 400ms, opacity 400ms;
 }
+
 @media screen and (max: 480px) {
-.conteneur-de-toute-la-page {
-    padding-left: 70px;
-}
+    .conteneur-de-toute-la-page {
+        padding-left: 70px;
+    }
 }
 
 
@@ -164,25 +187,30 @@ N.B. Code modifié
 
 .menu-lateral h3 {
     font-weight: 1000;
-    font-size: 1.7rem; /* 2.5rem; */
+    font-size: 1.5rem;
+    /* 2.5rem; */
     margin: 0rem 0 0.25rem 0;
-    color: black; /* #3b3b3b; */
+    color: black;
+    /* #3b3b3b; */
     letter-spacing: -0.02em;
 }
+
 .menu-lateral .menu-deroulant {
     list-style: none;
 }
 
 @media (min-width: 36em) {
-    .menu-lateral .menu-deroulant{
-    width: 360px;
+    .menu-lateral .menu-deroulant {
+        width: 360px;
     }
 }
+
 /* ---- Accordeon -----*/
 
-.invisible{
+.invisible {
     display: none;
 }
+
 .menu-lateral input {
     width: 1.25rem;
     height: 1.25rem;
@@ -192,20 +220,26 @@ N.B. Code modifié
     position: absolute;
     top: 45%;
     transform: translateY(-50%);
-    left: 1rem; /* text-indent de chaque ligne */
+    left: 1rem;
+    /* text-indent de chaque ligne */
     outline: none;
 }
+
 .menu-lateral input:after:checked {
     background-color: rgb(103 55 92);
     border-color: rgb(103 55 92);
 }
-.menu-lateral input:checked + label{
-    color: rgb(97 97 97); /*#b3b3b3; */
+
+.menu-lateral input:checked+label {
+    color: rgb(97 97 97);
+    /*#b3b3b3; */
     font-weight: 500;
-    background-color: rgb(238 238 238); /*#f7f7f7;*/
+    background-color: rgb(245 245 245);
+    /*#f7f7f7;*/
 }
 
-.menu-lateral input:checked:focus, input:checked:hover {
+.menu-lateral input:checked:focus,
+input:checked:hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     /*border-color: rgba(99, 99, 99, 0.2);*/
 }
@@ -222,10 +256,13 @@ N.B. Code modifié
     background-repeat: no-repeat;
     background-position: center;
 }
-.menu-lateral input:focus, input:hover {
+
+.menu-lateral input:focus,
+input:hover {
     box-shadow: 0 0 0 3px #ebebeb;
     border-color: #8c8c8c;
 }
+
 .menu-lateral label {
     padding: 1.5rem 1rem 1.5rem calc(1.2rem * 2.25);
     display: inline-block;
@@ -234,28 +271,36 @@ N.B. Code modifié
     user-select: none;
     border-bottom: 2px solid #ededed;
     cursor: pointer;
+    color: grey;
 }
+
 .menu-lateral div {
     padding: 0rem 1rem 0rem 0;
 }
-.menu-lateral div>span{
+
+.menu-lateral div>span {
     display: inline;
     vertical-align: middle;
 }
+
 .menu-lateral label:hover {
     border-bottom-color: #adadad;
 }
+
 .menu-deroulant {
     background-color: white;
     margin: 0 30px 30px 35px;
     z-index: 10;
 }
+
 .label-categorie {
     font-weight: bold;
 }
+
 .label-categorie h3 {
     display: inline-flex;
 }
+
 .fermer {
     position: sticky;
     right: 20px;
@@ -263,32 +308,59 @@ N.B. Code modifié
     left: 380px;
     z-index: 999;
 }
+
 .material-symbols-outlined:where(.fermer) {
-    font-size : 3rem;
+    font-size: 3rem;
 }
+
 .material-symbols-outlined:where(:not(.fermer)) {
-    font-size : 3rem;
+    font-size: 3rem;
 }
+
 /* Hide the scrollbar in webkit-based and Firefox browsers */
 ::-webkit-scrollbar {
-display: none;
+    display: none;
 }
 
 /* Hide the scrollbar in Firefox */
-html .conteneur-filtre{
-scrollbar-width: none;
+html .conteneur-filtre {
+    scrollbar-width: none;
 }
-ul.liste-choix{
+
+ul.liste-choix {
     margin-block-start: 0;
     padding-inline-start: 0;
 }
+
 .label-categorie {
     padding-top: 30px;
 }
+
 .label-categorie {
     margin-top: 30px;
 }
 
 .hover-carte {
     cursor: pointer;
+}
+
+.conteneur-filtre h3,
+.conteneur-filtre .material-symbols-outlined:not(.fermer) {
+    color: #67375C;
+    cursor: pointer;
+}
+
+.label-categorie:hover h3,
+.label-categorie:hover .material-symbols-outlined {
+    color: #909090;
+    cursor: pointer;
+}
+
+.conteneur-filtre .material-symbols-outlined.fermer {
+    color: #909090;
+    cursor: pointer;
+}
+
+.conteneur-filtre .material-symbols-outlined.fermer:hover {
+    color: #67375C;
 }
