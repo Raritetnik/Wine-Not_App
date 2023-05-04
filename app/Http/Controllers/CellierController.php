@@ -185,7 +185,8 @@ class CellierController
       'pays_id',
       'pays',
       'format',
-      'type'
+      'type',
+      'vino_celliers.nom AS cellier'
     )
     ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
     ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')

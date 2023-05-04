@@ -13,20 +13,21 @@
 
             <div class="rounded-lg flex flex-col md:flex-row mb-2">
 
-                <div class="bg-gray-50 md:rounded-l-lg md:rounded-tr-none flex-shrink-0 md:w-1/2">
-                    <img src="{{ $bouteille->url_img }}" class="object-cover mx-auto max-h-[500px] md:h-full mt-2 p-3" alt="bouteil de vin">
+                <div class="md:rounded-l-lg flex justify-center self-center md:rounded-tr-none flex-shrink-0 md:w-1/2">
+                    <img src="{{ $bouteille->url_img }}" class="object-cover mx-auto max-h-[300px] md:h-auto mt-2 p-3" alt="bouteil de vin">
                 </div>
-                <div class="bg-box_color rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
+                <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
                     <div class="p-5">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-m font-semibold text-section_title">Cellier: </span>
-                            <span class="text-m font-semibold text-section_title">Date d'ajout: <span class="text-article_title text-lg font-medium">{{$bouteille->date_achat ?? ''}}</span></span>
+                        <div class="flex items-center justify-between mb-3 gap-3 w-full">
+                            <label class="text-m font-semibold text-section_title">Cellier:
+                                <input type="text" name="" value="{{$bouteille->cellier}}" class="text-article_title text-lg font-medium w-1/2 min-w-[150px] bg-transparent" /></label>
+                            <label class="text-m font-semibold text-section_title">Date d'ajout: <input type="text" class="text-article_title text-lg font-medium w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->date_achat ?? ''}}"/></label>
                         </div>
                         <!-- <h5 class="sm:text-2xl text-article_title text-xl font-bold leading-6 mb-4">{{$bouteille -> nom}}</h5> -->
 
                         <div class="flex flex-col gap-4">
                             <div class="py-4 flex justify-start gap-5 items-center">
-                                <span class="text-m text-section_title font-semibold">Quantité</span>
+                                <label class="text-m text-section_title font-semibold">Quantité</label>
                                 <!-- Compteur -->
                                 <!-- ici va le compteur -->
                                 <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" />
@@ -34,37 +35,37 @@
                                 <!-- end Comteur -->
 
                             </div>
-                            <div class="flex justify-between pb-4 items-center">
-                                <div class="flex gap-3 flex-wrap items-center">
-                                    <span class="text-m text-section_title font-semibold">Prix de Bouteille</span>
-                                    <span class="text-article_title text-lg">${{$bouteille ->prix_saq}}</span>
+                            <div class="flex justify-between gap-3 pb-4 items-center w-full">
+                                <div class="flex gap-2 flex-wrap items-center">
+                                    <label for="prix" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Prix de Bouteille</label>
+                                    <input type="text" name="prix_saq" id="prix" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="${{$bouteille ->prix_saq}}"/>
                                 </div>
 
-                                <div class="flex flex-wrap gap-3 items-center">
-                                    <span class="text-m text-section_title font-semibold">Valeur Total</span>
-                                    <span class="text-article_title text-lg">${{$bouteille->total}}</span>
+                                <div class="flex flex-wrap gap-2 items-center">
+                                    <label for="total" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Valeur Total</label>
+                                    <input type="text" name="total" id="total" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="${{$bouteille->total}}"/>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center pb-4">
-                                <div class="flex flex-wrap gap-3 items-center">
-                                    <span class="text-m text-section_title font-semibold">Pays</span>
-                                    <span class="text-article_title text-lg">{{$bouteille->pays}}</span>
+                            <div class="flex justify-between items-center gap-3 pb-4 w-full">
+                                <div class="flex flex-wrap gap-2 items-center">
+                                    <label for="pays" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Pays</label>
+                                    <input type="text" name="pays" id="pays" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->pays}}"/>
                                 </div>
 
-                                <div class="flex flex-wrap gap-3 items-center">
-                                    <span class="text-m text-section_title font-semibold">Volume</span>
-                                    <span class="text-article_title text-lg">{{$bouteille->format}}</span>
+                                <div class="flex flex-wrap gap-2 items-center">
+                                    <label for="format" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Volume</label>
+                                    <input type="text" name="format" id="format" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->format}}"/>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center pb-4">
-                                <div class="flex flex-wrap gap-3 items-center">
-                                    <span class="text-m text-section_title font-semibold">Type</span>
-                                    <span class="text-article_title text-lg">{{$bouteille->type}}</span>
+                            <div class="flex justify-between items-center pb-4 gap-3 w-full">
+                                <div class="flex flex-wrap gap-2 items-center">
+                                    <label for="type" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Type</label>
+                                    <input type="text" name="type" id="type" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->type}}"/>
                                 </div>
 
-                                <div class="flex flex-wrap gap-3 items-center">
-                                    <span class="text-m text-section_title font-semibold">Millésime</span>
-                                    <span class="text-article_title text-lg">{{$bouteille->millesime}}</span>
+                                <div class="flex flex-wrap gap-2 items-center">
+                                    <label for="annee" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Millésime</label>
+                                    <input type="text" name="millesime" id="annee" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->millesime}}"/>
                                 </div>
                             </div>
                          
@@ -80,8 +81,8 @@
                         </div>
                     </div>
                     <div class="flex flex-row items-center self-center pt-5 pb-4 ps-5 gap-10 mt-auto">
-                        <a href="#" class="inline-block border border-accent_wine font-semibold text-accent_wine px-4 py-2 rounded hover:bg-accent_wine  hover:text-main transition-colors duration-300">Déplacer</a>
-                        <a href="#" class="inline-block border border-accent_wine  text-accent_wine font-semibold px-4 py-2 rounded  hover:bg-accent_wine hover:text-main transition-colors duration-300">Supprimer</a>
+                        <a href="#" class="transition-opacity  duration-300 hover:opacity-75"><img src="{{asset('img/svg/edit.svg')}}" alt="delete"></a>
+                        <a href="#" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/trash.svg')}}" alt="delete"></a>
                     </div>
 
 
