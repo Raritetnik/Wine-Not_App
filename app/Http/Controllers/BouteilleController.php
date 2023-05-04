@@ -249,7 +249,7 @@ class BouteilleController extends Controller
             'pays',
             'format',
             'type',
-            'vino_celliers.nom AS celliers_nom'
+            'vino_celliers.nom AS cellier_nom'
           )
         ->join('bouteille_par_celliers', 'vino_bouteilles.id','bouteille_par_celliers.vino_bouteille_id')
         ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id')
