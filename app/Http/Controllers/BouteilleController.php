@@ -223,7 +223,51 @@ class BouteilleController extends Controller
 
     public function modifierBouteille(Vino_Bouteille $idBouteille)
     {
-        return view('bouteille.modifier', ['bouteille' => $idBouteille]);
+
+        $bouteilleModifie = Vino_Bouteille::select(
+            '*',
+            'bouteille_par_celliers.id AS id',
+            'vino_cellier_id',
+            'vino_bouteilles.id AS vino_bouteille_id',
+            'date_achat',
+            'garde_jusqua',
+            'prix AS prixPaye',
+            'quantite AS quantiteBouteille',
+            'millesime',
+            'vino_bouteilles.nom AS nom',
+            'vino_bouteilles.image AS image',
+            'code_saq',
+            'vino_bouteilles.description AS description',
+            'prix_saq',
+            'url_saq',
+            'url_img',
+            'vino_format_id',
+            'vino_formats.format',
+            'vino_type_id',
+            'vino_types.type',
+            'pays_id',
+            'pays',
+            'format',
+            'type',
+            'vino_celliers.nom AS cellier_nom'
+          )
+        ->join('bouteille_par_celliers', 'vino_bouteilles.id','bouteille_par_celliers.vino_bouteille_id')
+        ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id')
+        ->join('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
+        ->join('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
+        ->join('pays', 'pays.id', 'vino_bouteilles.pays_id')
+        ->where('vino_bouteilles.id', $idBouteille->id)
+        ->get();
+        $pays = Pays::all();
+        $types= Vino_type::all();
+        $formats= Vino_format::all();
+        $celliers = Vino_cellier::all();
+        // passer en paramètre l'objet de bouteille à modifier et les autres tables pour les menus déroulants
+        return view('bouteille.modifier', ['bouteille' => $bouteilleModifie[0],
+                                            'types'=>$types,
+                                            'formats' => $formats,
+                                            'pays' => $pays,
+                                            'celliers' => $celliers]);
     }
 
     public function enregistrerModifierBouteille(Vino_Bouteille $idBouteille){
