@@ -6,8 +6,8 @@ const logoWn = document.querySelector("#logo");
 // const mainNav = document.querySelector("#main-nav");
 
 btnMobileMenu.addEventListener("click", function () {
-  
-  
+
+
   mobileMenu.classList.toggle("hidden");
   if (!mobileMenu.classList.contains("hidden")) {
     logoWn.style.opacity = 0;
@@ -15,7 +15,7 @@ btnMobileMenu.addEventListener("click", function () {
     logoWn.style.opacity = 1;
   }
 });
-  
+
 
 // Close mobile menu when link is clicked
 const mobileMenuLinks = document.querySelectorAll("#mobile-menu a");
@@ -33,8 +33,8 @@ document.getElementById('img').addEventListener('change', function() {
   document.getElementById('file-name').textContent = file_name;
 });
 
-
-// control affichage de formulaires bouteille  
+/*
+// control affichage de formulaires bouteille
 const formSAQ = document.querySelector('#form-saq');
 const formPersonal = document.querySelector('#form-personal');
 const btnForm = document.querySelector('#btn-form');
@@ -49,8 +49,8 @@ btnForm.addEventListener('click', () => {
   formSAQ.classList.toggle('hidden');
   formPersonal.classList.toggle('hidden');
   formPersonal.classList.toggle('flex');
-});
-  
+});*/
+
 });
 
 
