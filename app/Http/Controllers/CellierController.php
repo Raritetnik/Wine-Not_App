@@ -232,14 +232,46 @@ class CellierController extends Controller
       // Rediriger vers la page d'affichage du cellier
       return redirect(route('celliers.afficher', $cellier_id));
   }
+//   public function modifierBouteille(Bouteille_Par_Cellier $idbouteille)
+//   {
+//     // joindre les tables pour avoir info sur la bouteille
+//     // $bouteille_par_cellier->id est la clé primaire
 
-  /**
-     * Supprimer la bouteille du cellier
-     */
-    public function supprimerCellier(Request $request)
-    {
-      Bouteille_Par_Cellier::where('vino_cellier_id', $request->CellierID)->delete();
-      Vino_Cellier::find($request->CellierID)->delete();
-    }
+//     $bouteilleModifie = Bouteille_Par_Cellier::select(
+//       '*',
+//       'bouteille_par_celliers.id AS id',
+//       'vino_cellier_id',
+//       'vino_bouteilles.id AS vino_bouteille_id',
+//       'date_achat',
+//       'garde_jusqua',
+//       'prix AS prixPaye',
+//       'quantite AS quantiteBouteille',
+//       'millesime',
+//       'vino_bouteilles.nom AS nom',
+//       'vino_bouteilles.image AS image',
+//       'code_saq',
+//       'vino_bouteilles.description AS description',
+//       'prix_saq',
+//       'url_saq',
+//       'url_img',
+//       'vino_format_id',
+//       'vino_type_id',
+//       'pays_id',
+//       'pays',
+//       'format',
+//       'type'
+//     )
+//     ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
+//     ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
+//     ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
+//     ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
+//     ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
+//     ->where([
+//       ['bouteille_par_celliers.id', '=', $idbouteille->id]
+//     ])
+//     ->get();
+//     return view('celliers.modifierBouteille', ['bouteille' => $bouteilleModifie]);
+//     // return redirect(route('celliers.afficher', $cellier_id));
+// }
+
 }
-
