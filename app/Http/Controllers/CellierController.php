@@ -25,8 +25,13 @@ use Illuminate\Support\Facades\DB;
  *
  */
 
-class CellierController
+class CellierController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
 
   // Affichage du ou des celliers appartenant à l'utilisateur qui est inscrit
   // **Ajouter Auth
@@ -81,6 +86,12 @@ class CellierController
   public function afficher($idCellier)
   {
     $cellier = Vino_Cellier::find($idCellier);
+
+    // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
+    if($cellier->utilisateurs_id != Auth::user()->id) {
+      return redirect(route('celliers.index'));
+    }
+
     $bouteilles = Vino_Bouteille::select(
       'date_achat',
       'garde_jusqua',
@@ -112,10 +123,10 @@ class CellierController
       ->where('vino_celliers.id', $idCellier)
       ->get();
 
+
       $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
       $type=Vino_Type::all();
       $pays=Pays::all();
-
       return view('celliers.afficher', ['cellier' => $cellier,
                                         'bouteilles' => $bouteilles,
                                         //'bouteillesJulie' => $bouteilles,
@@ -129,7 +140,12 @@ class CellierController
   // Afficher formulaire de modification des informations de la table vino_celliers
   public function modifier(Vino_Cellier $cellier)
   {
-    return view('celliers.modifier', ['cellier' => $cellier]);
+    // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
+    if($cellier->utilisateurs_id != Auth::user()->id) {
+      return redirect(route('celliers.index'));
+    } else {
+      return view('celliers.modifier', ['cellier' => $cellier]);
+    }
   }
   // Enregistrer dans la bd les modifications de la table vino_celliers
   public function enregistrerModification(Request $request, Vino_Cellier $cellier)
@@ -161,6 +177,10 @@ class CellierController
   // Afficher fiche détail de bouteille
   public function afficherFicheBouteille(Vino_Cellier $vino_cellier, Bouteille_Par_Cellier $bouteille_par_cellier)
   {
+    // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
+    if($vino_cellier->utilisateurs_id != Auth::user()->id) {
+      return redirect(route('celliers.index'));
+    }
     // joindre les tables pour avoir info sur la bouteille
     // $bouteille_par_cellier->id est la clé primaire
     $bouteilleDetail = Bouteille_Par_Cellier::select(
@@ -213,5 +233,14 @@ class CellierController
       // Rediriger vers la page d'affichage du cellier
       return redirect(route('celliers.afficher', $cellier_id));
   }
+
+  /**
+     * Supprimer la bouteille du cellier
+     */
+    public function supprimerCellier(Request $request)
+    {
+      Bouteille_Par_Cellier::where('vino_cellier_id', $request->CellierID)->delete();
+      Vino_Cellier::find($request->CellierID)->delete();
+    }
 }
 

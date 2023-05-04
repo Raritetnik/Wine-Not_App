@@ -87,5 +87,6 @@ Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture'
  */
 Route::get('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'verifierFavoris'])->name('verification.favoris');
 Route::delete('/api.delete-bouteille', [BouteilleController::class, 'supprimerBouteille'])->name('supprimer.bouteille');
+Route::delete('/api.delete-cellier', [CellierController::class, 'supprimerCellier'])->name('supprimer.cellier');
 Route::post('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'modifierFavoris'])->name('modification.favoris');
 Route::get('/api.bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');

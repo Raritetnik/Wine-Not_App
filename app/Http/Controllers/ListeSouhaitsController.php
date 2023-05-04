@@ -15,6 +15,11 @@ use function PHPSTORM_META\map;
 
 class ListeSouhaitsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Affichage de catalogue des bouteillés favoris
      */

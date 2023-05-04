@@ -25,10 +25,10 @@
         </blockquote>
         <div class="mb-2">
             <label for="oldPassword" style="color: var(--color_text)">Mot de passe</label>
-            <input id="oldPassword" type="password" placeholder="Saisir l'ancien mot de passe" class="appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine " name="oldPassword" autocomplete="new-password"
+            <input id="oldPassword" type="password" placeholder="Ancien mot de passe" class="appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine " name="oldPassword" autocomplete="new-password"
             v-model="oldPass"
             >
-            <small class="p-1">Veillez saisir votre ancien mot de passe si vous desirez le modifier...</small>
+            <small class="p-1 text-lg">Saisir l'ancien mot de passe pour le modifier...</small>
         </div>
         <div v-if="oldPass !== ''" class="mb-2">
             <label for="password" style="color: var(--color_text)">Nouveau mot de passe</label>

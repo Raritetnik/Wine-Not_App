@@ -12,8 +12,14 @@
 
         <div class="rounded-lg flex flex-col md:flex-row mb-2">
 
-            <div class="md:rounded-l-lg flex justify-center self-center md:rounded-tr-none flex-shrink-0 md:w-1/2">
-                <img src="{{ $bouteille->url_img }}" class="object-cover mx-auto max-h-[300px] md:h-auto mt-2 p-3" alt="bouteil de vin">
+        <div class="bg-gray-50 md:rounded-l-lg md:rounded-tr-none flex-shrink-0 md:w-1/2">
+            <img src="{{ explode("?",$bouteille->url_img)[0] }}" class="object-cover mx-auto h-1/2 md:h-full mt-2 p-3" alt="bouteil de vin">
+        </div>
+        <div class="bg-box_color rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
+            <div class="p-5">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-m font-medium text-section_title leading-snug">Cellier:</span>
+                <span class="text-m font-medium text-section_title leading-snug">Date d'ajout: {{$bouteille->date_achat ?? ''}}</span>
             </div>
             <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
                 <div class="p-5">
@@ -27,9 +33,11 @@
                             <label class="text-m text-section_title font-semibold">Quantité</label>
                             <!-- Compteur -->
                             <!-- ici va le compteur -->
-                            <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" />
+                            
+                  <!-- ici va le compteur -->
+                  <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}"/>
 
-                            <!-- end Comteur -->
+                <!-- end Comteur -->
 
                         </div>
                         <div class="flex justify-between gap-3 pb-4 items-center w-full">
