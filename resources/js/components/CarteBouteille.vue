@@ -1,5 +1,5 @@
 <template>
-    <article class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
+    <article class="mx-auto bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
         <header class="flex items-start relative">
             <img :src="require('/img/svg/close.svg')" width="25" @click="supprimer()" class="relative" alt="close">
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
