@@ -13,7 +13,7 @@
                 <span class="material-symbols-outlined">expand_more</span>
               </div>
               <ul class="liste-choix">
-                <li v-for="aType in type">
+                <li v-for="aType in type" :key="aType.id">
                   <input type="checkbox" :id="aType.type.replace(/[\s\u0300-\u036f]/g, '')" :name="aType.type.replace(/[\s\u0300-\u036f]/g, '')" :value="aType.type" v-model="selectionnerType" @change="filterBouteilles">
                   <label :for="aType.type.replace(/[\s\u0300-\u036f]/g, '')">{{ aType.type }}</label>
                 </li>
@@ -56,12 +56,12 @@
                 <span class="material-symbols-outlined">expand_more</span>
               </div>
               <ul class="liste-choix">
-                <li v-for="aPays in pays">
+                <li v-for="aPays in pays" :key="aPays.id">
                   <input type="checkbox" :id="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :name="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :value="aPays.pays" v-model="selectionnerPays" @change="filterBouteilles">
                   <label :for="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')">{{ aPays.pays }}</label>
                 </li>
               </ul>
-        
+
             </div>
           </div>
         </nav>
@@ -73,7 +73,8 @@
         </div>
       </section>
     </div>
-  </template>
+</template>
+
 <script>
 export default {
   props: ["type", "pays", "cellier", "bouteilles", "liste"],

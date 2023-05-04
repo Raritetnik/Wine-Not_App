@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', function() {
 const btnMobileMenu = document.getElementById("mobile-menu-button");
 const mobileMenu = document.getElementById("mobile-menu");
 const logoWn = document.querySelector("#logo");
-// const mainNav = document.querySelector("#main-nav");
+
 
 
 
@@ -44,13 +44,18 @@ mobileMenuLinks.forEach(function (link) {
 
 
 // afficher le nom d'une image choisi
-document.getElementById('img').addEventListener('change', function() {
-  var file_name = this.value.split('\\').pop();
-  document.getElementById('file-name').textContent = file_name;
-});
+const imgForm = document.getElementById('#imgForm');
+
+if(imgForm){
+  document.getElementById('img').addEventListener('change', function() {
+    let file_name = this.value.split('\\').pop();
+    document.getElementById('file-name').textContent = file_name;
+  });
+}
 
 
-// control affichage de formulaires bouteille  
+/*
+// control affichage de formulaires bouteille
 const formSAQ = document.querySelector('#form-saq');
 const formPersonal = document.querySelector('#form-personal');
 const btnForm = document.querySelector('#btn-form');
@@ -65,8 +70,8 @@ btnForm.addEventListener('click', () => {
   formSAQ.classList.toggle('hidden');
   formPersonal.classList.toggle('hidden');
   formPersonal.classList.toggle('flex');
-});
-  
+});*/
+
 });
 
 
