@@ -6,7 +6,7 @@
     </a>
     <div style="max-width: 20ch">
       <h4 class="text-white">Avez-vous des questions?</h4>
-      <h4 style="color: var(--color_text)">Contacter nous: <span>support@winenot.com</span></h4>
+      <h4 class="text-white pt-4">Contacter nous: <span>support@winenot.com</span></h4>
       <span class="flex justify-end gap-4 py-2 mt-2">
         <img src="{{ asset('img/svg/facebook.svg') }}" alt="">
         <img src="{{ asset('img/svg/insta.svg') }}" alt="">
