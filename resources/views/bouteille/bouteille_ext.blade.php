@@ -19,7 +19,7 @@
       <div class="block relative w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
         <input id="img" type="file" class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer" name="image">
         <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
-          <span class="block text-section_title" id="file-name">Choisir une image</span><img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
+          <span class="block text-section_title" id="file-name">Choisir une image</span><img id="imgForm" src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
         </div>
       </div>
     </div>

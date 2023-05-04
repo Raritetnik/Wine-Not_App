@@ -8,6 +8,8 @@ const logoWn = document.querySelector("#logo");
 
 
 btnMobileMenu.addEventListener("click", function () {
+  const mobileMenu = document.getElementById("mobile-menu");
+  const logoWn = document.querySelector("#logo");
   mobileMenu.classList.toggle("hidden");
   if (!mobileMenu.classList.contains("hidden")) {
     logoWn.style.opacity = 0;
@@ -45,9 +47,8 @@ mobileMenuLinks.forEach(function (link) {
 
 // afficher le nom d'une image choisi
 const imgForm = document.getElementById('#imgForm');
-
 if(imgForm){
-  document.getElementById('img').addEventListener('change', function() {
+  imgForm.addEventListener('change', function() {
     let file_name = this.value.split('\\').pop();
     document.getElementById('file-name').textContent = file_name;
   });
@@ -63,16 +64,21 @@ const plus = document.querySelector('#plus');
 const formP = document.querySelector('#form-p-p');
 const formPsaq = document.querySelector('#form-p-saq');
 
-btnForm.addEventListener('click', () => {
-  plus.classList.toggle('rotate-45');
-  formP.classList.toggle('hidden');
-  formPsaq.classList.toggle('hidden');
-  formSAQ.classList.toggle('hidden');
-  formPersonal.classList.toggle('hidden');
-  formPersonal.classList.toggle('flex');
-});*/
 
+if(btnForm){
+  btnForm.addEventListener('click', () => {
+    plus.classList.toggle('rotate-45');
+    formP.classList.toggle('hidden');
+    formPsaq.classList.toggle('hidden');
+    formSAQ.classList.toggle('hidden');
+    formPersonal.classList.toggle('hidden');
+    formPersonal.classList.toggle('flex');
+  });
+}
+*/
 });
+
+  
 
 
 
