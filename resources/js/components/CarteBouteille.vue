@@ -16,7 +16,7 @@
         </div>
         <footer>
             <div class="flex justify-end items-start gap-2">
-                <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
+                <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_cellier_id, bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
                 <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
             </div>
             <div class="flex justify-between items-end">
@@ -66,11 +66,11 @@ export default {
             // rediriger en passant le id de la bouteille qui vient du @click sur la carte
             location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;
         },
-        modifier(idBouteille) {
+        modifier(idCellier, idBouteille) {
             // Récupérer l'URL de base de l'application Laravel
             const baseUrl = window.location.origin;
             // Rediriger vers le formulaire de modification en passant le ID de la bouteille
-            window.location.href = `${baseUrl}/modifier-bouteille/${idBouteille}`;
+            window.location.href = `${baseUrl}/${idCellier}/modifier-bouteille/${idBouteille}`;
         },
     },
 

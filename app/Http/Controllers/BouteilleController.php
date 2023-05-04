@@ -221,13 +221,11 @@ class BouteilleController extends Controller
         ]);
     }
 
-    public function modifierBouteille(Vino_Bouteille $idBouteille)
+    public function modifierBouteille(Vino_Cellier $idCellier, Vino_Bouteille $idBouteille)
     {
-
         $bouteilleModifie = Vino_Bouteille::select(
-            '*',
             'bouteille_par_celliers.id AS id',
-            'vino_cellier_id',
+            'bouteille_par_celliers.vino_cellier_id AS vino_cellier_id',
             'vino_bouteilles.id AS vino_bouteille_id',
             'date_achat',
             'garde_jusqua',
@@ -256,7 +254,8 @@ class BouteilleController extends Controller
         ->join('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
         ->join('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
         ->join('pays', 'pays.id', 'vino_bouteilles.pays_id')
-        ->where('vino_bouteilles.id', $idBouteille->id)
+        ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
+        ->where('vino_celliers.id', $idCellier->id)
         ->get();
         $pays = Pays::all();
         $types= Vino_type::all();
@@ -270,17 +269,19 @@ class BouteilleController extends Controller
                                             'celliers' => $celliers]);
     }
     
-    public function enregistrerModifierBouteille(Request $request, Vino_Bouteille $idBouteille){
+    public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
-        $idBouteille->insert([
-            'nom' => $request->nom,
-            'description' => $request->description,
-            'image' => $request->image,
-            'utilisateur_id' => $user_id,
+        Bouteille_Par_Cellier::join('vino_bouteilles', 'bouteille_par_celliers.vino_bouteille_id', '=', 'vino_bouteilles.id')
+        ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
+        ->update([
+            'vino_bouteilles.nom' => $request->nom,
+            'vino_bouteilles.description' => $request->description,
+            'vino_bouteilles.image' => $request->image,
+            'vino_bouteilles.utilisateur_id' => null,
           ]);
         // rediriger vers la page précédente avec un message de succès
-        return redirect(url()->previous())->withSuccess('Information mise à jour.');
+        return redirect('/celliers' . '/' . $idCellier->id)->withSuccess('Information mise à jour.');
     }
 
     /**
