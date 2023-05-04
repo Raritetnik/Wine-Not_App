@@ -273,15 +273,14 @@ class BouteilleController extends Controller
     public function enregistrerModifierBouteille(Request $request, Vino_Bouteille $idBouteille){
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
-        $idBouteille->update([
+        $idBouteille->insert([
             'nom' => $request->nom,
-            'quantite_max' => $request->quantite_max,
             'description' => $request->description,
             'image' => $request->image,
-            //'utilisateur_id' => $user_id,
+            'utilisateur_id' => $user_id,
           ]);
         // rediriger vers la page précédente avec un message de succès
-        return back()->withSuccess('Information mise à jour.');
+        return redirect(url()->previous())->withSuccess('Information mise à jour.');
     }
 
     /**
