@@ -270,7 +270,8 @@ class BouteilleController extends Controller
                                             'celliers' => $celliers]);
     }
     
-    public function enregistrerModifierBouteille(Vino_Bouteille $idBouteille){
+    public function enregistrerModifierBouteille(Request $request, Vino_Bouteille $idBouteille){
+        return $request;
         $bouteilleModifie = Bouteille_Par_Cellier::select()
         ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
         ->where('vino_bouteilles.id', $idBouteille)

@@ -147,7 +147,7 @@
                 <option class="text-section_title" value="">Sélectionner type</option>
                 @foreach($types as $type)
                 <option value="{{$type->id}}">{{ $type->type }}</option>
-                @endforeach --}}
+                @endforeach
               </select>
             </div>
             <div class="w-1/2  mb-3">
