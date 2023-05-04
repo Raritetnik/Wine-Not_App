@@ -9,7 +9,6 @@
         <div class="">
           <div class="">
               <form method="post" enctype="multipart/form-data" class="w-full pt-3">
-            {{-- <form action="{{route('bouteilles.insererBouteille')}}" method="post" enctype="multipart/form-data" class="w-full"> <!-- ajouter un token pour autoriser la route une seconde fois --> --}}
               @csrf
               @method('PUT')
             <div class="w-full mb-5">
@@ -28,7 +27,9 @@
                 class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
             </div>
           </div>
-          <div class="w-full mb-5">
+          <!--
+            *** 3e sprint ***
+            <div class="w-full mb-5">
             <label for="img" class="block text-section_title font-bold mb-2">
               Ajouter une image
             </label>
@@ -45,7 +46,7 @@
                   <img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
                 </div>
               </div>
-          </div>
+          </div>-->
           <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
             <div class="w-full mb-3">
               <label for="date_achat" class="block text-section_title font-bold mb-2">
