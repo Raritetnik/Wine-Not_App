@@ -16,7 +16,7 @@
 
             <!-- Burger Menu -->
             <div class="flex items-center">
-                <button id="mobile-menu-button" type="button" class="rounded-md text-section_title hover:text-accent_wine hover:border-accent_wine border-3  focus:outline-none focus:border-accent_wine focus:text-accent_wine transition duration-150 ease-in-out">
+                <button id="mobile-menu-button" type="button" class="rounded-md hover:text-accent_wine hover:border-accent_wine border-3  focus:outline-none focus:border-accent_wine focus:text-accent_wine transition duration-150 ease-in-out">
                     <svg class="h-10 w-10" stroke="currentColor" fill="none" viewBox="0 0 25 25">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -30,13 +30,14 @@
         Mobile Menu
 
     -->
-    <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden from-accent_wine to-main bg-gradient-to-t absolute top-0 left-0 w-full">
+    <!-- from-accent_wine to-main bg-gradient-to-t -->
+    <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden bg-accent_wine absolute top-0 left-0 w-full">
       <div class="space-y-7 flex flex-col items-center justify-center pb-10 mt-10">
         @guest
         <a href="{{ route('login') }}" class="justify-center tracking-wide font-regular text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="sign-in" title="sign-in">
           Connexion
         </a>
-        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md py-2.5 px-6 font-regular tracking-wide text-main text-xl transition duration-200 bg-secondary  hover:bg-transparent hover:border hover:border-main  hover:text-main" aria-label="sign-up" title="sign-up">
+        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md py-2.5 px-6 font-regular tracking-wide text-main text-xl transition duration-200 hover:text-article_title" aria-label="sign-up" title="sign-up">
           Inscription
         </a>
 
