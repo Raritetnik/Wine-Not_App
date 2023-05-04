@@ -66,9 +66,9 @@
           </div>
         </nav>
       </aside> <!-- //conteneur-filtre -->
-      <section class="px-6 flex flex-col items-center">
+      <section class="px-6 flex flex-col items-center justify-center mx-auto">
         <!-- carte -->
-        <div class="mb-2" v-for="bouteille in bouteillesFiltrees" :key="bouteille.id">
+        <div class="mb-2 w-full" v-for="bouteille in bouteillesFiltrees" :key="bouteille.id">
           <v-bouteille :bouteille="bouteille" :liste="liste"/>
         </div>
       </section>
