@@ -36,7 +36,7 @@
         <a href="{{ route('login') }}" class="justify-center tracking-wide font-regular text-xl text-main transition-colors duration-200 hover:text-article_title" aria-label="sign-in" title="sign-in">
           Connexion
         </a>
-        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md py-2.5 px-6 font-regular tracking-wide text-main text-xl transition duration-200 bg-secondary  hover:bg-transparent hover:border hover:border-main  hover:text-main" aria-label="sign-up" title="sign-up">
+        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md py-2.5 px-6 font-regular tracking-wide text-main text-xl transition duration-200 hover:text-article_title" aria-label="sign-up" title="sign-up">
           Inscription
         </a>
 
