@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 
 class BouteilleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -82,9 +86,9 @@ class BouteilleController extends Controller
 
 
     public function rechercheBouteille(Request $request)
-    
+
     {
-       
+
         $celliers = auth()->user()->celliers;
 
         $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())
