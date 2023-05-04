@@ -3,13 +3,13 @@
 
 <!-- Reste du doc pour visualiser -->
 <div class="conteneur-de-toute-la-page">
-<div class="container mx-auto pb-8 pt-2 px-6 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-  <div>
-      <div class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;"> 
+<div class="container mx-auto pb-8 pt-2 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="px-6">
+      <div class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;">
         <!-- Nom du cellier -->
         <div class="flex">
-          <div class="text-section_title text-lg font-bold mr-3"> Cellier: </div>
-          <span class="text-md font-bold sm:text-xl md:container md:mx-auto"> {{$cellier->nom}} </span>
+          <div class="text-section_title text-lg font-bold mr-3">Cellier: </div>
+          <span class="text-lg font-bold sm:text-xl md:container md:mx-auto"> {{$cellier->nom}} </span>
           <span class="mr-12"></span>
         </div>
         <div class="container flex ml-auto">
@@ -41,5 +41,6 @@
 <!-- Affichage filtres et des cartes des bouteilles présentes dans ce cellier -->
 <v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}" :bouteilles="{{$bouteilles}}" :liste="{{$liste}}"/>
 </div>
+
 
 @endsection

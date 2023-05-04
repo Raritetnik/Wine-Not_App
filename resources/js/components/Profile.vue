@@ -47,7 +47,6 @@ export default {
     data() {
         return {
             afficherForm: false,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             oldPass: '',
         };
     },

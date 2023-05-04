@@ -1,6 +1,10 @@
 window.addEventListener('DOMContentLoaded', function() {
 
 const btnMobileMenu = document.getElementById("mobile-menu-button");
+const mobileMenu = document.getElementById("mobile-menu");
+const logoWn = document.querySelector("#logo");
+
+
 
 
 btnMobileMenu.addEventListener("click", function () {
@@ -51,8 +55,8 @@ if(imgForm){
 }
 
 
-
-// control affichage de formulaires bouteille  
+/*
+// control affichage de formulaires bouteille
 const formSAQ = document.querySelector('#form-saq');
 const formPersonal = document.querySelector('#form-personal');
 const btnForm = document.querySelector('#btn-form');
@@ -71,6 +75,7 @@ if(btnForm){
     formPersonal.classList.toggle('flex');
   });
 }
+*/
 });
 
   
