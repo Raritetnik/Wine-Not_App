@@ -33,68 +33,6 @@
         </label>
         <textarea class="w-full h-full items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine focus:shadow-outline" id="description" name="description" type="text" placeholder="Ajouter un descriptif pour ce cellier">{{$cellier->description}}</textarea>
       </div>
-      <!--<div class="cellier-img">
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellierCaveVinMontWashington.webp">
-          <img src="{{url('img/celliers/cellierCaveVinMontWashington.webp')}}">
-        </label>
-        <label>
-          <input checked type="radio" name="image" value="img/celliers/large_Charlevoix-Wine-Cellar-with-Dog.jpg" checked>
-          <img src="{{url('img/celliers/large_Charlevoix-Wine-Cellar-with-Dog.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_verre_moderne.jpg">
-          <img src="{{url('img/celliers/cellier_verre_moderne.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_tonneau.webp">
-          <img src="{{url('img/celliers/cellier_tonneau.webp')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_porte_bois_murs.jpg">
-          <img src="{{url('img/celliers/cellier_porte_bois_murs.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_mont_killian_bois_pierre.jpg">
-          <img src="{{url('img/celliers/cellier_mont_killian_bois_pierre.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_moderne_noir.webp">
-          <img src="{{url('img/celliers/cellier_moderne_noir.webp')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_moderne_led.jpg">
-          <img src="{{url('img/celliers/cellier_moderne_led.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_moderne_decoratif.jpeg">
-          <img src="{{url('img/celliers/cellier_moderne_decoratif.jpeg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_cuisine.jpeg">
-          <img src="{{url('img/celliers/cellier_cuisine.jpeg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_contemporain.jpg">
-          <img src="{{url('img/celliers/cellier_contemporain.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_brique_bois.jpg">
-          <img src="{{url('img/celliers/cellier_brique_bois.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_bois_verre.jpg">
-          <img src="{{url('img/celliers/cellier_bois_verre.jpg')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_bois_moderne_trad.webp">
-          <img src="{{url('img/celliers/cellier_bois_moderne_trad.webp')}}">
-        </label>
-        <label>
-          <input type="radio" name="image" value="img/celliers/cellier_bois_chateau.jpeg">
-          <img src="{{url('img/celliers/cellier_bois_chateau.jpeg')}}">
-        </label>
-      </div>-->
       <div class="mb-4 py-4 text-center">
         <input value = "Modifier" class="bg-accent_wine hover:accent_wine-80 text-main font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline" type="submit" placeholder="Créer le cellier">
         </input>
