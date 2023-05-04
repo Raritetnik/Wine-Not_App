@@ -26,7 +26,6 @@
                 placeholder="Entrez le nom de la bouteille" 
                 class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
             </div>
-          </div>
           <!--
             *** 3e sprint ***
             <div class="w-full mb-5">
@@ -167,7 +166,7 @@
           </div>
           <div class="mt-7 flex">
             <div class="w-full"><a href="{{ url()->previous() }}" class=" hover:opacity-80">
-              <input type="submit" class="w-1/4 px-1 py-1.5 rounded-md bg-secondary bg-accent_wine text-lg font-medium text-main text-align: center hover:bg-transparent border hover:border-secondary  cursor-pointer hover:text-secondary transition duration-300 ease-in-out" value="Back">
+              <button type="button" class="w-1/4 px-1 py-1.5 rounded-md bg-secondary bg-accent_wine text-lg font-medium text-main text-align: center hover:bg-transparent border hover:border-secondary  cursor-pointer hover:text-secondary transition duration-300 ease-in-out" >Retour</button>
             </div>
             <div class="w-full">
               <div style="text-align: right; padding-right: 1rem;">

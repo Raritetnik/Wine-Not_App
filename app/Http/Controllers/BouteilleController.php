@@ -271,21 +271,17 @@ class BouteilleController extends Controller
     }
     
     public function enregistrerModifierBouteille(Request $request, Vino_Bouteille $idBouteille){
-        // $bouteilleModifie = Bouteille_Par_Cellier::select()
-        // ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
-        // ->where('vino_bouteilles.id', $idBouteille)
-        // ->where('utilisateur_id', auth()->user()->id)
-        // ->get();
-
-        $request->update([
+        // récupérer le id de l'utilisateur qui est loggé dans sa session
+        $user_id = auth()->user()->id;
+        $idBouteille->update([
             'nom' => $request->nom,
             'quantite_max' => $request->quantite_max,
             'description' => $request->description,
             'image' => $request->image,
+            'utilisateur_id' => $user_id,
           ]);
-          return redirect(route('bouteille.index'))->withSuccess('Information mise à jour.');
-        
-        // return $bouteilleModifie;
+          // rediriger vers la route précédente
+          return redirect(url()->previous())->withSuccess('Information mise à jour.');
     }
 
     /**
