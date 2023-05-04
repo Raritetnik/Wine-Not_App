@@ -270,13 +270,21 @@ class BouteilleController extends Controller
                                             'celliers' => $celliers]);
     }
     
-    public function enregistrerModifierBouteille(Vino_Bouteille $idBouteille){
-        $bouteilleModifie = Bouteille_Par_Cellier::select()
-        ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
-        ->where('vino_bouteilles.id', $idBouteille)
-        ->where('utilisateur_id', auth()->user()->id)
-        ->get();
+    public function enregistrerModifierBouteille(Request $request, Vino_Bouteille $idBouteille){
+        // $bouteilleModifie = Bouteille_Par_Cellier::select()
+        // ->join('vino_bouteilles', 'vino_bouteilles.id','vino_bouteille_id')
+        // ->where('vino_bouteilles.id', $idBouteille)
+        // ->where('utilisateur_id', auth()->user()->id)
+        // ->get();
 
+        $request->update([
+            'nom' => $request->nom,
+            'quantite_max' => $request->quantite_max,
+            'description' => $request->description,
+            'image' => $request->image,
+          ]);
+          return redirect(route('celliers.index'))->withSuccess('Information mise à jour.');
+        }
         return $bouteilleModifie;
     }
 
