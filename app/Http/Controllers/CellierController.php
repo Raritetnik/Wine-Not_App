@@ -239,6 +239,7 @@ class CellierController extends Controller
     public function supprimerCellier(Request $request)
     {
       Bouteille_Par_Cellier::where('vino_cellier_id', $request->CellierID)->delete();
+      Vino_Cellier::find($request->CellierID)->delete();
     }
 }
 
