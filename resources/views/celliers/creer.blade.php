@@ -8,20 +8,20 @@
       <!-- ajouter un token pour autoriser la route une seconde fois -->
       @csrf
       <div class="mb-4">
-        <label class="block text-section_title font-bold mb-2" for="nom">
+        <label class="block text-gray-700 font-bold mb-2" for="nom">
           Nom
         </label>
         <!-- ** important de concerver les input ** -->
-        <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" id="nom" name="nom" type="text" placeholder="Entrez le nom du cellier" required>
+        <input class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine focus:shadow-outline" id="nom" name="nom" type="text" placeholder="Entrez le nom du cellier" required>
       </div>
       <div class="mb-4">
-        <label class="block text-section_title font-bold mb-2" for="quantite_max">
+        <label class="block text-gray-700 font-bold mb-2" for="quantite_max">
           Capacité maximale de votre cellier
         </label>
-        <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" id="quantite_max" name="quantite_max" type="number" placeholder="Capacité maximale du cellier">
+        <input class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine focus:shadow-outline" id="quantite_max" name="quantite_max" type="number" placeholder="Capacité maximale du cellier">
       </div>
       <div class="mb-4">
-        <label class="block text-section_title font-bold mb-2" for="description">
+        <label class="block text-gray-700 font-bold mb-2" for="description">
           Description
         </label>
         <textarea class="w-full h-full items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine focus:shadow-outline" id="description" name="description" type="text" placeholder="Ajouter un descriptif pour ce cellier"></textarea>
