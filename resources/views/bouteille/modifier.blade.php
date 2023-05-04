@@ -166,11 +166,16 @@
             </div>
           </div>
           <div class="mt-7 flex">
-            <input type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-300 ease-in-out" value="Modifier">
+            <div class="w-full"><a href="{{ url()->previous() }}" class=" hover:opacity-80">
+              <input type="submit" class="w-1/4 px-1 py-1.5 rounded-md bg-secondary bg-accent_wine text-lg font-medium text-main text-align: center hover:bg-transparent border hover:border-secondary  cursor-pointer hover:text-secondary transition duration-300 ease-in-out" value="Back">
+            </div>
+            <div class="w-full">
+              <div style="text-align: right; padding-right: 1rem;">
+                <input type="submit" class="px-2 py-1.5 rounded-md bg-secondary text-lg font-medium text-main text-align: center hover:bg-transparent border hover:border-secondary  cursor-pointer hover:text-secondary transition duration-300 ease-in-out" value="Modifier">
+              </div>
+            </div>
           </div>
-          <small >
-            {{-- <a href="/login" style="color: #67375C">Previous</a> --}}
-          </small>
+          
     
         </form>
   </section>

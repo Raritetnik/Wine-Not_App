@@ -16,7 +16,7 @@
         </div>
         <footer>
             <div class="flex justify-end items-start gap-2">
-                <!--<img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">-->
+                <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
                 <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
             </div>
             <div class="flex justify-between items-end">
