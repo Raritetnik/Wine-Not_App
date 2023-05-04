@@ -7,9 +7,9 @@
   <div class="py-16 grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8 justify-center">
     @foreach($celliers as $cellier)
       <!-- Carte de cellier -->
-      <a href="{{ route('celliers.afficher', ['cellier' => $cellier->id]) }}" class="m-0 p-0 flex justify-center">
+      <span class="m-0 p-0 flex justify-center">
         <v-cellier :cellier="{{ $cellier }}" />
-      </a>
+      </span>
     @endforeach
   </article>
   <div class="mb-6 text-center">
