@@ -1,5 +1,5 @@
 <template>
-    <article class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-full">
+    <article class="bg-gray-100 flex gap-4 border px-6 py-3 rounded-md justify-between max-w-[560px] w-full">
         <header class="flex items-start relative">
             <img :src="require('/img/svg/close.svg')" alt="close" width="25" @click="supprimer()">
         </header>
