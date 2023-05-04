@@ -1,7 +1,7 @@
 <template>
   <ul>
   <div v-for="vine in closestVineList" :key="vine.id" @click="takeBouteille(vine)" class="mb-3">
-    <article class="flex gap-3 bg-gray-100 p-2 rounded-md  justify-left w-full">
+    <article class="flex gap-3 cursor-pointer bg-gray-100 p-2 rounded-md hover:border-accent_wine border justify-left w-full">
       <header>
         <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px]" :src="vine.url_img" :alt="vine.nom">
       </header>
