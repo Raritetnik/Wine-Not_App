@@ -283,9 +283,9 @@ class BouteilleController extends Controller
             'description' => $request->description,
             'image' => $request->image,
           ]);
-          return redirect(route('celliers.index'))->withSuccess('Information mise à jour.');
-        }
-        return $bouteilleModifie;
+          return redirect(route('bouteille.index'))->withSuccess('Information mise à jour.');
+        
+        // return $bouteilleModifie;
     }
 
     /**
