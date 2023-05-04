@@ -5,16 +5,32 @@ const mobileMenu = document.getElementById("mobile-menu");
 const logoWn = document.querySelector("#logo");
 // const mainNav = document.querySelector("#main-nav");
 
+
+
 btnMobileMenu.addEventListener("click", function () {
-  
-  
   mobileMenu.classList.toggle("hidden");
   if (!mobileMenu.classList.contains("hidden")) {
     logoWn.style.opacity = 0;
   } else {
     logoWn.style.opacity = 1;
+   
   }
 });
+ 
+//modification de couleur de burger menu
+const svgElement = document.querySelector('#mobile-menu-button svg');
+btnMobileMenu.addEventListener('click', () =>{
+  const strokeColor = svgElement.getAttribute('stroke');
+  if (strokeColor === '#67375C') { 
+  svgElement.setAttribute('stroke', 'white');
+  }
+  else {
+    svgElement.setAttribute('stroke', '#67375C');
+  }
+})
+
+
+
   
 
 // Close mobile menu when link is clicked
