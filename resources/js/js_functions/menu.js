@@ -55,7 +55,7 @@ if(imgForm){
 }
 
 
-/*
+
 // control affichage de formulaires bouteille
 const formSAQ = document.querySelector('#form-saq');
 const formPersonal = document.querySelector('#form-personal');
@@ -75,7 +75,7 @@ if(btnForm){
     formPersonal.classList.toggle('flex');
   });
 }
-*/
+
 });
 
   
