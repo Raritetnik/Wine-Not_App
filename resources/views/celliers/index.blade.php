@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+<div class="px-6 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <div class="pb-6 text-center w-full">
     <h2 class="mb-2 text-3xl font-bold leading-none sm:text-4xl">Mes Celliers</h2>
   </div>
-  <div class="py-16 grid gap-8 row-gap-5 mb-8 lg:row-gap-8 justify-center">
+  <div class="py-16 flex flex-col items-center mx-auto mb-8 lg:row-gap-8 justify-center">
+        <!-- carte -->
     @foreach($celliers as $cellier)
       <!-- Carte de cellier -->
-      <span class="m-0 p-0 flex justify-center">
+      <div class="mb-2 w-full justify-center">
         <v-cellier :cellier="{{ $cellier }}" />
-      </span>
+      </div>
     @endforeach
 
   <div class="mt-7 flex justify-center items-center">
