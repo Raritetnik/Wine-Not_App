@@ -30,7 +30,7 @@
                             <!-- ici va le compteur -->
 
                             <!-- ici va le compteur -->
-                            <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" />
+                            <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" :idCellier="{{ $bouteille ->vino_cellier_id }}"/>
 
                             <!-- end Comteur -->
 

@@ -206,7 +206,8 @@ class CellierController extends Controller
       'pays',
       'format',
       'type',
-      'vino_celliers.nom AS cellier'  //pour ajouter le nom du cellier sur la fiche detaile
+      'vino_celliers.nom AS cellier',
+      'bouteille_par_celliers.vino_cellier_id'  //pour ajouter le nom du cellier sur la fiche detaile
     )
     ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
     ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
