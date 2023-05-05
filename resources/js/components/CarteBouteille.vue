@@ -3,7 +3,7 @@
         <header class="flex items-start relative">
             <button data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                 <!--<button id="open_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img :src="require('/img/svg/trash.svg')" alt="delete"></button>-->
-                <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close">
+                <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close" :data-idBouteille="this.bouteille.id">
             </button>
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
         </header>
@@ -14,7 +14,7 @@
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
             <footer class="flex">
-                <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" :idCellier="this.bouteille.vino_cellier_id" />
+                <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" />
             </footer>
         </div>
         <footer>
@@ -30,7 +30,7 @@
             </div>
         </footer>
 
-        <!-- Modal box -->
+        <!-- Modal box
         <div id="popup-modal" tabindex="-1" class="bg-black bg-opacity-40 fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full ">
             <div class="relative w-full max-w-md max-h-full rounded-lg border border-accent_wine top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">
                 <div class="relative bg-white rounded-lg">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </article>
 </template>
 

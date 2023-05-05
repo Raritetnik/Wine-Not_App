@@ -245,5 +245,8 @@ class CellierController extends Controller
     // Supprime le bouteilles du cellier
     Bouteille_Par_Cellier::where('vino_cellier_id', $request->CellierID)->delete();
     Vino_Cellier::find($request->CellierID)->delete();
+    if($request->redirect) {
+      return redirect('/celliers');
+  }
   }
 }
