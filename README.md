@@ -4,10 +4,10 @@ Projet Web 2 - Sprint 2
 Wine Not
 
 
-Professeur: Guillaume Harvey  gharvey@cmaisonneuve.qc.ca
+Professeur: Guillaume Harvey
 
 Travail réalisé par: 
-Lidia De Serpa Barreiros - Mykhaylo Olegovych Kuzmin 
+Lidia De Serpa Barreiros - Mykhaylo Olegovych Kuzmin -
 Roman Potachenski - Juie Deschêntes-Renaud 
 
 
