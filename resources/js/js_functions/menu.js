@@ -5,12 +5,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
     btnMobileMenu.addEventListener("click", function () {
         const mobileMenu = document.getElementById("mobile-menu");
-        // const logoWn = document.querySelector("#logo");
+        //const logoWn = document.querySelector("#logo");
         mobileMenu.classList.toggle("hidden");
         if (!mobileMenu.classList.contains("hidden")) {
-          //  logoWn.style.opacity = 0;
+            //logoWn.style.opacity = 0;
         } else {
-         //   logoWn.style.opacity = 1;
+            //logoWn.style.opacity = 1;
         }
     });
 
@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     // afficher le nom d'une image choisi
-    const imgForm = document.getElementById("#imgForm");
+    const imgForm = document.querySelector("#img");
     if (imgForm) {
         imgForm.addEventListener("change", function () {
             let file_name = this.value.split("\\").pop();
