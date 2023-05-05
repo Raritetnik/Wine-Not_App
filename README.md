@@ -1,3 +1,49 @@
+05/05/20023
+
+Projet Web 2 - Sprint 2
+Wine Not
+
+
+Professeur: Guillaume Harvey  gharvey@cmaisonneuve.qc.ca
+
+Travail réalisé par: 
+Lidia De Serpa Barreiros - Mykhaylo Olegovych Kuzmin 
+Roman Potachenski - Juie Deschêntes-Renaud 
+
+
+//// « User stories » du sprint #02 :
+
+« Comme utilisateur, je peux modifier mon compte » : Ajout de un profile utilisateur et des fonctionnalités pour modifier la compte de l’utilisateur;
+« Comme utilisateur, je peux filtrer les bouteilles de mon cellier » : Ajout de un filtre et des fonctionnalités pour filtrer mes bouteilles ajoutées (par pays, type et prix);
+« Comme utilisateur, je peux faire une liste d'achat souhaitée - wish list » : Ajout d’un bouton, ajout d’une page pour voir la collection de bouteilles souhaitées et  ajout des fonctionnalités;
+« Comme utilisateur, je peux ajouter une bouteille en sélectionnant le cellier dans lequel je désire placer la bouteille sans passer par le cellier » : Ajout de un bouton flottant qui permets additionner une bouteille et pouvoir choisir un cellier sur n’importe quelle page;
+« Comme utilisateur, je peux retirer une bouteille de mon cellier  » : Ajout de un bouton sur la carte bouteille et des fonctionnalités pour supprimer une bouteille du DOM et de la base de données ainsi que l’affichage de une boite modale pour demander à l’usager si il veut effacer les donnés.
+«  En tant qu'utilisateur, je peux voir les détails de une bouteille choisi » : Ajout des informations manquantes sur la fiche de détail d’une bouteille, lien pour revenir en arrière et changements pour devenir réactive.
+Changement de l‘interface utilisateur de l’application au complet pour avoir une identité visuelle plus cohérent.
+
+
+//// Plans pour le sprint #03 :
+
+Finaliser la fonction modifier bouteille et le laisser visible seulement pour les bouteilles privées ajoutées par l’utilisateur;
+L’utilisateur peux donner une note sur une bouteille;
+Ajout de fonctionnalités pour avoir un « historique de bouteilles » 
+Finaliser Ui/Ux
+
+
+//// Infos de connexion:
+
+Lien  Github: 
+https://github.com/Raritetnik/wine-not
+
+Lien  Web:
+http://mykhaelf1.sg-host.com/
+
+Utilisateur: gharvey@yahoo.com
+Mot de passe: 12345678
+
+
+------------------------------------
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
