@@ -79,14 +79,13 @@ export default {
     modifierNbBouteille() {
       // envoyer vers la route de modification vers webd.php
       let url = window.location.origin + "/celliers/" + this.idcellier + "/" + this.id;
-      console.log(url)
       axios
         .put(url, { nbbouteille: this.compteur })
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
         });
     },
     // éditer manuellement lorsqu'on clique sur le compteur

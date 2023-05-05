@@ -13,7 +13,6 @@
             <h3 style="color: var(--color_text)">{{ vine.pays }}</h3>
             <h3 style="color: var(--color_text)">${{ vine.prix_saq }} CAD</h3>
           </div>
-          <!-- <img class="pe-6 hover:opacity-75" :src="require('/img/svg/select.svg')" alt="select"> -->
         </div>
       </section>
     </article>
@@ -31,6 +30,9 @@
       }
     },
     methods: {
+      /**
+       * Choisie la bouteille parmis les résultats
+       */
       takeBouteille(vine) {
         this.$emit('take-bouteille', vine);
       }

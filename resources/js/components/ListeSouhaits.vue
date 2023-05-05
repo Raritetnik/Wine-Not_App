@@ -15,6 +15,9 @@ export default {
         };
     },
     methods: {
+        /**
+         * Changer l'état de la bouteille, ajoute dans les favoris
+         */
         changerFavoris () {
             this.estFavoris = !this.estFavoris;
             axios.post('/api.listeSouhait/'+this.bouteille, {
@@ -33,5 +36,3 @@ export default {
 
 }
 </script>
-
-ALTER TABLE `vino_bouteilles` ADD `utilisateur_id` INT(11) NOT NULL AFTER `updated_at`;

@@ -50,15 +50,12 @@ export default {
             oldPass: '',
         };
     },
-    mounted() {
-        //console.log(this.user);
-    },
     methods: {
+        /**
+         * Permettre la modification de mot de passe
+         */
         modification () {
             this.afficherForm = !this.afficherForm;
-        },
-        verifieSaisie (text) {
-
         }
     },
 };

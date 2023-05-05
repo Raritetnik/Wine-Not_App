@@ -6,6 +6,9 @@ window.addEventListener('DOMContentLoaded', function() {
     const btnCloseModal = document.getElementById('close_popup-modal');
     const btnNoModal = document.getElementById('no_popup-modal');
 
+    /**
+     * Gestion de la boite modale pour chaque element de page bouteilles de cellier
+     */
     if(sectionBouteilles !== null){
         sectionBouteilles.addEventListener('click', (e) => {
             if(e.target.dataset.idbouteille !== undefined){
@@ -14,7 +17,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 modal.style.display = "block";
             }
         });
-
+        // Fermer la boite modale
         btnNoModal.addEventListener('click', (e) => {
             modal.style.display = "none";
         });
@@ -23,7 +26,9 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
+    /**
+     * Gestion de la boite modale pour chaque element de page cellier
+     */
     if(sectionCelliers !== null){
         sectionCelliers.addEventListener('click', (e) => {
             if(e.target.dataset.idcellier !== undefined){
@@ -32,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 modal.style.display = "block";
             }
         });
-
+        // Fermer la boite modale
         btnNoModal.addEventListener('click', (e) => {
             modal.style.display = "none";
         });
