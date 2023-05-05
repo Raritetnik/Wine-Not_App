@@ -8,7 +8,7 @@ Professeur: Guillaume Harvey
 
 Travail réalisé par: 
 Lidia De Serpa Barreiros - Mykhaylo Olegovych Kuzmin -
-Roman Potachenski - Julie Deschêntes-Renaud 
+Roman Potachenski - Julie Deschênes-Renaud 
 
 
 //// « User stories » du sprint #02 :
