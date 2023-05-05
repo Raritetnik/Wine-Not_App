@@ -26,7 +26,6 @@ export default {
     },
     beforeMount() {
         let rep = this.liste.find( a => {
-            console.log(a.vino_bouteilles_id === this.bouteille);
             return a.vino_bouteilles_id === this.bouteille
         });
         this.estFavoris = rep != null;

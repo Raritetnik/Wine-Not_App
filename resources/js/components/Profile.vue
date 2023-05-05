@@ -58,7 +58,7 @@ export default {
             this.afficherForm = !this.afficherForm;
         },
         verifieSaisie (text) {
-            console.log(text);
+
         }
     },
 };

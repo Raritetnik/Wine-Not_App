@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', function() {
-    console.log('LOADED PAGE WITH MODAL');
     const sectionBouteilles = this.document.getElementById('section-bouteilles');
     const sectionCelliers = this.document.getElementById('section-celliers');
     const modal = document.getElementById('popup-modal');

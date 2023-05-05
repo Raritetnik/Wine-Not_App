@@ -14,7 +14,7 @@
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
             <footer class="flex">
-                <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" />
+                <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" :idcellier="this.bouteille.vino_cellier_id" />
             </footer>
         </div>
         <footer>
@@ -70,8 +70,6 @@ export default {
     methods: {
         changeBottle () {
             this.estVide = !this.estVide;
-            console.log(this.bouteille.id);
-            console.log(this.bouteille.quantite);
         },
 
         // Supprimer l'element de la liste DOM
