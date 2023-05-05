@@ -35,7 +35,7 @@ Route::get('/compte', [HomeController::class, 'afficherCompte'])->name('compte')
 Route::post('/compte', [HomeController::class, 'updateCompte'])->name('compte.update')->middleware('auth');
 
 // Page Accueil
-Route::get('/', [HomeController::class, 'index'])->name('login.custom');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 /**
  * Les liens de cellier
