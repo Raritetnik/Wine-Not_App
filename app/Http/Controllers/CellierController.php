@@ -86,9 +86,8 @@ class CellierController extends Controller
   public function afficher($idCellier)
   {
     $cellier = Vino_Cellier::find($idCellier);
-
     // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
-    if($cellier->utilisateurs_id != Auth::user()->id) {
+    if(!Vino_Cellier::where('id', $idCellier)->exists() || $cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     }
 
@@ -179,6 +178,9 @@ class CellierController extends Controller
   {
     // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
     if($vino_cellier->utilisateurs_id != Auth::user()->id) {
+      return redirect(route('celliers.index'));
+    }
+    if($bouteille_par_cellier->vino_cellier_id != $vino_cellier->id) {
       return redirect(route('celliers.index'));
     }
     // joindre les tables pour avoir info sur la bouteille
