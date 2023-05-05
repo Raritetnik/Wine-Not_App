@@ -1,6 +1,6 @@
 <nav id="main-nav" class="lg:bg-gray-50 lg:shadow-sm md:bg-transparent md:shadow-none py-1 relative">
     <!-- Logo -->
-    <div class="absolute left-5">
+    <div class="absolute left-5 z-0">
         <a href="{{ route('home') }}"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
     </div>
 
@@ -9,8 +9,8 @@
             @guest
             @else
               <!-- Favoris Menu -->
-              <div class="">
-                <a href="/favoris"><img src="{{ asset('img/svg/favoris.svg') }}" alt="fav_icon" width="25px"></a>
+              <div class="z-10 ">
+                <a href="/favoris" class="bg-white"><img src="{{ asset('img/svg/favoris.svg') }}" class="bg-white p-1 pt-2 mb-1 rounded" alt="fav_icon" style="min-width: 25px"></a>
               </div>
             @endguest
 
@@ -33,8 +33,8 @@
     -->
     <!-- from-accent_wine to-main bg-gradient-to-t -->
     <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden bg-accent_wine absolute top-0 left-0 w-full">
-      <div class="space-y-7 flex flex-col items-center justify-center pb-10 mt-10">
-      <div class="absolute z-50 left-5 top-2">
+      <div class="space-y-7 flex flex-col items-center justify-center pb-10 mt-4">
+      <div class="absolute z-50 left-5 top-1">
         <a href="{{ route('home') }}"><img src="{{ asset('img/svg/logoWn-white.svg') }}" alt="Logo"></a>
     </div>
         @guest
