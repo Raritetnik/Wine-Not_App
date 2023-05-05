@@ -6,6 +6,8 @@ window.addEventListener('DOMContentLoaded', function() {
     const btnCloseModal = document.getElementById('close_popup-modal');
     const btnNoModal = document.getElementById('no_popup-modal');
 
+    const btnOpenModal = document.getElementById('open_popup-modal');
+
     /**
      * Gestion de la boite modale pour chaque element de page bouteilles de cellier
      */
@@ -45,4 +47,21 @@ window.addEventListener('DOMContentLoaded', function() {
             modal.style.display = "none";
         });
     }
+
+    /**
+     * Supprimer sur fiche bouteille
+     */
+    if(btnOpenModal !== null) {
+        btnOpenModal.addEventListener('click', e => {
+            modal.style.display = "block";
+        })
+        // Fermer la boite modale
+        btnNoModal.addEventListener('click', (e) => {
+            modal.style.display = "none";
+        });
+        btnCloseModal.addEventListener('click', (e) => {
+            modal.style.display = "none";
+        });
+    }
+
 });
