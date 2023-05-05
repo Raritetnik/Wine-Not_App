@@ -9,7 +9,7 @@
       Bouteille personnelle
     </h2>
     <div class="w-full mb-5">
-      <label for="nom" class="block text-section_title font-bold mb-2">Ajoutez une bouteille</label>
+      <label for="nom" class="block text-section_title font-bold mb-2">Ajouter une bouteille</label>
       <input type="nom" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title {{ $errors->has('nom') ? 'border-error' : '' }}" value="{{ old('nom') }}" required />
     </div>
 

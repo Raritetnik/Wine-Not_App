@@ -7,7 +7,7 @@
       </h2>
     </div>
     <div class="pb-6 text-center w-full">
-      <p class="text-gray-700 mb-4">Veuillez remplir le formulaire suivant pour modifier un cellier</p>
+      <p class="text-gray-700 mb-4">Remplissez le formulaire suivant pour modifier un cellier.</p>
     </div>
     <form method="post" enctype="multipart/form-data">
       <!-- ajouter un token pour autoriser la route une seconde fois -->
@@ -43,8 +43,8 @@
 </div>
 
 <!-- <div class="w-full px-3">
-      <input class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded shadow-md border border-accent_wine hover:bg-accent_wine hover:text-main focus:shadow-outline focus:outline-none" 
-      type="submit" 
+      <input class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded shadow-md border border-accent_wine hover:bg-accent_wine hover:text-main focus:shadow-outline focus:outline-none"
+      type="submit"
       placeholder="Créer le cellier">
     </div> -->
 </div>
