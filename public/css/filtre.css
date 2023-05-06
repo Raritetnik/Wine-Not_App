@@ -125,8 +125,8 @@ remplacé par l'icône de Lidia
 .conteneur-filtre {
     position: fixed;
     top: 0;
-    left: -400px;
-    width: 400px;
+    left: -284px;
+    width: 284px;
     height: 100%;
     overflow: scroll;
     z-index: 9999;
@@ -137,7 +137,7 @@ remplacé par l'icône de Lidia
 .conteneur-filtre.active {
     transition-duration: 400ms;
     left: 0px;
-    width: 436px;
+    width: 320px;
     height: 100%;
 }
 
@@ -264,7 +264,7 @@ input:hover {
 }
 
 .menu-lateral label {
-    padding: 1.5rem 1rem 1.5rem calc(1.2rem * 2.25);
+    padding: 1rem 1rem 1rem calc(1.2rem * 2.25);
     display: inline-block;
     font-size: 17px;
     width: 100%;
@@ -305,7 +305,7 @@ input:hover {
     position: sticky;
     right: 20px;
     top: 15px;
-    left: 380px;
+    left: 260px;
     z-index: 999;
 }
 

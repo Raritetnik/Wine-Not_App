@@ -31,11 +31,13 @@
     </div>
   </section>
   <footer class="flex flex-col items-center mb-8 mx-10">
+    @guest
     <a href="/register" class="text-white py-2 w-full md:max-w-[300px] rounded-md mb-2 flex justify-center" style="background-color: #67375C">Commencer</a>
     <small style="color: #909090">
       Avez-vous déjà un compte?
       <a href="/login" style="color: #67375C">Connecter</a>
     </small>
+    @endguest
   </footer>
 </div>
 @endsection

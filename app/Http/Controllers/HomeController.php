@@ -19,9 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+      return view('home');
     }
 
+    // TEST CODE
     public function testPage()
     {
       return view('test');
@@ -32,7 +33,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Affichage de la page de compte -> modification
+     * Affichage de la page de compte
      */
     public function afficherCompte() {
       $listeCelliers = Vino_Cellier::where('utilisateurs_id', Auth::user()->id)->get();
@@ -50,10 +51,14 @@ class HomeController extends Controller
       return view('compte', ["utilisateur" =>Auth::user(), 'userInfo' => $informations]);
     }
 
-    public function updateCompte(Request $request) {
+    /**
+     * Enregistrement de modification sur le compte
+     */
+    public function modifierCompte(Request $request) {
 
       // Récupération de l'utilisateur par l'id
       $user = User::find(Auth::user()->id);
+
       // Validation des champs email et password
       if($request->has('courriel')) {
         $this->validate($request, [
@@ -72,7 +77,9 @@ class HomeController extends Controller
           'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-
+        /**
+         * Vérification du mot de passe, avant de le modifier
+         */
         if(Hash::check($request->oldPassword, $user->password)) {
           $user['password'] = Hash::make($request->password);
           $user->save();

@@ -9,13 +9,8 @@
         <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
       </div>
         <input name="vino_bouteille_id" type="hidden" :value="this.choixBouteille.id">
-       
-        <!--<button type="submit" @submit.prevent="onSubmit()" class="bg-accent_wine hover:accent_wine-80 text-main font-bold ml-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Recherche</button>
-        Code de la barre de recherche ICI -->
       </div>
-      <!-- le composant Vue ResultatsRecherche va ici -->
       <ResultatsRecherche :closest-vine-list="closestVineList" @take-bouteille="takeBouteille"></ResultatsRecherche>
-
     </div>
     <div>
       <div v-if="selectedVine" class="flex gap-3 bg-gray-100 rounded-md w-full p-2 border-2 border-secondary">
@@ -29,7 +24,7 @@
           <input name="prix_saq" type="hidden" :value="this.choixBouteille.prix_saq">
         </div>
       </div>
-      
+
     </div>
 
   </div>

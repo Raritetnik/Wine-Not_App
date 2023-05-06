@@ -86,9 +86,8 @@ class CellierController extends Controller
   public function afficher($idCellier)
   {
     $cellier = Vino_Cellier::find($idCellier);
-
     // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
-    if($cellier->utilisateurs_id != Auth::user()->id) {
+    if(!Vino_Cellier::where('id', $idCellier)->exists() || $cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     }
 
@@ -181,6 +180,9 @@ class CellierController extends Controller
     if($vino_cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     }
+    if($bouteille_par_cellier->vino_cellier_id != $vino_cellier->id) {
+      return redirect(route('celliers.index'));
+    }
     // joindre les tables pour avoir info sur la bouteille
     // $bouteille_par_cellier->id est la clé primaire
     $bouteilleDetail = Bouteille_Par_Cellier::select(
@@ -242,8 +244,10 @@ class CellierController extends Controller
    */
   public function supprimerCellier(Request $request)
   {
-    // Supprime le bouteilles du cellier
     Bouteille_Par_Cellier::where('vino_cellier_id', $request->CellierID)->delete();
     Vino_Cellier::find($request->CellierID)->delete();
+    if($request->redirect) {
+      return redirect('/celliers');
+  }
   }
 }

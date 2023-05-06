@@ -16,17 +16,17 @@
               </label>
             <div class="w-full mb-5">
               <h2 class="text-accent_wine text-xl font-extrabold pb-6">
-                   Modifier Bouteille Personnelle
+                Modifier une bouteille personnelle
               </h2>
               <label for="nom" class="block text-section_title font-bold mb-2">
                 Nom de la bouteille
               </label>
-              <input 
-                value="{{$bouteille->nom}}" 
-                type="text" 
-                name="nom" 
-                id="nom" 
-                placeholder="Entrez le nom de la bouteille" 
+              <input
+                value="{{$bouteille->nom}}"
+                type="text"
+                name="nom"
+                id="nom"
+                placeholder="Entrez le nom de la bouteille"
                 class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
             </div>
           <!--
@@ -36,10 +36,10 @@
               Ajouter une image
             </label>
               <div class="block relative w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-                <input 
-                  id="img" 
-                  type="file" 
-                  class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer" 
+                <input
+                  id="img"
+                  type="file"
+                  class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer"
                   name="image">
                 <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
                   <span class="block text-section_title" id="file-name">
@@ -55,11 +55,11 @@
                 Date d'achat
               </label>
               <div class="flex flex-col md:flex-row md:space-x-4">
-                <input 
-                  value="{{$bouteille->date_achat}}" 
-                  type="date" name="date_achat" 
-                  id="date_achat" 
-                  placeholder="Date d'achat" 
+                <input
+                  value="{{$bouteille->date_achat}}"
+                  type="date" name="date_achat"
+                  id="date_achat"
+                  placeholder="Date d'achat"
                   class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none" />
               </div>
             </div>
@@ -68,12 +68,12 @@
                 Valide jusqu'à
               </label>
               <div class="flex flex-col md:flex-row md:space-x-4">
-                <input 
-                  value="{{$bouteille->garde_jusqua}}" 
-                  type="date" 
-                  name="garde_jusqua" 
-                  id="date_exp" 
-                  placeholder="Valide jusqu'à" 
+                <input
+                  value="{{$bouteille->garde_jusqua}}"
+                  type="date"
+                  name="garde_jusqua"
+                  id="date_exp"
+                  placeholder="Valide jusqu'à"
                   class="block w-full py-3 px-3 rounded-md border border-gray-300 placeholder-section_title focus:border-secondary focus:outline-none" />
               </div>
             </div>
@@ -83,12 +83,12 @@
               <label for="quantite" class="block text-section_title font-bold mb-2">
                 Quantité
               </label>
-              <input 
-                value="{{$bouteille->quantite}}" 
-                class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" 
-                name="quantite" 
-                id="quantite" 
-                min="1" 
+              <input
+                value="{{$bouteille->quantite}}"
+                class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none"
+                name="quantite"
+                id="quantite"
+                min="1"
                 placeholder="Quantité">
               </input>
             </div>
@@ -96,12 +96,12 @@
               <label for="prix" class="block text-section_title font-bold mb-2">
                 $ Prix
               </label>
-              <input 
+              <input
                 value="{{$bouteille->prix_saq}}"
                 class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none"
-                name="prix_saq" 
-                id="prix" 
-                min="1" 
+                name="prix_saq"
+                id="prix"
+                min="1"
                 placeholder="Prix par bouteille">
               </input>
             </div>
@@ -111,9 +111,9 @@
               <label for="cellier" class="block text-section_title font-bold mb-2">
                 Celliers
               </label>
-              <select 
-                name="vino_cellier_id" 
-                id="cellier" 
+              <select
+                name="vino_cellier_id"
+                id="cellier"
                 class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
                 @foreach($celliers as $index => $cellier)
                 <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
@@ -124,9 +124,9 @@
               <label for="pays" class="block text-section_title font-bold mb-2">
                 Pays Producteur
               </label>
-              <select 
-                name="pays_id" 
-                id="pays" 
+              <select
+                name="pays_id"
+                id="pays"
                 class="w-full text-section_title block py-3 px-3 rounded-md border bg-transparent bg-gray-50 border-gray-300 focus:border-secondary focus:outline-none">
                   <option class="text-section_title" value="">
                     Sélectionner Pays
@@ -142,9 +142,9 @@
               <label for="type" class="block text-section_title font-bold mb-2">
                 Type de Vin
               </label>
-              <select 
-                name="vino_type_id" 
-                id="type" 
+              <select
+                name="vino_type_id"
+                id="type"
                 class="w-full text-section_title block py-3 px-3 rounded-md bg-transparent bg-gray-50 border border-gray-300 focus:border-secondary focus:outline-none">
                 <option class="text-section_title" value="">Sélectionner type</option>
                 @foreach($types as $type)
@@ -156,9 +156,9 @@
               <label for="format" class="block text-section_title font-bold mb-2">
                 Volume
               </label>
-              <select 
-                name="vino_format_id" 
-                id="format" 
+              <select
+                name="vino_format_id"
+                id="format"
                 class="w-full text-section_title block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
                 <option class="text-section_title" value="">Sélectionner Pays</option>
                 @foreach($formats as $format)
@@ -177,8 +177,8 @@
               </div>
             </div>
           </div>
-          
-    
+
+
         </form>
   </section>
 </main>
