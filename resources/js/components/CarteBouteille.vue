@@ -4,7 +4,12 @@
             <button data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                 <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close" :data-idBouteille="this.bouteille.id">
             </button>
-            <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
+            <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte"
+            :src="(this.bouteille.url_img) ? this.bouteille.url_img : require('/storage/' + this.bouteille.imageSAQ)"
+            :alt="this.bouteille.nomSAQ">
+           
+       
+
         </header>
         <div class="desc flex flex-col justify-between">
             <header class="hover-carte" @click="redirection(bouteille.id)">

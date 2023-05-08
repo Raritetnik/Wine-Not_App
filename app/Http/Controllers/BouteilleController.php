@@ -61,7 +61,7 @@ class BouteilleController extends Controller
         ]);
 
         $path = $request->file('image')->store('uploads', 'public');
-
+        // return $path;
         $nBouteille = new Vino_Bouteille();
         $nBouteille->image = $path;
         $nBouteille->nom = $request->nom;
