@@ -265,7 +265,7 @@ class BouteilleController extends Controller
         $user_id = auth()->user()->id;
         Bouteille_Par_Cellier::join('vino_bouteilles', 'bouteille_par_celliers.vino_bouteille_id', '=', 'vino_bouteilles.id')
         ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
-        ->update([
+        ->insert([
             'vino_bouteilles.nom' => $request->nom,
             'vino_bouteilles.description' => $request->description,
             'vino_bouteilles.image' => $request->image,
