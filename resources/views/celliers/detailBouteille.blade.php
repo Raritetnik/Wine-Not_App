@@ -8,11 +8,15 @@
         <div class="relative w-full max-w-md max-h-full rounded-lg border border-accent_wine top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">
             <div class="relative bg-white rounded-lg">
                 <button type="button" id="close_popup-modal" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="popup-modal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
                     <span class="sr-only">Fermer</span>
                 </button>
                 <div class="p-6 text-center">
-                    <svg aria-hidden="true" class="mx-auto mb-4 text-red-500 w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <svg aria-hidden="true" class="mx-auto mb-4 text-red-500 w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
                     <h3 class="mb-5 text-lg font-normal text-black">Etes-vous sûr(e) de vouloir supprimer?</h3>
                     <form action="{{ route('supprimer.bouteille') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -35,7 +39,11 @@
         <div class="rounded-lg flex flex-col md:flex-row items-center mb-2">
 
             <div class="md:rounded-l-lg md:rounded-tr-none flex-shrink-0 md:w-1/2">
-                <img src="{{ explode("?",$bouteille->url_img)[0] }}" class="object-cover mx-auto max-h-[500px] h-full mt-2 p-3" alt="bouteil de vin">
+                @if ($bouteille->url_img)
+                <img src="{{ explode('?', $bouteille->url_img)[0] }}" class="object-cover mx-auto max-h-[500px] h-full mt-2 p-3" alt="bouteil de vin">
+                @else
+                <img src="{{ asset('/storage/' . $bouteille->image) }}" class="object-cover mx-auto max-h-[500px] h-full mt-2 p-3" alt="bouteil de vin">
+                @endif
             </div>
 
             <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
@@ -52,7 +60,7 @@
                             <!-- ici va le compteur -->
 
                             <!-- ici va le compteur -->
-                            <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" :idCellier="`{{ $bouteille->vino_cellier_id }}`"/>
+                            <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" :idCellier="`{{ $bouteille->vino_cellier_id }}`" />
 
                             <!-- end Comteur -->
 
