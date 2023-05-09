@@ -85,19 +85,6 @@ class BouteilleController extends Controller
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function rechercheBouteille(Request $request)
 
     {
@@ -134,11 +121,6 @@ class BouteilleController extends Controller
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
-
-
-
-
-
 
 
     /**
