@@ -91,10 +91,10 @@
                             </div>
                         </div>
 
-                        <!-- <div class="border-b border-accent_wine-50 flex flex-col pb-4">
-                                <span id="note" class="text-m text-section_title font-medium">Note</span>
-                                <textarea class="hidden resize-none rounded-md py-2 px-3 w-full" id="noteTextarea" name="noteTextarea"> {{$bouteille->note ?? ''}} </textarea>
-                            </div> -->
+                        <div class="border-b border-accent_wine-50 flex flex-col pb-4">
+                            <span id="note" class="text-m text-section_title font-medium">Note</span>
+                            <v-note :noteDonnee="note" :bouteille="{{$bouteille->vino_bouteille_id}}" :total-stars="5"></v-note>
+                        </div>
                         @if($bouteille->url_saq)
                         <div class="flex flex-col pb-4">
                             <a href="{{$bouteille->url_saq}}" class="text-lg text-accent_wine hover:text-article_title font-medium">Le lien SAQ </a>
