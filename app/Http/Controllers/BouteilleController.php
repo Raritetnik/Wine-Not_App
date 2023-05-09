@@ -85,9 +85,6 @@ class BouteilleController extends Controller
 
     }
 
-
-
-
     public function rechercheBouteille(Request $request)
     
     {
@@ -125,11 +122,6 @@ class BouteilleController extends Controller
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
-
-
-
-
-
 
 
     /**
@@ -238,10 +230,11 @@ class BouteilleController extends Controller
             'pays',
             'format',
             'type',
-            'vino_celliers.nom AS cellier_nom'
+            'vino_celliers.nom AS cellier_nom',
+            'vino_celliers.utilisateurs_id',
           )
         ->join('bouteille_par_celliers', 'vino_bouteilles.id','bouteille_par_celliers.vino_bouteille_id')
-        ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id')
+        ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id', 'utilisateurs_id')
         ->join('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
         ->join('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
         ->join('pays', 'pays.id', 'vino_bouteilles.pays_id')
@@ -257,7 +250,7 @@ class BouteilleController extends Controller
                                             'types'=>$types,
                                             'formats' => $formats,
                                             'pays' => $pays,
-                                            'celliers' => $celliers]);
+                                            'celliers'=> $celliers]);
     }
     
     public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){

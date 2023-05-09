@@ -106,6 +106,7 @@ class CellierController extends Controller
       'prix_saq',
       'url_saq',
       'url_img',
+      'utilisateur_id',
       'vino_format_id',
       'vino_type_id',
       'pays_id',
