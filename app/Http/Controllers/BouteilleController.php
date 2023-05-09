@@ -264,9 +264,9 @@ class BouteilleController extends Controller
         // passer en paramètre l'objet de bouteille à modifier et les autres tables pour les menus déroulants
         return view('bouteille.modifier', ['bouteille' => $bouteilleModifie[0],
                                             'types'=>$types,
-                                            'formats' => $formats,
-                                            'pays' => $pays,
-                                            'celliers'=> $celliers]);
+                                            // 'formats' => $formats,
+                                            'celliers' => $celliers
+                                            'pays' => $pays]);
     }
     
     public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){
