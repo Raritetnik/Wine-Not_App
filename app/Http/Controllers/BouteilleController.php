@@ -9,6 +9,7 @@ use App\Models\Vino_Bouteille;
 use App\Models\Vino_Cellier;
 use App\Models\Vino_Format;
 use App\Models\Vino_Type;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -276,6 +277,31 @@ class BouteilleController extends Controller
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
         if($request->redirect) {
             return redirect('/celliers');
+        }
+    }
+
+    /**
+     * Ajouter une note (évaluation) à la bouteille on reçoit par composante de Vue.js
+     */
+
+    public function enregistrerNoteBouteille(Request $request, Vino_Bouteille $idBouteille){
+        $utilisateurId = Auth::user()->id;
+ 
+        $noteBD = Note::where([
+            ['vino_bouteilles_id', '=', $idBouteille->id],
+            ['utilisateurs_id', '=', $utilisateurId]
+        ])->first();
+        
+        if ($noteBD) {
+            // La note existe, donc nous la mettons à jour
+            $noteBD->update(['note' => $request->note]);
+        } else {
+            // La note n'existe pas, nous la créons
+            Note::create([
+                'vino_bouteilles_id' => $idBouteille->id,
+                'utilisateurs_id' => $utilisateurId,
+                'note' => $request->note
+            ]);
         }
     }
 }

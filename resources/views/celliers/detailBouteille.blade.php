@@ -93,7 +93,7 @@
 
                         <div class="border-b border-accent_wine-50 flex flex-col pb-4">
                             <span id="note" class="text-m text-section_title font-medium">Note</span>
-                            <v-note :noteDonnee="note" :bouteille="{{$bouteille->vino_bouteille_id}}" :total-stars="5"></v-note>
+                            <v-note :note="{{$bouteille->note}}" :bouteille="{{$bouteille->vino_bouteille_id}}" :total-stars="5"></v-note>
                         </div>
                         @if($bouteille->url_saq)
                         <div class="flex flex-col pb-4">

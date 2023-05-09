@@ -14,7 +14,6 @@ export default {
     props: {
         note: {
             type: Number,
-            default: 0,
         },
         totalStars: {
             type: Number,
@@ -26,21 +25,22 @@ export default {
     },
     data() {
         return {
-            noteDonnee : this.note
+            noteDonnee: this.note
         }
     },
     methods: {
         updateRating(star) {
             this.noteDonnee = star;
-                  // envoyer vers la route de modification vers webd.php
+            // envoyer vers la route de modification vers webd.php
             let url = window.location.origin + "/bouteille-note/" + this.bouteille;
+            console.log(url)
             axios
             .put(url, { note: this.noteDonnee })
             .then((response) => {
-            //console.log(response.data);
+                console.log(response.data);
             })
             .catch((error) => {
-            //console.log(error);
+                console.log(error);
             });
         },
     },
