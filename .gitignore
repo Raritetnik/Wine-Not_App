@@ -2,6 +2,7 @@
 /public/hot
 /public/css/app.css
 /public/js/app.js
+/public/images
 /public/storage
 /resources/views/test.blade.php
 /Controllers/HomeController.php

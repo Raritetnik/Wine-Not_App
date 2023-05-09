@@ -56,12 +56,12 @@ class BouteilleController extends Controller
             'nom' => 'required|min:5|max:100',
             'qty' => 'required|integer|min:1',
             'prix_saq' => 'min:0',
-            'image' => 'image|mimes:jpeg,png|max:2048',
+            'image' => 'image|mimes:jpeg,png|max:3048',
             'vino_cellier_id' => 'required|integer|min:1'
         ]);
 
         $path = $request->file('image')->store('uploads', 'public');
-
+        // return $path;
         $nBouteille = new Vino_Bouteille();
         $nBouteille->image = $path;
         $nBouteille->nom = $request->nom;
@@ -86,9 +86,9 @@ class BouteilleController extends Controller
     }
 
     public function rechercheBouteille(Request $request)
-
+    
     {
-
+        
         $request->validate([
 
             'quantite' => 'required|integer|min:1',
@@ -97,6 +97,7 @@ class BouteilleController extends Controller
 
         $celliers = auth()->user()->celliers;
 
+ 
         $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())
             ->where('vino_bouteille_id', $request->vino_bouteille_id)
             ->first();
