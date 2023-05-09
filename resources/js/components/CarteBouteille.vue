@@ -10,6 +10,7 @@
             <header class="hover-carte" @click="redirection(bouteille.id)">
                 <h1 class="font-extrabold text-xl text-accent_wine">{{ this.bouteille.nomSAQ }}</h1>
                 <h3 class="font-medium text-section_title text-lg">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
+                <h1> {{ this.bouteille.utilisateurs_id }} abc</h1>
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
             <footer class="flex">
@@ -18,8 +19,12 @@
         </div>
         <footer>
             <div class="flex justify-end items-start gap-2">
+                <!-- {{ this.bouteille }} -->
                 <!-- Split 3: modification de la bouteille-->
-                <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_cellier_id, bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
+                <div v-if="this.bouteille.utilisateur_id !== null">
+                    
+                    <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_cellier_id, bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
+                </div>
                 <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
             </div>
             <div class="flex justify-between items-end">
