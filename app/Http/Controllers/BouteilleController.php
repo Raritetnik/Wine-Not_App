@@ -268,7 +268,7 @@ class BouteilleController extends Controller
                                             'pays' => $pays,
                                             'celliers' => $celliers]);
     }
-    
+
     public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
@@ -290,8 +290,6 @@ class BouteilleController extends Controller
     public function supprimerBouteille(Request $request)
     {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
-        if($request->redirect) {
-            return redirect('/celliers');
-        }
+        return redirect('/celliers'.'/'.$request->CellierID);
     }
 }

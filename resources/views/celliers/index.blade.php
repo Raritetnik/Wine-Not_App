@@ -9,7 +9,7 @@
     @foreach($celliers as $cellier)
       <!-- Carte de cellier -->
       <div class="mb-2 w-full justify-center">
-        <v-cellier :cellier="{{ $cellier }}" />
+        <v-cellier :cellier="{{ $cellier }}" :cellierperm="{{ $cellierperm }}"/>
       </div>
     @endforeach
 

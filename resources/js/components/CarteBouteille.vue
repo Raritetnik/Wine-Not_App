@@ -2,7 +2,9 @@
     <article class="mx-auto bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
         <header class="flex items-start relative">
             <button data-modal-target="defaultModal" data-modal-toggle="defaultModal">
-                <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close" :data-idBouteille="this.bouteille.id">
+                <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close"
+                :data-idBouteille="this.bouteille.id"
+                :data-idCellier="this.bouteille.vino_cellier_id">
             </button>
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
         </header>
@@ -56,14 +58,15 @@ export default {
         },
 
         // Supprimer l'element de la liste DOM
-        supprimer () {
+        /*supprimer () {
             axios.delete('/api.delete-bouteille', { params: {
-                'BouteilleID': this.bouteille.id
+                'BouteilleID': this.bouteille.id,
+                'CellierID': this.bouteille.vino_cellier_id
             }}) .then(response => {
                 console.log('Modification est enrégistrée');
             });
             this.$el.parentElement.removeChild(this.$el)
-        },
+        },*/
         redirection(bouteille) {
             // rediriger en passant le id de la bouteille qui vient du @click sur la carte
             location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;

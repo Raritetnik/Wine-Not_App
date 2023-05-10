@@ -25,7 +25,6 @@ class ListeSouhaitsController extends Controller
      */
     public function index()
     {
-        $bouteilles = Vino_Bouteille::all();
         $liste = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
         // Filtrage des bouteilles, seules en favoris
         $listeBouteilles = [];
