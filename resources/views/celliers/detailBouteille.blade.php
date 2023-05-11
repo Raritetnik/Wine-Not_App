@@ -30,13 +30,14 @@
             </div>
         </div>
     </div>
+    <!-- End Modal -->
     <div class="max-w-screen-lg flex justify-between items-center gap-3 px-3 mx-auto">
         <a href="{{ url()->previous() }}" class=" hover:opacity-80"><img class="h-[15px] sm:min-h-[17px]" src="{{asset('img/svg/arrowL-w.svg')}}" alt="back"></a>
         <h5 class="sm:text-2xl text-accent_wine text-xl font-bold text-right leading-6">{{$bouteille -> nom}}</h5>
     </div>
     <div class="max-w-screen-lg mx-auto rounded-lg overflow-hidden mt-6 mb-7 px-3">
-
-        <div class="rounded-lg flex flex-col md:flex-row items-center mb-2">
+       <form action="">
+            <div class="rounded-lg flex flex-col md:flex-row items-center mb-2">
 
             <div class="md:rounded-l-lg md:rounded-tr-none flex-shrink-0 md:w-1/2">
                 @if ($bouteille->url_img)
@@ -111,10 +112,12 @@
                     </div>
                 </div>
                 <div class="flex flex-row items-center self-center pt-5 pb-4 ps-5 gap-10 mt-auto">
+                    <button id="move_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/move-right.svg')}}" alt="delete"></button>
                     <button id="open_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/trash.svg')}}" alt="delete"></button>
                 </div>
             </div>
-        </div>
+          </div>
+        </form>
     </div>
     <!-- fin fiche -->
 </div>

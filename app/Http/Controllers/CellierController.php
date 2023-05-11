@@ -12,6 +12,7 @@ use App\Models\Vino_Format;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 /**
  * Class Controler
@@ -250,4 +251,36 @@ class CellierController extends Controller
       return redirect('/celliers');
   }
   }
+
+public function deplacerBouteille(Request $request, $idBouteille)
+{
+    $user = Auth::user();
+
+   // Get the IDs of the from and to cellars from the request
+   $deIdCellier = $request->input('from_cellar_id');
+   $aIdCellier = $request->input('to_cellar_id');
+
+   // Retrieve the from and to cellars associated with the user
+   $deCellier = $user->celliers()->findOrFail($deIdCellier);
+   $aCellier = $user->celliers()->findOrFail($aIdCellier);
+
+   // Get the number of bottles to move from the request
+   $nbBouteilles = $request->input('quantite', 1);
+
+   // Retrieve the bottle with the specified ID from the from cellar
+   $bouteille = $deCellier->bottles()->findOrFail($idBouteille);
+
+   // Move the specified number of bottles to the to cellar
+   for ($i = 0; $i < $nbBouteilles; $i++) {
+       $deCellier->bottles()->detach($idBouteille);
+       $aCellier->bottles()->attach($idBouteille);
+   }
+
+   // Redirect the user back to the from cellar view
+   return redirect()->route('cellars.show', ['cellier' => $deIdCellier]);
+}
+
+
+
+
 }
