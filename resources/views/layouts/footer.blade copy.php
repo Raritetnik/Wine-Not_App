@@ -1,5 +1,3 @@
-@extends('layouts.app')
-@section('content')
 
 <footer class="bg-accent_wine px-4 relative">
   <div class="flex justify-around py-10">
@@ -20,4 +18,3 @@
     © Copyright 2023 WineNot Inc. All rights reserved.
   </p>
 </footer>
-  @endsection

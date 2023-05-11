@@ -1,20 +1,29 @@
-
 <footer class="bg-accent_wine px-4 relative">
-  <div class="flex justify-around py-10">
-    <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-      <img src="{{asset('img/svg/logoWn-white.svg')}}" alt="company-logo" width="130">
-    </a>
-    <div style="max-width: 25ch">
-      <h4 class="text-white">Avez-vous des questions?</h4>
-      <h4 class="text-white pt-4">Contacter nous: <span>support@winenot.com</span></h4>
-      <!--<span class="flex justify-end gap-4 py-2 mt-2">
-        <img src="{{ asset('img/svg/facebook.svg') }}" alt="">
-        <img src="{{ asset('img/svg/insta.svg') }}" alt="">
-        <img src="{{ asset('img/svg/twitter.svg') }}" alt="">
-      </span>-->
+  <div class="bg-accent_wine px-4 relative">
+    <div class="flex justify-around py-4">
+      <div class="max-w-45ch flex justify-center flex-wrap gap-4 py-5 px-2 mt-2">
+        <a href="/favoris" class="text-white pt-6 text-lg flex flex-col items-center">
+          <img src="{{ asset('img/svg/logout2.svg') }}" alt="menu" class="inline-block align-middle">
+          <span class="inline-block align-middle">Quitter</span>
+        </a>
+        <a href="/favoris" class="text-white pt-6 text-lg flex flex-col items-center">
+          <img src="{{ asset('img/svg/coeur2.svg') }}" alt="menu" class="inline-block align-middle">
+          <span class="inline-block align-middle">Favoris</span>
+        </a>
+        <a href="/favoris" class="text-white pt-6 text-lg flex flex-col items-center">
+          <img src="{{ asset('img/svg/clock.svg') }}" alt="menu" class="inline-block align-middle">
+          <span class="inline-block align-middle">Historique</span>
+        </a>
+        <a href="/favoris" class="text-white pt-6 text-lg flex flex-col items-center">
+          <img src="{{ asset('img/svg/userNew.svg') }}" alt="menu" class="inline-block align-middle">
+          <span class="inline-block align-middle">Profil</span>
+        </a>
+        <a href="/favoris" class="text-white pt-6 text-lg flex flex-col items-center">
+          <img src="{{ asset('img/svg/more.svg') }}" alt="menu" class="inline-block align-middle">
+          <span class="inline-block align-middle">More</span>
+        </a>
+      </div>
     </div>
   </div>
-  <p class="text-sm items-end text-secondary pb-2">
-    © Copyright 2023 WineNot Inc. All rights reserved.
-  </p>
+  
 </footer>
