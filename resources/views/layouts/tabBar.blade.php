@@ -2,7 +2,8 @@
   <div class="bg-accent_wine relative">
     <div class="flex justify-around py-2">
       <div class="max-w-38ch flex justify-center flex-wrap gap-8 px-2 mt-2">
-        <a href="/favoris" class="text-white  text-base flex flex-col items-center">
+        
+        <a href="{{ route('logout') }}" class="text-white  text-base flex flex-col items-center transition-colors duration-200 hover:text-secondary" aria-label="Sign out" title="deconnecter" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <img src="{{ asset('img/svg/log-out.svg') }}" alt="menu" class="inline-block align-middle pb-2">
           <span class="inline-block align-middle">Quitter</span>
         </a>
