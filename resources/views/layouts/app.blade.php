@@ -50,8 +50,7 @@
     </div>
     @endif
   </div>
-
-  @include('layouts.footer')
+  @include('layouts.tabBar')
 </body>
 </html>
 
