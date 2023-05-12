@@ -181,17 +181,17 @@ select.formbold-form-input,
   border: #67375C 2px solid;
 }
 
-/* //TESTE POUR NEW NAV */
+/* **** TAB BAR **** */
 .tab-bar {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #fff;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 60px;
-  border-top: 1px solid #eee;
+  height: 80px;
+  border-top: 2px solid #67375C;
+  overflow-x: hidden; /* Hide horizontal overflow */
 }
 
 .tab-icon {
@@ -201,14 +201,11 @@ select.formbold-form-input,
   align-items: center;
   height: 100%;
   width: 20%;
+  padding: 0px 8px;
   text-decoration: none;
-  color: #aaa;
 }
 
-.tab-icon i {
-  font-size: 24px;
-}
 
 .tab-icon.active {
-  color: #1da1f2;
+  color: #80673d;
 }
