@@ -52,13 +52,15 @@ class BouteilleController extends Controller
 
     public function insererBouteille(Request $request)
     {
-        $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+        return $request;
+        /*$dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
 
         $request->validate([
             'nom' => 'required|min:5|max:100',
             'qty' => 'required|integer|min:1',
             'prix_saq' => 'min:0',
             'image' => 'image|mimes:jpeg,png|max:2048',
+            'vino_bouteille_id' => 'required|integer|min:1',
             'vino_cellier_id' => 'required|integer|min:1'
         ]);
 
@@ -83,7 +85,7 @@ class BouteilleController extends Controller
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
         $bouteilleParCellier->save();
 
-        return redirect(route('celliers.afficher', $request->vino_cellier_id));
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));*/
 
     }
 
@@ -101,13 +103,11 @@ class BouteilleController extends Controller
 
 
     public function rechercheBouteille(Request $request)
-
     {
 
         $request->validate([
-
             'quantite' => 'required|integer|min:1',
-
+            'vino_bouteille_id' => 'required|integer|min:1',
         ]);
 
         $celliers = auth()->user()->celliers;

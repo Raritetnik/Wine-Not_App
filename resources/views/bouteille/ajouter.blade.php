@@ -9,10 +9,10 @@
   </div>
 </div>
 @if ($errors->any())
-    <div class="bg-gray-100 border border-accent_wine text-accent_wine px-4 py-3 rounded mt-5 max-w-[550px] mx-auto" role="alert">
+    <div class="bg-gray-100 border border-accent_wine text-red-500 px-4 py-3 rounded mt-5 max-w-[550px] mx-auto" role="alert">
         <ul class="list-disc list-inside">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li>{{ $error == 'validation.required' ? 'Choisissez une bouteille dans les résultats de recherche' : $error}}</li>
             @endforeach
         </ul>
 

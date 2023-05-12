@@ -22,7 +22,7 @@
          <div class="w-full mb-3">
 
            <label for="cellier" class="block text-section_title font-bold mb-2">Celliers</label>
-           <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+           <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none" required>
              @foreach($celliers as $index => $cellier)
              @if($index === 0)
              <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option>
