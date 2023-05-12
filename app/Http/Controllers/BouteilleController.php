@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bouteille_Par_Cellier;
+use App\Models\Historique;
 use App\Models\Pays;
 use App\Models\SAQ;
 use App\Models\Vino_Bouteille;
 use App\Models\Vino_Cellier;
 use App\Models\Vino_Format;
 use App\Models\Vino_Type;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -291,5 +293,36 @@ class BouteilleController extends Controller
     {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
         return redirect('/celliers'.'/'.$request->CellierID);
+    }
+
+    public function afficherHistorique () {
+        $bHistorique = Historique::where('utilisateur_id', Auth::id())->get();
+        $bouteilles = [];
+        foreach ($bHistorique as $bouteille) {
+            $bouteilleHis = Vino_Bouteille::find($bouteille->bouteille_id);
+            $bouteilleHis['pays'] = Pays::find($bouteilleHis->pays_id)['pays'];
+            $bouteilleHis['format'] = Vino_Format::find($bouteilleHis->vino_format_id)['format'];
+            $bouteilleHis['date'] = $bouteille->created_at;
+            echo($bouteille->create_at);
+            array_push($bouteilles, $bouteilleHis);
+        }
+        return view('bouteille.historique', ['bouteilles' => $bouteilles]);
+    }
+
+    public function ajouterHistorique (Request $request) {
+        $boutID = (int) $request->params['bouteilleID'];
+        $cellID = (int) $request->params['cellierID'];
+        Historique::create( [
+            'bouteille_id' => $boutID,
+            'cellier_id' => $cellID,
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
+        Bouteille_Par_Cellier::where('vino_bouteille_id', $boutID)->where('vino_cellier_id', $cellID)->delete();
+    }
+
+    public function supprimerHistorique () {
+        Historique::where('utilisateur_id', Auth::id())->delete();
+        return $this->afficherHistorique();
     }
 }

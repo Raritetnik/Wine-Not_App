@@ -9,13 +9,14 @@
                 <h3 class="font-medium text-section_title text-lg">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
+            <h2>Date d'ajout: {{ this.formatDate(this.bouteille.date) }}</h2>
             <footer class="flex">
             </footer>
         </div>
         <footer>
             <div class="flex justify-end items-start gap-2">
                 <!-- Split 3: modification de la bouteille -->
-                <ListeSouhaits :bouteille="this.bouteille.id" :liste="this.liste" style="width: 40px;"/>
+                <ListeSouhaits v-if="this.liste !== undefined" :bouteille="this.bouteille.id" :liste="this.liste" style="width: 40px;"/>
             </div>
             <div class="flex justify-between items-end">
             </div>
@@ -44,7 +45,10 @@ export default {
         changeBottle () {
             this.estVide = !this.estVide;
         },
-
+        formatDate (date) {
+            let dt = new Date(date);
+            return dt.toLocaleDateString()+' à ' +dt.toLocaleTimeString();
+        },
         // Supprimer l'element de la liste DOM
         supprimer () {
             axios.delete('/api.delete-bouteille', { params: {

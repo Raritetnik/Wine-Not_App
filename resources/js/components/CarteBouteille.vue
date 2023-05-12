@@ -1,5 +1,5 @@
 <template>
-    <article class="mx-auto bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
+    <article v-if="afficherCarte" class="mx-auto bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
         <header class="flex items-start relative">
             <button data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                 <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close"
@@ -15,7 +15,7 @@
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
             <footer class="flex">
-                <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" :idcellier="this.bouteille.vino_cellier_id" />
+                <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" :idcellier="this.bouteille.vino_cellier_id" :historique="this.historique"/>
             </footer>
         </div>
         <footer>
@@ -25,11 +25,10 @@
                 <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
             </div>
             <div class="flex justify-between items-end">
-                <!-- Split 3: fonctionnalité de historique
-                <p @click="changeBottle()" class="ml-auto mt-16">
-                    <img v-if="!this.estVide" :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
-                    <img v-if="this.estVide" :src="require('/img/svg/empty_bottle.svg')" style="height: 50px;" height="30" alt="">
-                </p>-->
+                <!-- Split 3: fonctionnalité de historique -->
+                <p @click="historique()" class="ml-auto mt-16">
+                    <img :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
+                </p>
             </div>
         </footer>
     </article>
@@ -43,7 +42,8 @@ export default {
     data() {
         return {
             estVide: false,
-            bouteilleSouhatais: {}
+            bouteilleSouhatais: {},
+            afficherCarte: true
         };
     },
     props: ['bouteille', 'liste'],
@@ -58,15 +58,15 @@ export default {
         },
 
         // Supprimer l'element de la liste DOM
-        /*supprimer () {
-            axios.delete('/api.delete-bouteille', { params: {
-                'BouteilleID': this.bouteille.id,
-                'CellierID': this.bouteille.vino_cellier_id
+        historique () {
+            axios.post('/api.save-historique', { params: {
+                'bouteilleID': this.bouteille.vino_bouteille_id,
+                'cellierID': this.bouteille.vino_cellier_id
             }}) .then(response => {
                 console.log('Modification est enrégistrée');
             });
-            this.$el.parentElement.removeChild(this.$el)
-        },*/
+            this.afficherCarte = false;
+        },
         redirection(bouteille) {
             // rediriger en passant le id de la bouteille qui vient du @click sur la carte
             location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;
