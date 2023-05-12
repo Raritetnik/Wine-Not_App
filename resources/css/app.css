@@ -182,6 +182,7 @@ select.formbold-form-input,
 }
 
 /* **** TAB BAR **** */
+
 .tab-bar {
   position: fixed;
   bottom: 0;
@@ -208,4 +209,44 @@ select.formbold-form-input,
 
 .tab-icon.active {
   color: #80673d;
+}
+
+
+.tab-icon.more-menu {
+  position: relative;
+}
+
+.more-toggle {
+  display: none;
+}
+
+.more-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.more-options {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #67375C;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.more-toggle:checked ~ .more-options {
+  transform: translateY(0%);
+}
+
+.more-options .tab-bar {
+  width: 100%;
+  padding: 8px;
+}
+
+.more-options .tab-icon span {
+  color: #fff;
+  font-size: 12px;
 }
