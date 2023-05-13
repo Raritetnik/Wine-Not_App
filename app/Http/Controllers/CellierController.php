@@ -82,6 +82,8 @@ class CellierController extends Controller
     $cellier->save();
     return redirect(route('celliers.index'));
   }
+
+
   // afficher un cellier et les bouteilles de ce cellier
   // passer en param de fonction afficher $cellier = celliers.id
   public function afficher($idCellier)
@@ -124,7 +126,7 @@ class CellierController extends Controller
       ->where('vino_celliers.id', $idCellier)
       ->get();
 
-
+    
     $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
     $type = Vino_Type::all();
     $pays = Pays::all();
@@ -188,6 +190,7 @@ class CellierController extends Controller
       return redirect(route('celliers.index'));
     }
 
+    //pour avoir les celliers qui appartients a l'utilisateur
     $celliers = auth()->user()->celliers;
     // joindre les tables pour avoir info sur la bouteille
     // $bouteille_par_cellier->id est la clé primaire
@@ -217,16 +220,20 @@ class CellierController extends Controller
       'note',
       'vino_celliers.nom AS cellier'  //pour ajouter le nom du cellier sur la fiche detaile
     )
-    ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
-    ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
-    ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
-    ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
-    ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
-    ->join('notes', 'vino_bouteilles.id', '=', 'notes.vino_bouteilles_id')
-    ->where([
-      ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]
-    ])
-    ->get();
+      ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
+      ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
+      ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
+      ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
+      ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
+      ->join('notes', 'vino_bouteilles.id', '=', 'notes.vino_bouteilles_id')
+      ->where([
+        ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]
+      ])
+      ->get();
+    if ($bouteilleDetail->isEmpty()) {
+      return redirect(route('celliers.index'));
+    }
+
     // Passer à travers le tableau et calculer le total payé par l'utilisateur;
     $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite'] * $bouteilleDetail[0]['prix_saq'];
     return view('celliers.detailBouteille', ['bouteille' => $bouteilleDetail[0], 'celliers' => $celliers]);
