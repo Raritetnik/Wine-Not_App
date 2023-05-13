@@ -23,4 +23,12 @@ class Vino_Bouteille extends Model
         'pays_id',
         'utilisateur_id'
     ];
+
+
+    public function bouteille_par_celliers()
+    {
+        return $this->hasMany(Bouteille_Par_Cellier::class, 'vino_bouteille_id');
+    }
+    
+
 }

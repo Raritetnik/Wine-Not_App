@@ -31,6 +31,8 @@
         </div>
     </div>
     <!-- End Modal -->
+   
+   @include('celliers.deplacerBouteille', ['vino_cellier' => $bouteille->vino_cellier_id, 'bouteille_par_cellier' => $bouteille->id])
     <div class="max-w-screen-lg flex justify-between items-center gap-3 px-3 mx-auto">
         <a href="{{ url()->previous() }}" class=" hover:opacity-80"><img class="h-[15px] sm:min-h-[17px]" src="{{asset('img/svg/arrowL-w.svg')}}" alt="back"></a>
         <h5 class="sm:text-2xl text-accent_wine text-xl font-bold text-right leading-6">{{$bouteille -> nom}}</h5>
@@ -58,7 +60,6 @@
                         <div class="py-4 flex justify-start gap-5 items-center">
                             <label class="text-m text-section_title font-semibold">Quantité</label>
                             <!-- Compteur -->
-                            <!-- ici va le compteur -->
 
                             <!-- ici va le compteur -->
                             <v-compteur :nbbouteille="{{ $bouteille->quantiteBouteille }}" :id="{{ $bouteille->vino_bouteille_id }}" :idCellier="`{{ $bouteille->vino_cellier_id }}`" />
@@ -111,8 +112,9 @@
                         @endif
                     </div>
                 </div>
-                <div class="flex flex-row items-center self-center pt-5 pb-4 ps-5 gap-10 mt-auto">
-                    <button id="move_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/move-right.svg')}}" alt="delete"></button>
+              
+                <div class="flex justify-between items-center pt-5 pb-4 gap-10 px-5 mt-auto">
+                    <button type="button" id="move_modal" class="py-2 px-4 rounded-md transition-colors duration-200 bg-accent_wine text-main font-medium hover:bg-transparent hover:border-accent_wine border hover:text-accent_wine">Déplacer</button>
                     <button id="open_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/trash.svg')}}" alt="delete"></button>
                 </div>
             </div>
