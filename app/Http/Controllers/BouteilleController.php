@@ -9,6 +9,7 @@ use App\Models\Vino_Bouteille;
 use App\Models\Vino_Cellier;
 use App\Models\Vino_Format;
 use App\Models\Vino_Type;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,9 +86,6 @@ class BouteilleController extends Controller
 
     }
 
-
-
-
     public function rechercheBouteille(Request $request)
     
     {
@@ -125,11 +123,6 @@ class BouteilleController extends Controller
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
-
-
-
-
-
 
 
     /**
@@ -238,10 +231,11 @@ class BouteilleController extends Controller
             'pays',
             'format',
             'type',
-            'vino_celliers.nom AS cellier_nom'
+            'vino_celliers.nom AS cellier_nom',
+            'vino_celliers.utilisateurs_id',
           )
         ->join('bouteille_par_celliers', 'vino_bouteilles.id','bouteille_par_celliers.vino_bouteille_id')
-        ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id')
+        ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id', 'utilisateurs_id')
         ->join('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
         ->join('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
         ->join('pays', 'pays.id', 'vino_bouteilles.pays_id')
@@ -257,7 +251,7 @@ class BouteilleController extends Controller
                                             'types'=>$types,
                                             'formats' => $formats,
                                             'pays' => $pays,
-                                            'celliers' => $celliers]);
+                                            'celliers'=> $celliers]);
     }
     
     public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){
@@ -283,6 +277,31 @@ class BouteilleController extends Controller
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
         if($request->redirect) {
             return redirect('/celliers');
+        }
+    }
+
+    /**
+     * Ajouter une note (évaluation) à la bouteille on reçoit par composante de Vue.js
+     */
+
+    public function enregistrerNoteBouteille(Request $request, Vino_Bouteille $idBouteille){
+        $utilisateurId = Auth::user()->id;
+ 
+        $noteBD = Note::where([
+            ['vino_bouteilles_id', '=', $idBouteille->id],
+            ['utilisateurs_id', '=', $utilisateurId]
+        ])->first();
+        
+        if ($noteBD) {
+            // La note existe, donc nous la mettons à jour
+            $noteBD->update(['note' => $request->note]);
+        } else {
+            // La note n'existe pas, nous la créons
+            Note::create([
+                'vino_bouteilles_id' => $idBouteille->id,
+                'utilisateurs_id' => $utilisateurId,
+                'note' => $request->note
+            ]);
         }
     }
 }

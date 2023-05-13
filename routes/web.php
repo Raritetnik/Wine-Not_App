@@ -75,6 +75,7 @@ Route::put('/recherche-bouteille', [BouteilleController::class, 'rechercheBoutei
 
 Route::get('/{idCellier}/modifier-bouteille/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'modifierBouteille'])->middleware('auth');
 Route::put('/{idCellier}/modifier-bouteille/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'enregistrerModifierBouteille'])->middleware('auth');
+Route::put('/bouteille-note/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'enregistrerNoteBouteille'])->middleware('auth');
 
 /**
  * Les liens de Script Loader SAQ

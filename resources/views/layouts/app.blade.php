@@ -30,6 +30,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/cellier.css') }}" rel="stylesheet">
   <link href="{{ asset('css/filtre.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/etoileNote.css') }}" rel="stylesheet">
 
 </head>
 
@@ -49,7 +50,6 @@
     </div>
     @endif
   </div>
-
   @include('layouts.footer')
 </body>
 </html>

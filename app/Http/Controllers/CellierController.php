@@ -8,6 +8,7 @@ use App\Models\ListeSouhaits;
 use App\Models\Vino_Cellier;
 use App\Models\Vino_Type;
 use App\Models\Pays;
+use App\Models\Note;
 use App\Models\Vino_Format;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -106,6 +107,7 @@ class CellierController extends Controller
       'prix_saq',
       'url_saq',
       'url_img',
+      'utilisateur_id',
       'vino_format_id',
       'vino_type_id',
       'pays_id',
@@ -212,17 +214,19 @@ class CellierController extends Controller
       'pays',
       'format',
       'type',
+      'note',
       'vino_celliers.nom AS cellier'  //pour ajouter le nom du cellier sur la fiche detaile
     )
-      ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
-      ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
-      ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
-      ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
-      ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
-      ->where([
-        ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]
-      ])
-      ->get();
+    ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
+    ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
+    ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
+    ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
+    ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
+    ->join('notes', 'vino_bouteilles.id', '=', 'notes.vino_bouteilles_id')
+    ->where([
+      ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]
+    ])
+    ->get();
     // Passer à travers le tableau et calculer le total payé par l'utilisateur;
     $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite'] * $bouteilleDetail[0]['prix_saq'];
     return view('celliers.detailBouteille', ['bouteille' => $bouteilleDetail[0], 'celliers' => $celliers]);
