@@ -61,6 +61,6 @@
     </div>
   </div>
 </div>
-<!-- Affichage filtres et des cartes des bouteilles présentes dans ce cellier -->
+<!-- Affichage filtres et des cartes des bouteilles présentes dans ce cellier ** passer en paramètre de la composante vue toutes le infos néessaires-->
 <v-filtre :type="{{$type}}" :pays="{{$pays}}" :cellier="{{$cellier}}" :bouteilles="{{$bouteilles}}" :liste="{{$liste}}"/>
 @endsection

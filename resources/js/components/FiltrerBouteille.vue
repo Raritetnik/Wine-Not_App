@@ -10,7 +10,7 @@
               <!--Type-->
               <div class="label-categorie">
                 <h3>Type de vin</h3>
-                <span class="material-symbols-outlined">expand_more</span>
+                <span class="material-symbols-outlined">remove</span>
               </div>
               <ul class="liste-choix">
                 <li v-for="aType in type" :key="aType.id">
@@ -21,9 +21,9 @@
               <!-- Prix -->
               <div class="label-categorie">
                 <h3>Prix de la bouteille</h3>
-                <span class="material-symbols-outlined">expand_more</span>
+                <span class="material-symbols-outlined">add</span>
               </div>
-              <ul class="liste-choix">
+              <ul class="liste-choix cacher">
                 <li>
                   <input type="checkbox" id="vingt" name="vingt" :value="[0, 20]" v-model="selectionnerPrix" @change="filterBouteilles">
                   <label for="vingt">0-20$</label>
@@ -53,9 +53,9 @@
               <!-- Pays -->
               <div class="label-categorie">
                 <h3>Pays d'origine</h3>
-                <span class="material-symbols-outlined">expand_more</span>
+                <span class="material-symbols-outlined rotation-huitieme">add</span>
               </div>
-              <ul class="liste-choix">
+              <ul class="liste-choix cacher">
                 <li v-for="aPays in pays" :key="aPays.id">
                   <input type="checkbox" :id="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :name="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :value="aPays.pays" v-model="selectionnerPays" @change="filterBouteilles">
                   <label :for="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')">{{ aPays.pays }}</label>
@@ -103,6 +103,7 @@ export default {
     }
 
     // Filtrer les bouteilles selon les critères de sélection
+    console.log(this.bouteilles);
     bouteillesFiltrees = this.bouteilles.filter(bouteille => {
         let correspondanceType = false;
         let correspondancePays = false;

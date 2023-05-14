@@ -125,8 +125,8 @@ remplacé par l'icône de Lidia
 .conteneur-filtre {
     position: fixed;
     top: 0;
-    left: -284px;
-    width: 284px;
+    left: -300px;
+    width: 300px;
     height: 100%;
     overflow: scroll;
     z-index: 9999;
@@ -187,7 +187,7 @@ N.B. Code modifié
 
 .menu-lateral h3 {
     font-weight: 1000;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     /* 2.5rem; */
     margin: 0rem 0 0.25rem 0;
     color: black;
@@ -199,11 +199,11 @@ N.B. Code modifié
     list-style: none;
 }
 
-@media (min-width: 36em) {
+/*@media (min-width: 36em) {
     .menu-lateral .menu-deroulant {
         width: 360px;
     }
-}
+}*/
 
 /* ---- Accordeon -----*/
 
@@ -266,7 +266,7 @@ input:hover {
 .menu-lateral label {
     padding: 1rem 1rem 1rem calc(1.2rem * 2.25);
     display: inline-block;
-    font-size: 17px;
+    font-size: 1.125rem;
     width: 100%;
     user-select: none;
     border-bottom: 2px solid #ededed;
@@ -275,7 +275,7 @@ input:hover {
 }
 
 .menu-lateral div {
-    padding: 0rem 1rem 0rem 0;
+    padding: 0;
 }
 
 .menu-lateral div>span {
@@ -314,7 +314,7 @@ input:hover {
 }
 
 .material-symbols-outlined:where(:not(.fermer)) {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 /* Hide the scrollbar in webkit-based and Firefox browsers */
@@ -363,4 +363,7 @@ ul.liste-choix {
 
 .conteneur-filtre .material-symbols-outlined.fermer:hover {
     color: #67375C;
+}
+.rotation-huitieme{
+    transform: rotate(45deg);
 }
