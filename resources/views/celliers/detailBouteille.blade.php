@@ -91,8 +91,8 @@
                             </div>
                         </div>
 
-                        <div class="border-b border-accent_wine-50 flex flex-col pb-4">
-                            <span id="note" class="text-m text-section_title font-medium">Évaluation (cliquer pour modifier)</span>
+                        <div class="gap-2 flex flex-col pb-4">
+                            <span id="note" class="text-m text-section_title font-medium">Évaluation (cliquer pour évaluer)</span>
                             <v-note :note="{{$bouteille->note}}" :bouteille="{{$bouteille->vino_bouteille_id}}" :total-stars="5"></v-note>
                         </div>
                         @if($bouteille->url_saq)
