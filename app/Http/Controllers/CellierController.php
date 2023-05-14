@@ -276,17 +276,17 @@ class CellierController extends Controller
     $newQuantite = $request->quantite;
     $totalQuantite = $bouteilleParCellier->quantite;
 
-    // Check if there is already a Bouteille_Par_Cellier record with the same vino_bouteille_id in the target cellier
+    // Vérifier s'il existe déjà un enregistrement Bouteille_Par_Cellier avec le même vino_bouteille_id dans le cellier cible
     $existingRecord = Bouteille_Par_Cellier::where('vino_cellier_id', $nouveauCellier)
       ->where('vino_bouteille_id', $bouteilleParCellier->vino_bouteille_id)
       ->first();
 
     if ($existingRecord) {
-      // If there is an existing record, add the new quantite to the existing quantite
+      // S'il existe un enregistrement existant, ajouter la nouvelle quantité à la quantité existante
       $existingRecord->quantite += $newQuantite;
       $existingRecord->save();
     } else {
-      // If there is no existing record, create a new one
+      // S'il n'y a pas d'enregistrement existant, en créer un nouveau
       $newBouteilleParCellier = new Bouteille_Par_Cellier([
         'date_achat' => $bouteilleParCellier->date_achat,
         'garde_jusqua' => $bouteilleParCellier->garde_jusqua,
@@ -299,13 +299,13 @@ class CellierController extends Controller
       $newBouteilleParCellier->save();
     }
 
-    // If the newQuantite is not equal to the totalQuantite, update the quantite of the original record
+    // Si la nouvelle quantité n'est pas égale à la quantité totale, mettre à jour la quantité de l'enregistrement original
     if ($newQuantite != $totalQuantite) {
       $oldQuantite = $totalQuantite - $newQuantite;
       $bouteilleParCellier->quantite = $oldQuantite;
       $bouteilleParCellier->save();
     } else {
-      // If the newQuantite is equal to the totalQuantite, delete the original record
+     // Si la nouvelle quantité est égale à la quantité totale, supprimer l'enregistrement original
       $bouteilleParCellier->delete();
     }
 
