@@ -8,6 +8,7 @@ use App\Models\Vino_Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+      $cookieValue = Cookie::get('myapp_session');
+      if ($cookieValue) {
+          return redirect('/login');
+      }
+      
       return view('home');
     }
 

@@ -126,7 +126,7 @@ class CellierController extends Controller
       ->where('vino_celliers.id', $idCellier)
       ->get();
 
-    
+
     $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
     $type = Vino_Type::all();
     $pays = Pays::all();
@@ -230,6 +230,7 @@ class CellierController extends Controller
         ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]
       ])
       ->get();
+
     if ($bouteilleDetail->isEmpty()) {
       return redirect(route('celliers.index'));
     }
@@ -266,25 +267,26 @@ class CellierController extends Controller
     }
   }
 
+
+
   public function deplacerBouteille(Request $request, $vino_cellier, $bouteille_par_cellier)
   {
-
     $bouteilleParCellier = Bouteille_Par_Cellier::findOrFail($bouteille_par_cellier);
-
     $nouveauCellier = $request->nouveau_cellier;
-
-    $totalQuantite = $bouteilleParCellier->quantite;
     $newQuantite = $request->quantite;
-    $oldQuantite = $totalQuantite - $newQuantite;
+    $totalQuantite = $bouteilleParCellier->quantite;
 
+    // Check if there is already a Bouteille_Par_Cellier record with the same vino_bouteille_id in the target cellier
+    $existingRecord = Bouteille_Par_Cellier::where('vino_cellier_id', $nouveauCellier)
+      ->where('vino_bouteille_id', $bouteilleParCellier->vino_bouteille_id)
+      ->first();
 
-    if ($newQuantite == $totalQuantite) {
-
-      $bouteilleParCellier->vino_cellier_id = $nouveauCellier;
-      $bouteilleParCellier->save();
-    } elseif ($newQuantite > 0 && $newQuantite < $totalQuantite) {
-
-      // Creer la nouvelle repertoire avec la nouvelle quantite 
+    if ($existingRecord) {
+      // If there is an existing record, add the new quantite to the existing quantite
+      $existingRecord->quantite += $newQuantite;
+      $existingRecord->save();
+    } else {
+      // If there is no existing record, create a new one
       $newBouteilleParCellier = new Bouteille_Par_Cellier([
         'date_achat' => $bouteilleParCellier->date_achat,
         'garde_jusqua' => $bouteilleParCellier->garde_jusqua,
@@ -295,8 +297,16 @@ class CellierController extends Controller
         'millesime' => $bouteilleParCellier->millesime,
       ]);
       $newBouteilleParCellier->save();
+    }
+
+    // If the newQuantite is not equal to the totalQuantite, update the quantite of the original record
+    if ($newQuantite != $totalQuantite) {
+      $oldQuantite = $totalQuantite - $newQuantite;
       $bouteilleParCellier->quantite = $oldQuantite;
       $bouteilleParCellier->save();
+    } else {
+      // If the newQuantite is equal to the totalQuantite, delete the original record
+      $bouteilleParCellier->delete();
     }
 
     return redirect()->route('celliers.afficher', ['cellier' => $vino_cellier]);

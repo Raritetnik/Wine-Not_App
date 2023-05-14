@@ -33,14 +33,14 @@
           @enderror
         </div>
         <div class="mb-4 flex justify-between items-center">
+          
           <div>
-            <input type="checkbox" class="form-checkbox h-4 w-4 text-section_title" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
+            <input type="checkbox" class="form-checkbox h-4 w-4 text-section_title" name="remember" id="remember" {{ session('remember') ? 'checked' : '' }}>
             <label class="ml-2 text-section_title text-sm hover:text-accent_wine" for="remember">
               {{ __('Se souvenir de moi') }}
             </label>
-
           </div>
+
           @if (Route::has('password.request'))
           <a class="ml-5 inline-block align-baseline text-sm text-accent_wine hover:text-section_title " href="{{ route('password.request') }}">
             {{ __('Le mot de passe oublié?') }}
@@ -50,21 +50,17 @@
         <footer class="flex flex-col items-center mb-10">
           <button type="submit" class="text-white py-2 w-full rounded-md mb-2 bg-accent_wine hover:opacity-95">Continuer</button>
           <div class="w-full flex justify-between items-center">
-          <a href="{{ route('home') }}" class="font-bold text-sm  text-accent_wine hover:text-section_title">Tutoriel</a>
+            <a href="{{ route('home') }}" class="font-bold text-sm  text-accent_wine hover:text-section_title">Tutoriel</a>
             <span class="text-section_title font-medium text-sm">
               Nouveau ici?
               <a href="/register" class="text-accent_wine hover:text-section_title font-bold">Créer un compte</a>
             </span>
-            </div>
-  
-          </footer>
-        </form>
-      </div>
+          </div>
+
+        </footer>
+      </form>
     </div>
   </div>
-  <!-- </div> -->
-  @endsection
-
-
-
-             
+</div>
+<!-- </div> -->
+@endsection
