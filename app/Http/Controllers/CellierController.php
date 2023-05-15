@@ -13,6 +13,7 @@ use App\Models\Vino_Format;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 /**
  * Class Controler
@@ -45,13 +46,13 @@ class CellierController extends Controller
     // Rechercher tous les celliers oû l'utilisateurs_id correspond à la session en cours
     // Afficher les celliers
     // Sinon afficher login
-    if(Auth::id()){
+    if (Auth::id()) {
       $utilisateur_id = Auth::id();
       $celliers = Vino_Cellier::select()
-      ->where('vino_celliers.utilisateurs_id', $utilisateur_id)
-      ->get();
+        ->where('vino_celliers.utilisateurs_id', $utilisateur_id)
+        ->get();
       foreach ($celliers as $cellier) {
-        $cellier->quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id',$cellier->id)->get()
+        $cellier->quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->get()
           ->count();
       }
       $cellierperm = $celliers[0]->id;
@@ -82,13 +83,15 @@ class CellierController extends Controller
     $cellier->save();
     return redirect(route('celliers.index'));
   }
+
+
   // afficher un cellier et les bouteilles de ce cellier
   // passer en param de fonction afficher $cellier = celliers.id
   public function afficher($idCellier)
   {
     $cellier = Vino_Cellier::find($idCellier);
     // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
-    if(!Vino_Cellier::where('id', $idCellier)->exists() || $cellier->utilisateurs_id != Auth::user()->id) {
+    if (!Vino_Cellier::where('id', $idCellier)->exists() || $cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     }
 
@@ -125,15 +128,17 @@ class CellierController extends Controller
       ->get();
 
 
-      $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
-      $type=Vino_Type::all();
-      $pays=Pays::all();
-      return view('celliers.afficher', ['cellier' => $cellier,
-                                        'bouteilles' => $bouteilles,
-                                        //'bouteillesJulie' => $bouteilles,
-                                        'liste' => $listeSouhaits,
-                                        'type' => $type,
-                                        'pays' => $pays] );
+    $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+    $type = Vino_Type::all();
+    $pays = Pays::all();
+    return view('celliers.afficher', [
+      'cellier' => $cellier,
+      'bouteilles' => $bouteilles,
+      //'bouteillesJulie' => $bouteilles,
+      'liste' => $listeSouhaits,
+      'type' => $type,
+      'pays' => $pays
+    ]);
     // chercher dans la classe Vino_Cellier la ligne correspondante au id ($cellier)
     // nommer les colonnes et donner des alias pour unicité
   }
@@ -142,7 +147,7 @@ class CellierController extends Controller
   public function modifier(Vino_Cellier $cellier)
   {
     // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
-    if($cellier->utilisateurs_id != Auth::user()->id) {
+    if ($cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     } else {
       return view('celliers.modifier', ['cellier' => $cellier]);
@@ -168,10 +173,10 @@ class CellierController extends Controller
     $bouteille = Vino_Bouteille::findOrFail($bouteille_id);
 
     Bouteille_Par_Cellier::select()
-    ->where([
-      ['vino_bouteille_id', '=', $bouteille_id],
-      ['vino_cellier_id', '=', $cellier_id]
-    ])->update(['quantite' => $request->input('nbbouteille')]);
+      ->where([
+        ['vino_bouteille_id', '=', $bouteille_id],
+        ['vino_cellier_id', '=', $cellier_id]
+      ])->update(['quantite' => $request->input('nbbouteille')]);
   }
 
   // Param $id = bouteille_par_cellier
@@ -179,12 +184,15 @@ class CellierController extends Controller
   public function afficherFicheBouteille(Vino_Cellier $vino_cellier, Bouteille_Par_Cellier $bouteille_par_cellier)
   {
     // Vérification sécurité si cellier appartient à utilisateur / Sinon retour sur page celliers
-    if($vino_cellier->utilisateurs_id != Auth::user()->id) {
+    if ($vino_cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     }
-    if($bouteille_par_cellier->vino_cellier_id != $vino_cellier->id) {
+    if ($bouteille_par_cellier->vino_cellier_id != $vino_cellier->id) {
       return redirect(route('celliers.index'));
     }
+
+    //pour avoir les celliers qui appartients a l'utilisateur
+    $celliers = auth()->user()->celliers;
     // joindre les tables pour avoir info sur la bouteille
     // $bouteille_par_cellier->id est la clé primaire
     $bouteilleDetail = Bouteille_Par_Cellier::select(
@@ -225,8 +233,8 @@ class CellierController extends Controller
     ->get();
 
     // Passer à travers le tableau et calculer le total payé par l'utilisateur;
-    $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite']*$bouteilleDetail[0]['prix_saq'];
-    return view('celliers.detailBouteille', ['bouteille' => $bouteilleDetail[0]]);
+    $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite'] * $bouteilleDetail[0]['prix_saq'];
+    return view('celliers.detailBouteille', ['bouteille' => $bouteilleDetail[0], 'celliers' => $celliers]);
   }
 
   /**
@@ -234,14 +242,14 @@ class CellierController extends Controller
    */
   public function supprimerBouteille($cellier_id, $bouteille_id)
   {
-      // Récupérer l'objet Bouteille_Par_Cellier correspondant à l'id de la bouteille passée en paramètre
-      $bouteille_par_cellier = Bouteille_Par_Cellier::findOrFail($bouteille_id);
+    // Récupérer l'objet Bouteille_Par_Cellier correspondant à l'id de la bouteille passée en paramètre
+    $bouteille_par_cellier = Bouteille_Par_Cellier::findOrFail($bouteille_id);
 
-      // Supprimer l'objet de la base de données
-      $bouteille_par_cellier->delete();
+    // Supprimer l'objet de la base de données
+    $bouteille_par_cellier->delete();
 
-      // Rediriger vers la page d'affichage du cellier
-      return redirect(route('celliers.afficher', $cellier_id));
+    // Rediriger vers la page d'affichage du cellier
+    return redirect(route('celliers.afficher', $cellier_id));
   }
 
   /**
@@ -251,8 +259,53 @@ class CellierController extends Controller
   {
     Bouteille_Par_Cellier::where('vino_cellier_id', $request->CellierID)->delete();
     Vino_Cellier::find($request->CellierID)->delete();
-    if($request->redirect) {
+    if ($request->redirect) {
       return redirect('/celliers');
+    }
   }
+
+
+
+  public function deplacerBouteille(Request $request, $vino_cellier, $bouteille_par_cellier)
+  {
+    $bouteilleParCellier = Bouteille_Par_Cellier::findOrFail($bouteille_par_cellier);
+    $nouveauCellier = $request->nouveau_cellier;
+    $newQuantite = $request->quantite;
+    $totalQuantite = $bouteilleParCellier->quantite;
+
+    // Vérifier s'il existe déjà un enregistrement Bouteille_Par_Cellier avec le même vino_bouteille_id dans le cellier cible
+    $existingRecord = Bouteille_Par_Cellier::where('vino_cellier_id', $nouveauCellier)
+      ->where('vino_bouteille_id', $bouteilleParCellier->vino_bouteille_id)
+      ->first();
+
+    if ($existingRecord) {
+      // S'il existe un enregistrement existant, ajouter la nouvelle quantité à la quantité existante
+      $existingRecord->quantite += $newQuantite;
+      $existingRecord->save();
+    } else {
+      // S'il n'y a pas d'enregistrement existant, en créer un nouveau
+      $newBouteilleParCellier = new Bouteille_Par_Cellier([
+        'date_achat' => $bouteilleParCellier->date_achat,
+        'garde_jusqua' => $bouteilleParCellier->garde_jusqua,
+        'prix' => $bouteilleParCellier->prix,
+        'quantite' => $newQuantite,
+        'vino_cellier_id' => $nouveauCellier,
+        'vino_bouteille_id' => $bouteilleParCellier->vino_bouteille_id,
+        'millesime' => $bouteilleParCellier->millesime,
+      ]);
+      $newBouteilleParCellier->save();
+    }
+
+    // Si la nouvelle quantité n'est pas égale à la quantité totale, mettre à jour la quantité de l'enregistrement original
+    if ($newQuantite != $totalQuantite) {
+      $oldQuantite = $totalQuantite - $newQuantite;
+      $bouteilleParCellier->quantite = $oldQuantite;
+      $bouteilleParCellier->save();
+    } else {
+     // Si la nouvelle quantité est égale à la quantité totale, supprimer l'enregistrement original
+      $bouteilleParCellier->delete();
+    }
+
+    return redirect()->route('celliers.afficher', ['cellier' => $vino_cellier]);
   }
 }

@@ -11,19 +11,27 @@ use App\Models\Vino_Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
 
-  /**
-   * Affichage de la page d'instruction
-   *
-   * @return \Illuminate\Contracts\Support\Renderable
-   */
-  public function index()
-  {
-    return view('home');
-  }
+    }
+
+/**
+     * Affichage de la page d'instruction
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+      $cookieValue = Cookie::get('myapp_session');
+      if ($cookieValue) {
+          return redirect('/login');
+      }
+      
+      return view('home');
+    }
 
   // TEST CODE
   public function testPage()

@@ -20,4 +20,16 @@ class Bouteille_Par_Cellier extends Model
         'millesime',
         'utilisateurs_id'
     ];
+
+    public function vino_bouteille()
+    {
+        return $this->belongsTo(Vino_bouteille::class, 'vino_bouteille_id');
+    }
+
+
+
+    public function vino_cellier()
+    {
+        return $this->belongsTo(Vino_Cellier::class, 'vino_cellier_id');
+    }
 }

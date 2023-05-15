@@ -30,8 +30,9 @@ class Vino_Cellier extends Model
 
     public function bottles()
     {
-        return $this->hasMany(Bouteille_Par_Cellier::class);
+        return $this->hasMany(Bouteille_Par_Cellier::class, 'vino_cellier_id');
     }
+    
 
 }
 

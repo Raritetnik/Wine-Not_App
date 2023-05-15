@@ -56,7 +56,7 @@
           <button type="submit" class="text-white py-2 w-full rounded-md mb-2 bg-accent_wine hover:opacity-95">Inscription</button>
           <span class="text-section_title font-normal text-sm pt-2">
             Avez-vous déjà un compte?
-            <a href="/register" class="text-accent_wine hover:text-section_title">Connecter</a>
+            <a href="{{ route('login') }}" class="text-accent_wine hover:text-section_title">Connecter</a>
           </span>
         </footer>
       </form>

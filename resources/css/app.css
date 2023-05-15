@@ -182,7 +182,6 @@ select.formbold-form-input,
 }
 
 /* **** TAB BAR **** */
-
 .tab-bar {
   position: fixed;
   bottom: 0;
@@ -191,8 +190,10 @@ select.formbold-form-input,
   justify-content: space-around;
   align-items: center;
   height: 80px;
+  background-color: #67375C;
   border-top: 2px solid #67375C;
   overflow-x: hidden; /* Hide horizontal overflow */
+  transform: translateY(0%);
 }
 
 .tab-icon {
@@ -212,7 +213,7 @@ select.formbold-form-input,
 }
 
 
-.tab-icon.more-menu {
+.tab-bar.more-menu {
   position: relative;
 }
 
@@ -225,6 +226,7 @@ select.formbold-form-input,
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  padding: 2px;
 }
 
 .more-options {
@@ -239,14 +241,18 @@ select.formbold-form-input,
 
 .more-toggle:checked ~ .more-options {
   transform: translateY(0%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .more-options .tab-bar {
   width: 100%;
-  padding: 8px;
+  padding: 18px;
 }
 
 .more-options .tab-icon span {
   color: #fff;
   font-size: 12px;
 }
+

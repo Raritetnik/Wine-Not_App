@@ -9,9 +9,9 @@
             </header>
             <span class="flex justify-between"><h3>Quantite totale bouteilles:</h3> <h3>{{ this.cellier.quantiteBouteilles }}/{{ this.cellier.quantite_max }}</h3></span>
             <h1 class="font-medium text-section_title text-lg"></h1>
-            <footer class="flex">
-                <span class="flex">Description: Residence principale
-                </span>
+            <footer class="flex gap-2 flex-wrap">
+                <span>Description:</span>
+                <h3 class="flex">{{ this.cellier.description }}</h3>
             </footer>
         </a>
         <footer class="flex flex-col justify-between items-end">

@@ -61,4 +61,28 @@ window.addEventListener("DOMContentLoaded", function () {
             formPersonal.classList.toggle("flex");
         });
     }
+
+    //************************************************** */
+
+    const modal = document.getElementById("modal-view");
+    const btnNoModal = document.getElementById("no_modal");
+    const btnCloseModal = document.querySelector("#close_modal");
+    const btnOpenModal = document.querySelector("#move_modal");
+
+    if (btnOpenModal !== null) {
+        btnOpenModal.addEventListener("click", () => {
+            modal.style.display = "block";
+        });
+
+        // Fermer la boite modale
+        btnNoModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+        btnCloseModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+    }
+
+   
+
 });
