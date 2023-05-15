@@ -18,7 +18,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" id="BouteilleID" name="BouteilleID" value="{{ $bouteille->id }}">
-                        <input type="hidden" name="redirect" value="true">
+                        <input type="hidden" id="CellierID" name="CellierID" value="{{ $bouteille->vino_cellier_id }}">
                         <button type="submit" data-modal-hide="popup-modal" class="p-2 px-4 bg-green-600 text-white rounded" type="button" alt="delete">Oui</button>
                         <button data-modal-hide="popup-modal" class="p-2 px-4 bg-gray-800 text-white rounded" type="button" id="no_popup-modal">No</button>
                     </form>

@@ -50,6 +50,8 @@ INSERT INTO `bouteille_par_celliers` (`id`, `date_achat`, `garde_jusqua`, `prix`
 
 -- --------------------------------------------------------
 
+CREATE TABLE Historique ( id INT PRIMARY KEY AUTO_INCREMENT, bouteille_id INT, utilisateur_id INT, cellier_id INT, FOREIGN KEY (bouteille_id) REFERENCES Vino_Bouteilles(id), FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id), FOREIGN KEY (cellier_id) REFERENCES Bouteille_par_celliers(id) ON DELETE SET NULL );
+
 --
 -- Table structure for table `failed_jobs`
 --
