@@ -27,6 +27,7 @@ module.exports = {
                 accent_wine_light: "#7D4570",
                 section_title: "#242424",
                 article_title: "#000000",
+                modal_title: "909090",
                 box_color: "#F5F5F5",
                 red: {
                     900: "#b71c1c",

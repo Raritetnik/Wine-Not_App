@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -49,6 +50,10 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+        //Dand le cas si on utilise le remember me fonctionaliter sur la page de login 
+        //$remember = $request->has('remember'); //vérifier si l'utilisateur a coché le checkbox "Remember me"
+
+
         // Récupération de l'utilisateur par l'adresse email
         $user = User::where('courriel', $request->courriel)->first();
 
@@ -58,8 +63,15 @@ class LoginController extends Controller
             return redirect()->back()->withErrors(['courriel' => 'Les informations de connexion sont incorrectes ou votre compte n\'est pas actif.']);
         }
 
+        //si on utilise le remember me ajouter $remember comme 3em argument
         // Si l'utilisateur existe et est actif, tentative de connexion avec Auth::attempt()
         if (Auth::attempt(['courriel' => $request->courriel, 'password' => $request->password])) {
+
+            // Si la connexion réussit, création de la session cookie
+            $cookieValue = encrypt($user->id . '|' . $user->courriel);
+            Cookie::queue('myapp_session', $cookieValue, 60 * 24 * 30); // Cookie will expire in 30 days
+
+            // si on utilise remember me ...pour passer le variable remember sur la page blade ..->with('remember', $remember)
             // Si la connexion réussit, redirection vers la page d'accueil
             return redirect('/celliers');
         }
