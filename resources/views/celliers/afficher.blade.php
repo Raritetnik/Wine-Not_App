@@ -5,7 +5,7 @@
 <div class="conteneur-de-toute-la-page">
 <div class="container mx-auto pb-8 pt-2 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <div class="px-6">
-  <a href="{{ url()->previous() }}" class="text-gray-600 text-sm font-extrabold mb-2 hover:opacity-80 transition-opacity duration-200 ease-in-out" alt="back">Mes Cellier</a>
+  <a href="{{ route('celliers.index') }}" class="text-gray-600 text-sm font-extrabold mb-2 hover:opacity-80 transition-opacity duration-200 ease-in-out" alt="back">Mes Cellier</a>
       <div class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;">
       
         <!-- Nom du cellier -->
