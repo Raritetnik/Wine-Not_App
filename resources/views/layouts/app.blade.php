@@ -43,7 +43,7 @@
     </main>
     <!-- bouton d'ajout de bouteille -->
     @if(request()->route()->getName() != 'bouteille.create')
-    <div class="add_btn absolute right-5 bottom-5 z-50 ">
+    <div class="add_btn absolute right-3 bottom-24 z-50 ">
       <a href="{{ route('bouteille.create') }}">
         <div class=" shadow-md text-center h-12 w-12 rounded-lg flex justify-center cursor-pointer py-2 px-2 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-4xl"><img src="{{asset('img/svg/plus.svg')}}" alt="add-button"></div>
       </a>
