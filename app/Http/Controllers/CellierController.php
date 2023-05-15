@@ -55,16 +55,10 @@ class CellierController extends Controller
         $cellier->quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->get()
           ->count();
       }
-<<<<<<< HEAD
-
-      return view('celliers.index', ['celliers' => $celliers]);
-    } else {
-=======
       $cellierperm = $celliers[0]->id;
       return view('celliers.index', ['celliers' => $celliers, 'cellierperm' => $cellierperm ]);
     }
     else {
->>>>>>> 65dc9e96962e7bbeb34586b1855121d8ffae347b
       return redirect(route('login'));
     }
   }
