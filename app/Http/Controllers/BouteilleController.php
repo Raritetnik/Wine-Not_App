@@ -245,7 +245,9 @@ class BouteilleController extends Controller
         $pays = Pays::all();
         $types= Vino_type::all();
         $formats= Vino_format::all();
-        $celliers = Vino_cellier::all();
+        // seulement passer en paramètre les celliers de l'utilisateur
+        $user_id = auth()->user()->id;
+        $celliers = Vino_cellier::where('utilisateurs_id', $user_id)->get();        
         // passer en paramètre l'objet de bouteille à modifier et les autres tables pour les menus déroulants
         return view('bouteille.modifier', ['bouteille' => $bouteilleModifie[0],
                                             'types'=>$types,
@@ -257,14 +259,51 @@ class BouteilleController extends Controller
     public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
-        Bouteille_Par_Cellier::join('vino_bouteilles', 'bouteille_par_celliers.vino_bouteille_id', '=', 'vino_bouteilles.id')
-        ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
-        ->insert([
-            'vino_bouteilles.nom' => $request->nom,
-            'vino_bouteilles.description' => $request->description,
-            'vino_bouteilles.image' => $request->image,
-            'vino_bouteilles.utilisateur_id' => null,
-          ]);
+
+        $data['utilisateur_id'] = $user_id;
+        // Validation si on a les données et retirer autrement (pour pas updater ex : pays= null)
+        if ($request->nom !== null) {
+            $data['nom'] = $request->nom;
+        }
+        if ($request->description !== null) {
+            $data['description'] = $request->description;
+        }
+        if ($request->image !== null) {
+            $data['image'] = $request->image;
+        }
+        if ($request->pays_id !== null) {
+            $data['pays_id'] = $request->pays_id;
+        }
+        if ($request->vino_type_id !== null) {
+            $data['vino_type_id'] = $request->vino_type_id;
+        }
+        if ($request->vino_format_id !== null) {
+            $data['vino_format_id'] = $request->vino_format_id;
+        }
+        if ($request->quantite !== null) {
+            $data['quantite'] = $request->quantite;
+        }
+        
+        $vinoBouteille = Vino_Bouteille::where('id', $idBouteille->id)
+        ->first();
+        
+        if ($vinoBouteille) {
+            $vinoBouteille->fill($data);
+            $vinoBouteille->save();
+        }
+        
+        $bouteilleParCellier = Bouteille_Par_Cellier::where('vino_bouteille_id', $idBouteille->id)
+        ->where('vino_cellier_id', $idCellier->id)
+        ->first();
+        
+        if ($bouteilleParCellier) {
+            $bouteilleParCellier->fill($data);
+            $bouteilleParCellier->save();
+        }
+
+
+    
+    
         // rediriger vers la page précédente avec un message de succès
         return redirect('/celliers' . '/' . $idCellier->id)->withSuccess('Information mise à jour.');
     }
