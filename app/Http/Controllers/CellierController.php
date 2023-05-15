@@ -210,19 +210,20 @@ class CellierController extends Controller
       'pays',
       'format',
       'type',
-      'note',
-      'vino_celliers.nom AS cellier'  //pour ajouter le nom du cellier sur la fiche detaile
+      DB::raw('COALESCE(notes.note, 0) AS note'), // ajouter une valeur par défaut de 0 si la note est nulle ou vide
+      'vino_celliers.nom AS cellier'
     )
     ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
     ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
     ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
     ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
     ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
-    ->join('notes', 'vino_bouteilles.id', '=', 'notes.vino_bouteilles_id')
+    ->leftJoin('notes', 'vino_bouteilles.id', '=', 'notes.vino_bouteilles_id')
     ->where([
       ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]
     ])
     ->get();
+
     // Passer à travers le tableau et calculer le total payé par l'utilisateur;
     $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite']*$bouteilleDetail[0]['prix_saq'];
     return view('celliers.detailBouteille', ['bouteille' => $bouteilleDetail[0]]);
