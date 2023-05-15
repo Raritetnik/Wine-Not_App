@@ -29,7 +29,6 @@
           @endif
           <div>
             <v-profile :user="{{ $utilisateur }}"/>
-
           </div>
           @error('oldPassword')
             <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>

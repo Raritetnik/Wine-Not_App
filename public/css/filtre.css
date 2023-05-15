@@ -125,8 +125,8 @@ remplacé par l'icône de Lidia
 .conteneur-filtre {
     position: fixed;
     top: 0;
-    left: -284px;
-    width: 284px;
+    left: -300px;
+    width: 300px;
     height: 100%;
     overflow: scroll;
     z-index: 9999;
@@ -187,7 +187,7 @@ N.B. Code modifié
 
 .menu-lateral h3 {
     font-weight: 1000;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     /* 2.5rem; */
     margin: 0rem 0 0.25rem 0;
     color: black;
@@ -199,11 +199,11 @@ N.B. Code modifié
     list-style: none;
 }
 
-@media (min-width: 36em) {
+/*@media (min-width: 36em) {
     .menu-lateral .menu-deroulant {
         width: 360px;
     }
-}
+}*/
 
 /* ---- Accordeon -----*/
 
@@ -211,7 +211,7 @@ N.B. Code modifié
     display: none;
 }
 
-.menu-lateral input {
+.menu-lateral input:not(.menu-lateral input[type="date"]) {
     width: 1.25rem;
     height: 1.25rem;
     border: 1px solid #d9d9d9;
@@ -221,16 +221,17 @@ N.B. Code modifié
     top: 45%;
     transform: translateY(-50%);
     left: 1rem;
+    /*left: 0;*/
     /* text-indent de chaque ligne */
     outline: none;
 }
 
-.menu-lateral input:after:checked {
+.menu-lateral input:after:checked:not(.menu-lateral input[type="date"]:after:checked) {
     background-color: rgb(103 55 92);
     border-color: rgb(103 55 92);
 }
 
-.menu-lateral input:checked+label {
+.menu-lateral input:checked+label:not(.menu-lateral input[type="date"]:checked+label) {
     color: rgb(97 97 97);
     /*#b3b3b3; */
     font-weight: 500;
@@ -238,13 +239,13 @@ N.B. Code modifié
     /*#f7f7f7;*/
 }
 
-.menu-lateral input:checked:focus,
+.menu-lateral input:checked:focus::not(.menu-lateral input[type="date"]:checked:focus),
 input:checked:hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     /*border-color: rgba(99, 99, 99, 0.2);*/
 }
 
-.menu-lateral input:after {
+.menu-lateral input:after::not(.menu-lateral input[type="date"]:after) {
     content: "";
     width: 100%;
     height: 100%;
@@ -257,8 +258,8 @@ input:checked:hover {
     background-position: center;
 }
 
-.menu-lateral input:focus,
-input:hover {
+.menu-lateral input:focus:not(.menu-lateral input[type="date"]:focus),
+input:hover:not(.menu-lateral input[type="date"]:hover) {
     box-shadow: 0 0 0 3px #ebebeb;
     border-color: #8c8c8c;
 }
@@ -266,7 +267,7 @@ input:hover {
 .menu-lateral label {
     padding: 1rem 1rem 1rem calc(1.2rem * 2.25);
     display: inline-block;
-    font-size: 17px;
+    font-size: 1.125rem;
     width: 100%;
     user-select: none;
     border-bottom: 2px solid #ededed;
@@ -275,7 +276,7 @@ input:hover {
 }
 
 .menu-lateral div {
-    padding: 0rem 1rem 0rem 0;
+    padding: 0;
 }
 
 .menu-lateral div>span {
@@ -314,7 +315,7 @@ input:hover {
 }
 
 .material-symbols-outlined:where(:not(.fermer)) {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 /* Hide the scrollbar in webkit-based and Firefox browsers */
@@ -363,4 +364,68 @@ ul.liste-choix {
 
 .conteneur-filtre .material-symbols-outlined.fermer:hover {
     color: #67375C;
+}
+
+/* Style du champ de date */
+input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Style du sélecteur de date (la flèche) */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #aaa;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Style du texte dans le champ de date */
+  input[type="date"]::-webkit-datetime-edit-text {
+    color: #333;
+  }
+  
+  /* Style des icônes des champs de date */
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-clear-button {
+    display: none;
+  }
+  li.dateFiltre{
+    display: flex;
+    padding: 1rem 0 1rem;
+    width: 100%;
+    user-select: none;
+    border-bottom: 2px solid #ededed;
+    cursor: pointer;
+    color: grey;
+  }
+  li.dateFiltre >label,
+  li.dateFiltre >input {
+    display: inline-flex;
+    padding: 0;
+    width: max-content;
+    border: none;
+    font-size: 1.125rem;
+    color: grey;
+    font-family: inherit;
+  }
+  li.dateFiltre>label {
+    padding-left: 1rem;
+  }
+  li.dateFiltre >input {
+    width: 125px;
+    margin-left: auto;
+    padding: 0;
+  }
+  li.dateFiltre {
+        /* border-bottom: 2px solid #ededed; */
+        cursor: pointer;
+        color: grey;
+  }
+  li.dateFiltre:hover {
+    border-bottom-color: #adadad;
+}
+li.dateFiltre:hover input{
+    color: rgb(88, 88, 88);
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CellierController;
+use App\Http\Controllers\HistoriqueController;
 use App\Http\Controllers\ListeSouhaitsController;
 use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\SAQController;
@@ -89,6 +90,8 @@ Route::get('/DEsaq', [SAQController::class, 'uploadVins'])->name('bouteilles.dd'
  */
 Route::get('/test', [HomeController::class, 'testPage'])->name('test');
 Route::get('/favoris', [ListeSouhaitsController::class, 'index'])->name('favoris');
+Route::get('/historique', [BouteilleController::class, 'afficherHistorique'])->name('historique');
+Route::post('/historique', [BouteilleController::class, 'supprimerHistorique'])->name('historique.supprimer');
 
 Route::get('webcam', [WebcamController::class, 'index']);
 Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
@@ -100,4 +103,5 @@ Route::get('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'verifierF
 Route::delete('/api.delete-bouteille', [BouteilleController::class, 'supprimerBouteille'])->name('supprimer.bouteille');
 Route::delete('/api.delete-cellier', [CellierController::class, 'supprimerCellier'])->name('supprimer.cellier');
 Route::post('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'modifierFavoris'])->name('modification.favoris');
+Route::post('/api.save-historique', [BouteilleController::class, 'ajouterHistorique'])->name('historique.ajout');
 Route::get('/api.bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');

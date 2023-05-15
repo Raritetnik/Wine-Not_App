@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bouteille_Par_Cellier;
+use App\Models\Historique;
 use App\Models\Pays;
 use App\Models\SAQ;
 use App\Models\Vino_Bouteille;
 use App\Models\Vino_Cellier;
 use App\Models\Vino_Format;
 use App\Models\Vino_Type;
+use Carbon\Carbon;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +60,7 @@ class BouteilleController extends Controller
             'qty' => 'required|integer|min:1',
             'prix_saq' => 'min:0',
             'image' => 'image|mimes:jpeg,png|max:3048',
+            'vino_bouteille_id' => 'required|integer|min:1',
             'vino_cellier_id' => 'required|integer|min:1'
         ]);
 
@@ -83,22 +86,19 @@ class BouteilleController extends Controller
         $bouteilleParCellier->save();
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
-
     }
 
     public function rechercheBouteille(Request $request)
-    
     {
-        
+
         $request->validate([
-
             'quantite' => 'required|integer|min:1',
-
+            'vino_bouteille_id' => 'required|integer|min:1',
         ]);
 
         $celliers = auth()->user()->celliers;
 
- 
+
         $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())
             ->where('vino_bouteille_id', $request->vino_bouteille_id)
             ->first();
@@ -253,7 +253,7 @@ class BouteilleController extends Controller
                                             'pays' => $pays,
                                             'celliers'=> $celliers]);
     }
-    
+
     public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
@@ -275,23 +275,50 @@ class BouteilleController extends Controller
     public function supprimerBouteille(Request $request)
     {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
-        if($request->redirect) {
-            return redirect('/celliers');
-        }
+        return redirect('/celliers'.'/'.$request->CellierID);
     }
 
-    /**
+    public function afficherHistorique () {
+        $bHistorique = Historique::where('utilisateur_id', Auth::id())->get();
+        $bouteilles = [];
+        foreach ($bHistorique as $bouteille) {
+            $bouteilleHis = Vino_Bouteille::find($bouteille->bouteille_id);
+            $bouteilleHis['pays'] = Pays::find($bouteilleHis->pays_id)['pays'];
+            $bouteilleHis['format'] = Vino_Format::find($bouteilleHis->vino_format_id)['format'];
+            $bouteilleHis['date'] = $bouteille->created_at;
+            echo($bouteille->create_at);
+            array_push($bouteilles, $bouteilleHis);
+        }
+        return view('bouteille.historique', ['bouteilles' => $bouteilles]);
+    }
+public function ajouterHistorique (Request $request) {
+        $boutID = (int) $request->params['bouteilleID'];
+        $cellID = (int) $request->params['cellierID'];
+        Historique::create( [
+            'bouteille_id' => $boutID,
+            'cellier_id' => $cellID,
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
+        Bouteille_Par_Cellier::where('vino_bouteille_id', $boutID)->where('vino_cellier_id', $cellID)->delete();
+    }
+
+    public function supprimerHistorique () {
+        Historique::where('utilisateur_id', Auth::id())->delete();
+        return $this->afficherHistorique();
+    }
+/**
      * Ajouter une note (évaluation) à la bouteille on reçoit par composante de Vue.js
      */
 
     public function enregistrerNoteBouteille(Request $request, Vino_Bouteille $idBouteille){
         $utilisateurId = Auth::user()->id;
- 
+
         $noteBD = Note::where([
             ['vino_bouteilles_id', '=', $idBouteille->id],
             ['utilisateurs_id', '=', $utilisateurId]
         ])->first();
-        
+
         if ($noteBD) {
             // La note existe, donc nous la mettons à jour
             $noteBD->update(['note' => $request->note]);
@@ -303,5 +330,4 @@ class BouteilleController extends Controller
                 'note' => $request->note
             ]);
         }
-    }
-}
+    }}
