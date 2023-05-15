@@ -4,7 +4,7 @@
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="this.bouteille.url_img" :alt="this.bouteille.nomSAQ">
         </header>
         <div class="desc flex flex-col justify-between">
-            <header class="hover-carte" @click="redirection(bouteille.id)">
+            <header class="hover-carte">
                 <h1 class="font-extrabold text-xl text-accent_wine">{{ this.bouteille.nom }}</h1>
                 <h3 class="font-medium text-section_title text-lg">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
             </header>
@@ -57,10 +57,6 @@ export default {
                 console.log('Modification est enrégistrée');
             });
             this.$el.parentElement.removeChild(this.$el)
-        },
-        redirection(bouteille) {
-            // rediriger en passant le id de la bouteille qui vient du @click sur la carte
-            location.href = `${window.location.pathname}/details-bouteille/${bouteille}`;
         },
         modifier(idCellier, idBouteille) {
             // Récupérer l'URL de base de l'application Laravel
