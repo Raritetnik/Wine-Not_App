@@ -39,9 +39,6 @@ class CellierController extends Controller
   // **Ajouter Auth
   public function index()
   {
-
-
-
     // Si une session existe, octroyer le numéro d'id de la session à l'utilisateur
     // Rechercher tous les celliers oû l'utilisateurs_id correspond à la session en cours
     // Afficher les celliers
@@ -55,8 +52,8 @@ class CellierController extends Controller
         $cellier->quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->get()
           ->count();
       }
-      $cellierperm = $celliers[0]->id;
-      return view('celliers.index', ['celliers' => $celliers, 'cellierperm' => $cellierperm ]);
+      $quantitecelliers = count($celliers);
+      return view('celliers.index', ['celliers' => $celliers, 'quantitecelliers' => $quantitecelliers ]);
     }
     else {
       return redirect(route('login'));

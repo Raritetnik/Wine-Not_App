@@ -169,9 +169,6 @@ select.formbold-form-input,
 }
 
 .add_btn {
-  position: sticky;
-  top: 80%;
-  left: 90%;
   width: 70px;
 
   margin-bottom: 0.5rem;

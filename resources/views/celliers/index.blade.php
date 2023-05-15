@@ -9,7 +9,7 @@
     @foreach($celliers as $cellier)
       <!-- Carte de cellier -->
       <div class="mb-2 w-full justify-center">
-        <v-cellier :cellier="{{ $cellier }}" :cellierperm="{{ $cellierperm }}"/>
+        <v-cellier :cellier="{{ $cellier }}" :quantitecelliers="{{ $quantitecelliers }}"/>
       </div>
     @endforeach
 
@@ -31,7 +31,8 @@
             </button>
             <div class="p-6 text-center">
                 <svg aria-hidden="true" class="mx-auto mb-4 text-red-500 w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <h3 class="mb-5 text-lg font-normal text-black">Etes-vous sûr(e) de vouloir supprimer?</h3>
+                <h3 class="mb-1 text-lg font-normal text-black">Etes-vous sûr(e) de vouloir supprimer?</h3>
+                <h4 class="mb-2 text-red-600">Tous les vins à l'intérieur seront supprimer</h4>
                 <form action="{{ route('supprimer.cellier') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('DELETE')

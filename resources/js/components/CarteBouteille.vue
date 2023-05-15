@@ -20,22 +20,16 @@
                 <Compteur :nbbouteille="this.bouteille.quantiteBouteille" :id="this.bouteille.vino_bouteille_id" :idcellier="this.bouteille.vino_cellier_id" :historique="this.historique"/>
             </footer>
         </div>
-        <footer>
-            <div class="flex justify-end items-start gap-2">
-                <!-- {{ this.bouteille }} -->
-                <!-- Split 3: modification de la bouteille-->
-                <div v-if="this.bouteille.utilisateur_id !== null">
-
-                    <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_cellier_id, bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
-                </div>
-                <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
+        <footer class="flex flex-col justify-between items-center pb-4">
+            <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
+            <!-- Split 3: modification de la bouteille-->
+            <div v-if="this.bouteille.utilisateur_id !== null">
+                <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_cellier_id, bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
             </div>
-            <div class="flex justify-between items-end">
-                <!-- Split 3: fonctionnalité de historique -->
-                <p @click="historique()" class="ml-auto mt-16">
-                    <img :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
-                </p>
-            </div>
+            <!-- Split 3: fonctionnalité de historique
+            <p @click="historique()" class="ml-auto mt-16">
+                <img :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
+            </p>-->
         </footer>
     </article>
 </template>
