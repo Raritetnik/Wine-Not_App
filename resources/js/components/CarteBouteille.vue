@@ -31,10 +31,10 @@
                 <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>
             </div>
             <div class="flex justify-between items-end">
-                <!-- Split 3: fonctionnalité de historique -->
+                <!-- Split 3: fonctionnalité de historique
                 <p @click="historique()" class="ml-auto mt-16">
                     <img :src="require('/img/svg/bottle.svg')" style="height: 50px;" alt="">
-                </p>
+                </p>-->
             </div>
         </footer>
     </article>
