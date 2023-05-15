@@ -181,7 +181,8 @@ select.formbold-form-input,
   border: #67375C 2px solid;
 }
 
-/* **** TAB BAR **** */
+/* **** TAB BAR **** 
+
 .tab-bar {
   position: fixed;
   bottom: 0;
@@ -192,10 +193,31 @@ select.formbold-form-input,
   height: 80px;
   background-color: #67375C;
   border-top: 2px solid #67375C;
-  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-x: hidden; /* Hide horizontal overflow 
+  z-index: 10;
+  transition: all .5s ease;
   transform: translateY(0%);
+} 
+.tab-bar::before,
+.tab-bar::after{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  background-color: #67375C;
+  border-top: 2px solid #67375C;
+  transition: all .5s ease;
 }
 
+.tab-bar::before{
+  transform: translateY(6px);
+
+}
+.tab-bar::after{
+  transform: translateY(-6px);
+}
 .tab-icon {
   display: flex;
   flex-direction: column;
@@ -255,3 +277,94 @@ select.formbold-form-input,
   color: #fff;
   font-size: 12px;
 }
+*/
+
+
+/*  TAB TEST */
+
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  background-color: #67375C;
+  border-top: 2px solid #67375C;
+  overflow-x: hidden;
+  transition: height 0.3s, transform 0.3s;
+  transform: translateY(0%);
+}
+
+.tab-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+  padding: 0px 8px;
+  text-decoration: none;
+}
+
+.tab-icon.active {
+  color: #80673d;
+}
+
+.tab-bar.more-menu {
+  position: relative;
+}
+
+.more-toggle {
+  display: none;
+}
+
+.more-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.more-options {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #67375C;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.more-toggle:checked ~ .more-options {
+  transform: translateY(0%);
+}
+
+.more-options .tab-icon span {
+  color: #fff;
+  font-size: 12px;
+}
+
+.tab-bar.more-menu .tab-icon {
+  transition: height 0.3s, transform 0.3s;
+}
+
+.more-toggle:checked ~ .tab-bar.more-menu .tab-icon {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s, transform 0.3s;
+  transform: translateY(-10px);
+}
+
+.more-toggle:checked ~ .tab-bar.more-menu {
+  height: calc(100vh - 90px);
+  transition: height 0.3s, transform 0.3s;
+  transform: translateY(-10px);
+}
+
