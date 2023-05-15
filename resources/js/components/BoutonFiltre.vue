@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center filtrer-cartes">
-    <div class="cursor-pointer ml-auto mr-3 hover:opacity-70 transition-opacity duration-200 ease-in-out">
+    <div class="cursor-pointer ml-auto hover:opacity-70 transition-opacity duration-200 ease-in-out">
       <svg class="bouton-filtre" width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M28.8413 1H1.84131L12.6413 13.6133V22.3333L18.0413 25V13.6133L28.8413 1Z" stroke="#ABA08D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>

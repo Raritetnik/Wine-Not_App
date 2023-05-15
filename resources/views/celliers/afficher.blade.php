@@ -5,13 +5,13 @@
     <div class="container mx-auto pb-8 pt-5 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div>
       
-            <div class="bg-gray-100 flex items-baseline gap-4 border px-4 py-3 rounded justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;">
+            <div class="bg-gray-100 flex items-baseline gap-4 border px-4 py-3 sm:rounded justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;">
                 <!-- Nom du cellier -->
                 <div class="flex  flex-wrap gap-1 items-baseline  ps-3 sm:ps-0">
-                <a href="{{ route('celliers.index') }}" class="text-secondary flex-shrink-0  text-lg hover:opacity-70 transition-opacity duration-200 ease-in-out font-medium pe-3" alt="back">Mes Celliers <span class="text-xl sm:text-2xl">\</span></a>
+                <a href="{{ route('celliers.index') }}" class="text-secondary flex-shrink-0 text-lg hover:opacity-70 transition-opacity duration-200 ease-in-out font-medium pe-3" alt="back">Mes Celliers <span class="text-xl sm:text-2xl">\</span></a>
                     <span class="flex-shrink-0 text-xl font-bold text-accent_wine sm:text-2xl"> {{$cellier->nom}} </span>
                 </div>
-                <div class="flex items-center ml-auto">
+                <div class="flex items-center ml-auto pe-3 sm:pe-0">
                     <!-- Modifier -->
                     <div class="flex items-right ml-auto mr-6" onclick="location.href=`{{ route('celliers.modifier', $cellier->id) }}`">
                         <div class="cursor-pointer mr-0 hover:opacity-70 transition-opacity duration-200 ease-in-out">
