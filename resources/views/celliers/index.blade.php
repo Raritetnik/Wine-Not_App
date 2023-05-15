@@ -16,7 +16,7 @@
   <div class="mt-7 flex justify-center items-center">
   <a
       href="{{route('celliers.creer')}}"
-      class="inline-flex items-center justify-center min-w-max py-2.5 px-6 font-semibold tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine hover:bg-accent_wine hover:text-main focus:shadow-outline focus:outline-none"
+      class="inline-flex items-center justify-center min-w-max py-2.5 px-6 font-semibold tracking-wide text-white bg-accent_wine transition duration-200 rounded border border-accent_wine hover:bg-white hover:text-accent_wine focus:shadow-outline focus:outline-none"
     >
       Ajouter un cellier
     </a>

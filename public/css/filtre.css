@@ -197,6 +197,7 @@ N.B. Code modifié
 
 .menu-lateral .menu-deroulant {
     list-style: none;
+    margin-top: 4.5rem; /*pour aligner avec la droite*/
 }
 
 /*@media (min-width: 36em) {
@@ -280,8 +281,11 @@ input:hover:not(.menu-lateral input[type="date"]:hover) {
 }
 
 .menu-lateral div>span {
-    display: inline;
+    display: inline-flex;
     vertical-align: middle;
+    flex-direction: column;
+    /*align-items: center;*/
+    justify-content: center;
 }
 
 .menu-lateral label:hover {
@@ -306,7 +310,7 @@ input:hover:not(.menu-lateral input[type="date"]:hover) {
     position: sticky;
     right: 20px;
     top: 15px;
-    left: 260px;
+    left: 245px;
     z-index: 999;
 }
 
@@ -315,7 +319,7 @@ input:hover:not(.menu-lateral input[type="date"]:hover) {
 }
 
 .material-symbols-outlined:where(:not(.fermer)) {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 /* Hide the scrollbar in webkit-based and Firefox browsers */
@@ -334,11 +338,9 @@ ul.liste-choix {
 }
 
 .label-categorie {
-    padding-top: 30px;
-}
-
-.label-categorie {
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .hover-carte {
