@@ -18,7 +18,7 @@
       <input type="checkbox" id="more-toggle" class="more-toggle">
       <label for="more-toggle" class="more-label">
         <img src="{{ asset('img/svg/more2.svg') }}" alt="menu" class="inline-block align-middle pt-1 pb-1">
-        <span class="inline-block align-middle">More</span>
+        <span class="inline-block align-middle">Plus</span>
       </label> 
       <div class="more-options">
         <a href="{{ route('logout') }}" class="tab-icon">
