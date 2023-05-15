@@ -247,7 +247,7 @@ class BouteilleController extends Controller
         $formats= Vino_format::all();
         // seulement passer en paramètre les celliers de l'utilisateur
         $user_id = auth()->user()->id;
-        $celliers = Vino_cellier::where('utilisateurs_id', $user_id)->get();        
+        $celliers = Vino_cellier::where('utilisateurs_id', $user_id)->get();
         // passer en paramètre l'objet de bouteille à modifier et les autres tables pour les menus déroulants
         return view('bouteille.modifier', ['bouteille' => $bouteilleModifie[0],
                                             'types'=>$types,
@@ -283,27 +283,27 @@ class BouteilleController extends Controller
         if ($request->quantite !== null) {
             $data['quantite'] = $request->quantite;
         }
-        
+
         $vinoBouteille = Vino_Bouteille::where('id', $idBouteille->id)
         ->first();
-        
+
         if ($vinoBouteille) {
             $vinoBouteille->fill($data);
             $vinoBouteille->save();
         }
-        
+
         $bouteilleParCellier = Bouteille_Par_Cellier::where('vino_bouteille_id', $idBouteille->id)
         ->where('vino_cellier_id', $idCellier->id)
         ->first();
-        
+
         if ($bouteilleParCellier) {
             $bouteilleParCellier->fill($data);
             $bouteilleParCellier->save();
         }
 
 
-    
-    
+
+
         // rediriger vers la page précédente avec un message de succès
         return redirect('/celliers' . '/' . $idCellier->id)->withSuccess('Information mise à jour.');
     }
