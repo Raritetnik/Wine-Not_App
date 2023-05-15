@@ -80,11 +80,11 @@
             <ul class="liste-choix cacher">
               <li class="dateFiltre">
                 <label for="dateDebut">Entre le :</label>
-                <input type="date" id="dateDebut" v-model="dateDebut">
+                <input type="date" name ="dateDebut" id="dateDebut" v-model="dateDebut" @change="filterBouteilles">
               </li>
               <li class="dateFiltre">
                 <label for="dateFin">Et le :</label>
-                <input type="date" id="dateFin" v-model="dateFin">
+                <input type="date" name="dateFin" id="dateFin" v-model="dateFin" @change="filterBouteilles">
               </li>
             </ul>
 
@@ -121,11 +121,12 @@ export default {
   },
   methods: {
     filterBouteilles() {
+      console.log(this.dateDebut)
       // Créer un tableau vide pour stocker les bouteilles filtrées
       let bouteillesFiltrees = [];
 
-      // Vérifier si tous les filtres sont désélectionnés
-      if (this.selectionnerType.length === 0 && this.selectionnerPays.length === 0 && this.selectionnerPrix.length === 0) {
+      // Vérifier si tous les filtres sont désélectionnés 
+      if (this.selectionnerType.length === 0 && this.selectionnerPays.length === 0 && this.selectionnerPrix.length === 0 && this.dateDebut === null && this.dateFin === null) {
         // Si tous les filtres sont désélectionnés, afficher toutes les bouteilles
         this.bouteillesFiltrees = this.bouteilles;
         return;
@@ -164,15 +165,16 @@ export default {
         }
         // traiter le cas oû il n'y a pas de date de péremption.  Automatiquement les vins sont gardé 1 années
         if (this.dateDebut && this.dateFin) {
+          console.log("hello")
           const dateDebut = new Date(this.dateDebut);
           const dateFin = new Date(this.dateFin);
           let bouteilleDate;
           if(bouteille.garde_jusqua===null){
             // -1 car les mois sont indexés à partir de 0
-            let date = new Date(aaaa, mm - 1, jj); 
+            let date = new Date(bouteille.date_achat); 
 
-            // Ajouter 5 ans à la date
-            date.setFullYear(date.getFullYear() + 2);
+            // Ajouter 1 an à la date car certains vins comme les beaujolais se concervent entre 1 et 2 ans au maximum s'ils sont de bonne qualité
+            date.setFullYear(date.getFullYear() + 1);
 
             // Extraire les nouvelles composantes de la date
             let nouvelleAnnee = date.getFullYear();
@@ -181,8 +183,7 @@ export default {
 
             // Formater la nouvelle date au format 'aaaa-mm-jj'
             let nouvelleDate = nouvelleAnnee + '-' + (nouveauMois < 10 ? '0' : '') + nouveauMois + '-' + (nouveauJour < 10 ? '0' : '') + nouveauJour;
-
-            bouteille.garde_jusqua = new Date(nouvelleDate);
+            bouteilleDate = new Date(nouvelleDate);
           }
           else {
             bouteilleDate = new Date(bouteille.garde_jusqua);
