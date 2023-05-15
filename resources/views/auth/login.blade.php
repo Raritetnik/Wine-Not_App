@@ -35,7 +35,7 @@
         <div class="mb-4 flex justify-between items-center">
           
           <div>
-            <input type="checkbox" class="form-checkbox h-4 w-4 text-section_title" name="remember" id="remember" {{ session('remember') ? 'checked' : '' }}>
+            <input type="checkbox" class="form-checkbox h-4 w-4 text-section_title" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
             <label class="ml-2 text-section_title text-sm hover:text-accent_wine" for="remember">
               {{ __('Se souvenir de moi') }}
             </label>
