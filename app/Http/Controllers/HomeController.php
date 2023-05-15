@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Cookie;
 class HomeController extends Controller
 {
 
-    }
-
 /**
      * Affichage de la page d'instruction
      *
@@ -29,7 +27,7 @@ class HomeController extends Controller
       if ($cookieValue) {
           return redirect('/login');
       }
-      
+
       return view('home');
     }
 
