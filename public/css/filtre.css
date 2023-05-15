@@ -369,28 +369,32 @@ ul.liste-choix {
 }
 
 /* Style du champ de date */
-input[type="date"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  /* Style du sélecteur de date (la flèche) */
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    color: #aaa;
-    font-size: 14px;
+.conteneur-filtre input[type="date"] {
+    padding: 0;
+    /*border: 1px solid #ccc;
+    border-radius: 4px;*/
+    font-size: inherit;
+    outline: none;
     cursor: pointer;
   }
   
+  /* Style du sélecteur de date (la flèche) */
+  .conteneur-filtre input[type="date"]::-webkit-calendar-picker-indicator {
+    font-size: inherit;
+    cursor: pointer;
+  }
+  .conteneur-filtre input[type="date"]:focus {
+    outline: none;
+  }
+  
   /* Style du texte dans le champ de date */
-  input[type="date"]::-webkit-datetime-edit-text {
+  .conteneur-filtre input[type="date"]::-webkit-datetime-edit-text {
     color: #333;
   }
   
   /* Style des icônes des champs de date */
-  input[type="date"]::-webkit-inner-spin-button,
-  input[type="date"]::-webkit-clear-button {
+  .conteneur-filtre input[type="date"]::-webkit-inner-spin-button,
+  .conteneur-filtre input[type="date"]::-webkit-clear-button {
     display: none;
   }
   li.dateFiltre{

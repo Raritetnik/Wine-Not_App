@@ -9,6 +9,10 @@
           <div class="menu-deroulant">
             <!--Type-->
             <div class="label-categorie">
+              <input type="checkbox" id="reinitialiserFiltre" v-model="reinitialiserFiltre">
+              <label for="reinitialiseFiltre" class="text-xs text-gray-500">Réinitialiser</label>
+            </div>
+            <div class="label-categorie">
               <h3>Type de vin</h3>
               <span class="material-symbols-outlined">add</span>
             </div>
@@ -116,7 +120,8 @@ export default {
       selectionnerType: [],
       selectionnerPays: [],
       selectionnerPrix: [],
-      bouteillesFiltrees: []
+      bouteillesFiltrees: [],
+      reinitialiserFiltre: false,
     };
   },
   methods: {
@@ -198,6 +203,14 @@ export default {
 
       // Stocker les bouteilles filtrées dans le data
       this.bouteillesFiltrees = bouteillesFiltrees;
+    },
+    reinitialiserFiltre() {
+      this.selectionnerType = [];
+      this.selectionnerPays = [];
+      this.selectionnerPrix = [];
+      this.dateDebut = null;
+      this.dateFin = null;
+      this.filterBouteilles();
     },
   },
   created() {
