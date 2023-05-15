@@ -248,11 +248,10 @@ select.formbold-form-input,
 
 .more-options .tab-bar {
   width: 100%;
-  padding: 18px;
+  padding: 8px;
 }
 
 .more-options .tab-icon span {
   color: #fff;
   font-size: 12px;
 }
-
