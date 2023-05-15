@@ -9,8 +9,7 @@
           <div class="menu-deroulant">
             <!--Type-->
             <div class="label-categorie">
-              <input type="checkbox" id="reinitialiserFiltre" v-model="reinitialiserFiltre">
-              <label for="reinitialiseFiltre" class="text-xs text-gray-500">Réinitialiser</label>
+              <button @click="reinitialiserLesFiltres">Réinitialiser</button>
             </div>
             <div class="label-categorie">
               <h3>Type de vin</h3>
@@ -121,7 +120,6 @@ export default {
       selectionnerPays: [],
       selectionnerPrix: [],
       bouteillesFiltrees: [],
-      reinitialiserFiltre: false,
     };
   },
   methods: {
@@ -204,12 +202,27 @@ export default {
       // Stocker les bouteilles filtrées dans le data
       this.bouteillesFiltrees = bouteillesFiltrees;
     },
-    reinitialiserFiltre() {
-      this.selectionnerType = [];
-      this.selectionnerPays = [];
-      this.selectionnerPrix = [];
-      this.dateDebut = null;
-      this.dateFin = null;
+    reinitialiserLesFiltres() {
+      console.log("test")
+      this.selectionnerType = []; // Clear the selected types
+      this.selectionnerPays = []; // Clear the selected countries
+      this.selectionnerPrix = []; // Clear the selected prices
+      this.dateDebut = null; // Clear the start date
+      this.dateFin = null; // Clear the end date
+      
+      // Uncheck all checkboxes
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+      
+      // Clear all date inputs
+      const dateInputs = document.querySelectorAll('input[type="date"]');
+      dateInputs.forEach((dateInput) => {
+        dateInput.value = '';
+      });
+      
+      // Trigger the filter function to update the filtered bottles
       this.filterBouteilles();
     },
   },
