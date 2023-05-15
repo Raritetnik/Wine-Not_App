@@ -29,6 +29,7 @@ Vue.component("v-bouteille", require("./components/CarteBouteille.vue").default)
 Vue.component("v-cellier", require("./components/CarteCellier.vue").default);
 Vue.component("v-profile", require("./components/Profile.vue").default);
 Vue.component("v-note", require("./components/EtoileNote.vue").default);
+Vue.component("v-bouton-filtre", require("./components/BoutonFiltre.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
