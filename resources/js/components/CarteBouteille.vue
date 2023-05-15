@@ -9,8 +9,6 @@
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte"
             :src="(this.bouteille.url_img) ? this.bouteille.url_img : require('/storage/' + this.bouteille.imageSAQ)"
             :alt="this.bouteille.nomSAQ">
-
-           
         </header>
         <div class="desc flex flex-col justify-between">
             <header class="hover-carte" @click="redirection(bouteille.id)">
@@ -27,7 +25,7 @@
                 <!-- {{ this.bouteille }} -->
                 <!-- Split 3: modification de la bouteille-->
                 <div v-if="this.bouteille.utilisateur_id !== null">
-                    
+
                     <img :src="require('/img/svg/modify.svg')" width="20" @click="modifier(bouteille.vino_cellier_id, bouteille.vino_bouteille_id)" class="hover:cursor-pointer" alt="modify">
                 </div>
                 <ListeSouhaits :bouteille="this.bouteille.vino_bouteille_id" :liste="this.liste" style="width: 40px;"/>

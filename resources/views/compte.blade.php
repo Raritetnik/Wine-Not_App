@@ -35,6 +35,7 @@
           @enderror
           <footer class="flex flex-col items-center mb-10 mt-5">
             <button type="submit" class="text-white py-2 mt-4 w-full rounded-md mb-2" style="background-color: #67375C">Modifier</button>
+            <v-supprimer-compte :user="{{ $utilisateur }}"/>
           </footer>
         </form>
       </div>

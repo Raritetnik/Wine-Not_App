@@ -105,3 +105,4 @@ Route::delete('/api.delete-cellier', [CellierController::class, 'supprimerCellie
 Route::post('/api.listeSouhait/{id}', [ListeSouhaitsController::class, 'modifierFavoris'])->name('modification.favoris');
 Route::post('/api.save-historique', [BouteilleController::class, 'ajouterHistorique'])->name('historique.ajout');
 Route::get('/api.bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');
+Route::post('/api.supprimer-utilisateur', [HomeController::class, 'supprimerUtilisateur'])->name('compte.supprimer');
