@@ -16,6 +16,7 @@ window.addEventListener('DOMContentLoaded', function() {
             if(e.target.dataset.idbouteille !== undefined){
                 console.log(e.target.dataset.idbouteille);
                 modal.querySelector('#BouteilleID').value = e.target.dataset.idbouteille
+                modal.querySelector('#CellierID').value = e.target.dataset.idcellier
                 modal.style.display = "block";
             }
         });

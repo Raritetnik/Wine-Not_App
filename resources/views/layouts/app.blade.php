@@ -12,7 +12,7 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
-  <script src="{{ asset('js/filtreVanille.js') }}" defer></script>
+  <!--<script src="{{ asset('js/filtreVanille.js') }}" defer></script>-->
   <script src="{{ asset('js/modalBox.js') }}" defer></script>
 
 
@@ -50,7 +50,7 @@
     </div>
     @endif
   </div>
-  @include('layouts.footer')
+  @include('layouts.tabBar')
 </body>
 </html>
 

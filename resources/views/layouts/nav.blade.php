@@ -53,6 +53,9 @@
         <a href="{{route('celliers.creer')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="articles" title="articles">
           Ajouter Cellier
         </a>
+        <a href="{{route('historique')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="articles" title="articles">
+          Historique
+        </a>
         <a href="{{ route('logout') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="Sign out" title="deconnecter" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           Déconnexion
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>

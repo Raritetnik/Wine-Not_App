@@ -1,9 +1,27 @@
-// Déclencheur pour ouverture de la composante filtre (bouton click + accordéon)
-
-window.addEventListener("load", ()=>{
-    let boutonFiltre = document.querySelector('.bouton-filtre');
-    let inputFiltre = document.querySelector('.checkbox-filtre');
-    let accordeon = document.querySelectorAll(".label-categorie");
+<template>
+  <div class="flex items-center filtrer-cartes">
+    <div class="cursor-pointer ml-auto mr-3">
+      <svg class="bouton-filtre" width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28.8413 1H1.84131L12.6413 13.6133V22.3333L18.0413 25V13.6133L28.8413 1Z" stroke="#ABA08D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <!-- checkbox pour déclencher ouverture du filtre -->
+      <label>
+        <input type="checkbox" name="filtre" class="checkbox-filtre" v-model="filtreActif" hidden>
+      </label>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      filtreActif: false,
+    };
+  },
+  mounted() {
+    const boutonFiltre = document.querySelector('.bouton-filtre');
+    const inputFiltre = document.querySelector('.checkbox-filtre');
+    const accordeon = document.querySelectorAll(".label-categorie");
 
     // initialiser pour que puisse se déclencer au premier clic
     if(boutonFiltre !== null) {
@@ -77,4 +95,7 @@ window.addEventListener("load", ()=>{
             });
         })
     }
-})
+  },
+};
+</script>
+

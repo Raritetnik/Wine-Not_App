@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import ResultatsRecherche from './ResultatsRecherche.vue';
 
 export default {
