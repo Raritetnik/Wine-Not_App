@@ -2,7 +2,7 @@
 @section('content')
 <div class="bg-white py-16">
   <div class="container mx-auto py-5 px-8 max-w-lg">
-    <h2 class="text-4xl font-bold mb-8">Ajouter Un Cellier</h2>
+    <h2 class="mb-8 text-accent_wine text-2xl font-bold leading-none sm:text-3xl">Ajouter Un Cellier</h2>
     <p class="text-gray-700 mb-4">Remplissez le formulaire suivant pour ajouter un cellier.</p>
     <form action="{{route('celliers.insererCellier')}}" method="post" enctype="multipart/form-data" class="w-full">
       <!-- ajouter un token pour autoriser la route une seconde fois -->
@@ -26,9 +26,10 @@
         </label>
         <textarea class="w-full h-full items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine focus:shadow-outline" id="description" name="description" type="text" placeholder="Ajouter un descriptif pour ce cellier"></textarea>
       </div>
-      <div class="mb-4 py-4 text-center">
-        <input value = "Ajouter" class="bg-accent_wine hover:accent_wine-80 text-main font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline" type="submit" placeholder="Créer le cellier">
-        </input>
+      <div class="mb-4 py-4 flex justify-between gap-10">
+        <button class="cursor-pointer py-2 px-6 font-semibold tracking-wide text-main transition duration-200 rounded border bg-accent_wine hover:border-accent_wine hover:bg-transparent hover:text-accent_wine  focus:outline-none" type="submit">Ajouter
+        </button>
+        <a href="{{ url()->previous() }}" class="py-2 px-6 rounded transition-colors border-accent_wine duration-200  text-accent_wine font-medium hover:bg-accent_wine  border hover:text-main" type="button" id="no_modal">Retourner</a>
       </div>
     </form>
   </div>
