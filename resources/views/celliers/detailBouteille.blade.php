@@ -34,7 +34,7 @@
    
    @include('celliers.deplacerBouteille', ['vino_cellier' => $bouteille->vino_cellier_id, 'bouteille_par_cellier' => $bouteille->id])
     <div class="max-w-screen-lg flex justify-between items-center gap-3 px-3 mx-auto">
-        <a href="{{ url()->previous() }}" class=" hover:opacity-80"><img class="h-[15px] sm:min-h-[17px]" src="{{asset('img/svg/arrowL-w.svg')}}" alt="back"></a>
+        <a href="{{ route('celliers.afficher', ['cellier' => $bouteille->vino_cellier_id]) }}" class=" hover:opacity-80"><img class="h-[15px] sm:min-h-[17px]" src="{{asset('img/svg/arrowL-w.svg')}}" alt="back"></a>
         <h5 class="sm:text-2xl text-accent_wine text-xl font-bold text-right leading-6">{{$bouteille -> nom}}</h5>
     </div>
     <div class="max-w-screen-lg mx-auto rounded-lg overflow-hidden mt-6 mb-7 px-3">
