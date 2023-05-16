@@ -42,7 +42,7 @@
       <img src="{{ asset('img/svg/heart.svg') }}" alt="menu" class="inline-block align-middle pb-2">
       <span class="inline-block align-middle">Favoris</span>
     </a>
-    <a href="" class="tab-icon">
+    <a href="/historique" class="tab-icon">
       <img src="{{ asset('img/svg/clock2.svg') }}" alt="menu" class="inline-block align-middle pb-2">
       <span class="inline-block align-middle">Historique</span>
     </a>
@@ -53,3 +53,4 @@
   @endguest
 </div>
 </div>
+
