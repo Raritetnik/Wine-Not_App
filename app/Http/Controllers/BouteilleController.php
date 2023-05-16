@@ -53,6 +53,7 @@ class BouteilleController extends Controller
 
     public function insererBouteille(Request $request)
     {
+
         $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
 
         $request->validate([
@@ -60,12 +61,17 @@ class BouteilleController extends Controller
             'qty' => 'required|integer|min:1',
             'prix_saq' => 'min:0',
             'image' => 'image|mimes:jpeg,png|max:3048',
-            'vino_bouteille_id' => 'required|integer|min:1',
-            'vino_cellier_id' => 'required|integer|min:1'
+            'vino_cellier_id' => 'required|integer|min:1',
+            'millesime' => 'integer|min:1',
         ]);
 
-        $path = $request->file('image')->store('uploads', 'public');
-        // return $path;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+        } else {
+            $path = 'uploads/placeholder.png';
+        }
+        
+
         $nBouteille = new Vino_Bouteille();
         $nBouteille->image = $path;
         $nBouteille->nom = $request->nom;
@@ -76,20 +82,26 @@ class BouteilleController extends Controller
         $nBouteille->utilisateur_id = Auth::id();
         $nBouteille->save();
 
+        
+
         $bouteilleParCellier = new Bouteille_Par_Cellier();
         $bouteilleParCellier->quantite = $request->qty;
         $bouteilleParCellier->date_achat = $dateAchat;
+        $bouteilleParCellier->millesime = $request->annee;
         $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
         $bouteilleParCellier->save();
 
+
+
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
     public function rechercheBouteille(Request $request)
     {
+
 
         $request->validate([
             'quantite' => 'required|integer|min:1',
@@ -104,6 +116,7 @@ class BouteilleController extends Controller
             ->first();
 
         if ($bouteilleValidation) {
+
             $totalBouteille = $bouteilleValidation->quantite + $request->quantite;
             $bouteilleValidation->update(['quantite' => $totalBouteille]);
         } else {
@@ -194,15 +207,15 @@ class BouteilleController extends Controller
     public function listeBouteilles()
     {
         return Vino_Bouteille::query()
-        ->join('vino_formats', 'vino_bouteilles.vino_format_id', '=', 'vino_formats.id')
-        ->join('vino_types', 'vino_bouteilles.vino_type_id', '=', 'vino_types.id')
-        ->join('pays', 'vino_bouteilles.pays_id', '=', 'pays.id')
-        ->get([
-            'vino_bouteilles.*',
-            'vino_formats.format as format',
-            'vino_types.type as type',
-            'pays.pays as pays'
-        ]);
+            ->join('vino_formats', 'vino_bouteilles.vino_format_id', '=', 'vino_formats.id')
+            ->join('vino_types', 'vino_bouteilles.vino_type_id', '=', 'vino_types.id')
+            ->join('pays', 'vino_bouteilles.pays_id', '=', 'pays.id')
+            ->get([
+                'vino_bouteilles.*',
+                'vino_formats.format as format',
+                'vino_types.type as type',
+                'pays.pays as pays'
+            ]);
     }
 
     public function modifierBouteille(Vino_Cellier $idCellier, Vino_Bouteille $idBouteille)
@@ -233,30 +246,33 @@ class BouteilleController extends Controller
             'type',
             'vino_celliers.nom AS cellier_nom',
             'vino_celliers.utilisateurs_id',
-          )
-        ->join('bouteille_par_celliers', 'vino_bouteilles.id','bouteille_par_celliers.vino_bouteille_id')
-        ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id', 'utilisateurs_id')
-        ->join('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
-        ->join('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
-        ->join('pays', 'pays.id', 'vino_bouteilles.pays_id')
-        ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
-        ->where('vino_celliers.id', $idCellier->id)
-        ->get();
+        )
+            ->join('bouteille_par_celliers', 'vino_bouteilles.id', 'bouteille_par_celliers.vino_bouteille_id')
+            ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id', 'utilisateurs_id')
+            ->join('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
+            ->join('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
+            ->join('pays', 'pays.id', 'vino_bouteilles.pays_id')
+            ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
+            ->where('vino_celliers.id', $idCellier->id)
+            ->get();
         $pays = Pays::all();
-        $types= Vino_type::all();
-        $formats= Vino_format::all();
+        $types = Vino_type::all();
+        $formats = Vino_format::all();
         // seulement passer en paramètre les celliers de l'utilisateur
         $user_id = auth()->user()->id;
         $celliers = Vino_cellier::where('utilisateurs_id', $user_id)->get();
         // passer en paramètre l'objet de bouteille à modifier et les autres tables pour les menus déroulants
-        return view('bouteille.modifier', ['bouteille' => $bouteilleModifie[0],
-                                            'types'=>$types,
-                                            'formats' => $formats,
-                                            'pays' => $pays,
-                                            'celliers'=> $celliers]);
+        return view('bouteille.modifier', [
+            'bouteille' => $bouteilleModifie[0],
+            'types' => $types,
+            'formats' => $formats,
+            'pays' => $pays,
+            'celliers' => $celliers
+        ]);
     }
 
-    public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille){
+    public function enregistrerModifierBouteille(Request $request, Vino_Cellier $idCellier, Vino_Bouteille $idBouteille)
+    {
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
 
@@ -285,7 +301,7 @@ class BouteilleController extends Controller
         }
 
         $vinoBouteille = Vino_Bouteille::where('id', $idBouteille->id)
-        ->first();
+            ->first();
 
         if ($vinoBouteille) {
             $vinoBouteille->fill($data);
@@ -293,8 +309,8 @@ class BouteilleController extends Controller
         }
 
         $bouteilleParCellier = Bouteille_Par_Cellier::where('vino_bouteille_id', $idBouteille->id)
-        ->where('vino_cellier_id', $idCellier->id)
-        ->first();
+            ->where('vino_cellier_id', $idCellier->id)
+            ->first();
 
         if ($bouteilleParCellier) {
             $bouteilleParCellier->fill($data);
@@ -314,10 +330,11 @@ class BouteilleController extends Controller
     public function supprimerBouteille(Request $request)
     {
         Bouteille_Par_Cellier::find($request->BouteilleID)->delete();
-        return redirect('/celliers'.'/'.$request->CellierID);
+        return redirect('/celliers' . '/' . $request->CellierID);
     }
 
-    public function afficherHistorique () {
+    public function afficherHistorique()
+    {
         $bHistorique = Historique::where('utilisateur_id', Auth::id())->get();
         $bouteilles = [];
         foreach ($bHistorique as $bouteille) {
@@ -325,15 +342,16 @@ class BouteilleController extends Controller
             $bouteilleHis['pays'] = Pays::find($bouteilleHis->pays_id)['pays'];
             $bouteilleHis['format'] = Vino_Format::find($bouteilleHis->vino_format_id)['format'];
             $bouteilleHis['date'] = $bouteille->created_at;
-            echo($bouteille->create_at);
+            echo ($bouteille->create_at);
             array_push($bouteilles, $bouteilleHis);
         }
         return view('bouteille.historique', ['bouteilles' => $bouteilles]);
     }
-public function ajouterHistorique (Request $request) {
+    public function ajouterHistorique(Request $request)
+    {
         $boutID = (int) $request->params['bouteilleID'];
         $cellID = (int) $request->params['cellierID'];
-        Historique::create( [
+        Historique::create([
             'bouteille_id' => $boutID,
             'cellier_id' => $cellID,
             'utilisateur_id' => Auth::id(),
@@ -342,15 +360,17 @@ public function ajouterHistorique (Request $request) {
         Bouteille_Par_Cellier::where('vino_bouteille_id', $boutID)->where('vino_cellier_id', $cellID)->delete();
     }
 
-    public function supprimerHistorique () {
+    public function supprimerHistorique()
+    {
         Historique::where('utilisateur_id', Auth::id())->delete();
         return $this->afficherHistorique();
     }
-/**
+    /**
      * Ajouter une note (évaluation) à la bouteille on reçoit par composante de Vue.js
      */
 
-    public function enregistrerNoteBouteille(Request $request, Vino_Bouteille $idBouteille){
+    public function enregistrerNoteBouteille(Request $request, Vino_Bouteille $idBouteille)
+    {
         $utilisateurId = Auth::user()->id;
 
         $noteBD = Note::where([
@@ -369,4 +389,5 @@ public function ajouterHistorique (Request $request) {
                 'note' => $request->note
             ]);
         }
-    }}
+    }
+}

@@ -7,7 +7,7 @@
                 :data-idCellier="this.bouteille.vino_cellier_id">
             </button>
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte"
-            :src="(this.bouteille.url_img) ? this.bouteille.url_img : require('/storage/' + this.bouteille.imageSAQ)"
+            :src="(this.bouteille.url_img) ? this.bouteille.url_img : ('/storage/' + (this.bouteille.imageSAQ || 'uploads/placeholder.png'))"
             :alt="this.bouteille.nomSAQ">
         </header>
         <div class="desc flex flex-col justify-between">
