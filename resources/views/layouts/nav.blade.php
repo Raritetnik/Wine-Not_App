@@ -8,7 +8,6 @@
     <!--
 
         Mobile Menu
-
     -->
     <!-- from-accent_wine to-main bg-gradient-to-t -->
     <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden bg-accent_wine absolute top-0 left-0 w-full">
