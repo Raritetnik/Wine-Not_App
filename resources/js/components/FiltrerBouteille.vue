@@ -9,7 +9,10 @@
           <div class="menu-deroulant">
             <!--Type-->
             <div class="label-categorie">
-              <button @click="reinitialiserLesFiltres">Réinitialiser</button>
+              <button @click="reinitialiserLesFiltres">Réinitialiser les filtres</button>
+              <span class="material-symbols-outlined">
+              device_reset
+              </span>
             </div>
             <div class="label-categorie">
               <h3>Type de vin</h3>
