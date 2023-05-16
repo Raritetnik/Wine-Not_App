@@ -1,6 +1,6 @@
 <<template>
     <div class="w-full">
-        <button class="bg-inherit py-2 mt-4 w-full border rounded-md mb-2 hover:text-white border-red-500 hover:bg-red-500 text-black" @click="openModal()" type="button">Supprimer</button>
+        <button class="bg-inherit py-2 mt-4 w-full border rounded-md mb-2 text-white border-red-500 bg-red-500" @click="openModal()" type="button">Supprimer</button>
         <!-- Modal Box -->
         <div v-if="afficherModale" tabindex="-1"
             class="bg-black bg-opacity-40 fixed top-0 left-0 right-0 z-50 block p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full ">

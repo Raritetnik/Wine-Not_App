@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="min-h-[500px] flex justify-center items-center w-full">
+  <div class="min-h-[500px] flex justify-center items-center w-full px-2 sm:px-0">
     <div class="bg-white rounded-lg overflow-hidden max-w-[400px] w-full">
       <header class="flex flex-col justify-center logo w-[400px]">
         <h1 class="font-bold text-2xl pb-6" style="color: var(--color_champ)">Mon Profile</h1>
