@@ -19,9 +19,8 @@
       <label for="more-toggle" class="more-label">
         <img src="{{ asset('img/svg/more2.svg') }}" alt="menu" class="inline-block align-middle pt-1 pb-1">
         <span class="inline-block align-middle">Plus</span>
-      </label> 
+      </label>
       <div class="more-options">
-        <a href="{{ route('logout') }}" class="tab-icon">
         <a href="/mes-celliers" class="tab-icon">
           <span class="inline-block align-middle">Mes Celliers</span>
         </a>
@@ -49,4 +48,5 @@
       <span class="inline-block align-middle">Profil</span>
     </a>
   @endguest
+</div>
 </div>

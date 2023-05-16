@@ -1,9 +1,31 @@
 <nav id="main-nav" class="lg:bg-gray-50 lg:shadow-sm md:bg-transparent md:shadow-none py-1 relative">
     <!-- Logo -->
-    <div class="absolute inset-0 flex items-center justify-center z-0">
-      <a href="{{ route('home') }}"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
+    <div class="absolute left-5 z-0">
+        <a href="{{ route('home') }}"><img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
     </div>
-    <div class="relative flex h-[70px] items-center justify-end lg:hidden"></div>
+
+    <div class="relative flex h-[70px] items-center justify-end lg:hidden">
+        <div class="flex justify-between items-center absolute z-20 right-5 gap-8">
+            @guest
+            @else
+              <!-- Favoris Menu -->
+              <div class="z-10 ">
+                <a href="/favoris" class="bg-white"><img src="{{ asset('img/svg/favoris.svg') }}" class="bg-white p-1 pt-2 mb-1 rounded" alt="fav_icon" style="min-width: 25px"></a>
+              </div>
+            @endguest
+
+            <!-- Burger Menu -->
+            <!-- hover:text-accent_wine hover:border-accent_wine -->
+            <div class="flex items-center">
+                <button id="mobile-menu-button" type="button" class="z-50 rounded-md  border-3  focus:outline-none transition-all duration-150 ease-in-out">
+                    <svg class="h-10 w-10 hover:opacity-80" stroke="#67375C" fill="none" viewBox="0 0 25 25">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!--
 
         Mobile Menu
@@ -30,6 +52,9 @@
         </a>
         <a href="{{route('celliers.creer')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="articles" title="articles">
           Ajouter Cellier
+        </a>
+        <a href="{{route('historique')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="articles" title="articles">
+          Historique
         </a>
         <a href="{{ route('logout') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="Sign out" title="deconnecter" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           Déconnexion
