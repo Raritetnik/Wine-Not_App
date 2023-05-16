@@ -9,7 +9,10 @@
           <div class="menu-deroulant">
             <!--Type-->
             <div class="label-categorie">
-              <button @click="reinitialiserLesFiltres">Réinitialiser</button>
+              <button @click="reinitialiserLesFiltres">Réinitialiser les filtres</button>
+              <span class="material-symbols-outlined">
+              device_reset
+              </span>
             </div>
             <div class="label-categorie">
               <h3>Type de vin</h3>
@@ -99,7 +102,7 @@
     <section id="section-bouteilles" class="px-6 flex flex-col items-center justify-center mx-auto">
       <!-- carte -->
       <div class="mb-2 w-full" v-for="bouteille in bouteillesFiltrees" :key="bouteille.id">
-        <v-bouteille :bouteille="bouteille" :liste="liste" />
+        <v-bouteille :bouteille="bouteille" :liste="liste"/>
       </div>
     </section>
   </div>
@@ -124,7 +127,7 @@ export default {
   },
   methods: {
     filterBouteilles() {
-      console.log(this.dateDebut)
+      // console.log(this.dateDebut)
       // Créer un tableau vide pour stocker les bouteilles filtrées
       let bouteillesFiltrees = [];
 
@@ -211,17 +214,21 @@ export default {
       this.dateFin = null; // Clear the end date
       
       // Uncheck all checkboxes
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      checkboxes.forEach((checkbox) => {
-        checkbox.checked = false;
-      });
+      const checkboxes = document.querySelectorAll('.conteneur-filtre input[type="checkbox"]');
+      if(checkboxes !==null){
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+      }
+
       
       // Clear all date inputs
-      const dateInputs = document.querySelectorAll('input[type="date"]');
-      dateInputs.forEach((dateInput) => {
-        dateInput.value = '';
-      });
-      
+      const dateInputs = document.querySelectorAll('.conteneur-filtre input[type="date"]');
+      if(dateInputs !== null){
+        dateInputs.forEach((dateInput) => {
+          dateInput.value = '';
+        });
+      }
       // Trigger the filter function to update the filtered bottles
       this.filterBouteilles();
     },

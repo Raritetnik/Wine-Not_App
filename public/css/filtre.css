@@ -185,7 +185,8 @@ N.B. Code modifié
     padding: 0 40px 40px 40px;
 }
 
-.menu-lateral h3 {
+.menu-lateral h3,
+.menu-lateral button {
     font-weight: 1000;
     font-size: 1.25rem;
     /* 2.5rem; */
@@ -302,7 +303,8 @@ input:hover:not(.menu-lateral input[type="date"]:hover) {
     font-weight: bold;
 }
 
-.label-categorie h3 {
+.label-categorie h3,
+.label-categorie button {
     display: inline-flex;
 }
 
@@ -348,12 +350,14 @@ ul.liste-choix {
 }
 
 .conteneur-filtre h3,
+.label-categorie button,
 .conteneur-filtre .material-symbols-outlined:not(.fermer) {
     color: #67375C;
     cursor: pointer;
 }
 
 .label-categorie:hover h3,
+.label-categorie:hover button,
 .label-categorie:hover .material-symbols-outlined {
     color: #909090;
     cursor: pointer;
