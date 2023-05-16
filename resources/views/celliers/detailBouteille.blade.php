@@ -112,7 +112,7 @@
                     </div>
                 </div>
               
-                <div class="flex justify-between items-center pt-5 pb-4 gap-10 px-5 mt-auto">
+                <div class="flex justify-start items-center pt-5 pb-4 gap-10 px-5 mt-auto">
                     <button type="button" id="move_modal" class="py-2 px-4 rounded-md transition-colors duration-200 bg-accent_wine text-main font-medium hover:bg-transparent hover:border-accent_wine border hover:text-accent_wine">Déplacer</button>
                     <button id="open_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/trash.svg')}}" alt="delete"></button>
                 </div>
