@@ -61,7 +61,8 @@ class BouteilleController extends Controller
             'qty' => 'required|integer|min:1',
             'prix_saq' => 'min:0',
             'image' => 'image|mimes:jpeg,png|max:3048',
-            'vino_cellier_id' => 'required|integer|min:1'
+            'vino_cellier_id' => 'required|integer|min:1',
+            'millesime' => 'integer|min:1',
         ]);
 
         if ($request->hasFile('image')) {
@@ -86,6 +87,7 @@ class BouteilleController extends Controller
         $bouteilleParCellier = new Bouteille_Par_Cellier();
         $bouteilleParCellier->quantite = $request->qty;
         $bouteilleParCellier->date_achat = $dateAchat;
+        $bouteilleParCellier->millesime = $request->annee;
         $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
         $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
