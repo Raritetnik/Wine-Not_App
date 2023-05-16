@@ -51,7 +51,7 @@
             <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
                 <div class="p-5">
                     <div class="flex items-center justify-between mb-3 gap-3 w-full">
-                        <p class="text-m font-semibold flex flex-wrap text-section_title">Cellier:
+                        <p class="text-m font-semibold items-baseline flex flex-wrap gap-2 text-section_title">Cellier:
                         <span class="text-article_title text-lg font-medium">{{$bouteille->cellier}}</span></p>
                         <p class="text-m font-semibold text-section_title">Date d'ajout: <span type="text" class="text-article_title text-lg font-medium" >{{$bouteille->date_achat ?? ''}}</span></p>
                     </div>
