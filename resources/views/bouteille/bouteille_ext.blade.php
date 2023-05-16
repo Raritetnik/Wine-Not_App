@@ -10,7 +10,7 @@
     </h2>
     <div class="w-full mb-5">
       <label for="nom" class="text-section_title text-sm font-bold mb-3">Ajouter une bouteille</label>
-      <input type="nom" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title {{ $errors->has('nom') ? 'border-error' : '' }}" value="{{ old('nom') }}" required />
+      <input type="text" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title {{ $errors->has('nom') ? 'border-error' : '' }}" value="{{ old('nom') }}" required />
     </div>
 
 
@@ -25,7 +25,7 @@
     </div>
     <div class="w-full sm:w-1/2 mb-3">
            <label for="millesime" class="text-section_title text-sm font-bold mb-3">Millésime</label>
-           <input class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="annee" id="millesime" min="1" placeholder="Entrer l'année du vin">
+           <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="annee" id="millesime" min="1" placeholder="Entrer l'année du vin">
            </input>
          </div>
 
@@ -46,15 +46,13 @@
     <div class="mb-2 flex justify-between gap-3">
       <div class="w-1/2 mb-3">
         <label for="qty" class="text-section_title text-sm font-bold mb-3">Quantité<b class="text-accent_wine"> *</b></label>
-        <input class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('qty') ? 'border-error' : '' }}" name="qty" id="qty" min="1" placeholder="Quantité" value="{{ old('qty') }}" required>
-        </input>
+        <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('qty') ? 'border-error' : '' }}" name="qty" id="qty" min="1" placeholder="Quantité" value="{{ old('qty') }}" required/>
 
         <!-- {{ $errors->has('qty') ? 'border-error' : '' }} -->
       </div>
       <div class="w-1/2 mb-3">
         <label for="prix" class="text-section_title text-sm font-bold mb-3">$ Prix</label>
-        <input class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille">
-        </input>
+        <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille"/>
       </div>
     </div>
     <div class="mb-2 flex justify-between gap-3">
@@ -108,8 +106,5 @@
     <div class="mt-7 flex">
       <button type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition-colors duration-200 ease-in-out">Ajouter</button>
     </div>
-
-
-
   </form>
 </section>

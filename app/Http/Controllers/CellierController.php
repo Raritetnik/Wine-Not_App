@@ -91,7 +91,6 @@ class CellierController extends Controller
     if (!Vino_Cellier::where('id', $idCellier)->exists() || $cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     }
-
     $bouteilles = Vino_Bouteille::select(
       'date_achat',
       'garde_jusqua',
@@ -123,8 +122,7 @@ class CellierController extends Controller
       ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
       ->where('vino_celliers.id', $idCellier)
       ->get();
-
-
+    // envoyer les informations additionnelles
     $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
     $type = Vino_Type::all();
     $pays = Pays::all();
@@ -159,7 +157,7 @@ class CellierController extends Controller
       'description' => $request->description,
       'image' => $request->image,
     ]);
-    return redirect(route('celliers.index'))->withSuccess('Information mise à jour.');
+    return redirect(route('celliers.afficher', ['cellier'=>$cellier->id]))->withSuccess('Information mise à jour.');
   }
 
   public function modifierNbBouteille(Request $request, $cellier_id, $bouteille_id)
