@@ -24,11 +24,14 @@ class HomeController extends Controller
     public function index()
     {
       $cookieValue = Cookie::get('myapp_session');
-      if ($cookieValue) {
-        return view('auth.login');
+      echo($cookieValue);
+      if ($cookieValue && Auth::check()) {
+        return redirect('/celliers');
+      } else if(Auth::check()) {
+        return view('home');
+      } else {
+        return redirect('/login');
       }
-
-      return view('home');
     }
 
   // TEST CODE
@@ -38,6 +41,10 @@ class HomeController extends Controller
   }
 
   public function home(){
+    if(Auth::check()) {
+      $cookieValue = encrypt(Auth::id(). '|' .Auth::user()->courriel);
+      Cookie::queue('myapp_session', $cookieValue, 60 * 24 * 30); // Cookie will expire in 30 days
+    }
     return view('home');
   }
 
