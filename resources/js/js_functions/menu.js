@@ -47,13 +47,13 @@ window.addEventListener("DOMContentLoaded", function () {
     const formSAQ = document.querySelector("#form-saq");
     const formPersonal = document.querySelector("#form-personal");
     const btnForm = document.querySelector("#btn-form");
-    const plus = document.querySelector("#plus");
+    //const plus = document.querySelector("#plus");
     const formP = document.querySelector("#form-p-p");
     const formPsaq = document.querySelector("#form-p-saq");
 
     if (btnForm) {
         btnForm.addEventListener("click", () => {
-            plus.classList.toggle("rotate-45");
+           // plus.classList.toggle("rotate-45");
             formP.classList.toggle("hidden");
             formPsaq.classList.toggle("hidden");
             formSAQ.classList.toggle("hidden");

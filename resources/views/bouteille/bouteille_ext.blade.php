@@ -101,7 +101,7 @@
       </div>
     </div>
     <div class="mt-7 flex">
-      <button type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-secondary text-lg font-medium text-main hover:bg-transparent border hover:border-secondary hover:text-secondary transition duration-200 ease-in-out">Ajouter</button>
+      <button type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition-colors duration-200 ease-in-out">Ajouter</button>
     </div>
 
 
