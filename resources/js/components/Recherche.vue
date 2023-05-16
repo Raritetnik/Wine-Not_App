@@ -61,7 +61,8 @@ export default {
       this.textInput = text;
       // Code pour filtrer la recherche
       this.closestVineList = [];
-      if(text !== "") {
+      console.log(text != "" && text.length >= 3);
+      if(text != "" && text.length >= 3) {
         // Only START WITH NAME ELEMENTS --- FIRST
         this.vineList.forEach( (vine) => {
 

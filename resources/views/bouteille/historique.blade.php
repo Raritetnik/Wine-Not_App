@@ -11,7 +11,7 @@
     </form>
     @if(empty($bouteilles))
         <div class="flex justify-center">
-            <h1>Aucune bouteille dans la liste de favoris</h1>
+            <h1>Aucune bouteille dans l'historique</h1>
         </div>
     @endif
     @foreach ($bouteilles as $bouteille)

@@ -50,7 +50,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        //Dand le cas si on utilise le remember me fonctionaliter sur la page de login 
+        //Dand le cas si on utilise le remember me fonctionaliter sur la page de login
         //$remember = $request->has('remember'); //vérifier si l'utilisateur a coché le checkbox "Remember me"
 
 
@@ -70,6 +70,7 @@ class LoginController extends Controller
             // Si la connexion réussit, création de la session cookie
             $cookieValue = encrypt($user->id . '|' . $user->courriel);
             Cookie::queue('myapp_session', $cookieValue, 60 * 24 * 30); // Cookie will expire in 30 days
+            Cookie::queue('userExist', true, 60 * 24 * 30);
 
             // si on utilise remember me ...pour passer le variable remember sur la page blade ..->with('remember', $remember)
             // Si la connexion réussit, redirection vers la page d'accueil

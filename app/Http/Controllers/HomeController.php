@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
       $cookieValue = Cookie::get('myapp_session');
       if ($cookieValue) {
-          return redirect('/login');
+        return view('auth.login');
       }
 
       return view('home');
