@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
     .desc {
-        width: 30ch;
+        max-width: 30ch;
     }
     .carte {
         background-color: #DCDCDC;
