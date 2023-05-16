@@ -47,7 +47,7 @@
       @if(request()->route()->getName() != 'bouteille.create')
       <div class="add_btn absolute right-3 bottom-24 z-50">
         <a href="{{ route('bouteille.create') }}">
-          <div class="shadow-md text-center h-12 w-12 rounded-full flex justify-center cursor-pointer py-2 px-2 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-4xl"><img src="{{asset('img/svg/plus.png')}}" alt="add-button"></div>
+          <div class="shadow-md text-center h-16 w-16 rounded-full flex justify-center cursor-pointer p-3 bg-accent_wine_light mr-3 hover:bg-accent_wine text-main text-4xl"><img src="{{asset('img/svg/plus.png')}}" alt="add-button"></div>
         </a>
       </div>
       @endif

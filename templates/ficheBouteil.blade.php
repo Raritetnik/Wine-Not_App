@@ -51,13 +51,13 @@
             <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
                 <div class="p-5">
                     <div class="flex items-center justify-between mb-3 gap-3 w-full">
-                        <p class="text-m font-semibold flex flex-wrap text-section_title">Cellier:
-                        <span class="text-article_title text-lg font-medium">{{$bouteille->cellier}}</span></p>
-                        <p class="text-m font-semibold text-section_title">Date d'ajout: <span type="text" class="text-article_title text-lg font-medium" >{{$bouteille->date_achat ?? ''}}</span></p>
+                        <label class="text-m font-semibold text-section_title">Cellier:
+                            <input type="text" name="" value="{{$bouteille->cellier}}" class="text-article_title text-lg font-medium w-1/2 min-w-[150px] bg-transparent" /></label>
+                        <label class="text-m font-semibold text-section_title">Date d'ajout: <input type="text" class="text-article_title text-lg font-medium w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->date_achat ?? ''}}" /></label>
                     </div>
                     <div class="flex flex-col gap-4">
                         <div class="py-4 flex justify-start gap-5 items-center">
-                            <p class="text-m text-section_title font-semibold">Quantité</p>
+                            <label class="text-m text-section_title font-semibold">Quantité</label>
                             <!-- Compteur -->
 
                             <!-- ici va le compteur -->
@@ -68,35 +68,35 @@
                         </div>
                         <div class="flex justify-between gap-3 pb-4 items-center w-full">
                             <div class="flex gap-2 flex-wrap items-center">
-                                <p for="prix" class="text-m text-section_title font-semibold flex-shrink-0">Prix de Bouteille</p>
-                                <span id="prix" class="text-article_title text-lg">${{$bouteille->prix_saq}}</span>
+                                <label for="prix" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Prix de Bouteille</label>
+                                <input type="text" name="prix_saq" id="prix" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="${{$bouteille ->prix_saq}}" />
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Valeur Total</p>
-                                <span id="total" class="text-article_title text-lg">${{$bouteille->total}}</span>
+                                <label for="total" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Valeur Total</label>
+                                <input type="text" name="total" id="total" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="${{$bouteille->total}}" />
                             </div>
                         </div>
                         <div class="flex justify-between items-center gap-3 pb-4 w-full">
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Pays</label>
-                                <span id="pays" class="text-article_title text-lg">{{$bouteille->pays}}</span>
+                                <label for="pays" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Pays</label>
+                                <input type="text" name="pays" id="pays" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->pays}}" />
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Volume</p>
-                                <span id="format" class="text-article_title text-lg">{{$bouteille->format}}</span>
+                                <label for="format" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Volume</label>
+                                <input type="text" name="format" id="format" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->format}}" />
                             </div>
                         </div>
                         <div class="flex justify-between items-center pb-4 gap-3 w-full">
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Type</p>
-                                <span id="type" class="text-article_title text-lg">{{$bouteille->type}}</span>
+                                <label for="type" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Type</label>
+                                <input type="text" name="type" id="type" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->type}}" />
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Millésime</p>
-                                <span id="annee" class="text-article_title text-lg">{{$bouteille->millesime}}</span>
+                                <label for="annee" class="text-m text-section_title font-semibold w-1/2 min-w-[150px]">Millésime</label>
+                                <input type="text" name="millesime" id="annee" class="text-article_title text-lg w-1/2 min-w-[150px] bg-transparent" value="{{$bouteille->millesime}}" />
                             </div>
                         </div>
 

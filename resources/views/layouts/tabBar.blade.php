@@ -1,9 +1,12 @@
+
 <div class="tab-bar text-white text-sm px-2">
+  @guest
   <a href="{{ route('login') }}" class="tab-icon">
+    @guest
     <img src="{{ asset('img/svg/log-in.svg') }}" alt="menu" class="inline-block align-middle pb-2">
     <span class="inline-block align-middle">Log In</span>
   </a>
-  @guest
+  @endguest
   @else
   <div class="tab-bar text-white text-sm px-2">
     <a href="{{ route('logout') }}" class="tab-icon">
@@ -19,9 +22,8 @@
       <label for="more-toggle" class="more-label">
         <img src="{{ asset('img/svg/more2.svg') }}" alt="menu" class="inline-block align-middle pt-1 pb-1">
         <span class="inline-block align-middle">Plus</span>
-      </label> 
+      </label>
       <div class="more-options">
-        <a href="{{ route('logout') }}" class="tab-icon">
         <a href="/mes-celliers" class="tab-icon">
           <span class="inline-block align-middle">Mes Celliers</span>
         </a>
@@ -49,4 +51,5 @@
       <span class="inline-block align-middle">Profil</span>
     </a>
   @endguest
+</div>
 </div>
