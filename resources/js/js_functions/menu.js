@@ -1,38 +1,45 @@
 window.addEventListener("DOMContentLoaded", function () {
-    const btnMobileMenu = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const logoWn = document.querySelector("#logo");
 
-    btnMobileMenu.addEventListener("click", function () {
-        const mobileMenu = document.getElementById("mobile-menu");
-        //const logoWn = document.querySelector("#logo");
-        mobileMenu.classList.toggle("hidden");
-        if (!mobileMenu.classList.contains("hidden")) {
-            //logoWn.style.opacity = 0;
-        } else {
-            //logoWn.style.opacity = 1;
-        }
-    });
+//Je commenté le code vue qu'on a plus de menu burger 
+
+    // const btnMobileMenu = document.getElementById("mobile-menu-button");
+    // const mobileMenu = document.getElementById("mobile-menu");
+    // const logoWn = document.querySelector("#logo");
+
+
+    // btnMobileMenu.addEventListener("click", function () {
+    //     const mobileMenu = document.getElementById("mobile-menu");
+    //     //const logoWn = document.querySelector("#logo");
+    //     mobileMenu.classList.toggle("hidden");
+    //     if (!mobileMenu.classList.contains("hidden")) {
+    //         //logoWn.style.opacity = 0;
+    //     } else {
+    //         //logoWn.style.opacity = 1;
+    //     }
+    // });
 
     //modification de couleur de burger menu
-    const svgElement = document.querySelector("#mobile-menu-button svg");
-    btnMobileMenu.addEventListener("click", () => {
-        const strokeColor = svgElement.getAttribute("stroke");
-        if (strokeColor === "#67375C") {
-            svgElement.setAttribute("stroke", "white");
-        } else {
-            svgElement.setAttribute("stroke", "#67375C");
-        }
-    });
+    // const svgElement = document.querySelector("#mobile-menu-button svg");
+    // btnMobileMenu.addEventListener("click", () => {
+    //     const strokeColor = svgElement.getAttribute("stroke");
+    //     if (strokeColor === "#67375C") {
+    //         svgElement.setAttribute("stroke", "white");
+    //     } else {
+    //         svgElement.setAttribute("stroke", "#67375C");
+    //     }
+    // });
 
     // Close mobile menu when link is clicked
-    const mobileMenuLinks = document.querySelectorAll("#mobile-menu a");
+    // const mobileMenuLinks = document.querySelectorAll("#mobile-menu a");
 
-    mobileMenuLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-            mobileMenu.classList.add("hidden");
-        });
-    });
+    // mobileMenuLinks.forEach(function (link) {
+    //     link.addEventListener("click", function () {
+    //         mobileMenu.classList.add("hidden");
+    //     });
+    // });
+
+
+//*******************Formulaires d'ajout de bouteilles************************* */
 
     // afficher le nom d'une image choisi
     const imgForm = document.querySelector("#img");
@@ -43,7 +50,7 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // control affichage de formulaires bouteille
+    // control affichage de formulaires d'ajout de bouteilles
     const formSAQ = document.querySelector("#form-saq");
     const formPersonal = document.querySelector("#form-personal");
     const btnForm = document.querySelector("#btn-form");
@@ -62,7 +69,7 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //************************************************** */
+    //**********************Modal-Déplacer-Bouteille**************************** */
 
     const modal = document.getElementById("modal-view");
     const btnNoModal = document.getElementById("no_modal");

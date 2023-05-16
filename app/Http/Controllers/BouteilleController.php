@@ -57,7 +57,7 @@ class BouteilleController extends Controller
         $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
 
         $request->validate([
-            'nom' => 'required|min:5|max:100',
+            'nom' => 'required|max:100',
             'qty' => 'required|integer|min:1',
             'prix_saq' => 'min:0',
             'image' => 'image|mimes:jpeg,png|max:3048',
