@@ -14,6 +14,8 @@
   <script src="{{ asset('js/app.js') }}" defer></script>
   <!--<script src="{{ asset('js/filtreVanille.js') }}" defer></script>-->
   <script src="{{ asset('js/modalBox.js') }}" defer></script>
+  <script src="{{ asset('js/sub-menu.js') }}" defer></script>
+  
 
 
   <!-- Fonts -->
@@ -44,6 +46,7 @@
     </main>
   </div>
   @include('layouts.tabBar')
+  @include('layouts.footer')
 </body>
 </html>
 

@@ -35,7 +35,9 @@
     <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden bg-accent_wine absolute top-0 left-0 w-full">
       <div class="space-y-7 flex flex-col items-center justify-center pb-10 mt-4">
       <div class="absolute z-50 left-5 top-1">
-        <a href="{{ route('home') }}"><img src="{{ asset('img/svg/logoWn-white.svg') }}" alt="Logo"></a>
+        <a href="{{ route('home') }}">
+          <img src="{{ asset('img/svg/logoWn-white.svg') }}" alt="Logo">
+        </a>
     </div>
         @guest
         <a href="{{ route('login') }}" class="justify-center tracking-wide font-regular text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="sign-in" title="sign-in">
