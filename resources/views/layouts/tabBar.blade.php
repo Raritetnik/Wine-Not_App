@@ -28,7 +28,9 @@
       <img src="{{ asset('img/svg/user2.svg') }}" class="inline-block align-middle pb-2">
       <span class="inline-block align-middle">Profil</span>
     </a>
+
     <div class="more-menu px-6">
+      
       <a href="#" id="mobile-menu-button" class="tab-icon">
         <img src="{{ asset('img/svg/more2.svg') }}" alt="menu" class="inline-block align-middle pt-1 pb-1">
         <span class="inline-block align-middle">Plus</span>
