@@ -78,6 +78,8 @@ Route::get('/{idCellier}/modifier-bouteille/{idBouteille}', [App\Http\Controller
 Route::put('/{idCellier}/modifier-bouteille/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'enregistrerModifierBouteille'])->middleware('auth');
 Route::put('/bouteille-note/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'enregistrerNoteBouteille'])->middleware('auth');
 
+Route::get('/ajouter-bouteille-personnelle', [BouteilleController::class, 'ajouterBouteillePasSAQ'])->name('bouteille.ajouterBouteillePasSAQ')->middleware('auth');
+Route::post('/ajouter-bouteille-personnelle', [BouteilleController::class, 'insererBouteillePasSAQ'])->name('bouteille.ajouterBouteillePasSAQ')->middleware('auth');
 /**
  * Les liens de Script Loader SAQ
  */
