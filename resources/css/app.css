@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 
+
+@layer utilities {
+  .hover-no-box-shadow {
+    box-shadow: none !important;
+  }
+  .hover-no-border-color {
+    border-color: transparent !important;
+  }
+}
+
+
+
+
 :root {
   --color_text: #242424;
   --color_wine: #67375C;
@@ -41,7 +54,7 @@
 
 
 /* FORM */
-.formbold-mb-3 {
+/* .formbold-mb-3 {
   margin-bottom: 15px;
 }
 
@@ -176,7 +189,7 @@ select.formbold-form-input,
 
 .border-error {
   border: #67375C 2px solid;
-}
+} */
 
 /* **** TAB BAR **** 
 
