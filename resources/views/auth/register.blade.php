@@ -30,7 +30,7 @@
             <label for="lastName" style="color: var(--color_text)">Nom</label>
             <input id="lastName" type="text" placeholder="{{ __('Nom') }}" class="appearance-none border rounded w-full py-3 px-3 text-accent_wine leading-tight focus:outline-none border-accent_wine @error('lastName') border-red-500 @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
             @error('lastName')
-            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+            <p class="text-red-500 text-xs italic mt-2">{{ $error }}</p>
             @enderror
           </div>
         </div>
