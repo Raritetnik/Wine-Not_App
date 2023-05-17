@@ -340,9 +340,10 @@ class BouteilleController extends Controller
         if ($request->quantite !== null) {
             $data['quantite'] = $request->quantite;
         }
+        
         if ($request->hasFile('image')) {
             $request->validate([
-                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+                'image' => 'required|image|mimes:png,jpg,jpeg,tiff, webp|max:2048'
             ]);
             $imageName = time().'.'.$request->image->extension();
             // Public Folder

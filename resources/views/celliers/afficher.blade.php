@@ -45,7 +45,7 @@
                         <input type="hidden" id="BouteilleID" name="BouteilleID" value="0">
                         <input type="hidden" id="CellierID" name="CellierID" value="0">
                         <input type="hidden" name="redirect" value="true">
-                        <button type="submit" data-modal-hide="popup-modal" class="p-2 px-4 bg-green-600 text-white rounded" type="button" alt="delete">Oui</button>
+                        <input type="submit" data-modal-hide="popup-modal" class="p-2 px-4 bg-green-600 text-white rounded" type="button" alt="delete" value="Oui"/>
                         <button data-modal-hide="popup-modal" class="p-2 px-4 bg-gray-800 text-white rounded" type="button" id="no_popup-modal">No</button>
                     </form>
                 </div>
