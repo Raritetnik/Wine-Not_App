@@ -5,7 +5,6 @@
         <div class="flex justify-between items-center rounded border-2 border-secondary">
         <input type="text" class="border-2 rounded border-l-secondary border-t-secondary border-b-secondary  hover-no-box-shadow hover-no-border-color placeholder-accent_wine w-full font-medium tracking-wide px-6  h-11 text-accent_wine transition duration-200  focus:outline-none" :placeholder="!this.loaded ? 'Chargement en cours...' : 'Recherche'" @keyup="showSearchOptions($event.target.value);"
         :value="this.textInput">
-
         <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
       </div>
         <input name="vino_bouteille_id" type="hidden" :value="this.choixBouteille.id">
@@ -15,7 +14,7 @@
     <div>
       <div v-if="selectedVine" class="flex gap-3 bg-gray-100 rounded-md w-full p-2 border-2 border-secondary">
         <header>
-          <img :src="this.choixBouteille.url_img" :alt="this.choixBouteille.nom" class="max-w-none h-[150px]">
+          <img :src="showImage(this.choixBouteille)" :alt="this.choixBouteille.nom" class="object-cover max-w-100 h-[150px]">
         </header>
         <div>
           <h2 class="font-bold text-md text-accent_wine">{{ this.choixBouteille.nom }}</h2>
@@ -24,7 +23,6 @@
           <input name="prix_saq" type="hidden" :value="this.choixBouteille.prix_saq">
         </div>
       </div>
-
     </div>
 
   </div>
@@ -34,7 +32,7 @@
 import ResultatsRecherche from './ResultatsRecherche.vue';
 
 export default {
-  props: ['bouteilles'],
+  props: ['bouteilles', 'user'],
   components: {
     ResultatsRecherche
   },
@@ -61,56 +59,58 @@ export default {
       this.textInput = text;
       // Code pour filtrer la recherche
       this.closestVineList = [];
-      if(text !== "") {
+      if(text !== "" && text.length >= 2) {
         // Only START WITH NAME ELEMENTS --- FIRST
         this.vineList.forEach( (vine) => {
+          if(vine.utilisateur_id === null || this.user === vine.utilisateur_id) {
+            // Recherche par le nom
+            if(String(vine.nom.toLowerCase()).startsWith(text.toLowerCase())) {
+              this.closestVineList.push(vine)
+            }
 
-          // Recherche par le nom
-          if(String(vine.nom.toLowerCase()).startsWith(text.toLowerCase())) {
-            this.closestVineList.push(vine)
-          }
+            // Recherche par le type
+            if(String(vine.type.toLowerCase()).startsWith(text.toLowerCase())) {
+              this.closestVineList.push(vine)
+            }
 
-          // Recherche par le type
-          if(String(vine.type.toLowerCase()).startsWith(text.toLowerCase())) {
-            this.closestVineList.push(vine)
-          }
+            // Recherche par le pays
+            if(String(vine.pays.toLowerCase()).startsWith(text.toLowerCase())) {
+              this.closestVineList.push(vine)
+            }
 
-          // Recherche par le pays
-          if(String(vine.pays.toLowerCase()).startsWith(text.toLowerCase())) {
-            this.closestVineList.push(vine)
-          }
-
-          // Recherche par le format
-          if(String(vine.format.toLowerCase()).startsWith(text.toLowerCase())) {
-            this.closestVineList.push(vine)
+            // Recherche par le format
+            if(String(vine.format.toLowerCase()).startsWith(text.toLowerCase())) {
+              this.closestVineList.push(vine)
+            }
           }
         })
 
         // Only CONTAINS && NOT START WITH --- AFTER
         this.vineList.forEach( (vine) => {
+          if(vine.utilisateur_id === null || this.user === vine.utilisateur_id) {
+            // Recherche par le nom
+            if(!String(vine.nom.toLowerCase()).startsWith(text.toLowerCase())
+            && String(vine.nom.toLowerCase()).includes(text.toLowerCase())) {
+              this.closestVineList.push(vine);
+            }
 
-          // Recherche par le nom
-          if(!String(vine.nom.toLowerCase()).startsWith(text.toLowerCase())
-          && String(vine.nom.toLowerCase()).includes(text.toLowerCase())) {
-            this.closestVineList.push(vine);
-          }
+            // Recherche par le type
+            if(!String(vine.type.toLowerCase()).startsWith(text.toLowerCase())
+            && String(vine.type.toLowerCase()).includes(text.toLowerCase())) {
+              this.closestVineList.push(vine);
+            }
 
-          // Recherche par le type
-          if(!String(vine.type.toLowerCase()).startsWith(text.toLowerCase())
-          && String(vine.type.toLowerCase()).includes(text.toLowerCase())) {
-            this.closestVineList.push(vine);
-          }
+            // Recherche par le pays
+            if(!String(vine.pays.toLowerCase()).startsWith(text.toLowerCase())
+            && String(vine.pays.toLowerCase()).includes(text.toLowerCase())) {
+              this.closestVineList.push(vine);
+            }
 
-          // Recherche par le pays
-          if(!String(vine.pays.toLowerCase()).startsWith(text.toLowerCase())
-          && String(vine.pays.toLowerCase()).includes(text.toLowerCase())) {
-            this.closestVineList.push(vine);
-          }
-
-          // Recherche par le format
-          if(!String(vine.format.toLowerCase()).startsWith(text.toLowerCase())
-          && String(vine.format.toLowerCase()).includes(text.toLowerCase())) {
-            this.closestVineList.push(vine);
+            // Recherche par le format
+            if(!String(vine.format.toLowerCase()).startsWith(text.toLowerCase())
+            && String(vine.format.toLowerCase()).includes(text.toLowerCase())) {
+              this.closestVineList.push(vine);
+            }
           }
         })
         this.closestVineList = this.closestVineList.slice(0, 4);
@@ -126,7 +126,18 @@ export default {
       this.choixBouteille = vine;
       this.selectedVine = true;
       this.closestVineList = [];
-    }
+    },
+    showImage (vine) {
+        try {
+          if(vine.url_img == null) {
+            return require("/storage/uploads/"+vine.image);
+          } else {
+            return vine.url_img;
+          }
+        } catch (e) {
+          return vine.url_img;
+        }
+      }
   },
   /**
    * Méthode API:
