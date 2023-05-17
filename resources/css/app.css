@@ -290,10 +290,8 @@ select.formbold-form-input,
 */
 
 
-/*  TAB TEST */
-
 .tab-bar {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -376,5 +374,9 @@ select.formbold-form-input,
   height: calc(100vh - 90px);
   transition: height 0.3s, transform 0.3s;
   transform: translateY(-10px);
+}
+
+.z-index-menu {
+  z-index: 9999; 
 }
 
