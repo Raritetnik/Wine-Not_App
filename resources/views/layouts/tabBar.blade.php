@@ -54,4 +54,10 @@
     </div>
   @endguest
 </div>
+
+<!-- Overlay Box -->
+<div class="overlay-box hidden">
+  <p>abc</p>
+  <!-- Content of the overlay box -->
+
 </div>
