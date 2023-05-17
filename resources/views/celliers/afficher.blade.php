@@ -2,10 +2,9 @@
 @section('content')
 <!-- Reste du doc pour visualiser -->
 <div class="conteneur-de-toute-la-page">
-    <div class="container mx-auto pb-8 pt-5 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div>
-      
-            <div class="bg-gray-100 flex items-baseline gap-4 border px-4 py-3 sm:rounded justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;">
+    <div class="container pb-8 px-6 flex flex-col items-center justify-center mx-auto">
+        <div class="w-full">
+            <div class="rounded-md bg-gray-100 flex items-baseline gap-4 border px-4 py-3 sm:rounded justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;">
                 <!-- Nom du cellier -->
                 <div class="flex  flex-wrap gap-1 items-baseline  ps-3 sm:ps-0">
                 <a href="{{ route('celliers.index') }}" class="text-secondary flex-shrink-0 text-lg hover:opacity-70 transition-opacity duration-200 ease-in-out font-medium pe-3" alt="back">Mes Celliers <span class="text-xl sm:text-2xl">\</span></a>
@@ -46,7 +45,7 @@
                         <input type="hidden" id="BouteilleID" name="BouteilleID" value="0">
                         <input type="hidden" id="CellierID" name="CellierID" value="0">
                         <input type="hidden" name="redirect" value="true">
-                        <button type="submit" data-modal-hide="popup-modal" class="p-2 px-4 bg-green-600 text-white rounded" type="button" alt="delete">Oui</button>
+                        <input type="submit" data-modal-hide="popup-modal" class="p-2 px-4 bg-green-600 text-white rounded" type="button" alt="delete" value="Oui"/>
                         <button data-modal-hide="popup-modal" class="p-2 px-4 bg-gray-800 text-white rounded" type="button" id="no_popup-modal">No</button>
                     </form>
                 </div>

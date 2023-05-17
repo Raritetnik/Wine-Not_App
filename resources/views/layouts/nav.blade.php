@@ -2,7 +2,8 @@
     <!-- Logo -->
     <div class="absolute inset-0 flex items-center justify-center z-0">
       <a href="{{ route('celliers.index') }}">
-        <img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo"></a>
+        <img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo">
+      </a>
     </div>
     <div class="relative flex h-[70px] items-center justify-end lg:hidden"></div>
     <!--
@@ -10,11 +11,11 @@
         Mobile Menu
     -->
     <!-- from-accent_wine to-main bg-gradient-to-t -->
-    <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden bg-accent_wine absolute top-0 left-0 w-full">
-      <div class="space-y-7 flex flex-col items-center justify-center pb-10 mt-4">
-      <div class="absolute z-50 left-5 top-1">
-        <a href="{{ route('celliers.index') }}"><img src="{{ asset('img/svg/logoWn-white.svg') }}" alt="Logo"></a>
-    </div>
+    <div id="mobile-menu" class="z-index-menu pt-10 transition duration-300 hidden lg:hidden bg-accent_wine fixed bottom-0 left-0 w-full">
+      <div class="space-y-5 flex flex-col items-center justify-center pb-10 mt-4">
+        <div class="absolute z-50 left-5 top-15">
+          
+        </div>
         @guest
         <a href="{{ route('login') }}" class="justify-center tracking-wide font-regular text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="sign-in" title="sign-in">
           Connexion
