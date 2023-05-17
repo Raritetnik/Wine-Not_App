@@ -31,6 +31,7 @@
   <link href="{{ asset('css/cellier.css') }}" rel="stylesheet">
   <link href="{{ asset('css/filtre.css') }}" rel="stylesheet">
   <link href="{{ asset('css/etoileNote.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/utilitaire.css') }}" rel="stylesheet">
 
 </head>
 
@@ -41,17 +42,6 @@
     <main class="py-4 relative min-h-[500px]">
       @yield('content')
     </main>
-    <!-- bouton d'ajout de bouteille -->
-    @guest
-    @else
-      @if(request()->route()->getName() != 'bouteille.create')
-      <div class="add_btn absolute right-5 bottom-24 z-50">
-        <a href="{{ route('bouteille.create') }}">
-          <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
-        </a>
-      </div>
-      @endif
-    @endguest
   </div>
   @include('layouts.tabBar')
 </body>

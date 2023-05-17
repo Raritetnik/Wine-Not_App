@@ -30,13 +30,13 @@
         </div>
       </div>
       @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <p>{{ $error }}</p>
-                  @endforeach
-              </ul>
-          </div>
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+          <p>{{ $error }}</p>
+          @endforeach
+        </ul>
+      </div>
       @endif
       <div class="w-full sm:w-1/2 mb-3">
         <label for="millesime" class="text-section_title text-sm font-bold mb-3">Millésime</label>
@@ -121,10 +121,16 @@
         </div>
       </div>
       <div class="mt-7 flex">
-        <input type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition-colors duration-200 ease-in-out" value="Ajouter"/>
+        <input type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition-colors duration-200 ease-in-out" value="Ajouter" />
       </div>
 
     </form>
   </section>
+  <!-- bouton d'ajout de bouteille -->
+  <div class="add_btn absolute right-5 bottom-0 z-50">
+    <a href="{{ route('bouteille.create') }}">
+      <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
+    </a>
+  </div>
 </div>
 @endsection

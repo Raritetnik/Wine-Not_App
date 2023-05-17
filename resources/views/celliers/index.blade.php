@@ -45,6 +45,12 @@
         </div>
     </div>
   </div>
+  <!-- bouton d'ajout de bouteille -->
+  <div class="add_btn absolute right-5 bottom-0 z-50">
+    <a href="{{ route('bouteille.create') }}">
+        <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
+    </a>
+  </div>
 </div>
 
 
