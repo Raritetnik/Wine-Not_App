@@ -27,13 +27,10 @@
           <div class="mb-2 flex justify-between gap-3">
             <div class="w-full mb-3">
               <label for="cellier" class="block text-section_title text-sm font-bold mb-2">Celliers</label>
-              <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none" required>
-                @foreach($celliers as $index => $cellier)
-                @if($index === 0)
-                <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option>
-                @else
-                <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-                @endif
+              <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none" placeholder="Choisissez un cellier" required>
+                <option value="" disabled selected hidden>Sélectionnez un cellier</option>
+                @foreach($celliers as $cellier)
+                  <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
                 @endforeach
 
               </select>
@@ -68,19 +65,14 @@
             </div>
           </div>
           <div class="mt-5 flex">
-            <button type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition duration-300 ease-in-out">Ajouter</button>
+            <input type="hidden" name="vino_cellier_id" value="{{$vino_cellier_id}}">
+            <input type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition duration-300 ease-in-out" value="Ajouter"/>
           </div>
         </div>
 
 
       </section>
     </form>
-  </div>
-  <!-- bouton d'ajout de bouteille -->
-  <div class="add_btn absolute right-5 bottom-0 z-50">
-    <a href="{{ route('bouteille.create') }}">
-      <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
-    </a>
   </div>
 </div>
 @endsection

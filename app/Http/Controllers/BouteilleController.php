@@ -40,23 +40,23 @@ class BouteilleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function ajouterBouteille()
+    public function ajouterBouteille(Vino_Cellier $idCellier)
     {
+        // return $cellier;
         $bouteilles = $this->listeBouteilles();
-
         $celliers = auth()->user()->celliers;
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles]);
+        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles, 'vino_cellier_id' => $idCellier->id]);
     }
-    public function ajouterBouteillePasSAQ()
+    public function ajouterBouteillePasSAQ(Vino_Cellier $idCellier)
     {
         $celliers = auth()->user()->celliers;
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
+        return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'vino_cellier_id' => $idCellier->id]);
     }
 
 
@@ -112,6 +112,7 @@ class BouteilleController extends Controller
 
     public function insererBouteillePasSAQ(Request $request)
     {
+        return $request;
          // récupérer le id de l'utilisateur qui est loggé dans sa session
          $user_id = auth()->user()->id;
 

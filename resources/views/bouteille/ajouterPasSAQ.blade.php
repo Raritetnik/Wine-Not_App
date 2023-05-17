@@ -76,10 +76,10 @@
         <div class="w-1/2 mb-3">
 
           <label for="cellier" class="text-section_title text-sm font-bold mb-3">Celliers</label>
-          <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+          <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none" placeholder="Choisissez un cellier" require>
             @foreach($celliers as $index => $cellier)
             @if($index === 0) <!-- verifier si index 0, 1er element du array -->
-            <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option>
+            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
             @else
             <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
             @endif
@@ -126,11 +126,5 @@
 
     </form>
   </section>
-  <!-- bouton d'ajout de bouteille -->
-  <div class="add_btn absolute right-5 bottom-0 z-50">
-    <a href="{{ route('bouteille.create') }}">
-      <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
-    </a>
-  </div>
 </div>
 @endsection
