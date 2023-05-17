@@ -18,7 +18,7 @@
       </h2>
       <div class="w-full mb-5">
         <label for="nom" class="text-section_title text-sm font-bold mb-3">Ajouter une bouteille</label>
-        <input type="nom" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title {{ $errors->has('nom') ? 'border-error' : '' }}" value="{{ old('nom') }}" required />
+        <input type="name" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title {{ $errors->has('nom') ? 'border-error' : '' }}" value="{{ old('nom') }}" required />
       </div>
       <div class="w-full mb-5">
         <label for="img" class="text-section_title text-sm font-bold mb-3">Ajouter une image</label>
@@ -38,10 +38,11 @@
         </ul>
       </div>
       @endif
-      <div class="w-full sm:w-1/2 mb-3">
+      <div class="w-full mb-3">
         <label for="millesime" class="text-section_title text-sm font-bold mb-3">Millésime</label>
-        <input class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="annee" id="millesime" min="1" placeholder="Entrer l'année du vin">
-        </input>
+        <div class="flex flex-col md:flex-row md:space-x-4">
+          <input type="number" class="w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none" name="annee" id="millesime" min="1" placeholder="Entrer l'année du vin">
+        </div>
       </div>
 
       <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
@@ -61,31 +62,30 @@
       <div class="mb-2 flex justify-between gap-3">
         <div class="w-1/2 mb-3">
           <label for="quantite" class="text-section_title text-sm font-bold mb-3">Quantité<b class="text-accent_wine"> *</b></label>
-          <input class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('qty') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité" value="{{ old('qty') }}" required>
+          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('qty') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité" value="{{ old('qty') }}" required>
           </input>
 
           <!-- {{ $errors->has('qty') ? 'border-error' : '' }} -->
         </div>
         <div class="w-1/2 mb-3">
           <label for="prix" class="text-section_title text-sm font-bold mb-3">$ Prix</label>
-          <input class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille">
+          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille">
           </input>
         </div>
       </div>
       <div class="mb-2 flex justify-between gap-3">
         <div class="w-1/2 mb-3">
-
           <label for="cellier" class="text-section_title text-sm font-bold mb-3">Celliers</label>
-          <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none" placeholder="Choisissez un cellier" require>
-            @foreach($celliers as $index => $cellier)
-            @if($index === 0) <!-- verifier si index 0, 1er element du array -->
-            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-            @else
-            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-            @endif
-            @endforeach
+          <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none" placeholder="Choisissez un cellier" required>
+                <option value="" disabled selected hidden>Sélectionnez un cellier</option>
+                @foreach($celliers as $cellier)
+                  @if(isset($idCellier) && $idCellier == $cellier->id)
+                      <option value="{{$cellier->id}}" selected>{{$cellier->nom}}</option>
+                  @else
+                      <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                  @endif
+                @endforeach
           </select>
-
         </div>
         <div class="w-1/2 mb-3">
 
@@ -118,6 +118,7 @@
             <option value="{{$format->id}}">{{ $format->format }}</option>
             @endforeach
           </select>
+
         </div>
       </div>
       <div class="mt-7 flex">
