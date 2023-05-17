@@ -7,13 +7,13 @@
                 :data-idCellier="this.bouteille.vino_cellier_id">
             </button>
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte"
-            :src="(this.bouteille.url_img) ? this.bouteille.url_img : ('/storage/' + (this.bouteille.imageSAQ || 'uploads/placeholder.png'))"
+            :src="(this.bouteille.url_img) ? this.bouteille.url_img : (`/storage/uploads/${this.bouteille.imageSAQ || 'placeholder.png'}`)"
             :alt="this.bouteille.nomSAQ">
         </header>
         <div class="desc flex flex-col justify-between">
             <header class="hover-carte" @click="redirection(bouteille.id)">
                 <h1 class="font-extrabold text-xl text-accent_wine">{{ this.bouteille.nomSAQ }}</h1>
-                <h3 class="font-medium text-section_title text-lg">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
+                <h3 class="font-medium text-section_title text-lg">{{ this.bouteille.pays ? this.bouteille.pays : 'Pays indéfini'}} | {{ this.bouteille.format ? this.bouteille.format : 'Format indéfini' }}</h3>
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
             <footer class="flex">

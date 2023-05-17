@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -48,6 +49,14 @@ class BouteilleController extends Controller
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
         return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles]);
+    }
+    public function ajouterBouteillePasSAQ()
+    {
+        $celliers = auth()->user()->celliers;
+        $pays = Pays::all()->sortBy('pays');
+        $types = Vino_Type::all();
+        $formats = Vino_Format::all()->sortBy('format');
+        return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
     }
 
 
@@ -99,6 +108,82 @@ class BouteilleController extends Controller
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
+    public function insererBouteillePasSAQ(Request $request)
+    {
+         // récupérer le id de l'utilisateur qui est loggé dans sa session
+         $user_id = auth()->user()->id;
+
+         $data['utilisateur_id'] = $user_id;
+         $data['nom'] = $request->nom;
+         $data['quantite'] = $request->quantite;
+         $data['vino_cellier_id'] = $request ->vino_cellier_id;
+         // Validation si on a les données et retirer autrement (pour pas updater ex : pays= null)
+         if ($request->description !== null) {
+             $data['description'] = $request->description;
+         }
+         if ($request->image !== null) {
+             $data['image'] = $request->image;
+         }
+         if ($request->pays_id !== null) {
+             $data['pays_id'] = $request->pays_id;
+         }
+         if ($request->vino_type_id !== null) {
+             $data['vino_type_id'] = $request->vino_type_id;
+         }
+         if ($request->vino_format_id !== null) {
+             $data['vino_format_id'] = $request->vino_format_id;
+         }
+         $data['date_achat'] = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+         if ($request->garde_jusqua !== null) {
+            $data['garde_jusqua'] = $request->garde_jusqua;
+        }
+
+// ** Important que le formulaire soit de type multi encrypted */
+        // return $request->has('image');
+
+
+ 
+
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            ]);
+            $imageName = time().'.'.$request->image->extension();
+            // Public Folder
+            $request->image->move(public_path('storage/uploads'), $imageName);
+            // $request->image->storeAs('images', $imageName);
+            $data['image'] = $imageName;   
+        } else {
+            $data['image'] = null;
+        }
+
+        /*
+        vérification pour voir si on a les autorisations d'enregistrer des images ou doc
+        
+        $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
+        if (is_writable($storagePath)) {
+            return "Vous avez les autorisations d'enregistrer des fichiers localement.";
+        } else {
+            return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
+        }
+        */
+
+        // enregistrer dans vino_bouteille en premier
+        $vinoBouteille = new Vino_Bouteille;
+        $vinoBouteille->fill($data);
+        $vinoBouteille->save();
+
+        // récupérer l'id pour le passer en paramètre
+        $data['vino_bouteille_id'] = $vinoBouteille->id;
+
+        // enregistrer dans bouteille par cellier ensuite
+        $bouteilleParCellier = new Bouteille_Par_Cellier;
+        $bouteilleParCellier->fill($data);
+        $bouteilleParCellier->save();
+       
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));
+    }
+
     public function rechercheBouteille(Request $request)
     {
 
@@ -139,17 +224,6 @@ class BouteilleController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -166,39 +240,6 @@ class BouteilleController extends Controller
         // return $bouteilleDetail;
         $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite'] * $bouteilleDetail[0]['prix_saq'];
         return view('bouteille.show', ['bouteille' => $bouteilleDetail[0]]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     /**
@@ -249,9 +290,9 @@ class BouteilleController extends Controller
         )
             ->join('bouteille_par_celliers', 'vino_bouteilles.id', 'bouteille_par_celliers.vino_bouteille_id')
             ->join('vino_celliers', 'vino_celliers.id', 'bouteille_par_celliers.vino_cellier_id', 'utilisateurs_id')
-            ->join('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
-            ->join('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
-            ->join('pays', 'pays.id', 'vino_bouteilles.pays_id')
+            ->leftJoin('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
+            ->leftJoin('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
+            ->leftJoin('pays', 'pays.id', 'vino_bouteilles.pays_id')
             ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
             ->where('vino_celliers.id', $idCellier->id)
             ->get();
@@ -298,6 +339,16 @@ class BouteilleController extends Controller
         }
         if ($request->quantite !== null) {
             $data['quantite'] = $request->quantite;
+        }
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            ]);
+            $imageName = time().'.'.$request->image->extension();
+            // Public Folder
+            $request->image->move(public_path('storage/uploads'), $imageName);
+            // $request->image->storeAs('images', $imageName);
+            $data['image'] = $imageName;   
         }
 
         $vinoBouteille = Vino_Bouteille::where('id', $idBouteille->id)

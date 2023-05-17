@@ -18,7 +18,7 @@
       <div
         v-if="!editerManuellement"
         @click="editerManuellement = true"
-        class="bg-gray-50   text-gray-600 hover:bg-gray-50 inline-flex items-center px-4 py-1 select-none"
+        class="bg-gray-50 text-gray-600 hover:bg-gray-50 inline-flex items-center px-4 py-1 select-none min-w-8"
       >
         {{ compteur }}
       </div>
@@ -30,7 +30,7 @@
         v-model="compteur"
         @keyup="editer($event.target.value)"
         @blur="editerManuellement = false"
-        class="bg-gray-200 text-gray-600 hover:bg-gray-50 inline-flex items-center px-4 py-1 select-none focus:select-none"
+        class="bg-gray-200 text-gray-600 hover:bg-gray-50 inline-flex items-center px-4 py-1 select-none min-w-8 w-12"
       />
       <button
         @click="incrementerCompteur"
@@ -93,8 +93,12 @@ export default {
     },
     // éditer manuellement lorsqu'on clique sur le compteur
     editer(number) {
-      this.compteur = number;
-      this.modifierNbBouteille();
+      if (number === "") {
+        this.compteur = this.compteurPrecedent
+      } else {
+        this.compteur = number
+        this.modifierNbBouteille()
+      }
     }
   },
 };

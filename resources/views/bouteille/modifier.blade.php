@@ -29,8 +29,6 @@
                 placeholder="Entrez le nom de la bouteille"
                 class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
             </div>
-          <!--
-            *** 3e sprint ***
             <div class="w-full mb-5">
             <label for="img" class="block text-section_title font-bold mb-2">
               Ajouter une image
@@ -48,7 +46,7 @@
                   <img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
                 </div>
               </div>
-          </div>-->
+          </div>
           <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
             <div class="w-full mb-3">
               <label for="date_achat" class="block text-section_title font-bold mb-2">
@@ -160,7 +158,7 @@
                 name="vino_format_id"
                 id="format"
                 class="w-full text-section_title block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-                <option class="text-section_title" value="">Sélectionner Pays</option>
+                <option class="text-section_title" value="">Sélectionner le format</option>
                 @foreach($formats as $format)
                 <option value="{{$format->id}}">{{ $format->format }}</option>
                 @endforeach
