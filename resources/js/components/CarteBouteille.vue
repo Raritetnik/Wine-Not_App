@@ -51,7 +51,6 @@ export default {
         Compteur,
         ListeSouhaits
     },
-
     methods: {
         changeBottle () {
             this.estVide = !this.estVide;

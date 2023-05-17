@@ -20,7 +20,7 @@
       </div>
       <section class="flex flex-col pb-6 justify-center">
         <div class="w-full mb-1">
-          <v-recherche :bouteilles="{{ $bouteilles }}" />
+          <v-recherche :bouteilles="{{ $bouteilles }}" :user="{{ Auth::id() }}"/>
         </div>
         <div class="w-full flex flex-col">
           <!-- Remplisser le formulaire afin d'ajouter le vin à votre colection -->
