@@ -21,7 +21,7 @@
       <span class="inline-block align-middle">Favoris</span>
     </a>
     <a href="{{route('celliers.index') }}" class="tab-icon">
-      <img src="{{ asset('img/svg/celliers.svg') }}" alt="menu" class="inline-block align-middle pb-2" aria-label="Celliers" title="Celliers">
+      <img src="{{ asset('img/svg/celliers3.svg') }}" alt="menu" class="inline-block align-middle pb-2" aria-label="Celliers" title="Celliers">
       <span class="inline-block align-middle">Mes Celliers</span>
     </a>
     <a href="/compte" class="tab-icon transition-colors duration-200 hover:text-secondary" aria-label="Compte" title="Compte">
@@ -37,7 +37,7 @@
       </a>
       <div class="more-options">
         <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden bg-accent_wine absolute top-0 left-0 w-full">
-          <a href="/mes-celliers" class="tab-icon">
+          <a href="{{ route('celliers.index') }}" class="tab-icon">
             <span class="inline-block align-middle">Mes Celliers</span>
           </a>
           <a href="/inscription" class="tab-icon">
@@ -54,10 +54,4 @@
     </div>
   @endguest
 </div>
-
-<!-- Overlay Box -->
-<div class="overlay-box hidden">
-  <p>abc</p>
-  <!-- Content of the overlay box -->
-
 </div>

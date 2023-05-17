@@ -16,18 +16,23 @@
         <div class="absolute z-50 left-5 top-15">
         </div>
         @guest
+        
         <a href="{{ route('login') }}" class="justify-center tracking-wide font-regular text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="sign-in" title="sign-in">
           Connexion
         </a>
+        
         <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md py-2.5 px-6 font-regular tracking-wide text-main text-xl transition duration-200 hover:text-secondary" aria-label="sign-up" title="sign-up">
           Inscription
         </a>
 
         @else
-        <!-- font-medium tracking-wide text-accent_wine -->
-       <!--  <a href="{{ route('celliers.index') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="celliers" title="celliers">
-          Mes Celliers
-        </a>-->
+        <!-- button fermer -->
+        <button type="button" id="mobile-menu-btn-close" class="absolute top-0 right-3.5 text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-lg px-6 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="popup-modal">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="sr-only">Fermer</span>
+      </button>
         <a href="{{route('celliers.creer')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="articles" title="articles">
           Ajouter Cellier
         </a>
