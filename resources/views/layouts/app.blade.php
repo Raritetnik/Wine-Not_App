@@ -15,7 +15,7 @@
   <!--<script src="{{ asset('js/filtreVanille.js') }}" defer></script>-->
   <script src="{{ asset('js/modalBox.js') }}" defer></script>
   <script src="{{ asset('js/sub-menu.js') }}" defer></script>
-  
+
 
 
   <!-- Fonts -->
@@ -33,7 +33,7 @@
   <link href="{{ asset('css/cellier.css') }}" rel="stylesheet">
   <link href="{{ asset('css/filtre.css') }}" rel="stylesheet">
   <link href="{{ asset('css/etoileNote.css') }}" rel="stylesheet">
-  
+
 </head>
 
 <body>
@@ -55,8 +55,8 @@
       @endif
     @endguest
   </div>
-  @include('layouts.tabBar')
   @include('layouts.footer')
+  @include('layouts.tabBar')
 </body>
 </html>
 

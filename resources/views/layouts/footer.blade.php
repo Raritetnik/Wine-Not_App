@@ -1,4 +1,3 @@
 
-<footer class="h-10">
-    
+<footer class="min-h-[120px]">
 </footer>
