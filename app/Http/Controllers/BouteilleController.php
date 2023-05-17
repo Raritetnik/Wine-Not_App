@@ -99,7 +99,16 @@ class BouteilleController extends Controller
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
         $bouteilleParCellier->save();
 
-        return redirect(route('celliers.afficher', $request->vino_cellier_id));
+        // Ajout dans le historique
+        $histBout = Historique::create([
+            'bouteille_id' => $bouteilleParCellier->vino_bouteille_id,
+            'cellier_id' => $bouteilleParCellier->vino_cellier_id,
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
+        echo($histBout);
+        return $request;
+        //return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
     public function insererBouteillePasSAQ(Request $request)
@@ -174,6 +183,14 @@ class BouteilleController extends Controller
         $bouteilleParCellier = new Bouteille_Par_Cellier;
         $bouteilleParCellier->fill($data);
         $bouteilleParCellier->save();
+
+        // Ajout dans le historique
+        Historique::create([
+            'bouteille_id' => $vinoBouteille->id,
+            'cellier_id' => $request ->vino_cellier_id,
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
