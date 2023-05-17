@@ -107,33 +107,31 @@ class BouteilleController extends Controller
       $data['image'] = null;
   }
 
-        $nBouteille = new Vino_Bouteille();
-        $nBouteille->image = $path;
-        $nBouteille->nom = $request->nom;
-        $nBouteille->prix_saq = $request->prix_saq;
-        $nBouteille->vino_format_id = $request->vino_format_id;
-        $nBouteille->vino_type_id = $request->vino_type_id;
-        $nBouteille->pays_id = $request->pays_id;
-        $nBouteille->utilisateur_id = Auth::id();
-        $nBouteille->save();
-        $bouteilleParCellier = new Bouteille_Par_Cellier();
-        $bouteilleParCellier->quantite = $request->qty;
-        $bouteilleParCellier->date_achat = $dateAchat;
-        $bouteilleParCellier->millesime = $request->annee;
-        $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
-        $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
-        $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
-        $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
-        $bouteilleParCellier->save();
+  /*
+  vérification pour voir si on a les autorisations d'enregistrer des images ou doc
 
-        // Ajout dans le historique
-        $histBout = Historique::create([
-            'bouteille_id' => $bouteilleParCellier->vino_bouteille_id,
-            'cellier_id' => $bouteilleParCellier->vino_cellier_id,
-            'utilisateur_id' => Auth::id(),
-            'create_at' => Carbon::now()
-        ]);
-        return redirect(route('celliers.afficher', $request->vino_cellier_id));*/
+  $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
+  if (is_writable($storagePath)) {
+      return "Vous avez les autorisations d'enregistrer des fichiers localement.";
+  } else {
+      return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
+  }
+  */
+
+  // enregistrer dans vino_bouteille en premier
+  $vinoBouteille = new Vino_Bouteille;
+  $vinoBouteille->fill($data);
+  $vinoBouteille->save();
+
+  // récupérer l'id pour le passer en paramètre
+  $data['vino_bouteille_id'] = $vinoBouteille->id;
+
+  // enregistrer dans bouteille par cellier ensuite
+  $bouteilleParCellier = new Bouteille_Par_Cellier;
+  $bouteilleParCellier->fill($data);
+  $bouteilleParCellier->save();
+
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
     public function insererBouteillePasSAQ(Request $request)
@@ -209,22 +207,9 @@ class BouteilleController extends Controller
         $bouteilleParCellier->fill($data);
         $bouteilleParCellier->save();
 
-        // Ajout dans le historique
-        Historique::create([
-            'bouteille_id' => $vinoBouteille->id,
-            'cellier_id' => $request ->vino_cellier_id,
-            'utilisateur_id' => Auth::id(),
-            'create_at' => Carbon::now()
-        ]);
-
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
-    /**
-     * La methode reprend les information sur la bouteille
-     * de recherche et ajoute la quantité ou la bouteille au complet
-     * dans le cellier selectionné
-     */
     public function rechercheBouteille(Request $request)
     {
 
@@ -259,13 +244,7 @@ class BouteilleController extends Controller
             ]);
             $bouteille->save();
         }
-        // Ajout dans le historique
-        Historique::create([
-            'bouteille_id' => $bouteille->vino_bouteille_id,
-            'cellier_id' => $request->vino_cellier_id,
-            'utilisateur_id' => Auth::id(),
-            'create_at' => Carbon::now()
-        ]);
+
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
@@ -415,10 +394,6 @@ class BouteilleController extends Controller
             $bouteilleParCellier->fill($data);
             $bouteilleParCellier->save();
         }
-
-
-
-
         // rediriger vers la page précédente avec un message de succès
         return redirect('/celliers' . '/' . $idCellier->id)->withSuccess('Information mise à jour.');
     }
@@ -490,3 +465,4 @@ class BouteilleController extends Controller
         }
     }
 }
+
