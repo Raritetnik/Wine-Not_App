@@ -24,21 +24,10 @@ class BouteilleController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-        // return view('bouteille.index')->with('bouteilles', json_decode($liste, true));
-    }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * La methode fournit les informations nécessaires au formulaire
+     * d'ajout d'une bouteille de SAQ
      */
     public function ajouterBouteille(Vino_Cellier $idCellier)
     {
@@ -59,7 +48,10 @@ class BouteilleController extends Controller
         return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'vino_cellier_id' => $idCellier->id]);
     }
 
-
+    /**
+     * La fonction ajoute une bouteille de la SAQ existant
+     * dans le cellier selectionné par l'utilisateur
+     */
     public function insererBouteille(Request $request)
     {
 
@@ -72,9 +64,9 @@ class BouteilleController extends Controller
             'image' => 'image|mimes:jpeg,png|max:3048',
             'vino_cellier_id' => 'required|integer|min:1',
             'millesime' => 'integer|min:1',
-            'vino_format_id' => 'nullable', 
-            'vino_type_id' => 'nullable', 
-            'pays_id' => 'nullable', 
+            'vino_format_id' => 'nullable',
+            'vino_type_id' => 'nullable',
+            'pays_id' => 'nullable',
         ]);
 
         if ($request->hasFile('image')) {
@@ -82,7 +74,6 @@ class BouteilleController extends Controller
         } else {
             $path = 'uploads/placeholder.png';
         }
-
 
         $nBouteille = new Vino_Bouteille();
         $nBouteille->image = $path;
@@ -93,8 +84,6 @@ class BouteilleController extends Controller
         $nBouteille->pays_id = $request->pays_id;
         $nBouteille->utilisateur_id = Auth::id();
         $nBouteille->save();
-
-
         $bouteilleParCellier = new Bouteille_Par_Cellier();
         $bouteilleParCellier->quantite = $request->qty;
         $bouteilleParCellier->date_achat = $dateAchat;
@@ -104,8 +93,6 @@ class BouteilleController extends Controller
         $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
         $bouteilleParCellier->save();
-
-       
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
@@ -145,7 +132,7 @@ class BouteilleController extends Controller
         // return $request->has('image');
 
 
- 
+
 
         if ($request->hasFile('image')) {
             $request->validate([
@@ -155,14 +142,14 @@ class BouteilleController extends Controller
             // Public Folder
             $request->image->move(public_path('storage/uploads'), $imageName);
             // $request->image->storeAs('images', $imageName);
-            $data['image'] = $imageName;   
+            $data['image'] = $imageName;
         } else {
             $data['image'] = null;
         }
 
         /*
         vérification pour voir si on a les autorisations d'enregistrer des images ou doc
-        
+
         $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
         if (is_writable($storagePath)) {
             return "Vous avez les autorisations d'enregistrer des fichiers localement.";
@@ -183,7 +170,7 @@ class BouteilleController extends Controller
         $bouteilleParCellier = new Bouteille_Par_Cellier;
         $bouteilleParCellier->fill($data);
         $bouteilleParCellier->save();
-       
+
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
@@ -343,7 +330,7 @@ class BouteilleController extends Controller
         if ($request->quantite !== null) {
             $data['quantite'] = $request->quantite;
         }
-        
+
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg,tiff, webp|max:2048'
@@ -352,7 +339,7 @@ class BouteilleController extends Controller
             // Public Folder
             $request->image->move(public_path('storage/uploads'), $imageName);
             // $request->image->storeAs('images', $imageName);
-            $data['image'] = $imageName;   
+            $data['image'] = $imageName;
         }
 
         $vinoBouteille = Vino_Bouteille::where('id', $idBouteille->id)
