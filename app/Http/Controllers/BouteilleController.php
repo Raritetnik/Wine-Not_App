@@ -63,6 +63,9 @@ class BouteilleController extends Controller
             'image' => 'image|mimes:jpeg,png|max:3048',
             'vino_cellier_id' => 'required|integer|min:1',
             'millesime' => 'integer|min:1',
+            'vino_format_id' => 'nullable', 
+            'vino_type_id' => 'nullable', 
+            'pays_id' => 'nullable', 
         ]);
 
         if ($request->hasFile('image')) {
@@ -70,7 +73,7 @@ class BouteilleController extends Controller
         } else {
             $path = 'uploads/placeholder.png';
         }
-        
+
 
         $nBouteille = new Vino_Bouteille();
         $nBouteille->image = $path;
@@ -82,7 +85,6 @@ class BouteilleController extends Controller
         $nBouteille->utilisateur_id = Auth::id();
         $nBouteille->save();
 
-        
 
         $bouteilleParCellier = new Bouteille_Par_Cellier();
         $bouteilleParCellier->quantite = $request->qty;
@@ -94,7 +96,7 @@ class BouteilleController extends Controller
         $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
         $bouteilleParCellier->save();
 
-
+       
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }

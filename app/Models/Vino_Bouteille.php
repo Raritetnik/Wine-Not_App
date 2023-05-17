@@ -31,4 +31,20 @@ class Vino_Bouteille extends Model
     }
     
 
+
+    public function vinoFormat()
+    {
+        return $this->belongsTo(Vino_Format::class, 'vino_format_id');
+    }
+
+    public function vinoType()
+    {
+        return $this->belongsTo(Vino_Type::class, 'vino_type_id');
+    }
+
+    public function pays()
+    {
+        return $this->belongsTo(Pays::class, 'pays_id');
+    }
+
 }
