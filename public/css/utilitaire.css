@@ -1,6 +1,3 @@
-.ajout-bouteille-pos-btn {
-    position : fixed;
-    bottom: 10 !important;
-    z-index: 50;
-    right: 1.5rem;
+.btn-bouteille {
+    bottom: 6rem;
 }
