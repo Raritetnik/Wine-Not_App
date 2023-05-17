@@ -5,7 +5,7 @@
         <img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo">
       </a>
     </div>
-    <div class="relative flex h-[70px] items-center justify-end lg:hidden"></div>
+    <div class="relative flex h-[90px] items-center justify-end lg:hidden"></div>
     <!--
 
         Mobile Menu
