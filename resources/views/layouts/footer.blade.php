@@ -1,4 +1,4 @@
 
-<footer class="h-10">
+<footer class="h-30">
     
 </footer>
