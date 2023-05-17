@@ -38,7 +38,7 @@ class BouteilleController extends Controller
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles, 'idCellier' => $idCellier->id]);
+        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles, 'idCellier' => $idCellier->id, 'dateActuelle' => Carbon::now()]);
     }
     /*
      Ajout de bouteilles non listée.  Si lien vien du bouton dans un cellier
@@ -50,7 +50,7 @@ class BouteilleController extends Controller
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'idCellier' => $idCellier->id]);
+        return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'idCellier' => $idCellier->id, 'dateActuelle' => Carbon::now()]);
     }
 
     /**

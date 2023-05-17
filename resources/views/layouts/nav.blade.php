@@ -1,26 +1,24 @@
 <nav id="main-nav" class="lg:bg-gray-50 lg:shadow-sm md:bg-transparent md:shadow-none py-1 relative">
     <!-- Logo -->
-    <div class="absolute inset-0 flex items-center justify-center z-0">
+    <div class="inset-0 flex items-center justify-center cursor-pointer h-[90px]">
       <a href="{{ route('celliers.index') }}">
         <img src="{{ asset('img/svg/logoWn.svg') }}" alt="Logo">
       </a>
     </div>
-    <div class="relative flex h-[90px] items-center justify-end lg:hidden"></div>
     <!--
 
         Mobile Menu
     -->
-    <!-- from-accent_wine to-main bg-gradient-to-t -->
     <div id="mobile-menu" class="z-index-menu pt-2 transition duration-300 hidden lg:hidden bg-accent_wine fixed bottom-0 left-0 w-full">
       <div class="space-y-5 flex flex-col items-center justify-center pb-8 mt-1">
         <div class="absolute z-50 left-5 top-15">
         </div>
         @guest
-        
+
         <a href="{{ route('login') }}" class="justify-center tracking-wide font-regular text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="sign-in" title="sign-in">
           Connexion
         </a>
-        
+
         <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md py-2.5 px-6 font-regular tracking-wide text-main text-xl transition duration-200 hover:text-secondary" aria-label="sign-up" title="sign-up">
           Inscription
         </a>

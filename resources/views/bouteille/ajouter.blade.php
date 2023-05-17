@@ -56,7 +56,9 @@
             <div class="w-full mb-2">
               <label for="date_achat" class="block text-section_title text-sm font-bold mb-2">Date d'achat</label>
               <div class="flex flex-col md:flex-row md:space-x-4">
-                <input type="date" name="date_achat" id="date_achat" placeholder="Date d'achat" class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none" />
+                <input type="date" name="date_achat" id="date_achat" placeholder="Date d'achat" class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none"
+                value="{{ $dateActuelle->toDateString() }}"
+                />
               </div>
             </div>
             <div class="w-full mb-2">
