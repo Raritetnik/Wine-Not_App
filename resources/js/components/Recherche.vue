@@ -3,7 +3,7 @@
     <div class="grid">
       <div class="flex flex-col relative mb-4">
         <div class="flex justify-between items-center rounded shadow-sm border-2 border-secondary ">
-        <input type="text" class="placeholder-section_title w-full font-medium tracking-wide px-6  h-11 text-accent_wine transition duration-200 focus:outline-none" :placeholder="!this.loaded ? 'Chargement en cours...' : 'Recherche'" @keyup="showSearchOptions($event.target.value);"
+        <input type="text" class="placeholder-section_title w-full font-medium tracking-wide px-6  h-11 text-accent_wine transition duration-200  focus:outline-none" :placeholder="!this.loaded ? 'Chargement en cours...' : 'Recherche'" @keyup="showSearchOptions($event.target.value);"
         :value="this.textInput">
 
         <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
@@ -61,8 +61,7 @@ export default {
       this.textInput = text;
       // Code pour filtrer la recherche
       this.closestVineList = [];
-      console.log(text != "" && text.length >= 3);
-      if(text != "" && text.length >= 3) {
+      if(text !== "") {
         // Only START WITH NAME ELEMENTS --- FIRST
         this.vineList.forEach( (vine) => {
 
