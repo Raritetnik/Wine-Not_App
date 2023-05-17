@@ -59,8 +59,8 @@ class BouteilleController extends Controller
      */
     public function insererBouteille(Request $request)
     {
-
-        $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+        return $request;
+        /*$dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
 
         $request->validate([
             'nom' => 'required|max:100',
@@ -89,6 +89,7 @@ class BouteilleController extends Controller
         $nBouteille->pays_id = $request->pays_id;
         $nBouteille->utilisateur_id = Auth::id();
         $nBouteille->save();
+
         $bouteilleParCellier = new Bouteille_Par_Cellier();
         $bouteilleParCellier->quantite = $request->qty;
         $bouteilleParCellier->date_achat = $dateAchat;
@@ -106,9 +107,7 @@ class BouteilleController extends Controller
             'utilisateur_id' => Auth::id(),
             'create_at' => Carbon::now()
         ]);
-        echo($histBout);
-        return $request;
-        //return redirect(route('celliers.afficher', $request->vino_cellier_id));
+        return redirect(route('celliers.afficher', $request->vino_cellier_id));*/
     }
 
     public function insererBouteillePasSAQ(Request $request)
@@ -195,6 +194,11 @@ class BouteilleController extends Controller
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
+    /**
+     * La methode reprend les information sur la bouteille
+     * de recherche et ajoute la quantité ou la bouteille au complet
+     * dans le cellier selectionné
+     */
     public function rechercheBouteille(Request $request)
     {
 
@@ -229,7 +233,13 @@ class BouteilleController extends Controller
             ]);
             $bouteille->save();
         }
-
+        // Ajout dans le historique
+        Historique::create([
+            'bouteille_id' => $bouteille->vino_bouteille_id,
+            'cellier_id' => $request->vino_cellier_id,
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
