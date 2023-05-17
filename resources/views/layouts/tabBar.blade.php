@@ -1,4 +1,3 @@
-
 <div class="tab-bar text-white text-sm px-2">
   @guest
   <a href="{{ route('login') }}" class="tab-icon">
@@ -29,14 +28,15 @@
       <img src="{{ asset('img/svg/user2.svg') }}" class="inline-block align-middle pb-2">
       <span class="inline-block align-middle">Profil</span>
     </a>
+
     <div class="more-menu px-6">
-      <input type="checkbox" id="more-toggle" class="more-toggle">
-      <label for="more-toggle" class="more-label">
+      
+      <a href="#" id="mobile-menu-button" class="tab-icon">
         <img src="{{ asset('img/svg/more2.svg') }}" alt="menu" class="inline-block align-middle pt-1 pb-1">
         <span class="inline-block align-middle">Plus</span>
-      </label>
-      <div class="more-options ">
-        <div class="tab-bar">
+      </a>
+      <div class="more-options">
+        <div id="mobile-menu" class="z-10 pt-10 transition duration-300 hidden lg:hidden bg-accent_wine absolute top-0 left-0 w-full">
           <a href="/mes-celliers" class="tab-icon">
             <span class="inline-block align-middle">Mes Celliers</span>
           </a>
@@ -50,10 +50,8 @@
             <span class="inline-block align-middle">Tutoriel</span>
           </a>
         </div>
-        
       </div>
     </div>
   @endguest
 </div>
 </div>
-
