@@ -394,6 +394,10 @@ class BouteilleController extends Controller
             $bouteilleParCellier->fill($data);
             $bouteilleParCellier->save();
         }
+
+
+
+
         // rediriger vers la page précédente avec un message de succès
         return redirect('/celliers' . '/' . $idCellier->id)->withSuccess('Information mise à jour.');
     }
@@ -465,4 +469,3 @@ class BouteilleController extends Controller
         }
     }
 }
-
