@@ -16,15 +16,15 @@
 
                     <div class="flex justify-center flex-col gap-3">
                         <input type="hidden" name="vino_bouteille_id" value="{{$bouteille->vino_bouteille_id}}">
-                        <label for="qty" class="mt-3 text-lg font-semibold text-gray-600 ">Combien voulez-vous déplacer?</label>
+                        <label for="qty" class="mt-3 text-lg font-semibold text-accent_wine ">Combien voulez-vous déplacer?</label>
                         <div class="flex flex-col justify-center items-center">
                             
                                 <input class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full text-center font-bold text-3xl cursor-text select-all focus:outline-none text-gray-600" id="qtyDep" type="number" name="quantite" value="0" min="1" max="{{ $bouteille->quantite ?? ''}}"autofocus/>
                            
-                            <span class="text-accent_wine font-semibold text-sm">De {{ $bouteille->quantite ?? ''}} bouteilles</span>
+                            <span class="text-article_title font-semibold text-sm">/ {{ $bouteille->quantite ?? ''}} bouteilles</span>
                         </div>
 
-                        <label for="cellier" class="text-lg font-semibold text-gray-600">Ou voulez-vous déplacer?</label>
+                        <label for="cellier" class="text-lg font-semibold text-accent_wine">Ou voulez-vous déplacer?</label>
                         <select name="nouveau_cellier" id="cellier" class="w-full block py-3 px-3 bg-transparent  bg-gray-50 rounded-md border border-accent_wine focus:border-accent_wine focus:outline-none">
                             @foreach($celliers as $index => $cellier)
                             @if($index === 0) <!-- verifier si index 0, 1er element du array -->
@@ -35,8 +35,9 @@
                             @endforeach
                         </select>
                         <div class="mt-5 flex justify-between gap-10">
+                        <button class="py-2 px-4 rounded-md transition-colors border-accent_wine duration-200  text-accent_wine font-medium hover:bg-accent_wine  border hover:text-main" type="button" id="no_modal">Retourner</button>
                             <button type="submit" id="btnDep" class="py-2 px-4 rounded-md transition-colors duration-200 bg-accent_wine text-main font-medium hover:bg-transparent hover:border-accent_wine border hover:text-accent_wine" type="button" alt="Déplacer">Déplacer</button>
-                            <button class="py-2 px-4 rounded-md transition-colors border-accent_wine duration-200  text-accent_wine font-medium hover:bg-accent_wine  border hover:text-main" type="button" id="no_modal">Retourner</button>
+                           
                         </div>
                     </div>
                 </form>

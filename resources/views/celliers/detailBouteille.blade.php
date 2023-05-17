@@ -50,14 +50,14 @@
 
             <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
                 <div class="p-5">
-                    <div class="flex items-center justify-between mb-3 gap-3 w-full">
+                    <div class="flex items-start justify-between mb-3 gap-3 w-full">
                         <p class="text-m font-semibold items-baseline flex flex-wrap gap-2 text-section_title">Cellier:
                         <span class="text-article_title text-lg font-medium">{{$bouteille->cellier}}</span></p>
                         <p class="text-m font-semibold text-section_title">Date d'ajout: <span type="text" class="text-article_title text-lg font-medium" >{{$bouteille->date_achat ?? ''}}</span></p>
                     </div>
                     <div class="flex flex-col gap-4">
                         <div class="py-4 flex justify-start gap-5 items-center">
-                            <p class="text-m text-section_title font-semibold">Quantité</p>
+                            <p class="text-m text-section_title font-semibold">Quantité:</p>
                             <!-- Compteur -->
 
                             <!-- ici va le compteur -->
@@ -68,34 +68,34 @@
                         </div>
                         <div class="flex justify-between gap-3 pb-4 items-center w-full">
                             <div class="flex gap-2 flex-wrap items-center">
-                                <p for="prix" class="text-m text-section_title font-semibold flex-shrink-0">Prix de Bouteille</p>
+                                <p for="prix" class="text-m text-section_title font-semibold flex-shrink-0">Prix de Bouteille:</p>
                                 <span id="prix" class="text-article_title text-lg">${{$bouteille->prix_saq}}</span>
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Valeur Total</p>
+                                <p class="text-m text-section_title font-semibold">Valeur Total:</p>
                                 <span id="total" class="text-article_title text-lg">${{$bouteille->total}}</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center gap-3 pb-4 w-full">
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Pays</label>
-                                <span id="pays" class="text-article_title text-lg">{{$bouteille->pays}}</span>
+                                <p class="text-m text-section_title font-semibold">Pays:</label>
+                                <span id="pays" class="text-article_title font-medium text-lg">{{$bouteille->pays}}</span>
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Volume</p>
+                                <p class="text-m text-section_title font-semibold">Volume:</p>
                                 <span id="format" class="text-article_title text-lg">{{$bouteille->format}}</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center pb-4 gap-3 w-full">
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Type</p>
+                                <p class="text-m text-section_title font-semibold">Type:</p>
                                 <span id="type" class="text-article_title text-lg">{{$bouteille->type}}</span>
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
-                                <p class="text-m text-section_title font-semibold">Millésime</p>
+                                <p class="text-m text-section_title font-semibold">Millésime:</p>
                                 <span id="annee" class="text-article_title text-lg">{{$bouteille->millesime}}</span>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                         </div>
                         @if($bouteille->url_saq)
                         <div class="flex flex-col pb-4">
-                            <a href="{{$bouteille->url_saq}}" class="text-lg text-accent_wine hover:text-article_title font-medium">Le lien SAQ </a>
+                            <a href="{{$bouteille->url_saq}}" class="text-lg text-accent_wine hover:text-gray-600 font-bold">Le lien SAQ </a>
                         </div>
                         @endif
                     </div>
