@@ -25,7 +25,7 @@ class ListeSouhaitsController extends Controller
      */
     public function index()
     {
-        $liste = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+       $liste = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
         // Filtrage des bouteilles, seules en favoris
         $listeBouteilles = [];
         foreach ($liste as $btl) {
@@ -34,7 +34,18 @@ class ListeSouhaitsController extends Controller
             $bouteilleFav['format'] = Vino_Format::find($bouteilleFav->vino_format_id)['format'];
             array_push($listeBouteilles, $bouteilleFav);
         }
-        return view('listeSouhaits', ['bouteilles' => $listeBouteilles, 'liste' => $liste]);
+        return view('listeSouhaits', ['bouteilles' => $listeBouteilles, 'liste' => $liste]); 
+
+        /*
+        $liste = ListeSouhaits::select()
+        ->join('vino_bouteilles', 'vino_bouteilles.id', 'liste_souhaits.vino_bouteilles_id')
+        ->leftJoin('vino_formats', 'vino_formats.id', 'vino_bouteilles.vino_format_id')
+        ->leftJoin('vino_types', 'vino_types.id', 'vino_bouteilles.vino_type_id')
+        ->leftJoin('pays', 'pays.id', 'vino_bouteilles.pays_id')
+        ->where('utilisateurs_id', Auth::user()->id)->get();
+        
+        return view('listeSouhaits', ['bouteilles' => $liste, 'liste' => $liste]);  */
+         
     }
 
     /**
