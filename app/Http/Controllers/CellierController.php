@@ -91,7 +91,6 @@ class CellierController extends Controller
     if (!Vino_Cellier::where('id', $idCellier)->exists() || $cellier->utilisateurs_id != Auth::user()->id) {
       return redirect(route('celliers.index'));
     }
-
     $bouteilles = Vino_Bouteille::select(
       'date_achat',
       'garde_jusqua',
@@ -118,20 +117,18 @@ class CellierController extends Controller
     )
       ->join('bouteille_par_celliers', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
       ->join('vino_celliers', 'vino_celliers.id', '=', 'bouteille_par_celliers.vino_cellier_id')
-      ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
-      ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
-      ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
+      ->leftJoin('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
+      ->leftJoin('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
+      ->leftJoin('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
       ->where('vino_celliers.id', $idCellier)
       ->get();
-
-
+    // envoyer les informations additionnelles
     $listeSouhaits = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
     $type = Vino_Type::all();
     $pays = Pays::all();
     return view('celliers.afficher', [
       'cellier' => $cellier,
       'bouteilles' => $bouteilles,
-      //'bouteillesJulie' => $bouteilles,
       'liste' => $listeSouhaits,
       'type' => $type,
       'pays' => $pays
@@ -159,7 +156,7 @@ class CellierController extends Controller
       'description' => $request->description,
       'image' => $request->image,
     ]);
-    return redirect(route('celliers.index'))->withSuccess('Information mise à jour.');
+    return redirect(route('celliers.afficher', ['cellier'=>$cellier->id]))->withSuccess('Information mise à jour.');
   }
 
   public function modifierNbBouteille(Request $request, $cellier_id, $bouteille_id)
