@@ -11,10 +11,9 @@
         Mobile Menu
     -->
     <!-- from-accent_wine to-main bg-gradient-to-t -->
-    <div id="mobile-menu" class="z-index-menu pt-10 transition duration-300 hidden lg:hidden bg-accent_wine fixed bottom-0 left-0 w-full">
-      <div class="space-y-5 flex flex-col items-center justify-center pb-10 mt-4">
+    <div id="mobile-menu" class="z-index-menu pt-2 transition duration-300 hidden lg:hidden bg-accent_wine fixed bottom-0 left-0 w-full">
+      <div class="space-y-5 flex flex-col items-center justify-center pb-8 mt-1">
         <div class="absolute z-50 left-5 top-15">
-          
         </div>
         @guest
         <a href="{{ route('login') }}" class="justify-center tracking-wide font-regular text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="sign-in" title="sign-in">
@@ -26,18 +25,21 @@
 
         @else
         <!-- font-medium tracking-wide text-accent_wine -->
-        <a href="{{ route('celliers.index') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="celliers" title="celliers">
+       <!--  <a href="{{ route('celliers.index') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="celliers" title="celliers">
           Mes Celliers
-        </a>
+        </a>-->
         <a href="{{route('celliers.creer')}}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="articles" title="articles">
           Ajouter Cellier
+        </a>
+        <a href="/historique" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="articles" title="articles">
+          Historique
+        </a>
+        <a href="/compte" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="Compte" title="Compte"><!--<img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
+          {{ Auth::user()->nom }} -->Mon Compte
         </a>
         <a href="{{ route('logout') }}" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="Sign out" title="deconnecter" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           Déconnexion
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
-        </a>
-        <a href="/compte" class="justify-center font-regular tracking-wide text-xl text-main transition-colors duration-200 hover:text-secondary" aria-label="Compte" title="Compte"><!--<img class="max-w-[37px]" src="{{ asset('img/svg/user-full.svg') }}" alt="user-profile">
-          {{ Auth::user()->nom }} -->Mon Compte
         </a>
         @endguest
       </div>
