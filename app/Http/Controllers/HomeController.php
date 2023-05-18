@@ -30,7 +30,7 @@ class HomeController extends Controller
       } else if(Auth::check()) {
         return view('home');
       } else {
-        return redirect('/login');
+        return redirect('/celliers');
       }
     }
 
