@@ -163,7 +163,7 @@ class BouteilleController extends Controller
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
             ]);
             $imageName = time().'.'.$request->image->extension();
-            // Public Folder
+            // Public Folder **** sur serveur enlever public_path
             $request->image->move(public_path('storage/uploads'), $imageName);
             // $request->image->storeAs('images', $imageName);
             $data['image'] = $imageName;
@@ -204,9 +204,6 @@ class BouteilleController extends Controller
         ]);
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
-
-
-
 
 
     public function rechercheBouteille(Request $request)
@@ -428,8 +425,8 @@ class BouteilleController extends Controller
         $bouteilles = [];
         foreach ($bHistorique as $bouteille) {
             $bouteilleHis = Vino_Bouteille::find($bouteille->bouteille_id);
-            $bouteilleHis['pays'] = (Pays::where("id",$bouteilleHis->pays_id)->exists()) ? Pays::find($bouteilleHis->pays_id)['pays'] : 'Pays indéfini';
-            $bouteilleHis['format'] = (Vino_Format::where("id",$bouteilleHis->vino_format_id)->exists()) ? Vino_Format::find($bouteilleHis->vino_format_id)['format'] : 'Format indéfini';
+            $bouteilleHis['pays'] = (Pays::where("id",$bouteille->pays_id)->exists()) ? Pays::find($bouteilleHis->pays_id)['pays'] : 'Pays indéfini';
+            $bouteilleHis['format'] = (Vino_Format::where("id",$bouteille->vino_format_id)->exists()) ? Vino_Format::find($bouteilleHis->vino_format_id)['format'] : 'Format indéfini';
             $bouteilleHis['date'] = $bouteille->created_at;
             array_push($bouteilles, $bouteilleHis);
         }
