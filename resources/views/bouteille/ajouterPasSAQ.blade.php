@@ -62,7 +62,7 @@
         </div>
         <div class="w-1/2 mb-3">
           <label for="prix" class="text-section_title text-sm font-bold mb-3">$ Prix</label>
-          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-accent_wine focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille" value="0"/>
+          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-accent_wine focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" placeholder="Prix par bouteille" value="0"/>
         </div>
       </div>
       <div class="mb-2 flex justify-between gap-3">
