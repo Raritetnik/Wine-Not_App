@@ -141,12 +141,18 @@ class BouteilleController extends Controller
          if ($request->pays_id !== null) {
              $data['pays_id'] = $request->pays_id;
          }
-         if ($request->vino_type_id !== null) {
+         /*if ($request->vino_type_id !== null) {
              $data['vino_type_id'] = $request->vino_type_id;
-         }
+         }*/
          if ($request->vino_format_id !== null) {
              $data['vino_format_id'] = $request->vino_format_id;
          }
+         if ($request->prix_saq !== null) {
+            $data['prix_saq'] = $request->prix_saq;
+        }
+        if ($request->millesime !== null) {
+            $data['millesime'] = $request->millesime;
+        }
          $data['date_achat'] = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
          if ($request->garde_jusqua !== null) {
             $data['garde_jusqua'] = $request->garde_jusqua;
@@ -348,8 +354,17 @@ class BouteilleController extends Controller
         if ($request->description !== null) {
             $data['description'] = $request->description;
         }
-        if ($request->image !== null) {
-            $data['image'] = $request->image;
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            ]);
+            $imageName = time().'.'.$request->image->extension();
+            // Public Folder
+            $request->image->move(public_path('storage/uploads'), $imageName);
+            // $request->image->storeAs('images', $imageName);
+            $data['image'] = $imageName;
+        } else {
+            $data['image'] = 'placeholder.png';
         }
         if ($request->pays_id !== null) {
             $data['pays_id'] = $request->pays_id;
@@ -363,17 +378,19 @@ class BouteilleController extends Controller
         if ($request->quantite !== null) {
             $data['quantite'] = $request->quantite;
         }
-
-        if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => 'required|image|mimes:png,jpg,jpeg,tiff, webp|max:2048'
-            ]);
-            $imageName = time().'.'.$request->image->extension();
-            // Public Folder
-            $request->image->move(public_path('storage/uploads'), $imageName);
-            // $request->image->storeAs('images', $imageName);
-            $data['image'] = $imageName;
+        if ($request->description !== null) {
+            $data['description'] = $request->description;
         }
+        if ($request->prix_saq !== null) {
+           $data['prix_saq'] = $request->prix_saq;
+       }
+       if ($request->millesime !== null) {
+           $data['millesime'] = $request->millesime;
+       }
+        $data['date_achat'] = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+        if ($request->garde_jusqua !== null) {
+           $data['garde_jusqua'] = $request->garde_jusqua;
+       }
 
         $vinoBouteille = Vino_Bouteille::where('id', $idBouteille->id)
             ->first();

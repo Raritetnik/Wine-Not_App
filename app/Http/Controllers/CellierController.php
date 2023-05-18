@@ -36,12 +36,17 @@ class CellierController extends Controller
       $celliers = Vino_Cellier::select()
         ->where('vino_celliers.utilisateurs_id', $utilisateur_id)
         ->get();
+      $totalQuantite = 0; // Variable to store the total quantity
+
       foreach ($celliers as $cellier) {
-        $cellier->quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->get()
-          ->count();
+          $quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)
+              ->sum('quantite');
+      
+          $cellier->quantiteBouteilles = $quantiteBouteilles;
+          $totalQuantite += $quantiteBouteilles;
       }
       $quantitecelliers = count($celliers);
-      return view('celliers.index', ['celliers' => $celliers, 'quantitecelliers' => $quantitecelliers ]);
+      return view('celliers.index', ['celliers' => $celliers, 'quantitecelliers' => $totalQuantite ]);
     }
     else {
       return redirect(route('login'));
