@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="flex gap-10 justify-between max-w-[600px] lg:max-w-[1050px] px-6 mx-auto pt-5 items-center">
-  <a href="{{ url()->previous() }}" class="hover:opacity-80 transition-opacity  duration-200 ease-in-out"><img class="h-[15px] sm:min-h-[17px]" src="{{asset('img/svg/arrowL-w.svg')}}" alt="back"></a>
+  <a href="{{ url()->previous() }}" class="hover:opacity-80 transition-opacity  duration-200 ease-in-out"><img class="h-[30px] sm:min-h-[17px]" src="{{asset('img/svg/back-arrow.svg')}}" alt="back"></a>
 </div>
 
 <div class="flex flex-col justify-center mb-7 mt-4">
@@ -27,7 +27,7 @@
           <div class="mb-2 flex justify-between gap-3">
             <div class="w-full mb-3">
               <label for="cellier" class="block text-section_title text-sm font-bold mb-2">Celliers</label>
-              <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none" placeholder="Choisissez un cellier" required>
+              <select name="vino_cellier_id" id="cellier" class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-accent_wine focus:border-secondary focus:outline-none" placeholder="Choisissez un cellier" required>
                 <option value="" disabled selected hidden>Sélectionnez un cellier</option>
                 @foreach($celliers as $cellier)
                   @if(isset($idCellier) && $idCellier == $cellier->id)
@@ -42,13 +42,13 @@
           <div class="mb-2 flex justify-between gap-3">
             <div class="w-1/2 mb-2">
               <label for="quantite" class="block text-section_title text-sm font-bold mb-2">Quantité<b class="text-accent_wine"> *</b></label>
-              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('quantite') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité de bouteilles" value="{{ old('quantite') }}" required>
+              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-accent_wine focus:border-secondary focus:outline-none appearance-none {{ $errors->has('quantite') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité de bouteilles" value="{{ old('quantite') }}" required>
               </input>
 
             </div>
             <div class="w-1/2 mb-2">
               <label for="millesime" class="block text-section_title text-sm font-bold mb-2">Millésime</label>
-              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="millesime" id="millesime" min="1" placeholder="Entrer l'année du vin">
+              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-accent_wine focus:border-secondary focus:outline-none appearance-none" name="millesime" id="millesime" min="1" placeholder="Entrer l'année du vin">
               </input>
             </div>
           </div>
@@ -56,7 +56,7 @@
             <div class="w-full mb-2">
               <label for="date_achat" class="block text-section_title text-sm font-bold mb-2">Date d'achat</label>
               <div class="flex flex-col md:flex-row md:space-x-4">
-                <input type="date" name="date_achat" id="date_achat" placeholder="Date d'achat" class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none"
+                <input type="date" name="date_achat" id="date_achat" placeholder="Date d'achat" class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-accent_wine focus:border-secondary focus:outline-none"
                 value="{{ $dateActuelle->toDateString() }}"
                 />
               </div>
@@ -64,12 +64,12 @@
             <div class="w-full mb-2">
               <label for="date_exp" class="block text-section_title text-sm font-bold mb-2">Date de péremption</label>
               <div class="flex flex-col md:flex-row md:space-x-4">
-                <input type="date" name="garde_jusqua" id="date_exp" placeholder="Garde jusqu'à quand" class="block w-full py-3 px-3 rounded-md border border-gray-300 placeholder-section_title focus:border-secondary focus:outline-none" />
+                <input type="date" name="garde_jusqua" id="date_exp" placeholder="Garde jusqu'à quand" class="block w-full py-3 px-3 rounded-md border border-accent_wine placeholder-section_title focus:border-secondary focus:outline-none" />
               </div>
             </div>
           </div>
-          <div class="mt-5 flex justify-end">
-            <input type="submit" class=" h-12 py-2 px-6 rounded-md bg-accent_wine text font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition duration-300 ease-in-out" value="Ajouter"/>
+          <div class="mt-5 flex justify-center">
+            <input type="submit" class=" h-12 py-2 px-6 rounded-md bg-accent_wine text font-medium text-main hover:bg-transparent border-accent_wine hover:border-accent_wine hover:text-accent_wine transition duration-300 ease-in-out" value="Ajouter une bouteille "/>
           </div>
         </div>
       </section>
