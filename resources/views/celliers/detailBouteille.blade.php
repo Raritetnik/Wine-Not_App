@@ -44,7 +44,8 @@
                 @if ($bouteille->url_img)
                 <img src="{{ explode('?', $bouteille->url_img)[0] }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteil de vin">
                 @else
-                <img src="{{ asset('/storage/' . $bouteille->image) }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteil de vin">
+                <img src="{{ $bouteille->image ? asset('/storage/' . $bouteille->image) : asset('/storage/uploads/placeholder.png') }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteille de vin">
+
                 @endif
             </div>
 
