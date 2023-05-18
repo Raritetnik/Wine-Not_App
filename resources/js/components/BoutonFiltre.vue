@@ -78,6 +78,25 @@ export default {
                 // console.log("test")
                 initialX = null;
             });
+
+            initialX = null;
+            conteneur.addEventListener("touchstart", (e) => {
+              initialX = e.touches[0].clientX;
+            });
+
+            conteneur.addEventListener("touchmove", (e) => {
+              if (initialX !== null) {
+                const distance = e.touches[0].clientX - initialX;
+                if (distance < -50) {
+                  conteneur.classList.remove("active");
+                  inputFiltre.checked = false;
+                  initialX = null;
+                }
+              }
+            });
+            conteneur.addEventListener("touchend", () => {
+              initialX = null;
+            });
            
         });
         

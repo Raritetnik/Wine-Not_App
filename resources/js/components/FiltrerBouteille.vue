@@ -85,11 +85,11 @@
             </div>
             <ul class="liste-choix cacher">
               <li class="dateFiltre">
-                <label for="dateDebut">Entre le :</label>
+                <label for="dateDebut">Début :</label>
                 <input type="date" name ="dateDebut" id="dateDebut" v-model="dateDebut" @change="filterBouteilles">
               </li>
               <li class="dateFiltre">
-                <label for="dateFin">Et le :</label>
+                <label for="dateFin">Fin :</label>
                 <input type="date" name="dateFin" id="dateFin" v-model="dateFin" @change="filterBouteilles">
               </li>
             </ul>
