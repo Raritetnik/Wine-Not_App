@@ -33,8 +33,8 @@
     <!-- End Modal -->
    
    @include('celliers.deplacerBouteille', ['vino_cellier' => $bouteille->vino_cellier_id, 'bouteille_par_cellier' => $bouteille->id])
-    <div class="max-w-screen-lg flex justify-between items-center gap-3 px-3 mx-auto">
-        <a href="{{ route('celliers.afficher', ['cellier' => $bouteille->vino_cellier_id]) }}" class=" hover:opacity-80"><img class="h-[15px] sm:min-h-[17px]" src="{{asset('img/svg/arrowL-w.svg')}}" alt="back"></a>
+    <div class="max-w-screen-lg flex justify-between items-center gap-5 px-3 mx-auto">
+        <a href="{{ route('celliers.afficher', ['cellier' => $bouteille->vino_cellier_id]) }}" class=" hover:opacity-80"><img class="h-10 max-w-[30px]" src="{{asset('img/svg/back-arrow.svg')}}" alt="back"></a>
         <h5 class="sm:text-2xl text-accent_wine text-xl font-bold text-right leading-6">{{$bouteille -> nom}}</h5>
     </div>
     <div class="max-w-screen-lg mx-auto rounded-lg overflow-hidden mt-6 mb-7 px-3">
@@ -44,7 +44,7 @@
                 @if ($bouteille->url_img)
                 <img src="{{ explode('?', $bouteille->url_img)[0] }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteil de vin">
                 @else
-                <img src="{{ $bouteille->image ? asset('/storage/' . $bouteille->image) : asset('/storage/uploads/placeholder.png') }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteille de vin">
+                <img src="{{ $bouteille->image ? asset('/storage/uploads/' . $bouteille->image) : asset('/storage/uploads/placeholder.png') }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteille de vin">
 
                 @endif
             </div>
@@ -52,9 +52,14 @@
             <div class="bg-gray-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex-grow flex flex-col">
                 <div class="p-5">
                     <div class="flex items-start justify-between mb-3 gap-3 w-full">
-                        <p class="text-m font-semibold items-baseline flex flex-wrap gap-2 text-section_title">Cellier:
-                        <span class="text-article_title text-lg font-medium">{{$bouteille->cellier}}</span></p>
-                        <p class="text-m font-semibold text-section_title">Date d'ajout: <span type="text" class="text-article_title text-lg font-medium" >{{$bouteille->date_achat ?? ''}}</span></p>
+                    <div class="flex flex-wrap items-baseline gap-2">
+                        <span class="text-m font-semibold text-section_title">Cellier:</span>
+                        <span class="text-article_title text-lg font-medium">{{$bouteille->cellier}}</span>
+                    </div>
+                    <div class="flex flex-wrap items-baseline gap-2">
+                        <span class="text-m font-semibold text-section_title">Date d'ajout:</span> 
+                        <span type="text" class="text-article_title text-lg font-medium" >{{$bouteille->date_achat ?? ''}}</span>
+                    </div>
                     </div>
                     <div class="flex flex-col gap-4">
                         <div class="py-4 flex justify-start gap-5 items-center">
