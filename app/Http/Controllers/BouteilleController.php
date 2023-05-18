@@ -163,7 +163,7 @@ class BouteilleController extends Controller
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
             ]);
             $imageName = time().'.'.$request->image->extension();
-            // Public Folder
+            // Public Folder **** sur serveur enlever public_path
             $request->image->move(public_path('storage/uploads'), $imageName);
             // $request->image->storeAs('images', $imageName);
             $data['image'] = $imageName;
