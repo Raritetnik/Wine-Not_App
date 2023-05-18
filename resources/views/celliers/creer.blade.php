@@ -27,8 +27,8 @@
         <input class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text-accent_wine transition duration-200 rounded border border-accent_wine focus:shadow-outline" id="description" name="description" type="text" placeholder="Ajouter un descriptif pour ce cellier">
       </div>
       <div class="mb-4 py-4 flex justify-between gap-5">
-        <a href="{{ route('celliers.index') }}" class="h-12 py-3 px-6 rounded transition-colors tracking-wide border-accent_wine duration-200  text-accent_wine font-medium hover:bg-accent_wine  border hover:text-main" type="button" id="no_modal">Retourner</a>
-        <button class="cursor-pointer h-12 py-3 px-6 font-medium tracking-wide text-main transition-colors duration-200 rounded border bg-accent_wine hover:border-accent_wine hover:bg-transparent hover:àtext-accent_wine  focus:outline-none" type="submit">Ajouter</button>
+        <a href="{{ route('celliers.index') }}" class="h-12 py-3 px-6 rounded-md transition-colors tracking-wide border-accent_wine duration-200  text-accent_wine font-medium hover:bg-accent_wine  border hover:text-main" type="button" id="no_modal">Retourner</a>
+        <button class="cursor-pointer h-12 py-3 px-6 font-medium tracking-wide text-main transition-colors duration-200 rounded border-md bg-accent_wine hover:border-accent_wine hover:bg-transparent hover:àtext-accent_wine  focus:outline-none" type="submit">Ajouter</button>
       </div>
     </form>
   </div>

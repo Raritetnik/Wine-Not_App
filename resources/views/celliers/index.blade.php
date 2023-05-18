@@ -13,10 +13,10 @@
       </div>
     @endforeach
 
-  <div class="mt-7 flex justify-center items-center">
+  <div class="mt-7 flex justify-end">
   <a
       href="{{route('celliers.creer')}}"
-      class="inline-flex items-center justify-center min-w-max py-2.5 px-6 font-medium tracking-wide text-white bg-accent_wine transition-colors duration-200 rounded border border-accent_wine hover:bg-white hover:text-accent_wine focus:outline-none"
+      class="inline-flex justify-center min-w-max h-12 py-3 px-6 font-medium tracking-wide text-white bg-accent_wine transition-colors duration-200 rounded border border-accent_wine hover:bg-white hover:text-accent_wine focus:outline-none"
     >
       Ajouter un cellier
     </a>
