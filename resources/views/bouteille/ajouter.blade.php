@@ -68,8 +68,8 @@
               </div>
             </div>
           </div>
-          <div class="mt-5 flex">
-            <input type="submit" class="w-1/2 px-7 py-1.5 rounded-md bg-accent_wine text-lg font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition duration-300 ease-in-out" value="Ajouter"/>
+          <div class="mt-5 flex justify-end">
+            <input type="submit" class=" h-12 py-2 px-6 rounded-md bg-accent_wine text font-medium text-main hover:bg-transparent border hover:border-accent_wine hover:text-accent_wine transition duration-300 ease-in-out" value="Ajouter"/>
           </div>
         </div>
       </section>
