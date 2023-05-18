@@ -5,7 +5,7 @@
         <div class="flex justify-between items-center rounded border-2 border-secondary">
         <input type="text" class="border-2 rounded border-l-secondary border-t-secondary border-b-secondary  hover-no-box-shadow hover-no-border-color placeholder-accent_wine w-full font-medium tracking-wide px-6  h-11 text-accent_wine transition duration-200  focus:outline-none" :placeholder="!this.loaded ? 'Chargement en cours...' : 'Recherche'" @keyup="showSearchOptions($event.target.value);"
         :value="this.textInput">
-        <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2">
+        <img :src="require('/img/svg/loop.svg')" alt="loop" class="px-2 transition-opacity duration-200 hover:opacity-80">
       </div>
         <input name="vino_bouteille_id" type="hidden" :value="this.choixBouteille.id">
       </div>
