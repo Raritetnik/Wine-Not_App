@@ -33,6 +33,7 @@
   <link href="{{ asset('css/cellier.css') }}" rel="stylesheet">
   <link href="{{ asset('css/filtre.css') }}" rel="stylesheet">
   <link href="{{ asset('css/etoileNote.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/utilitaire.css') }}" rel="stylesheet">
 
 </head>
 

@@ -54,7 +54,7 @@
     </div>
 </div>
   <!-- bouton d'ajout de bouteille -->
-  <div class="add_btn fixed right-5 bottom-20 z-50">
+  <div class="add_btn fixed right-5 btn-bouteille z-50">
     <a href="{{ route('bouteille.createDansCellier', $cellier) }}">
         <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
     </a>
