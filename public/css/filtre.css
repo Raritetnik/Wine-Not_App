@@ -112,7 +112,7 @@ remplacé par l'icône de Lidia
 }
 */
 .filtrer-cartes {
-    /* 
+    /*
     enlever temporairement pour remplacé par Lidia
     margin-left: auto;
     margin-right: auto;*/
@@ -317,7 +317,7 @@ input:hover:not(.menu-lateral input[type="date"]:hover) {
 }
 
 .material-symbols-outlined:where(.fermer) {
-    font-size: 3rem;
+    font-size: 2.7rem;
 }
 
 .material-symbols-outlined:where(:not(.fermer)) {
@@ -381,7 +381,7 @@ ul.liste-choix {
     outline: none;
     cursor: pointer;
   }
-  
+
   /* Style du sélecteur de date (la flèche) */
   .conteneur-filtre input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: inherit;
@@ -390,12 +390,12 @@ ul.liste-choix {
   .conteneur-filtre input[type="date"]:focus {
     outline: none;
   }
-  
+
   /* Style du texte dans le champ de date */
   .conteneur-filtre input[type="date"]::-webkit-datetime-edit-text {
     color: #333;
   }
-  
+
   /* Style des icônes des champs de date */
   .conteneur-filtre input[type="date"]::-webkit-inner-spin-button,
   .conteneur-filtre input[type="date"]::-webkit-clear-button {

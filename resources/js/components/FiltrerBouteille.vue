@@ -85,11 +85,11 @@
             </div>
             <ul class="liste-choix cacher">
               <li class="dateFiltre">
-                <label for="dateDebut">Entre le :</label>
+                <label for="dateDebut">Début :</label>
                 <input type="date" name ="dateDebut" id="dateDebut" v-model="dateDebut" @change="filterBouteilles">
               </li>
               <li class="dateFiltre">
-                <label for="dateFin">Et le :</label>
+                <label for="dateFin">Fin :</label>
                 <input type="date" name="dateFin" id="dateFin" v-model="dateFin" @change="filterBouteilles">
               </li>
             </ul>
@@ -132,7 +132,7 @@ export default {
       // Créer un tableau vide pour stocker les bouteilles filtrées
       let bouteillesFiltrees = [];
 
-      // Vérifier si tous les filtres sont désélectionnés 
+      // Vérifier si tous les filtres sont désélectionnés
       if (this.selectionnerType.length === 0 && this.selectionnerPays.length === 0 && this.selectionnerPrix.length === 0 && this.dateDebut === null && this.dateFin === null) {
         // Si tous les filtres sont désélectionnés, afficher toutes les bouteilles
         this.bouteillesFiltrees = this.bouteilles;
@@ -178,7 +178,7 @@ export default {
           let bouteilleDate;
           if(bouteille.garde_jusqua===null){
             // -1 car les mois sont indexés à partir de 0
-            let date = new Date(bouteille.date_achat); 
+            let date = new Date(bouteille.date_achat);
 
             // Ajouter 1 an à la date car certains vins comme les beaujolais se concervent entre 1 et 2 ans au maximum s'ils sont de bonne qualité
             date.setFullYear(date.getFullYear() + 1);
@@ -213,7 +213,7 @@ export default {
       this.selectionnerPrix = []; // Clear the selected prices
       this.dateDebut = null; // Clear the start date
       this.dateFin = null; // Clear the end date
-      
+
       // Uncheck all checkboxes
       const checkboxes = document.querySelectorAll('.conteneur-filtre input[type="checkbox"]');
       if(checkboxes !==null){
@@ -222,7 +222,7 @@ export default {
         });
       }
 
-      
+
       // Clear all date inputs
       const dateInputs = document.querySelectorAll('.conteneur-filtre input[type="date"]');
       if(dateInputs !== null){

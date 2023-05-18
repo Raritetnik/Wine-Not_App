@@ -9,7 +9,7 @@
                 <h3 class="font-medium text-section_title text-lg">{{ this.bouteille.pays }} | {{ this.bouteille.format }}</h3>
             </header>
             <h1 class="font-medium text-section_title text-lg">${{ this.bouteille.prix_saq }} CAD</h1>
-            <h2>Date d'ajout: {{ this.formatDate(this.bouteille.date) }}</h2>
+            <h2 v-if="this.bouteille.date !== undefined">Date d'ajout: {{ this.formatDate(this.bouteille.date) }}</h2>
             <footer class="flex">
             </footer>
         </div>
@@ -46,8 +46,9 @@ export default {
             this.estVide = !this.estVide;
         },
         formatDate (date) {
+            console.log(date);
             let dt = new Date(date);
-            return dt.toLocaleDateString()+' à ' +dt.toLocaleTimeString();
+            return (dt.toLocaleDateString());
         },
         // Supprimer l'element de la liste DOM
         supprimer () {
