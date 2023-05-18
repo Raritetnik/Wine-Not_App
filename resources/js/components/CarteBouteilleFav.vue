@@ -69,9 +69,9 @@ export default {
         showImage (vine) {
             try {
                 if(vine.url_img == null) {
-                return require("/storage/uploads/"+vine.image);
+                    return require("/storage/uploads/"+vine.image);
                 } else {
-                return vine.url_img;
+                    return vine.url_img;
                 }
             } catch (e) {
                 return vine.url_img;
