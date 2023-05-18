@@ -255,6 +255,12 @@ class CellierController extends Controller
     $newQuantite = $request->quantite;
     $totalQuantite = $bouteilleParCellier->quantite;
 
+    $uCelliers = auth()->user()->celliers;
+    if (count($uCelliers) <= 1) {
+      return redirect()->back()->withErrors(["unCellier" =>"Vous devez avoir plus d'un cellier pour déplacer des bouteilles."]);
+    }
+    
+
     // Vérifier s'il existe déjà un enregistrement Bouteille_Par_Cellier avec le même vino_bouteille_id dans le cellier cible
     $existingRecord = Bouteille_Par_Cellier::where('vino_cellier_id', $nouveauCellier)
       ->where('vino_bouteille_id', $bouteilleParCellier->vino_bouteille_id)
@@ -287,6 +293,7 @@ class CellierController extends Controller
      // Si la nouvelle quantité est égale à la quantité totale, supprimer l'enregistrement original
       $bouteilleParCellier->delete();
     }
+   
 
     return redirect()->route('celliers.afficher', ['cellier' => $vino_cellier]);
   }

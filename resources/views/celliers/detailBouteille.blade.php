@@ -3,7 +3,17 @@
 
 <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <!-- Fiche Detaile Bouteille -->
-    <!-- Modal Box -->
+ @if ($errors->has('unCellier'))
+  <div class="fixed inset-0 flex flex-col font-sans gap-3 items-center justify-center bg-gray-100">
+    <div class="bg-gray-100 py-3 px-3">
+      <ul>
+        <li class="text-accent_wine  font-medium text-center text-lg min-w-[300px]">{{ $errors->first('unCellier') }}</li>
+      </ul>
+    </div>
+    <a href="{{ url()->previous() }}" class="hover:opacity-80  transition-opacity font-medium text-accent_wine duration-200 ease-in-out">Retourner</a>
+  </div>
+@endif
+<!-- Modal Box -->
     <div id="popup-modal" tabindex="-1" class="bg-black bg-opacity-40 fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full ">
         <div class="relative w-full max-w-md max-h-full rounded-lg border border-accent_wine top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">
             <div class="relative bg-white rounded-lg">
@@ -119,7 +129,9 @@
                 </div>
               
                 <div class="flex justify-start items-center pt-5 pb-4 gap-10 px-5 mt-auto">
+                    @if (count(auth()->user()->celliers) > 1)
                     <button type="button" id="move_modal" class="py-2 px-4 rounded-md transition-colors duration-200 bg-accent_wine text-main font-medium hover:bg-transparent hover:border-accent_wine border hover:text-accent_wine">Déplacer</button>
+                    @endif
                     <button id="open_popup-modal" type="button" class="transition-opacity duration-300 hover:opacity-75"><img src="{{asset('img/svg/trash.svg')}}" alt="delete"></button>
                 </div>
             </div>
