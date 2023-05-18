@@ -59,6 +59,11 @@ class BouteilleController extends Controller
      */
     public function insererBouteille(Request $request)
     {
+        $this->validate($request, [
+            'vino_cellier_id' => 'required|integer',
+            'quantite' => 'required|min:0|integer',
+        ]);
+
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
 
@@ -141,6 +146,13 @@ class BouteilleController extends Controller
 
     public function insererBouteillePasSAQ(Request $request)
     {
+
+        $this->validate($request, [
+            'nom' => 'required|string',
+            'quantite' => 'required|min:0|integer',
+            'prix' => 'required|min:0|double',
+        ]);
+
          // récupérer le id de l'utilisateur qui est loggé dans sa session
          $user_id = auth()->user()->id;
 
@@ -171,9 +183,6 @@ class BouteilleController extends Controller
 
 // ** Important que le formulaire soit de type multi encrypted */
         // return $request->has('image');
-
-
-
 
         if ($request->hasFile('image')) {
             $request->validate([

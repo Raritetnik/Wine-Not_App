@@ -20,6 +20,9 @@
         <label for="nom" class="text-section_title text-sm font-bold mb-3">Ajouter une bouteille</label>
         <input type="name" name="nom" id="nom" placeholder="Nom de la bouteille" class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title {{ $errors->has('nom') ? 'border-error' : '' }}" value="{{ old('nom') }}" required />
       </div>
+      @error('nom')
+        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+      @enderror
       <div class="w-full mb-5">
         <label for="img" class="text-section_title text-sm font-bold mb-3">Ajouter une image</label>
         <div class="relative w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
@@ -29,15 +32,6 @@
           </div>
         </div>
       </div>
-      @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-          <p>{{ $error }}</p>
-          @endforeach
-        </ul>
-      </div>
-      @endif
       <div class="w-full mb-3">
         <label for="millesime" class="text-section_title text-sm font-bold mb-3">Millésime</label>
         <div class="flex flex-col md:flex-row md:space-x-4">
@@ -62,15 +56,13 @@
       <div class="mb-2 flex justify-between gap-3">
         <div class="w-1/2 mb-3">
           <label for="quantite" class="text-section_title text-sm font-bold mb-3">Quantité<b class="text-accent_wine"> *</b></label>
-          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('qty') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité" value="{{ old('qty') }}" required>
-          </input>
+          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('qty') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité" value="{{ old('qty') }}" required/>
 
           <!-- {{ $errors->has('qty') ? 'border-error' : '' }} -->
         </div>
         <div class="w-1/2 mb-3">
           <label for="prix" class="text-section_title text-sm font-bold mb-3">$ Prix</label>
-          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille">
-          </input>
+          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille"/>
         </div>
       </div>
       <div class="mb-2 flex justify-between gap-3">
