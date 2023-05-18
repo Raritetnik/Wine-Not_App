@@ -90,7 +90,7 @@
 
                             <div class="flex flex-wrap gap-2 items-center">
                                 <p class="text-m text-section_title font-semibold">Valeur Total:</p>
-                                <span id="total" class="text-article_title text-lg">${{$bouteille->total}}</span>
+                                <span id="total" class="text-article_title text-lg">${{$bouteille->total ?? ''}}</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center gap-3 pb-4 w-full">
