@@ -14,7 +14,7 @@
               <label>
                 <input type="hidden" nave="vino_cellier_id" value="{{$bouteille->vino_cellier_id}}">
               </label>
-            <div class="w-full mb-5">
+            <div class="w-full inline-block mb-5">
               <h2 class="text-accent_wine text-xl font-extrabold pb-6">
                 Modifier une bouteille personnelle
               </h2>
@@ -27,13 +27,13 @@
                 name="nom"
                 id="nom"
                 placeholder="Entrez le nom de la bouteille"
-                class="block w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none placeholder-section_title" />
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline" />
             </div>
             <div class="w-full mb-5">
             <label for="img" class="block text-section_title font-bold mb-2">
               Ajouter une image
             </label>
-              <div class="block relative w-full py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+              <div class="w-full items-center justify-center h-12 py-3 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline">
                 <input
                   id="img"
                   type="file"
@@ -58,7 +58,7 @@
                   type="date" name="date_achat"
                   id="date_achat"
                   placeholder="Date d'achat"
-                  class="block w-full placeholder-section_title py-3 px-3 rounded-md border border-gray-300 focus:border-secondary focus:outline-none" />
+                  class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline" />
               </div>
             </div>
             <div class="w-full mb-3">
@@ -72,7 +72,7 @@
                   name="garde_jusqua"
                   id="date_exp"
                   placeholder="Valide jusqu'à"
-                  class="block w-full py-3 px-3 rounded-md border border-gray-300 placeholder-section_title focus:border-secondary focus:outline-none" />
+                  class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline" />
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@
               </label>
               <input
                 value="{{$bouteille->quantite}}"
-                class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none"
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline"
                 name="quantite"
                 id="quantite"
                 min="1"
@@ -95,7 +95,7 @@
               </label>
               <input
                 value="{{$bouteille->prix_saq}}"
-                class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none"
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline"
                 name="prix_saq"
                 id="prix"
                 min="1"
@@ -110,7 +110,7 @@
               <select
                 name="vino_cellier_id"
                 id="cellier"
-                class="w-full block py-3 px-3 bg-transparent bg-gray-50  rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline">
                 @foreach($celliers as $index => $cellier)
                 <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
                 @endforeach
@@ -123,8 +123,8 @@
               <select
                 name="pays_id"
                 id="pays"
-                class="w-full text-section_title block py-3 px-3 rounded-md border bg-transparent bg-gray-50 border-gray-300 focus:border-secondary focus:outline-none">
-                  <option class="text-section_title" value="">
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline">
+                  <option class="text-section_title " value="">
                     Sélectionner Pays
                   </option>
                 @foreach($pays as $place)
@@ -141,7 +141,7 @@
               <select
                 name="vino_type_id"
                 id="type"
-                class="w-full text-section_title block py-3 px-3 rounded-md bg-transparent bg-gray-50 border border-gray-300 focus:border-secondary focus:outline-none">
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline">
                 <option class="text-section_title" value="">Sélectionner type</option>
                 @foreach($types as $type)
                 <option value="{{$type->id}}">{{ $type->type }}</option>
@@ -155,21 +155,22 @@
               <select
                 name="vino_format_id"
                 id="format"
-                class="w-full text-section_title block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-gray-300 focus:border-secondary focus:outline-none">
-                <option class="text-section_title" value="">Sélectionner le format</option>
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline">
+                <option class="text-section_title" value="">Sélectionner format</option>
                 @foreach($formats as $format)
                 <option value="{{$format->id}}">{{ $format->format }}</option>
                 @endforeach
               </select>
             </div>
           </div>
-          <div class="mt-7 flex">
-            <div class="w-full"><a href="{{ url()->previous() }}" class=" hover:opacity-80">
-              <button type="button" class="w-1/4 px-1 py-1.5 rounded-md bg-secondary bg-accent_wine text-lg font-medium text-main text-align: center hover:bg-transparent border hover:border-secondary  cursor-pointer hover:text-secondary transition duration-300 ease-in-out" >Retour</button>
+          <div class="mb-4 py-4 flex justify-between gap-5">
+            <div class="w-full">
+              <a href="{{ url()->previous() }}" class=" hover:opacity-80">
+              <button type="button" class="h-12 py-3 px-6 rounded transition-colors tracking-wide border-accent_wine duration-200  text-accent_wine font-medium hover:bg-accent_wine  border hover:text-main">Retourner</button>
             </div>
             <div class="w-full">
-              <div style="text-align: right; padding-right: 1rem;">
-                <input type="submit" class="px-3 py-1.5 rounded-md bg-secondary text-lg font-medium text-main text-align: center hover:bg-transparent border hover:border-secondary  cursor-pointer hover:text-secondary transition duration-300 ease-in-out" value="Modifier">
+              <div style="text-align: right;">
+                <input type="submit" class="h-12 py-3 px-6 font-medium tracking-wide text-main transition-colors duration-200 rounded border bg-accent_wine hover:border-accent_wine hover:bg-transparent hover:text-accent_wine  focus:outline-none"  value="Modifier">
               </div>
             </div>
           </div>
