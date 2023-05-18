@@ -210,9 +210,9 @@ class CellierController extends Controller
     )
     ->join('vino_bouteilles', 'vino_bouteilles.id', '=', 'bouteille_par_celliers.vino_bouteille_id')
     ->join('vino_celliers', 'bouteille_par_celliers.vino_cellier_id', '=', 'vino_celliers.id')
-    ->join('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
-    ->join('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
-    ->join('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
+    ->leftJoin('vino_formats', 'vino_formats.id', '=', 'vino_bouteilles.vino_format_id')
+    ->leftJoin('vino_types', 'vino_types.id', '=', 'vino_bouteilles.vino_type_id')
+    ->leftJoin('pays', 'pays.id', '=', 'vino_bouteilles.pays_id')
     ->leftJoin('notes', 'vino_bouteilles.id', '=', 'notes.vino_bouteilles_id')
     ->where([
       ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]

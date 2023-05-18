@@ -85,7 +85,7 @@
                         <div class="flex justify-between gap-3 pb-4 items-center w-full">
                             <div class="flex gap-2 flex-wrap items-center">
                                 <p for="prix" class="text-m text-section_title font-semibold flex-shrink-0">Prix de Bouteille:</p>
-                                <span id="prix" class="text-article_title text-lg">${{$bouteille->prix_saq}}</span>
+                                <span id="prix" class="text-article_title text-lg">${{$bouteille->prix_saq ?? ''}}</span>
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
@@ -96,23 +96,23 @@
                         <div class="flex justify-between items-center gap-3 pb-4 w-full">
                             <div class="flex flex-wrap gap-2 items-center">
                                 <p class="text-m text-section_title font-semibold">Pays:</label>
-                                <span id="pays" class="text-article_title font-medium text-lg">{{$bouteille->pays}}</span>
+                                <span id="pays" class="text-article_title font-medium text-lg">{{$bouteille->pays ?? ''}}</span>
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
                                 <p class="text-m text-section_title font-semibold">Volume:</p>
-                                <span id="format" class="text-article_title text-lg">{{$bouteille->format}}</span>
+                                <span id="format" class="text-article_title text-lg">{{$bouteille->format ?? ''}}</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center pb-4 gap-3 w-full">
                             <div class="flex flex-wrap gap-2 items-center">
                                 <p class="text-m text-section_title font-semibold">Type:</p>
-                                <span id="type" class="text-article_title text-lg">{{$bouteille->type}}</span>
+                                <span id="type" class="text-article_title text-lg">{{$bouteille->type ?? ''}}</span>
                             </div>
 
                             <div class="flex flex-wrap gap-2 items-center">
                                 <p class="text-m text-section_title font-semibold">Millésime:</p>
-                                <span id="annee" class="text-article_title text-lg">{{$bouteille->millesime}}</span>
+                                <span id="annee" class="text-article_title text-lg">{{$bouteille->millesime ?? ''}}</span>
                             </div>
                         </div>
 
@@ -122,7 +122,7 @@
                         </div>
                         @if($bouteille->url_saq)
                         <div class="flex flex-col pb-4">
-                            <a href="{{$bouteille->url_saq}}" class="text-lg text-accent_wine hover:text-gray-600 font-bold">Le lien SAQ </a>
+                            <a href="{{$bouteille->url_saq ?? ''}}" class="text-lg text-accent_wine hover:text-gray-600 font-bold">Le lien SAQ </a>
                         </div>
                         @endif
                     </div>
