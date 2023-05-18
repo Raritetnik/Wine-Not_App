@@ -87,8 +87,7 @@
                 name="quantite"
                 id="quantite"
                 min="1"
-                placeholder="Quantité">
-              </input>
+                placeholder="Quantité" />
             </div>
             <div class="w-1/2 mb-3">
               <label for="prix" class="block text-section_title font-bold mb-2">
@@ -100,8 +99,7 @@
                 name="prix_saq"
                 id="prix"
                 min="1"
-                placeholder="Prix par bouteille">
-              </input>
+                placeholder="Prix par bouteille" />
             </div>
           </div>
           <div class="mb-2 flex justify-between gap-3">

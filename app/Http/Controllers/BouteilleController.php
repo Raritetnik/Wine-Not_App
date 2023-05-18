@@ -131,12 +131,11 @@ class BouteilleController extends Controller
         $bouteilleParCellier->save();
 
         Historique::create([
-            'bouteille_id' => $vinoBouteille->id,
-            'cellier_id' => $request ->vino_cellier_id,
+            'bouteille_id' => $data['vino_bouteille_id'],
+            'cellier_id' => $data['vino_cellier_id'],
             'utilisateur_id' => Auth::id(),
             'create_at' => Carbon::now()
         ]);
-
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
@@ -186,7 +185,7 @@ class BouteilleController extends Controller
             // $request->image->storeAs('images', $imageName);
             $data['image'] = $imageName;
         } else {
-            $data['image'] = null;
+            $data['image'] = 'placeholder.png';
         }
 
         /*
@@ -214,19 +213,16 @@ class BouteilleController extends Controller
         $bouteilleParCellier->save();
 
         Historique::create([
-            'bouteille_id' => $request->vino_bouteille_id,
-            'cellier_id' => $request->vino_cellier_id,
+            'bouteille_id' => $data['vino_bouteille_id'],
+            'cellier_id' => $data['vino_cellier_id'],
             'utilisateur_id' => Auth::id(),
             'create_at' => Carbon::now()
         ]);
-
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
     public function rechercheBouteille(Request $request)
     {
-
-
         $request->validate([
             'quantite' => 'required|integer|min:1',
             'vino_bouteille_id' => 'required|integer|min:1',
@@ -415,9 +411,6 @@ class BouteilleController extends Controller
             $bouteilleParCellier->save();
         }
 
-
-
-
         // rediriger vers la page précédente avec un message de succès
         return redirect('/celliers' . '/' . $idCellier->id)->withSuccess('Information mise à jour.');
     }
@@ -437,10 +430,9 @@ class BouteilleController extends Controller
         $bouteilles = [];
         foreach ($bHistorique as $bouteille) {
             $bouteilleHis = Vino_Bouteille::find($bouteille->bouteille_id);
-            $bouteilleHis['pays'] = Pays::find($bouteilleHis->pays_id)['pays'];
-            $bouteilleHis['format'] = Vino_Format::find($bouteilleHis->vino_format_id)['format'];
+            $bouteilleHis['pays'] = (Pays::where("id",$bouteilleHis->pays_id)->exists()) ? Pays::find($bouteilleHis->pays_id)['pays'] : 'Pays indéfini';
+            $bouteilleHis['format'] = (Vino_Format::where("id",$bouteilleHis->vino_format_id)->exists()) ? Vino_Format::find($bouteilleHis->vino_format_id)['format'] : 'Format indéfini';
             $bouteilleHis['date'] = $bouteille->created_at;
-            echo ($bouteille->create_at);
             array_push($bouteilles, $bouteilleHis);
         }
         return view('bouteille.historique', ['bouteilles' => $bouteilles]);
