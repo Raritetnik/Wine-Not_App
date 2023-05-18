@@ -175,14 +175,12 @@ class BouteilleController extends Controller
             return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
         }
         */
-     
+
 
         // enregistrer dans vino_bouteille en premier
         $vinoBouteille = new Vino_Bouteille;
         $vinoBouteille->fill($data);
         $vinoBouteille->save();
-
-        dd($vinoBouteille->image);
 
         // récupérer l'id pour le passer en paramètre
         $data['vino_bouteille_id'] = $vinoBouteille->id;
@@ -214,10 +212,9 @@ class BouteilleController extends Controller
 
         $celliers = auth()->user()->celliers;
 
-
-        $bouteilleValidation = Bouteille_Par_Cellier::whereIn('vino_cellier_id', $celliers->pluck('id')->toArray())
+        $bouteilleValidation = Bouteille_Par_Cellier::where('vino_cellier_id', $request->vino_cellier_id)
             ->where('vino_bouteille_id', $request->vino_bouteille_id)
-            ->first();
+            ->exists();
 
         if ($bouteilleValidation) {
 

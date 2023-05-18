@@ -77,9 +77,6 @@ export default {
     },
     // modifier avec la méthode axios .put l'url de la page avec nombre de bouteilles
     modifierNbBouteille() {
-      if(this.compteur <= 0){
-        this.historique();
-      }
       // envoyer vers la route de modification vers webd.php
       let url = window.location.origin + "/celliers/" + this.idcellier + "/" + this.id;
       axios
