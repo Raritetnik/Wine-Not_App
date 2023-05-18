@@ -144,8 +144,6 @@ class BouteilleController extends Controller
         // return $request->has('image');
 
 
- 
-
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
@@ -169,11 +167,14 @@ class BouteilleController extends Controller
             return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
         }
         */
+     
 
         // enregistrer dans vino_bouteille en premier
         $vinoBouteille = new Vino_Bouteille;
         $vinoBouteille->fill($data);
         $vinoBouteille->save();
+
+        dd($vinoBouteille->image);
 
         // récupérer l'id pour le passer en paramètre
         $data['vino_bouteille_id'] = $vinoBouteille->id;
@@ -185,6 +186,10 @@ class BouteilleController extends Controller
        
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
+
+
+
+
 
     public function rechercheBouteille(Request $request)
     {
