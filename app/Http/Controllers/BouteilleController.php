@@ -59,11 +59,6 @@ class BouteilleController extends Controller
      */
     public function insererBouteille(Request $request)
     {
-        $this->validate($request, [
-            'vino_cellier_id' => 'required|integer',
-            'quantite' => 'required|min:0|integer',
-        ]);
-
         // récupérer le id de l'utilisateur qui est loggé dans sa session
         $user_id = auth()->user()->id;
 
@@ -92,12 +87,6 @@ class BouteilleController extends Controller
             $data['garde_jusqua'] = $request->garde_jusqua;
         }
 
-        // ** Important que le formulaire soit de type multi encrypted */
-        // return $request->has('image');
-
-
-
-
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
@@ -110,17 +99,6 @@ class BouteilleController extends Controller
         } else {
             $data['image'] = null;
         }
-
-        /*
-        vérification pour voir si on a les autorisations d'enregistrer des images ou doc
-
-        $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
-        if (is_writable($storagePath)) {
-            return "Vous avez les autorisations d'enregistrer des fichiers localement.";
-        } else {
-            return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
-        }
-        */
 
         // enregistrer dans vino_bouteille en premier
         $vinoBouteille = new Vino_Bouteille;
@@ -146,13 +124,6 @@ class BouteilleController extends Controller
 
     public function insererBouteillePasSAQ(Request $request)
     {
-
-        $this->validate($request, [
-            'nom' => 'required|string',
-            'quantite' => 'required|min:0|integer',
-            'prix' => 'required|min:0|double',
-        ]);
-
          // récupérer le id de l'utilisateur qui est loggé dans sa session
          $user_id = auth()->user()->id;
 
@@ -181,9 +152,6 @@ class BouteilleController extends Controller
             $data['garde_jusqua'] = $request->garde_jusqua;
         }
 
-// ** Important que le formulaire soit de type multi encrypted */
-        // return $request->has('image');
-
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
@@ -207,11 +175,14 @@ class BouteilleController extends Controller
             return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
         }
         */
+     
 
         // enregistrer dans vino_bouteille en premier
         $vinoBouteille = new Vino_Bouteille;
         $vinoBouteille->fill($data);
         $vinoBouteille->save();
+
+        dd($vinoBouteille->image);
 
         // récupérer l'id pour le passer en paramètre
         $data['vino_bouteille_id'] = $vinoBouteille->id;
@@ -229,6 +200,10 @@ class BouteilleController extends Controller
         ]);
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
+
+
+
+
 
     public function rechercheBouteille(Request $request)
     {
