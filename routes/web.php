@@ -70,18 +70,21 @@ Route::put('celliers/{vino_cellier}/modifier-bouteille/{bouteille_par_cellier}',
 Route::get('/bouteille/{idBouteille}', [BouteilleController::class, 'show'])->name('bouteille.show')->middleware('auth');
 Route::get('/bouteilles', [BouteilleController::class, 'listeBouteilles'])->name('bouteilles');
 // Route::get('/creer-bouteille', [App\Http\Controllers\BouteilleController::class, 'creer'])->name('bouteilles.creer')->middleware('auth');
-Route::get('/ajouter-bouteille', [BouteilleController::class, 'ajouterBouteille'])->name('bouteille.create')->middleware('auth');
-Route::post('/ajouter-bouteille', [BouteilleController::class, 'insererBouteille'])->name('bouteille.inserer')->middleware('auth');
 Route::put('/recherche-bouteille', [BouteilleController::class, 'rechercheBouteille'])->name('bouteille.saq')->middleware('auth');
+// ajouter bouteille sans être déjà dans un cellier
+Route::get('/ajouter-bouteille', [BouteilleController::class, 'ajouterBouteille'])->name('bouteille.create')->middleware('auth');
+Route::post('/ajouter-bouteille', [BouteilleController::class, 'insererBouteille'])->middleware('auth');
+// ajouter bouteille en étant dans un cellier
 Route::get('/ajouter-bouteille-cellier/{idCellier}', [BouteilleController::class, 'ajouterBouteille'])->name('bouteille.createDansCellier')->middleware('auth');
-Route::post('/ajouter-bouteille-cellier/{idCellier}', [BouteilleController::class, 'insererBouteille'])->name('bouteille.inserer')->middleware('auth');
+Route::post('/ajouter-bouteille-cellier/{idCellier}', [BouteilleController::class, 'insererBouteille'])->middleware('auth');
+// ajouter si c'est pas bouteille SAQ
+Route::get('/ajouter-bouteille-personnelle', [BouteilleController::class, 'ajouterBouteillePasSAQ'])->name('bouteille.ajouterBouteillePasSAQ')->middleware('auth');
+Route::post('/ajouter-bouteille-personnelle', [BouteilleController::class, 'insererBouteillePasSAQ'])->name('bouteille.ajouterBouteillePasSAQ')->middleware('auth');
 
 Route::get('/{idCellier}/modifier-bouteille/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'modifierBouteille'])->middleware('auth');
 Route::put('/{idCellier}/modifier-bouteille/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'enregistrerModifierBouteille'])->middleware('auth');
 Route::put('/bouteille-note/{idBouteille}', [App\Http\Controllers\BouteilleController::class, 'enregistrerNoteBouteille'])->middleware('auth');
 
-Route::get('/ajouter-bouteille-personnelle', [BouteilleController::class, 'ajouterBouteillePasSAQ'])->name('bouteille.ajouterBouteillePasSAQ')->middleware('auth');
-Route::post('/ajouter-bouteille-personnelle', [BouteilleController::class, 'insererBouteillePasSAQ'])->name('bouteille.ajouterBouteillePasSAQ')->middleware('auth');
 /**
  * Les liens de Script Loader SAQ
  */

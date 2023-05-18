@@ -87,12 +87,6 @@ class BouteilleController extends Controller
             $data['garde_jusqua'] = $request->garde_jusqua;
         }
 
-        // ** Important que le formulaire soit de type multi encrypted */
-        // return $request->has('image');
-
-
-
-
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
@@ -105,17 +99,6 @@ class BouteilleController extends Controller
         } else {
             $data['image'] = null;
         }
-
-        /*
-        vérification pour voir si on a les autorisations d'enregistrer des images ou doc
-
-        $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
-        if (is_writable($storagePath)) {
-            return "Vous avez les autorisations d'enregistrer des fichiers localement.";
-        } else {
-            return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
-        }
-        */
 
         // enregistrer dans vino_bouteille en premier
         $vinoBouteille = new Vino_Bouteille;
@@ -170,12 +153,6 @@ class BouteilleController extends Controller
             $data['garde_jusqua'] = $request->garde_jusqua;
         }
 
-// ** Important que le formulaire soit de type multi encrypted */
-        // return $request->has('image');
-
-
-
-
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
@@ -188,17 +165,6 @@ class BouteilleController extends Controller
         } else {
             $data['image'] = null;
         }
-
-        /*
-        vérification pour voir si on a les autorisations d'enregistrer des images ou doc
-
-        $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
-        if (is_writable($storagePath)) {
-            return "Vous avez les autorisations d'enregistrer des fichiers localement.";
-        } else {
-            return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
-        }
-        */
 
         // enregistrer dans vino_bouteille en premier
         $vinoBouteille = new Vino_Bouteille;
