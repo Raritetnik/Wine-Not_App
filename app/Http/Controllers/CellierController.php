@@ -33,16 +33,17 @@ class CellierController extends Controller
     // Sinon afficher login
     if (Auth::id()) {
       $utilisateur_id = Auth::id();
-      $totalQuantite = 0; // Variable to store the total quantity
       $celliers = Vino_Cellier::select()
         ->where('vino_celliers.utilisateurs_id', $utilisateur_id)
         ->get();
-      foreach ($celliers as $cellier) {
-        $quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)
-        ->sum('quantite');
+      $totalQuantite = 0; // Variable to store the total quantity
 
-        $cellier->quantiteBouteilles = $quantiteBouteilles;
-        $totalQuantite += $quantiteBouteilles;
+      foreach ($celliers as $cellier) {
+          $quantiteBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)
+              ->sum('quantite');
+      
+          $cellier->quantiteBouteilles = $quantiteBouteilles;
+          $totalQuantite += $quantiteBouteilles;
       }
       $quantitecelliers = count($celliers);
       return view('celliers.index', ['celliers' => $celliers, 'quantitecelliers' => $totalQuantite ]);
@@ -215,9 +216,8 @@ class CellierController extends Controller
     ->leftJoin('notes', 'vino_bouteilles.id', '=', 'notes.vino_bouteilles_id')
     ->where([
       ['bouteille_par_celliers.id', '=', $bouteille_par_cellier->id]
-    ])->get();
-
-    //return $bouteille_par_cellier->id;
+    ])
+    ->get();
 
     // Passer à travers le tableau et calculer le total payé par l'utilisateur;
     $bouteilleDetail[0]['total'] = $bouteilleDetail[0]['quantite'] * $bouteilleDetail[0]['prix_saq'];
@@ -264,7 +264,7 @@ class CellierController extends Controller
     if (count($uCelliers) <= 1) {
       return redirect()->back()->withErrors(["unCellier" =>"Vous devez avoir plus d'un cellier pour déplacer des bouteilles."]);
     }
-
+    
 
     // Vérifier s'il existe déjà un enregistrement Bouteille_Par_Cellier avec le même vino_bouteille_id dans le cellier cible
     $existingRecord = Bouteille_Par_Cellier::where('vino_cellier_id', $nouveauCellier)
@@ -298,7 +298,7 @@ class CellierController extends Controller
      // Si la nouvelle quantité est égale à la quantité totale, supprimer l'enregistrement original
       $bouteilleParCellier->delete();
     }
-
+   
 
     return redirect()->route('celliers.afficher', ['cellier' => $vino_cellier]);
   }

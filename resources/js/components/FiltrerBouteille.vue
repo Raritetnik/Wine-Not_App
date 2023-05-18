@@ -70,7 +70,7 @@
               <span class="material-symbols-outlined rotation-huitieme">add</span>
             </div>
             <ul class="liste-choix cacher">
-              <li v-for="aPays in pays" :key="aPays.id">
+              <li v-for="aPays in paysOrdonnes" :key="aPays.id">
                 <input type="checkbox" :id="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')"
                   :name="aPays.pays.replace(/[\s\u0300-\u036f]/g, '')" :value="aPays.pays" v-model="selectionnerPays"
                   @change="filterBouteilles">
@@ -123,6 +123,7 @@ export default {
       selectionnerPays: [],
       selectionnerPrix: [],
       bouteillesFiltrees: [],
+      pays:[],
     };
   },
   methods: {
@@ -235,7 +236,12 @@ export default {
   },
   created() {
     this.bouteillesFiltrees = this.bouteilles;
-  }
+  },
+  computed: {
+    paysOrdonnes() {
+      return this.pays.slice().sort((a, b) => a.pays.localeCompare(b.pays));
+  },
+},
 };
 </script>
 

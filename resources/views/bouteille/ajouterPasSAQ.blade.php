@@ -35,7 +35,7 @@
       <div class="w-full mb-3">
         <label for="millesime" class="text-section_title text-sm font-bold mb-3">Millésime</label>
         <div class="flex flex-col md:flex-row md:space-x-4">
-          <input type="number" class="w-full placeholder-section_title py-3 px-3 rounded-md border border-accent_wine focus:border-secondary focus:outline-none" name="annee" id="millesime" min="1" placeholder="Entrer l'année du vin">
+          <input type="number" class="w-full placeholder-section_title py-3 px-3 rounded-md border border-accent_wine focus:border-secondary focus:outline-none" name="millesime" id="millesime" max="{{ date('Y') }}" placeholder="Entrer l'année du vin">
         </div>
       </div>
 
@@ -62,7 +62,7 @@
         </div>
         <div class="w-1/2 mb-3">
           <label for="prix" class="text-section_title text-sm font-bold mb-3">$ Prix</label>
-          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-accent_wine focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" placeholder="Prix par bouteille" value="0"/>
+          <input type="number" class="w-full py-3 px-3 placeholder-section_title rounded-md border border-accent_wine focus:border-secondary focus:outline-none appearance-none" name="prix_saq" id="prix" min="1" placeholder="Prix par bouteille"/>
         </div>
       </div>
       <div class="mb-2 flex justify-between gap-3">
@@ -83,7 +83,7 @@
 
           <label for="pays" class="text-section_title text-sm font-bold mb-3">Pays Producteur</label>
           <select name="pays_id" id="pays" class="w-full text-section_title block py-3 px-3 rounded-md border bg-transparent bg-gray-50 border-accent_wine focus:border-secondary focus:outline-none">
-            <option class="text-section_title" value="">Pays</option>
+            <option class="text-section_title" value="" disabled selected hidden>Pays</option>
             @foreach($pays as $place)
             <option value="{{$place->id}}">{{ $place->pays }}</option>
             @endforeach
@@ -95,7 +95,7 @@
 
           <label for="type" class="text-section_title text-sm font-bold mb-3">Type de Vin</label>
           <select name="vino_type_id" id="type" class="w-full text-section_title block py-3 px-3 rounded-md bg-transparent bg-gray-50 border border-accent_wine focus:border-secondary focus:outline-none">
-            <option class="text-section_title" value="">Type</option>
+            <option class="text-section_title" value="" disabled selected hidden>Type</option>
             @foreach($types as $type)
             <option value="{{$type->id}}">{{ $type->type }}</option>
             @endforeach
@@ -105,7 +105,7 @@
 
           <label for="format" class="text-section_title text-sm font-bold mb-3">Volume</label>
           <select name="vino_format_id" id="format" class="w-full text-section_title block py-3 px-3  bg-transparent bg-gray-50 rounded-md border border-accent_wine focus:border-secondary focus:outline-none">
-            <option class="text-section_title" value="">Format</option>
+            <option class="text-section_title" value="" disabled selected hidden>Format</option>
             @foreach($formats as $format)
             <option value="{{$format->id}}">{{ $format->format }}</option>
             @endforeach
