@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <section class="px-6">
+    <div class="pb-6 text-center w-full">
+        <h2 class="mb-2 text-accent_wine text-2xl font-bold leading-none sm:text-3xl">Historique</h2>
+    </div>
     <form action="{{ route('historique.supprimer') }}" method="post" class="m-4 flex justify-center items-center">
         @csrf
         <button type="submit"

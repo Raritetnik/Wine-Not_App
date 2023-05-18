@@ -45,14 +45,11 @@
           <div class="mb-2 flex justify-between gap-3">
             <div class="w-1/2 mb-2">
               <label for="quantite" class="block text-section_title text-sm font-bold mb-2">Quantité<b class="text-accent_wine"> *</b></label>
-              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('quantite') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité de bouteilles" value="{{ old('quantite') }}" required>
-              </input>
-
+              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none {{ $errors->has('quantite') ? 'border-error' : '' }}" name="quantite" id="quantite" min="1" placeholder="Quantité de bouteilles" value="{{ old('quantite') }}" required/>
             </div>
             <div class="w-1/2 mb-2">
               <label for="millesime" class="block text-section_title text-sm font-bold mb-2">Millésime</label>
-              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="millesime" id="millesime" min="1" placeholder="Entrer l'année du vin">
-              </input>
+              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="millesime" id="millesime" min="1" placeholder="Entrer l'année du vin"/>
             </div>
           </div>
           <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
