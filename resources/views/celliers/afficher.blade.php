@@ -7,7 +7,7 @@
             <div class="rounded-md bg-gray-100 flex items-baseline gap-4 border px-4 py-3 sm:rounded justify-between w-full max-w-[560px] mx-auto" style="width:100%; padding: 16px;">
                 <!-- Nom du cellier -->
                 <div class="flex  flex-wrap gap-1 items-baseline  ps-3 sm:ps-0">
-                <a href="{{ route('celliers.index') }}" class="text-secondary flex-shrink-0 text-lg hover:opacity-70 transition-opacity duration-200 ease-in-out font-medium pe-3" alt="back">Mes Celliers <span class="text-xl sm:text-2xl">\</span></a>
+                    <a href="{{ route('celliers.index') }}" class="text-secondary flex-shrink-0 text-lg hover:opacity-70 transition-opacity duration-200 ease-in-out font-medium pe-3" alt="back">Mes Celliers <span class="text-xl sm:text-2xl">\</span></a>
                     <span class="flex-shrink-0 text-xl font-bold text-accent_wine sm:text-2xl"> {{$cellier->nom}} </span>
                 </div>
                 <div class="flex items-center ml-auto pe-3 sm:pe-0">
@@ -25,7 +25,7 @@
         </div>
     </div>
     <!-- Modal Box -->
-    <div id="popup-modal" tabindex="-1" class="bg-black bg-opacity-40 fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full ">
+    <div id="popup-modal" tabindex="-1" class="bg-black bg-opacity-40 fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full rounded-lg border border-accent_wine top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">
             <div class="relative bg-white rounded-lg">
                 <button type="button" id="close_popup-modal" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="popup-modal">
@@ -45,7 +45,7 @@
                         <input type="hidden" id="BouteilleID" name="BouteilleID" value="0">
                         <input type="hidden" id="CellierID" name="CellierID" value="0">
                         <input type="hidden" name="redirect" value="true">
-                        <input type="submit" data-modal-hide="popup-modal" class="p-2 px-4 bg-green-600 text-white rounded" type="button" alt="delete" value="Oui"/>
+                        <input type="submit" data-modal-hide="popup-modal" class="p-2 px-4 bg-green-600 text-white rounded" type="button" alt="delete" value="Oui" />
                         <button data-modal-hide="popup-modal" class="p-2 px-4 bg-gray-800 text-white rounded" type="button" id="no_popup-modal">No</button>
                     </form>
                 </div>
@@ -53,6 +53,12 @@
         </div>
     </div>
 </div>
+  <!-- bouton d'ajout de bouteille -->
+  <div class="add_btn fixed right-5 btn-bouteille z-50">
+    <a href="{{ route('bouteille.createDansCellier', $cellier) }}">
+        <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
+    </a>
+  </div>
 <!-- Affichage filtres et des cartes des bouteilles présentes dans ce cellier ** passer en paramètre de la composante vue toutes le infos néessaires-->
 <v-filtre :type="{{ $type }}" :pays="{{ $pays }}" :cellier="{{ $cellier }}" :bouteilles="{{ $bouteilles }}" :liste="{{ $liste }}" />
 @endsection

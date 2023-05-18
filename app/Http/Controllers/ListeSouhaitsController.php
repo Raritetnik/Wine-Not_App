@@ -25,13 +25,13 @@ class ListeSouhaitsController extends Controller
      */
     public function index()
     {
-        $liste = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
+       $liste = ListeSouhaits::where('utilisateurs_id', Auth::user()->id)->get();
         // Filtrage des bouteilles, seules en favoris
         $listeBouteilles = [];
         foreach ($liste as $btl) {
             $bouteilleFav = Vino_Bouteille::find($btl->vino_bouteilles_id);
-            $bouteilleFav['pays'] = Pays::find($bouteilleFav->pays_id)['pays'];
-            $bouteilleFav['format'] = Vino_Format::find($bouteilleFav->vino_format_id)['format'];
+            $bouteilleFav['pays'] = (Pays::where("id",$bouteilleFav->pays_id)->exists()) ? Pays::find($bouteilleFav->pays_id)['pays'] : 'Pays indéfini';
+            $bouteilleFav['format'] = (Vino_Format::where("id",$bouteilleFav->vino_format_id)->exists()) ? Vino_Format::find($bouteilleFav->vino_format_id)['format'] : 'Format indéfini';
             array_push($listeBouteilles, $bouteilleFav);
         }
         return view('listeSouhaits', ['bouteilles' => $listeBouteilles, 'liste' => $liste]);

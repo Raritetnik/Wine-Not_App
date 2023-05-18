@@ -24,89 +24,118 @@ class BouteilleController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-        // return view('bouteille.index')->with('bouteilles', json_decode($liste, true));
-    }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * La methode fournit les informations nécessaires au formulaire
+     * d'ajout d'une bouteille de SAQ. Si lien vien du bouton dans un cellier
+     *$idCellier correspond au cellier autrement le tableau est vide.
      */
-    public function ajouterBouteille()
+    public function ajouterBouteille(Vino_Cellier $idCellier)
     {
+        // return $cellier;
         $bouteilles = $this->listeBouteilles();
-
         $celliers = auth()->user()->celliers;
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles]);
+        return view('bouteille.ajouter', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'bouteilles' => $bouteilles, 'idCellier' => $idCellier->id, 'dateActuelle' => Carbon::now()]);
     }
-    public function ajouterBouteillePasSAQ()
+    /*
+     Ajout de bouteilles non listée.  Si lien vien du bouton dans un cellier
+     $idCellier correspond au cellier autrement le tableau est vide
+     */
+    public function ajouterBouteillePasSAQ(Vino_Cellier $idCellier)
     {
         $celliers = auth()->user()->celliers;
         $pays = Pays::all()->sortBy('pays');
         $types = Vino_Type::all();
         $formats = Vino_Format::all()->sortBy('format');
-        return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats]);
+        return view('bouteille.ajouterPasSAQ', ['celliers' => $celliers, 'pays' => $pays, 'types' => $types, 'formats' => $formats, 'idCellier' => $idCellier->id, 'dateActuelle' => Carbon::now()]);
     }
 
-
+    /**
+     * La fonction ajoute une bouteille de la SAQ existant
+     * dans le cellier selectionné par l'utilisateur
+     */
     public function insererBouteille(Request $request)
     {
+        // récupérer le id de l'utilisateur qui est loggé dans sa session
+        $user_id = auth()->user()->id;
 
-        $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
-
-        $request->validate([
-            'nom' => 'required|max:100',
-            'qty' => 'required|integer|min:1',
-            'prix_saq' => 'min:0',
-            'image' => 'image|mimes:jpeg,png|max:3048',
-            'vino_cellier_id' => 'required|integer|min:1',
-            'millesime' => 'integer|min:1',
-            'vino_format_id' => 'nullable', 
-            'vino_type_id' => 'nullable', 
-            'pays_id' => 'nullable', 
-        ]);
-
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('uploads', 'public');
-        } else {
-            $path = 'uploads/placeholder.png';
+        $data['utilisateur_id'] = $user_id;
+        $data['nom'] = $request->nom;
+        $data['quantite'] = $request->quantite;
+        $data['vino_cellier_id'] = $request ->vino_cellier_id;
+        // Validation si on a les données et retirer autrement (pour pas updater ex : pays= null)
+        if ($request->description !== null) {
+            $data['description'] = $request->description;
+        }
+        if ($request->image !== null) {
+            $data['image'] = $request->image;
+        }
+        if ($request->pays_id !== null) {
+            $data['pays_id'] = $request->pays_id;
+        }
+        if ($request->vino_type_id !== null) {
+            $data['vino_type_id'] = $request->vino_type_id;
+        }
+        if ($request->vino_format_id !== null) {
+            $data['vino_format_id'] = $request->vino_format_id;
+        }
+        $data['date_achat'] = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
+        if ($request->garde_jusqua !== null) {
+            $data['garde_jusqua'] = $request->garde_jusqua;
         }
 
-
-        $nBouteille = new Vino_Bouteille();
-        $nBouteille->image = $path;
-        $nBouteille->nom = $request->nom;
-        $nBouteille->prix_saq = $request->prix_saq;
-        $nBouteille->vino_format_id = $request->vino_format_id;
-        $nBouteille->vino_type_id = $request->vino_type_id;
-        $nBouteille->pays_id = $request->pays_id;
-        $nBouteille->utilisateur_id = Auth::id();
-        $nBouteille->save();
+        // ** Important que le formulaire soit de type multi encrypted */
+        // return $request->has('image');
 
 
-        $bouteilleParCellier = new Bouteille_Par_Cellier();
-        $bouteilleParCellier->quantite = $request->qty;
-        $bouteilleParCellier->date_achat = $dateAchat;
-        $bouteilleParCellier->millesime = $request->annee;
-        $bouteilleParCellier->garde_jusqua = $request->garde_jusqua;
-        $bouteilleParCellier->vino_cellier_id = $request->vino_cellier_id;
-        $bouteilleParCellier->prix = $nBouteille->prix_saq * $bouteilleParCellier->quantite;
-        $bouteilleParCellier->vino_bouteille_id = $nBouteille->id;
+
+
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            ]);
+            $imageName = time().'.'.$request->image->extension();
+            // Public Folder
+            $request->image->move(public_path('storage/uploads'), $imageName);
+            // $request->image->storeAs('images', $imageName);
+            $data['image'] = $imageName;
+        } else {
+            $data['image'] = null;
+        }
+
+        /*
+        vérification pour voir si on a les autorisations d'enregistrer des images ou doc
+
+        $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
+        if (is_writable($storagePath)) {
+            return "Vous avez les autorisations d'enregistrer des fichiers localement.";
+        } else {
+            return "Vous n'avez pas les autorisations d'enregistrer des fichiers localement.";
+        }
+        */
+
+        // enregistrer dans vino_bouteille en premier
+        $vinoBouteille = new Vino_Bouteille;
+        $vinoBouteille->fill($data);
+        $vinoBouteille->save();
+
+        // récupérer l'id pour le passer en paramètre
+        $data['vino_bouteille_id'] = $vinoBouteille->id;
+
+        // enregistrer dans bouteille par cellier ensuite
+        $bouteilleParCellier = new Bouteille_Par_Cellier;
+        $bouteilleParCellier->fill($data);
         $bouteilleParCellier->save();
 
-       
-
+        Historique::create([
+            'bouteille_id' => $data['vino_bouteille_id'],
+            'cellier_id' => $data['vino_cellier_id'],
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
@@ -144,6 +173,8 @@ class BouteilleController extends Controller
         // return $request->has('image');
 
 
+
+
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
@@ -152,14 +183,14 @@ class BouteilleController extends Controller
             // Public Folder
             $request->image->move(public_path('storage/uploads'), $imageName);
             // $request->image->storeAs('images', $imageName);
-            $data['image'] = $imageName;   
+            $data['image'] = $imageName;
         } else {
-            $data['image'] = null;
+            $data['image'] = 'placeholder.png';
         }
 
         /*
         vérification pour voir si on a les autorisations d'enregistrer des images ou doc
-        
+
         $storagePath = storage_path('app/public'); // Chemin vers le répertoire de stockage
         if (is_writable($storagePath)) {
             return "Vous avez les autorisations d'enregistrer des fichiers localement.";
@@ -183,7 +214,13 @@ class BouteilleController extends Controller
         $bouteilleParCellier = new Bouteille_Par_Cellier;
         $bouteilleParCellier->fill($data);
         $bouteilleParCellier->save();
-       
+
+        Historique::create([
+            'bouteille_id' => $data['vino_bouteille_id'],
+            'cellier_id' => $data['vino_cellier_id'],
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
 
@@ -193,8 +230,6 @@ class BouteilleController extends Controller
 
     public function rechercheBouteille(Request $request)
     {
-
-
         $request->validate([
             'quantite' => 'required|integer|min:1',
             'vino_bouteille_id' => 'required|integer|min:1',
@@ -225,6 +260,13 @@ class BouteilleController extends Controller
             ]);
             $bouteille->save();
         }
+
+        Historique::create([
+            'bouteille_id' => $request->vino_bouteille_id,
+            'cellier_id' => $request->vino_cellier_id,
+            'utilisateur_id' => Auth::id(),
+            'create_at' => Carbon::now()
+        ]);
 
         return redirect(route('celliers.afficher', $request->vino_cellier_id));
     }
@@ -347,7 +389,7 @@ class BouteilleController extends Controller
         if ($request->quantite !== null) {
             $data['quantite'] = $request->quantite;
         }
-        
+
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|image|mimes:png,jpg,jpeg,tiff, webp|max:2048'
@@ -356,7 +398,7 @@ class BouteilleController extends Controller
             // Public Folder
             $request->image->move(public_path('storage/uploads'), $imageName);
             // $request->image->storeAs('images', $imageName);
-            $data['image'] = $imageName;   
+            $data['image'] = $imageName;
         }
 
         $vinoBouteille = Vino_Bouteille::where('id', $idBouteille->id)
@@ -375,9 +417,6 @@ class BouteilleController extends Controller
             $bouteilleParCellier->fill($data);
             $bouteilleParCellier->save();
         }
-
-
-
 
         // rediriger vers la page précédente avec un message de succès
         return redirect('/celliers' . '/' . $idCellier->id)->withSuccess('Information mise à jour.');
@@ -398,10 +437,9 @@ class BouteilleController extends Controller
         $bouteilles = [];
         foreach ($bHistorique as $bouteille) {
             $bouteilleHis = Vino_Bouteille::find($bouteille->bouteille_id);
-            $bouteilleHis['pays'] = Pays::find($bouteilleHis->pays_id)['pays'];
-            $bouteilleHis['format'] = Vino_Format::find($bouteilleHis->vino_format_id)['format'];
+            $bouteilleHis['pays'] = (Pays::where("id",$bouteilleHis->pays_id)->exists()) ? Pays::find($bouteilleHis->pays_id)['pays'] : 'Pays indéfini';
+            $bouteilleHis['format'] = (Vino_Format::where("id",$bouteilleHis->vino_format_id)->exists()) ? Vino_Format::find($bouteilleHis->vino_format_id)['format'] : 'Format indéfini';
             $bouteilleHis['date'] = $bouteille->created_at;
-            echo ($bouteille->create_at);
             array_push($bouteilles, $bouteilleHis);
         }
         return view('bouteille.historique', ['bouteilles' => $bouteilles]);

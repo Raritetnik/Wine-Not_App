@@ -4,11 +4,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
     const btnMobileMenu = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
+    const btnClose = document.getElementById("mobile-menu-button-close");
     // const logoWn = document.querySelector("#logo");
-
 
     btnMobileMenu.addEventListener("click", function () {
         const mobileMenu = document.getElementById("mobile-menu");
+        const btnClose = document.getElementById("mobile-menu-btn-close");
         //const logoWn = document.querySelector("#logo");
         mobileMenu.classList.toggle("hidden");
         if (!mobileMenu.classList.contains("hidden")) {
@@ -16,7 +17,12 @@ window.addEventListener("DOMContentLoaded", function () {
         } else {
             //logoWn.style.opacity = 1;
         }
+
+        btnClose.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+        });
     });
+
 
     //modification de couleur de burger menu
     /*const svgElement = document.querySelector("#mobile-menu-button svg");
@@ -39,6 +45,17 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+  //modification de couleur de burger menu
+    /*const svgElement = document.querySelector("#mobile-menu-button svg");
+    btnMobileMenu.addEventListener("click", () => {
+        const strokeColor = svgElement.getAttribute("stroke");
+        if (strokeColor === "#67375C") {
+            svgElement.setAttribute("stroke", "white");
+        } else {
+            svgElement.setAttribute("stroke", "#67375C");
+        }
+    });
+    */
 
 //*******************Formulaires d'ajout de bouteilles************************* */
 
