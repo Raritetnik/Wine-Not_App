@@ -360,9 +360,7 @@ class BouteilleController extends Controller
             $request->image->move(public_path('storage/uploads'), $imageName);
             // $request->image->storeAs('images', $imageName);
             $data['image'] = $imageName;
-        } else {
-            $data['image'] = 'placeholder.png';
-        }
+        } 
         if ($request->pays_id !== null) {
             $data['pays_id'] = $request->pays_id;
         }
