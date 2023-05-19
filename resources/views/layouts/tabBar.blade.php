@@ -28,20 +28,6 @@
           <img src="{{ asset('img/svg/more2.svg') }}" alt="menu" class="inline-block align-middle pt-1 pb-1">
           <span class="inline-block align-middle">Plus</span>
       </a>
-      <div class="more-options">
-        <a href="/mes-celliers" class="tab-icon">
-          <span class="inline-block align-middle">Mes Celliers</span>
-        </a>
-        <a href="/inscription" class="tab-icon">
-          <span class="inline-block align-middle">Inscription</span>
-        </a>
-        <a href="/ajouter-bouteille" class="tab-icon">
-          <span class="inline-block align-middle">Ajouter Bouteille</span>
-        </a>
-        <a href="/tutoriel" class="tab-icon">
-          <span class="inline-block align-middle">Tutoriel</span>
-        </a>
-      </div>
     </div>
   @endguest
 </div>

@@ -1,5 +1,5 @@
 <template>
-    <article v-if="afficherCarte" class="mx-auto bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
+    <article v-if="afficherCarte" class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-full">
         <header class="flex items-start relative">
             <button data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                 <img id="open_popup-modal" :src="require('/img/svg/close.svg')" style="width: 25px; min-width: 25px;" class="relative" alt="close"
