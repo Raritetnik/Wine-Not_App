@@ -220,9 +220,10 @@ class BouteilleController extends Controller
             ->exists();
 
         if ($bouteilleValidation) {
-
-            $totalBouteille = $bouteilleValidation->quantite + $request->quantite;
-            $bouteilleValidation->update(['quantite' => $totalBouteille]);
+            $bouteilleAjustement = Bouteille_Par_Cellier::where('vino_cellier_id', $request->vino_cellier_id)
+            ->where('vino_bouteille_id', $request->vino_bouteille_id)->first();
+            $totalBouteille = $bouteilleAjustement->quantite + $request->quantite;
+            $bouteilleAjustement->update(['quantite' => $totalBouteille]);
         } else {
             $dateAchat = $request->date_achat ? $request->date_achat : now()->timezone('America/Toronto')->format('Y-m-d');
 
