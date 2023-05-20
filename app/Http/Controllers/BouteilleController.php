@@ -93,7 +93,7 @@ class BouteilleController extends Controller
             ]);
             $imageName = time().'.'.$request->image->extension();
             // Public Folder
-            $request->image->move(public_path('storage/uploads'), $imageName);
+            $request->image->move('storage/uploads', $imageName);
             // $request->image->storeAs('images', $imageName);
             $data['image'] = $imageName;
         } else {
@@ -164,7 +164,7 @@ class BouteilleController extends Controller
             ]);
             $imageName = time().'.'.$request->image->extension();
             // Public Folder **** sur serveur enlever public_path
-            $request->image->move(public_path('storage/uploads'), $imageName);
+            $request->image->move('storage/uploads', $imageName);
             // $request->image->storeAs('images', $imageName);
             $data['image'] = $imageName;
         } else {
@@ -321,20 +321,22 @@ class BouteilleController extends Controller
             ->leftJoin('pays', 'pays.id', 'vino_bouteilles.pays_id')
             ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
             ->where('vino_celliers.id', $idCellier->id)
-            ->get();
+            ->first();
         $pays = Pays::all();
         $types = Vino_type::all();
         $formats = Vino_format::all();
         // seulement passer en paramètre les celliers de l'utilisateur
         $user_id = auth()->user()->id;
         $celliers = Vino_cellier::where('utilisateurs_id', $user_id)->get();
+        $filePath = asset('/storage/uploads/'.$bouteilleModifie->image);
         // passer en paramètre l'objet de bouteille à modifier et les autres tables pour les menus déroulants
         return view('bouteille.modifier', [
-            'bouteille' => $bouteilleModifie[0],
+            'bouteille' => $bouteilleModifie,
             'types' => $types,
             'formats' => $formats,
             'pays' => $pays,
-            'celliers' => $celliers
+            'celliers' => $celliers,
+            'fichier' => $filePath
         ]);
     }
 
@@ -357,11 +359,11 @@ class BouteilleController extends Controller
             ]);
             $imageName = time().'.'.$request->image->extension();
             // Public Folder
-            $request->image->move(public_path('storage/uploads'), $imageName);
+            $request->image->move('storage/uploads', $imageName);
             // $request->image->storeAs('images', $imageName);
             $data['image'] = $imageName;
         } else {
-            $data['image'] = 'placeholder.png';
+            $data['image'] = $idBouteille->image;
         }
         if ($request->pays_id !== null) {
             $data['pays_id'] = $request->pays_id;

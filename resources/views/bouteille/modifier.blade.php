@@ -38,10 +38,12 @@
                   id="img"
                   type="file"
                   class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer"
+                  value="{{ asset('storage/uploads/'.$bouteille->image) }}"
+                  placeholder="Choisir une image"
                   name="image">
                 <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
                   <span class="block text-section_title" id="file-name">
-                    Choisir une image
+                    {{ ($bouteille->image == null || $bouteille->image == '' ) ? 'Choisir une image' : $bouteille->image }}
                   </span>
                   <img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
                 </div>

@@ -49,7 +49,7 @@
             </div>
             <div class="w-1/2 mb-2">
               <label for="millesime" class="block text-section_title text-sm font-bold mb-2">Millésime</label>
-              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="millesime" id="millesime" min="1" placeholder="Entrer l'année du vin"/>
+              <input class="block w-full py-3 px-3 placeholder-section_title rounded-md border border-gray-300 focus:border-secondary focus:outline-none appearance-none" name="millesime" id="millesime" max="{{ date('Y') }}" placeholder="Entrer l'année du vin" />
             </div>
           </div>
           <div class="mb-2 flex flex-wrap md:flex-nowrap gap-3">
