@@ -323,7 +323,7 @@ class BouteilleController extends Controller
             ->where('bouteille_par_celliers.vino_bouteille_id', $idBouteille->id)
             ->where('vino_celliers.id', $idCellier->id)
             ->first();
-        $pays = Pays::all();
+        $pays = Pays::all()->sortBy('pays');
         $types = Vino_type::all();
         $formats = Vino_format::all();
         // seulement passer en paramètre les celliers de l'utilisateur
