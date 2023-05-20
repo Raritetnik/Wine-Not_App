@@ -2,7 +2,7 @@
 @section('content')
 <div class="bg-white py-16">
   <div class="container mx-auto py-5 px-8 max-w-lg">
-    <h2 class="mb-3 text-accent_wine text-center text-2xl font-bold leading-none sm:text-3xl">Ajouter Un Cellier</h2>
+    <h2 class="mb-3 text-accent_wine text-center text-2xl font-bold leading-none sm:text-3xl">Ajouter un Cellier</h2>
     <p class="text-article_title text-center w-45 mb-5 px-10">Remplissez le formulaire suivant pour ajouter un cellier.</p>
     <form action="{{route('celliers.insererCellier')}}" method="post" enctype="multipart/form-data" class="w-full">
       <!-- ajouter un token pour autoriser la route une seconde fois -->
@@ -28,16 +28,16 @@
       </div>
       <div class="mb-4 py-4 flex justify-between gap-5">
         <a href="{{ route('celliers.index') }}" class="h-12 py-3 px-6 rounded-md transition-colors tracking-wide border-accent_wine duration-200  text-accent_wine font-medium hover:bg-accent_wine  border hover:text-main" type="button" id="no_modal">Retourner</a>
-        <button class="cursor-pointer h-12 py-3 px-6 font-medium tracking-wide text-main transition-colors duration-200 rounded border-md bg-accent_wine hover:border-accent_wine hover:bg-transparent hover:àtext-accent_wine  focus:outline-none" type="submit">Ajouter</button>
+        <button class="cursor-pointer h-12 py-3 px-6 font-medium tracking-wide transition-colors duration-200 rounded border-md hover:bg-transparent hover:text-accent_wine hover:border-accent_wine text-main bg-accent_wine border border-accent_wine focus:outline-none" type="submit">Ajouter</button>
       </div>
     </form>
   </div>
 </div>
-  <!-- bouton d'ajout de bouteille -->
-  <div class="add_btn fixed right-5 btn-bouteille z-50">
-    <a href="{{ route('bouteille.create') }}">
-        <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
-    </a>
-  </div>
+<!-- bouton d'ajout de bouteille -->
+<div class="add_btn fixed right-5 btn-bouteille z-50">
+  <a href="{{ route('bouteille.create') }}">
+    <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
+  </a>
+</div>
 
 @endsection
