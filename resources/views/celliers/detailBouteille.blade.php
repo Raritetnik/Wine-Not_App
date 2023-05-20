@@ -41,10 +41,10 @@
         </div>
     </div>
     <!-- End Modal -->
-   
+
    @include('celliers.deplacerBouteille', ['vino_cellier' => $bouteille->vino_cellier_id, 'bouteille_par_cellier' => $bouteille->id])
     <div class="max-w-screen-lg flex justify-between items-center gap-5 px-3 mx-auto">
-        <a href="{{ route('celliers.afficher', ['cellier' => $bouteille->vino_cellier_id]) }}" class=" hover:opacity-80"><img class="w-5 max-w-md" src="{{asset('img/svg/arrowL-w.svg')}}" alt="back"></a>
+        <a href="{{ route('celliers.afficher', ['cellier' => $bouteille->vino_cellier_id]) }}" class=" hover:opacity-80"><img class="w-5 max-w-md" src="{{asset('img/svg/back-arrow.svg')}}" alt="back"></a>
         <h5 class="sm:text-2xl text-accent_wine text-xl font-bold text-right leading-6">{{$bouteille -> nom}}</h5>
     </div>
     <div class="max-w-screen-lg mx-auto rounded-lg overflow-hidden mt-6 mb-7 px-3">
@@ -52,7 +52,7 @@
 
             <div class="md:rounded-l-lg md:rounded-tr-none flex-shrink-0 md:w-1/2">
                 @if ($bouteille->url_img)
-                <img src="{{ explode('?', $bouteille->url_img)[0] }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteil de vin">
+                <img src="{{ explode('?', $bouteille->url_img)[0]."?width=400" }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteil de vin">
                 @else
                 <img src="{{ $bouteille->image ? asset('/storage/uploads/' . $bouteille->image) : asset('/storage/uploads/placeholder.png') }}" class="object-cover mx-auto max-h-[350px] h-full mt-2 p-3" alt="bouteille de vin">
 
@@ -67,7 +67,7 @@
                         <span class="text-article_title text-lg font-medium">{{$bouteille->cellier}}</span>
                     </div>
                     <div class="flex flex-wrap items-baseline gap-2">
-                        <span class="text-m font-semibold text-section_title">Date d'ajout:</span> 
+                        <span class="text-m font-semibold text-section_title">Date d'ajout:</span>
                         <span type="text" class="text-article_title text-lg font-medium" >{{$bouteille->date_achat ?? ''}}</span>
                     </div>
                     </div>
@@ -127,7 +127,7 @@
                         @endif
                     </div>
                 </div>
-              
+
                 <div class="flex justify-start items-center pt-5 pb-4 gap-10 px-5 mt-auto">
                     @if (count(auth()->user()->celliers) > 1)
                     <button type="button" id="move_modal" class="py-2 px-4 rounded-md transition-colors duration-200 bg-accent_wine text-main font-medium hover:bg-transparent hover:border-accent_wine border hover:text-accent_wine">Déplacer</button>
@@ -136,7 +136,7 @@
                 </div>
             </div>
           </div>
-        
+
     </div>
     <!-- fin fiche -->
 </div>

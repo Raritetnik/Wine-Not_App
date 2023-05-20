@@ -24,7 +24,6 @@ class HomeController extends Controller
     public function index()
     {
       $cookieValue = Cookie::get('myapp_session');
-      echo($cookieValue);
       if ($cookieValue && Auth::check()) {
         return redirect('/celliers');
       } else if(Auth::check()) {
@@ -60,12 +59,11 @@ class HomeController extends Controller
     $informations['quantiteBouteilles'] = 0;
     $informations['prixBouteilles'] = 0;
     foreach ($listeCelliers as $cellier) {
-      $informations['quantiteBouteilles'] += count(Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->get());
-
+      $informations['quantiteBouteilles'] += Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->sum('quantite');
       // Ajustement des prix de chaque bouteille
       $listeBouteilles = Bouteille_Par_Cellier::where('vino_cellier_id', $cellier->id)->get();
       foreach ($listeBouteilles as $bouteille) {
-        $informations['prixBouteilles'] += $bouteille->prix | 0;
+        $informations['prixBouteilles'] += ($bouteille->prix * $bouteille->quantite) | 0;
       }
     }
     return view('compte', ["utilisateur" =>Auth::user(), 'userInfo' => $informations]);

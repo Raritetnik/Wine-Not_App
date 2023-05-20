@@ -1,5 +1,5 @@
 <template>
-    <article class="mx-auto bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-100">
+    <article class="bg-gray-100 flex gap-1 border px-4 py-3 rounded-md justify-between max-w-[560px] w-full">
         <header class="flex items-start relative">
             <img class="object-cover min-w-[100px] min-h-[150px] max-h-[150px] hover-carte" :src="(this.bouteille.url_img) ? this.bouteille.url_img : (`/storage/uploads/${this.bouteille.image || 'placeholder.png'}`)" :alt="this.bouteille.nomSAQ">
         </header>

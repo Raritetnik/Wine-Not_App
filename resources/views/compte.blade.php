@@ -32,7 +32,7 @@
           </div>
           @error('oldPassword')
             <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
-          @enderror 
+          @enderror
           <footer class="flex flex-col items-center mb-10 mt-5">
             <button type="submit" class="text-white py-2 mt-4 w-full rounded-md mb-2" style="background-color: #67375C">Modifier</button>
             <v-supprimer-compte :user="{{ $utilisateur }}"/>
@@ -42,7 +42,7 @@
     </div>
   </div>
     <!-- bouton d'ajout de bouteille -->
-    <div class="add_btn fixed right-5 bottom-20 z-50">
+  <div class="add_btn fixed right-5 btn-bouteille z-50">
     <a href="{{ route('bouteille.create') }}">
         <div class="shadow-md h-16 w-16 rounded-full transition-colors duration-200 flex justify-center cursor-pointer p-2.5 bg-accent_wine_light hover:bg-accent_wine text-main"><img class="absolute left-6 h-11 self-center" src="{{asset('img/svg/bouteille-plus.svg')}}" alt="add-button"></div>
     </a>

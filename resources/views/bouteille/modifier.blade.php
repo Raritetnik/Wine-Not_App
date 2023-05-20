@@ -9,31 +9,43 @@
           <div class="">
             <div class="">
               <form method="post" enctype="multipart/form-data" class="w-full pt-3">
-                @csrf
-                @method('PUT')
-                <label>
-                  <input type="hidden" nave="vino_cellier_id" value="{{$bouteille->vino_cellier_id}}">
-                </label>
-                <div class="w-full inline-block mb-5">
-                  <h2 class="text-accent_wine text-xl font-extrabold pb-6">
-                    Modifier une bouteille personnelle
-                  </h2>
-                  <label for="nom" class="block text-section_title font-bold mb-2">
-                    Nom de la bouteille
-                  </label>
-                  <input value="{{$bouteille->nom}}" type="text" name="nom" id="nom" placeholder="Entrez le nom de la bouteille" class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline" />
-                </div>
-                <div class="w-full mb-5">
-                  <label for="img" class="block text-section_title font-bold mb-2">
-                    Ajouter une image
-                  </label>
-                  <div class="w-full items-center justify-center h-12 py-3 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline">
-                    <input id="img" type="file" class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer" name="image">
-                    <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
-                      <span class="block text-section_title" id="file-name">
-                        Choisir une image
-                      </span>
-                      <img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
+              @csrf
+              @method('PUT')
+              <label>
+                <input type="hidden" nave="vino_cellier_id" value="{{$bouteille->vino_cellier_id}}">
+              </label>
+            <div class="w-full inline-block mb-5">
+              <h2 class="text-accent_wine text-xl font-extrabold pb-6">
+                Modifier une bouteille personnelle
+              </h2>
+              <label for="nom" class="block text-section_title font-bold mb-2">
+                Nom de la bouteille
+              </label>
+              <input
+                value="{{$bouteille->nom}}"
+                type="text"
+                name="nom"
+                id="nom"
+                placeholder="Entrez le nom de la bouteille"
+                class="w-full items-center justify-center h-12 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline" />
+            </div>
+            <div class="w-full mb-5">
+            <label for="img" class="block text-section_title font-bold mb-2">
+              Ajouter une image
+            </label>
+              <div class="w-full items-center justify-center h-12 py-3 px-6 font-medium tracking-wide text transition duration-200 rounded border border-accent_wine focus:shadow-outline">
+                <input
+                  id="img"
+                  type="file"
+                  class="opacity-0 absolute z-50 w-full py-3 px-3 border border-gray-400 rounded-lg cursor-pointer"
+                  value="{{ asset('storage/uploads/'.$bouteille->image) }}"
+                  placeholder="Choisir une image"
+                  name="image">
+                <div class="flex justify-between gap-3  sm:text-md cursor-pointer">
+                  <span class="block text-section_title" id="file-name">
+                    {{ ($bouteille->image == null || $bouteille->image == '' ) ? 'Choisir une image' : $bouteille->image }}
+                  </span>
+                  <img src="{{ asset('img/svg/addPhoto.svg') }}" alt="add-image">
                     </div>
                   </div>
                 </div>
